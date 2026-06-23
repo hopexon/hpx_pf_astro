@@ -1,0 +1,19 @@
+---
+import Layout from "../../../../layouts/Layout.astro"
+import "../css/mtg.css"
+import SubheadLinks from "../../../../components/collections/mtg/SubheadLinks"
+import SetsWrap from "../../../../components/collections/mtg/SetsWrap"
+import { mtgSetYears } from "./data";
+---
+
+<Layout>
+  <div>
+    <h1 class="page__ttl">Test Sets</h1>
+    <div class="main__wrap">
+      <section class="section__wrapper">
+        <SubheadLinks />
+        {mtgSetYears.map((year) => <SetsWrap year={year} />)}
+      </section>
+    </div>
+  </div>
+</Layout>

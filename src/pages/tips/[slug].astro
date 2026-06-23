@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro"
+import type { GetStaticPaths } from "astro"
+import '../../pages/tips/css/tips.css'
+import '../../pages/tips/css/accordion_2026.css'
+
+export  const getStaticPaths = (async() => {
+  const allMdxFiles = await import.meta.glob<any>('../../content/tips/*.mdx', { eager: true })
+
+  return Object.values(allMdxFiles).map(post => {
+    const slug = post.file.split('/').pop()?.replace('.mdx', '')
+    return {
+      params: { slug },
+      props: { post }
+    }
+  })
+}) satisfies GetStaticPaths
+
+const { post } = Astro.props
+
+if (!post) {
+  return new Response(null, { status: 404, statusText: 'Not Found' });
+}
+
+const { Content, frontmatter } = post
+---
+<Fragment head>
+  <meta name='description' content={frontmatter.description}>
+  <title>{frontmatter.title}</title>
+</Fragment>
+<Layout>
+  <div>
+    <h1 class="page__ttl tips">{frontmatter.title}</h1>
+    <div class="main__wrap post__content">
+      <section class="section__wrapper tips__section__wrapper">
+        <Content />    
+      </section>
+    </div>
+  </div>
+</Layout>

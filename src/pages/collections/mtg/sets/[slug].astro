@@ -1,0 +1,53 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from '../../../../layouts/Layout.astro'
+import SubheadLinks from '../../../../components/collections/mtg/SubheadLinks'
+import '../css/mtg.css'
+import { mtgSets, mtgMap } from './data'
+import { mtgCards } from '../data'
+
+export const getStaticPaths = async () => {
+  return mtgSets.map((set) => {
+    return {
+      params: { slug: set.slug},
+      props: { set }
+    }
+  })
+}
+
+const { slug } = Astro.params
+const { set } = Astro.props
+
+const normalizeSetName = (value: string) => value.trim().toLowerCase()
+const cardsInSet = mtgCards.filter(card => normalizeSetName(card.set) === normalizeSetName(set.name))
+---
+
+<Layout>
+  <div>
+    <h1 class="page__ttl">Test</h1>
+    <div class="main__wrap">
+      <section class="section__wrapper mtg__section__wrapper">
+        <SubheadLinks />
+        <div class="grid">
+          {cardsInSet.map(card => (
+            <a class="card__link" href={`/collections/mtg/${card.slug}`}>
+              <div class="card__thumb">
+                {card.imgFull ? (
+                  <img
+                    class='card__img'
+                    src={`/collections/mtg/${card.imgFull}`} 
+                    alt={`${card.name}`} />
+                ) : (
+                  <img
+                    class='card__img'
+                    src={`/collections/mtg/${card.imgCard}`} 
+                    alt={`${card.name}`} />
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

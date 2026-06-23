@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro'
+
+const collectionsMenuList = [
+  { name: 'Decks', path: 'collections/decks' },
+  { name: 'MTG', path: 'collections/mtg' },
+]
+---
+
+<Layout>
+  <div>
+    <h1 class="page__ttl">Collections</h1>
+    <div class="main__wrap">
+      <section class="section__wrapper">
+        <div class="linkitem__wrap">
+          {
+            collectionsMenuList.map((item) => (
+              <a href={item.path} class="linkitem__link link__twister">
+                {item.name}
+              </a>
+            ))
+          }
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>

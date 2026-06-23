@@ -1,0 +1,70 @@
+---
+title: 'What About Core Web Vitals'
+---
+
+<h2>●Core Web Vitals</h2>
+
+全てのウェブページに適用される動作指標のサブセット。  
+Coreとされる指標は以下3つ。  
+<span class='.tips__hanging'>・LCP - Largest Contentful Paint</span>  
+<span class='.tips__hanging'>・INP - Interaction to Next Paint</span>  
+<span class='.tips__hanging'>・CLS - Cumulative Layout Shift</span>
+
+<br />
+<br />
+
+<h2>●LCP</h2>
+
+`Largest Contentful Paint`の字面通り、 ページ上における最大サイズの画像またはテキストブロックが表示されるまでの所要時間。  
+読み込みパフォーマンスの尺度として用いられ、`2.5秒`以上を要する場合は改善が必要と判断される。
+
+<br />
+<br />
+
+<h2>●INP(旧FID)</h2>
+
+`Interaction to Next Paint (旧：First Input Delay)`  
+「&lt;summary&gt;要素をクリックしてから実際にアコーディオンが展開されるまでの待機時間」など、ユーザの操作が実際のペイント(視覚で捉えられるもの)として表示されるまでの所要時間(待機時間)のことを指す。  
+
+INPはページで行われた全てのインタラクション(クリック、タップ、キーボード操作)のレイテンシをモニタリングすることで測定される。  
+ページの計測区間として設定された領域(ページ全体の75%が推奨されている)において、大半のページでは「最も大きなレイテンシ」がINPとして記録される(※)。  
+INPが`200ms`以下の場合ページは`良好`、`500ms`以上の場合は`不良`と判断され、両者間の場合は`要改善`とされる。  
+
+※  
+インタラクションが多数発生するページでは外れ値を除くため「50回のインタラクションごとに一度、最も高いレイテンシを排除する」という挙動が発生するが、Wevdev曰く殆どのサイトで50回を超えるインタラクションは発生しないとされている。  
+<span class='.tips__keywords__ttl .tips__hanging'>●FIDとは何が異なるのか</span>  
+FIDは`初回操作時のレイテンシ`のみを計測する。総体的なレイテンシの計測をよりふさわしいものとして、2024年3月からFIDに代わる形でINPがCore Web Vitalに採用されている。
+
+参照：  
+<span class='.tips__hanging'>・<a href="https://web.dev/articles/inp?hl=ja" target="_blank" rel="noopener noreferrer">Interaction to Next Paint（INP） - wev.dev</a></span>  
+<span class='.tips__hanging'>・<a href="https://developers.google.com/search/blog/2023/05/introducing-inp?hl=ja" target="_blank" rel="noopener noreferrer">INP を Core Web Vitals に導入 - Google Search Central Blog</a></span>  
+<span class='.tips__hanging'>・<a href="https://web.dev/blog/better-responsiveness-metric?hl=ja" target="_blank" rel="noopener noreferrer">応答性の指標の改善に向けて - web.dev</a></span>
+
+<br />
+<br />
+
+<h2>●CLS</h2>
+
+`Cumulative Layout Shift` / レイアウトシフト堆積。  
+サイトの閲覧時、ページのレイアウトにどれだけのズレが生じたかを数値化したもの。  
+
+発生の主原因としては`サイズが指定されていない画像や動画`、`初期フォールバックより大きいまたは小さくレンダリングされるフォント`、`サードパーティ製広告やウィジェット`等が挙げられる。  
+
+参照：  
+<span class='.tips__hanging'>・<a href="https://web.dev/articles/cls?hl=ja" target="_blank" rel="noopener noreferrer">Cumulative Layout Shift (CLS) - Web.dev</a></span>
+
+<br />
+<br />
+
+<h2>●FCP</h2>
+
+`First Contentful Paint`  
+ページ遷移後、ブラウザが最初のDOMコンテンツをレンダリングするまでに要する時間。  
+画像、白色以外の&lt;canvas&gt;、`SVG`はDOMコンテンツとみなされるが、&lt;iframe&gt;はDOMコンテンツとみなされない。  
+99%のサイトは`1.2秒`以内にFCPのレンダリングが開始されるため、同値を基準として超える場合は`Lighthouse`上のスコアが下がっていく。  
+
+参照：  
+<span class='.tips__hanging'>・<a href="https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint?hl=ja" target="_blank" rel="noopener noreferrer">First Contentful Paint - Chrome for Developers</a></span>  
+
+<br />
+<br />
