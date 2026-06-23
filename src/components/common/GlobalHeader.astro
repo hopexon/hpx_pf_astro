@@ -1,0 +1,69 @@
+---
+const NAV = [
+  { name: 'TOP', path: '/' },
+  { name: 'Tools', path: '/tools' },
+  { name: 'Tips', path: '/tips' },
+  { name: 'Works', path: '/works' },
+  { name: 'Collections', path: '/collections' }
+]
+---
+
+<header class='globalheader'>
+  <nav class='global__nav__pc pc__only'>
+    {
+      NAV.map((item) => (
+        <a
+          href={item.path}
+          class='nav__linkItem link__twister'
+        >
+          {item.name}
+        </a>
+      ))
+    }
+  </nav>
+
+  <button
+    type='button'
+    commandfor='nav__sp'
+    command='show-modal'
+    class='nav__btn__sp sp__only'
+    aria-controls='nav__sp'></button>
+
+  <dialog
+    id='nav__sp'
+    closedby='any'
+    autofocus
+    aria-labelledby='nav__sp__heading'
+  >
+    <div class='dialog__inner'>
+      {
+        NAV.map((item) => (
+          <a
+            href={item.path}
+            class='nav__linkItem link__twister w-fit nav__item__sp'
+          >
+            {item.name}
+          </a>
+        ))
+      }
+    </div>
+  </dialog>
+</header>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>('.nav__btn__sp')
+  const dialog = document.getElementById('nav__sp') as HTMLDialogElement | null
+
+  if (btn && dialog) {
+    btn.addEventListener('click', () => {
+      dialog.showModal()
+    })
+
+    // バックドロップクリックで閉じる (e.target がダイアログ自体 = backdrop 領域)
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) {
+        dialog.close()
+      }
+    })
+  }
+</script>

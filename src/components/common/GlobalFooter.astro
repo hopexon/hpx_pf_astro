@@ -1,0 +1,24 @@
+---
+const NAV = [
+  { name: "TOP", path: "/" },
+  { name: "Tools", path: "/tools" },
+  { name: "Tips", path: "/tips" },
+  { name: "Works", path: "/works" },
+  { name: "Collections", path: "/collections" },
+];
+---
+
+<footer class="globalfooter">
+  <nav class="globalfooter__inner">
+    {
+      NAV.map((item) => (
+        <a
+          href={item.path}
+          class="globalFooter__linkItem nav__linkItem"
+        >
+          {item.name}
+        </a>
+      ))
+    }
+  </nav>
+</footer>
