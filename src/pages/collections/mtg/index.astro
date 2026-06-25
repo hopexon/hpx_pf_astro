@@ -3,12 +3,12 @@ import Layout from '../../../layouts/Layout.astro'
 import { Image } from 'astro:assets'
 import './css/mtg.css'
 import SubheadLinks from '../../../components/collections/mtg/SubheadLinks'
-import { mtgCards } from './data';
+import { mtgCards } from './data'
 ---
 
 <Layout>
   <div>
-    <h1 class="page__ttl">Test</h1>
+    <h1 class="page__ttl">MTG -TOP-</h1>
     <div class="main__wrap">
       <section class="section__wrapper mtg__section__wrapper">
         <SubheadLinks />
@@ -20,12 +20,14 @@ import { mtgCards } from './data';
                   <img
                     class='card__img'
                     src={`/collections/mtg/${card.imgFull}`} 
-                    alt={`${card.name}`} />
+                    alt={`${card.name}`}
+                    loading='lazy'/>
                 ) : (
                   <img
                     class='card__img'
                     src={`/collections/mtg/${card.imgCard}`} 
-                    alt={`${card.name}`} />
+                    alt={`${card.name}`}
+                    loading='lazy'/>
                 )}
               </div>
             </a>

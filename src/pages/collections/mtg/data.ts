@@ -310,8 +310,8 @@ export const mtgCards: MtgCard[] = [
     year: 2025,
     set: 'Tarkir Dragonstorm',
     name: 'Anafenza, Unyielding Lineage',
-    artist: 'Lie Setiawan',
-    artistUrl: 'https://www.liesetiawan.com/',
+    artist: 'Matt Stewart',
+    artistUrl: 'https://www.matthew-stewart.com/',
     imgFull: 'art_anafenza_unyielding_lineage.avif',
     imgCard: 'card_anafenza_unyielding_lineage.avif',
     flavor: `“Kin and clan call to me—and I will always answer.”`
@@ -321,8 +321,8 @@ export const mtgCards: MtgCard[] = [
     year: 2025,
     set: 'Tarkir Dragonstorm',
     name: 'Arashin Sunshield',
-    artist: 'Lie Setiawan',
-    artistUrl: 'https://www.liesetiawan.com/',
+    artist: 'Inkognit',
+    artistUrl: 'https://www.instagram.com/inkognit_art/',
     imgFull: 'art_arashin_sunshield.avif',
     imgCard: 'card_arashin_sunshield.avif',
     flavor: `“The best way to protect the citizens is to defend Arashin, not hunt dragonstorms across Tarkir.”\n—Sadesh of House Mevak`

@@ -1,9 +1,36 @@
+.custom-breadcrumbs {
+  --display: none;
+  --padding-inline: 1rem;
+
+  display: var(--display);
+  padding-inline: var(--padding-inline);
+  margin-block-start: 1rem;
+  color: var(--base-500);
+
+  @media screen and (min-width: 768px) {
+    --display: flex;
+    --padding-inline: var(--gutter-inline);
+  }
+
+  a:has([aria-current='location']) {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
+
+  @media (any-hover: hover) {
+    a:has([aria-current='location']:hover) {
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+  }
+}
+
 /* --- mtg top --- */
 .mtg__section__wrapper {
   max-inline-size: calc(2000 / 16 * 1rem);
 
   @media screen and (min-width: 900px) {
-    padding-block-start: 1rem;
+    padding-block-start: 3rem;
   }
 }
 

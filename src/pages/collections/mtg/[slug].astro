@@ -1,7 +1,8 @@
 ---
-import Layout from "../../../layouts/Layout.astro";
+// import Layout from "../../../layouts/Layout.astro";
+import Layout_MtgSlug from "../../../layouts/Layout_MtgSlug.astro";
 import { mtgCards, mtgMap } from "./data";
-import { mtgSets } from './sets/data'
+import { mtgSets } from "./sets/data";
 import "./css/mtg.css";
 
 export const getStaticPaths = async () => {
@@ -16,23 +17,14 @@ export const getStaticPaths = async () => {
 const { slug } = Astro.params;
 const { card } = Astro.props;
 
-const cardSet = mtgSets.find(set => set.name === card.set)
+const cardSet = mtgSets.find((set) => set.name === card.set);
 const bothImages = !!card.imgFull && !!card.imgCard;
 ---
 
-<Layout>
+<Layout_MtgSlug card={card}>
   <div>
     <div class="main__wrap">
-      <section class={`section__wrapper $mtg__section__wrapper}`}>
-        <div class="back__link__wrap}">
-          <a href="/collections/mtg/" class="back__link}"> &lt;&nbsp;List </a>
-          {cardSet && (
-              <a href={`/collections/mtg/sets/${cardSet.slug}/`} class='back__link'>
-                &lt;&nbsp;{card.name}
-              </a>
-            )}
-        </div>
-
+      <section class="section__wrapper mtg__section__wrapper">
         {
           bothImages ? (
             <div class="detail__layout__both">
@@ -145,4 +137,4 @@ const bothImages = !!card.imgFull && !!card.imgCard;
       </section>
     </div>
   </div>
-</Layout>
+</Layout_MtgSlug>
