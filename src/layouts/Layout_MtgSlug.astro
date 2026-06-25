@@ -14,9 +14,9 @@ const { card } = Astro.props;
 const cardSet = mtgSets.find((set) => set.name === card?.set);
 
 const customCrumbs = [
-  { label: "collections", href: "/collections/" },
-  { label: "mtg", href: "/collections/mtg/" },
-  { label: "sets", href: "/collections/mtg/sets/" },
+  // { label: "collections", href: "/collections/" },
+  { label: "MTG", href: "/collections/mtg/" },
+  { label: "Sets", href: "/collections/mtg/sets/" },
   { label: cardSet ? cardSet.name : "Unknown Set", href: cardSet ? `/collections/mtg/sets/${cardSet.slug}/` : undefined },
   // { label: card?.name ?? "Unknown Card" }
 ];

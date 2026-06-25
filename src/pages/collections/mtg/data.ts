@@ -154,8 +154,8 @@ export const mtgCards: MtgCard[] = [
   },
   {
     slug: 'archaeomancers-map',
-    year: 2021,
-    set: 'Commander 2021',
+    year: 2026,
+    set: 'Secrets of Strixhaven',
     name: 'Archaeomancer\'s Map',
     artist: 'Ovidio Cartagena',
     artistUrl: 'https://www.ovidiocartagena.com/',
@@ -164,8 +164,8 @@ export const mtgCards: MtgCard[] = [
   },
   {
     slug: 'oracles-restoration',
-    year: 2021,
-    set: 'Commander 2021',
+    year: 2026,
+    set: 'Secrets of Strixhaven',
     name: 'Oracle\'s Restoration',
     artist: 'Elliot Lang',
     artistUrl: 'https://www.elliotlang.com/',
@@ -176,7 +176,7 @@ export const mtgCards: MtgCard[] = [
   {
     slug: 'transcendent-envoy',
     year: 2023,
-    set: 'Wilds of Eldraine - Commander',
+    set: 'Wilds of Eldraine',
     name: 'Transcendent Envoy',
     artist: 'Zezhou Chen',
     artistUrl: 'https://www.artstation.com/zezhou',
@@ -264,7 +264,7 @@ export const mtgCards: MtgCard[] = [
   {
     slug: 'repel-calamity',
     year: 2026,
-    set: 'Secrets of Strixhaven MA',
+    set: 'Secrets of Strixhaven',
     name: 'Repel Calamity',
     artist: 'Alex Stone',
     artistUrl: 'https://www.alexstoneart.com/',
@@ -275,7 +275,7 @@ export const mtgCards: MtgCard[] = [
   {
     slug: 'return-the-favor',
     year: 2026,
-    set: 'Secrets of Strixhaven MA',
+    set: 'Secrets of Strixhaven',
     name: 'Return the Favor',
     artist: 'Aitor Sebastian',
     artistUrl: 'https://www.artstation.com/inkeyjay',
@@ -297,7 +297,7 @@ export const mtgCards: MtgCard[] = [
   {
     slug: 'redemption-arc',
     year: 2024,
-    set: 'Murders at Karlov Manor - Commander',
+    set: 'Murders at Karlov Manor',
     name: 'Redemption Arc',
     artist: 'Dominik Mayer',
     artistUrl: 'https://www.dominikmayer.art/',
@@ -315,6 +315,17 @@ export const mtgCards: MtgCard[] = [
     imgFull: 'art_anafenza_unyielding_lineage.avif',
     imgCard: 'card_anafenza_unyielding_lineage.avif',
     flavor: `“Kin and clan call to me—and I will always answer.”`
+  },
+  {
+    slug: 'ugin-eye-of-the-storms',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Ugin, Eye of the Storms',
+    artist: 'Joshua Raphael',
+    artistUrl: 'https://www.artstation.com/jsraphael',
+    imgFull: 'art_ugin_eye_of_the_storms.avif',
+    imgCard: 'card_ugin_eye_of_the_storms.avif',
+    flavor: ``
   },
   {
     slug: 'arashin-sunshield',
@@ -382,6 +393,17 @@ export const mtgCards: MtgCard[] = [
     flavor: `“So, these dragons intend to also manifest through a sandstorm? I take some offense to that.”\n—Felothar, khan of the Abzan`
   },
   {
+    slug: 'ambling-stormshell',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Ambling Stormshell',
+    artist: 'Carlos Palma Cruchaga',
+    artistUrl: 'https://www.instagram.com/carlos_cruchaga/?hl=ja',
+    imgFull: 'art_ambling_stormshell.avif',
+    imgCard: 'card_ambling_stormshell.avif',
+    flavor: ``
+  },
+  {
     slug: 'iceridge-serpent',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -402,6 +424,17 @@ export const mtgCards: MtgCard[] = [
     imgFull: 'art_kishla_trawlers.avif',
     imgCard: 'card_kishla_trawlers.avif',
     flavor: `“Fish are like any other crop or flock. They must be carefully tended and never overharvested.”\n—Nasath, Kishla fisher`
+  },
+  {
+    slug: 'marang-river-regent',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Marang River Regent',
+    artist: 'John Tedrick',
+    artistUrl: 'https://www.artstation.com/tedrick94',
+    imgFull: 'art_marang_river_regent.avif',
+    imgCard: 'card_marang_river_regent.avif',
+    flavor: ``
   },
   {
     slug: 'roiling-dragonstorm',
@@ -426,6 +459,61 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    slug: 'dracogenesis',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Dracogenesis',
+    artist: 'Kai Carpenter',
+    artistUrl: 'https://www.instagram.com/kt.carpenter/',
+    imgFull: 'art_dracogenesis.avif',
+    imgCard: 'card_dracogenesis.avif',
+    flavor: `“Let the dragonstorms rage. Let what seeks sustenance feed. Let Tarkir be what it was always meant to be.”\n—Sarkhan`
+  },
+  {
+    slug: 'temur-devotee',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Temur Devotee',
+    artist: 'Marina Ortega Lorente',
+    artistUrl: 'https://www.artstation.com/marinaortega',
+    imgFull: 'art_temur_devotee.avif',
+    imgCard: 'card_temur_devotee.avif',
+    flavor: `Whisperers are conduits to the spirits of the land. They provide healing, guidance, and support to the Temur people.`
+  },
+  {
+    slug: 'unending-whisper',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Unending Whisper',
+    artist: 'Danny Schwartz',
+    artistUrl: 'https://www.dannyschwartzart.com/',
+    imgFull: 'art_unending_whisper.avif',
+    imgCard: 'card_unending_whisper.avif',
+    flavor: `In the Endless Song, Temur’s whisperers hear spirits murmur of the past, present, and future.`
+  },
+  {
+    slug: 'urenis_rebuff',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Urenis Rebuff',
+    artist: 'Sergio Cosmai',
+    artistUrl: 'https://www.artstation.com/sergiocosmai',
+    imgFull: 'art_urenis_rebuff.avif',
+    imgCard: 'card_urenis_rebuff.avif',
+    flavor: `“You say you come in peace. That you come here at all is an act of war.”`
+  },
+  {
+    slug: 'wingspan-stride',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Wingspan Stride',
+    artist: 'Jake Murray',
+    artistUrl: 'https://www.instagram.com/jakemurraystudio/',
+    imgFull: 'art_wingspan_stride.avif',
+    imgCard: 'card_wingspan_stride.avif',
+    flavor: `“Yes, yes, very good. However, I believe you were supposed to be working on your sword techniques?”\n—Taigam`
+  },
+  {
     slug: 'mox-jasper',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -439,7 +527,7 @@ export const mtgCards: MtgCard[] = [
   {
     slug: 'songbirds-blessing',
     year: 2023,
-    set: 'Wilds of Eldraine - Commander',
+    set: 'Wilds of Eldraine',
     name: 'Songbird\'s Blessing',
     artist: 'Eelis Kyttanen',
     artistUrl: 'https://www.artofeelis.com/',
@@ -1146,7 +1234,7 @@ export const mtgCards: MtgCard[] = [
   {
     slug: 'deduce',
     year: 2026,
-    set: 'Secrets of Strixhaven MA',
+    set: 'Secrets of Strixhaven',
     name: 'Deduce',
     artist: 'Dominik Mayer',
     artistUrl: 'https://www.dominikmayer.art/',
@@ -1157,7 +1245,7 @@ export const mtgCards: MtgCard[] = [
   {
     slug: 'stargaze',
     year: 2026,
-    set: 'Secrets of Strixhaven MA',
+    set: 'Secrets of Strixhaven',
     name: 'Stargaze',
     artist: 'Pau Adam',
     artistUrl: '#',
@@ -1239,14 +1327,14 @@ export const mtgCards: MtgCard[] = [
     flavor: `Elspeth saw their capture as an inconvenience, costing them precious time. Narset saw it as an opportunity to recruit allies to their cause.`
   },
   {
-    slug: 'ambling-stormshell',
+    slug: 'essence-anchor',
     year: 2025,
     set: 'Tarkir Dragonstorm',
-    name: 'Ambling Stormshell',
-    artist: 'Carlos Palma Cruchaga',
-    artistUrl: 'https://www.instagram.com/carlos_cruchaga/?hl=ja',
+    name: 'Essence Anchor',
+    artist: 'David Astruga',
+    artistUrl: 'https://davidastruga.com/',
     imgFull: '',
-    imgCard: 'card_ambling_stormshell.avif',
+    imgCard: 'card_essence_anchor.avif',
     flavor: ``
   },
   {
@@ -1281,6 +1369,17 @@ export const mtgCards: MtgCard[] = [
     imgFull: '',
     imgCard: 'card_humbling_elder.avif',
     flavor: `“There is no better way to measure a person’s true character than to let them think they’re above you.”\n—Master Xian`
+  },
+  {
+    slug: 'naga-fleshcrafter',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Naga Fleshcrafter',
+    artist: 'Valera Lutfullina',
+    artistUrl: 'https://www.artstation.com/jortagul',
+    imgFull: '',
+    imgCard: 'card_naga_fleshcrafter.avif',
+    flavor: ``
   },
   {
     slug: 'sage-of-the-skies',
