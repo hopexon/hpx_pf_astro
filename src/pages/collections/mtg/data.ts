@@ -174,17 +174,6 @@ export const mtgCards: MtgCard[] = [
     flavor: `Though the archaic had ravaged Titan’s Grave and stolen Jadzi from safety, her compassion soothed its frenzy.`
   },
   {
-    slug: 'transcendent-envoy',
-    year: 2023,
-    set: 'Wilds of Eldraine',
-    name: 'Transcendent Envoy',
-    artist: 'Zezhou Chen',
-    artistUrl: 'https://www.artstation.com/zezhou',
-    imgFull: 'art_transcendent_envoy.avif',
-    imgCard: 'card_transcendent_envoy.avif',
-    flavor: `“The first grillins were made by the gods to capture falling stars; they were given the keenest eyes and the swiftest wings, and sent to keep watch above the clouds.”\n— The Cosmogony`,
-  },
-  {
     slug: 'proctors-gaze',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -295,26 +284,15 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Our lives are built upon our pasts.\nWhat happens, then, if we are cut off from them?”\n— Augusta, dean of order`
   },
   {
-    slug: 'redemption-arc',
-    year: 2024,
-    set: 'Murders at Karlov Manor',
-    name: 'Redemption Arc',
-    artist: 'Dominik Mayer',
-    artistUrl: 'https://www.dominikmayer.art/',
-    imgFull: 'art_redemption_arc.avif',
-    imgCard: 'card_redemption_arc.avif',
-    flavor: `“Crime doesn't pay nearly as well as the Agency.”`
-  },
-  {
-    slug: 'anafenza-unyielding-lineage',
+    slug: 'token-spilit-0009',
     year: 2025,
     set: 'Tarkir Dragonstorm',
-    name: 'Anafenza, Unyielding Lineage',
-    artist: 'Matt Stewart',
-    artistUrl: 'https://www.matthew-stewart.com/',
-    imgFull: 'art_anafenza_unyielding_lineage.avif',
-    imgCard: 'card_anafenza_unyielding_lineage.avif',
-    flavor: `“Kin and clan call to me—and I will always answer.”`
+    name: 'Token: Spilit',
+    artist: 'Zara Alfonso',
+    artistUrl: 'https://zaraalfonso.com/',
+    imgFull: 'art_token_spilit_0009.avif',
+    imgCard: 'card_token_spilit_0009.avif',
+    flavor: ``
   },
   {
     slug: 'ugin-eye-of-the-storms',
@@ -328,6 +306,17 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    slug: 'anafenza-unyielding-lineage',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Anafenza, Unyielding Lineage',
+    artist: 'Matt Stewart',
+    artistUrl: 'https://www.matthew-stewart.com/',
+    imgFull: 'art_anafenza_unyielding_lineage.avif',
+    imgCard: 'card_anafenza_unyielding_lineage.avif',
+    flavor: `“Kin and clan call to me—and I will always answer.”`
+  },
+  {
     slug: 'arashin-sunshield',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -337,6 +326,28 @@ export const mtgCards: MtgCard[] = [
     imgFull: 'art_arashin_sunshield.avif',
     imgCard: 'card_arashin_sunshield.avif',
     flavor: `“The best way to protect the citizens is to defend Arashin, not hunt dragonstorms across Tarkir.”\n—Sadesh of House Mevak`
+  },
+  {
+    slug: 'clarion-conqueror',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Clarion Conqueror',
+    artist: 'Nathaniel Himawan',
+    artistUrl: 'https://www.instagram.com/ninesicks/',
+    imgFull: 'art_clarion_conqueror.avif',
+    imgCard: 'card_clarion_conqueror.avif',
+    flavor: `All challengers were summarily silenced.`
+  },
+  {
+    slug: 'dalkovan-packbeast',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Dalkovan Packbeast',
+    artist: 'Constantin Marin',
+    artistUrl: 'https://www.artstation.com/conmaart/',
+    imgFull: 'art_dalkovan_packbeast.avif',
+    imgCard: 'card_dalkovan_packbeast.avif',
+    flavor: `A burden shared is a burden lightened.\n—Mardu proverb`
   },
   {
     slug: 'descendant-of-storms',
@@ -393,6 +404,17 @@ export const mtgCards: MtgCard[] = [
     flavor: `“So, these dragons intend to also manifest through a sandstorm? I take some offense to that.”\n—Felothar, khan of the Abzan`
   },
   {
+    slug: 'spectral-denial',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Spectral Denial',
+    artist: 'Xabi Gaztelua',
+    artistUrl: 'https://xabigaztelua.com/',
+    imgFull: 'art_spectral_denial.avif',
+    imgCard: 'card_spectral_denial.avif',
+    flavor: `Temur mages are experts at channeling elemental energy, shaping it into familiar forms from the world around them.`
+  },
+  {
     slug: 'ambling-stormshell',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -401,6 +423,17 @@ export const mtgCards: MtgCard[] = [
     artistUrl: 'https://www.instagram.com/carlos_cruchaga/?hl=ja',
     imgFull: 'art_ambling_stormshell.avif',
     imgCard: 'card_ambling_stormshell.avif',
+    flavor: ``
+  },
+  {
+    slug: 'dirgur-island-dragon',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Dirgur Island Dragon',
+    artist: 'Daniel Ljunggren',
+    artistUrl: 'https://darylart.com/magic-the-gathering/',
+    imgFull: 'art_dirgur_island_dragon.avif',
+    imgCard: 'card_dirgur_island_dragon.avif',
     flavor: ``
   },
   {
@@ -523,6 +556,49 @@ export const mtgCards: MtgCard[] = [
     imgFull: 'art_mox_jasper.avif',
     imgCard: 'card_mox_jasper.avif',
     flavor: `“Rage. Greed. Arrogance. People only accuse dragons of what they fear in themselves.”\n—Sarkhan`
+  },
+  {
+    slug: 'teeming-dragonstorm-borderless',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Teeming Dragonstorm',
+    artist: 'Dibujante Nocturno',
+    artistUrl: 'https://www.instagram.com/dibujantenocturno/',
+    imgFull: 'art_teeming_dragonstorm_borderless.avif',
+    imgCard: 'card_teeming_dragonstorm_borderless.avif',
+    flavor: `When caught in a dragonstorm, Mardu and Abzan scouts have no choice but to ride together`
+  },
+  {
+    slug: 'anafenza-unyielding-lineage-borderless',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Anafenza, Unyielding Lineage',
+    artist: 'Martina Fackova',
+    artistUrl: 'https://martinafackovaart.com/',
+    imgFull: 'art_anafenza_unyielding_lineage_borderless.avif',
+    imgCard: 'card_anafenza_unyielding_lineage_borderless.avif',
+  },
+  {
+    slug: 'redemption-arc',
+    year: 2024,
+    set: 'Murders at Karlov Manor',
+    name: 'Redemption Arc',
+    artist: 'Dominik Mayer',
+    artistUrl: 'https://www.dominikmayer.art/',
+    imgFull: 'art_redemption_arc.avif',
+    imgCard: 'card_redemption_arc.avif',
+    flavor: `“Crime doesn't pay nearly as well as the Agency.”`
+  },
+  {
+    slug: 'transcendent-envoy',
+    year: 2023,
+    set: 'Wilds of Eldraine',
+    name: 'Transcendent Envoy',
+    artist: 'Zezhou Chen',
+    artistUrl: 'https://www.artstation.com/zezhou',
+    imgFull: 'art_transcendent_envoy.avif',
+    imgCard: 'card_transcendent_envoy.avif',
+    flavor: `“The first grillins were made by the gods to capture falling stars; they were given the keenest eyes and the swiftest wings, and sent to keep watch above the clouds.”\n— The Cosmogony`,
   },
   {
     slug: 'songbirds-blessing',
@@ -1264,6 +1340,16 @@ export const mtgCards: MtgCard[] = [
     imgCard: 'card_staff_of_the_storyteller.avif',
   },
   {
+    slug: 'token-spilit-0006',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Token: Spilit',
+    artist: 'Julie Dillon',
+    artistUrl: 'https://www.juliedillonart.com/magic-the-gathering',
+    imgFull: '',
+    imgCard: 'card_token_spilit_0006.avif',
+  }, 
+  {
     slug: 'rally-the-monastery',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -1380,6 +1466,17 @@ export const mtgCards: MtgCard[] = [
     imgFull: '',
     imgCard: 'card_naga_fleshcrafter.avif',
     flavor: ``
+  },
+  {
+    slug: 'snowmelt-stag',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    name: 'Snowmelt Stag',
+    artist: 'Lorenzo Mastroianni',
+    artistUrl: 'https://www.instagram.com/lorenzomastroianniart/',
+    imgFull: '',
+    imgCard: 'card_snowmelt_stag.avif',
+    flavor: `Elementals conjured by Temur mages are forever watchful and swift.`
   },
   {
     slug: 'sage-of-the-skies',
