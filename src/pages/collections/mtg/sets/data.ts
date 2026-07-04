@@ -56,6 +56,14 @@ export const mtgSets: MtgSets[] = [
     slug: 'zendikar-rising',
     logoUrl: 'logo_zendikar_rising.avif',
   },
+  {
+    name: 'Iconic Masters',
+    nameJa: 'アイコニック・マスターズ',
+    year : 2017,
+    code: 'IMA',
+    slug: 'iconic-masters',
+    logoUrl: 'logo_iconic_masters.avif',
+  },
 ]
 
 export const mtgMap = new Map<string, MtgSets>(
