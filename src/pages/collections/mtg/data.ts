@@ -1,4 +1,5 @@
 export type MtgCard = {
+  topFlug?: boolean
   slug: string
   set: string
   code?: string
@@ -37,6 +38,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `...submerged in reveries, gasping for reality...`
   },
   {
+    topFlug: true,
     slug: 'psychic-corrosion',
     year: 2024,
     set: 'Secret Lair',
@@ -81,6 +83,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Even as most archaics raged across Arcavios, others seemed to sink into contemplation.`
   },
   {
+    topFlug: true,
     slug: 'daydream',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -112,6 +115,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“You're the one who bought a priceless scroll to duel!”`
   },
   {
+    topFlug: true,
     slug: 'essence-scatter',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -123,6 +127,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Venturing beyond campus means learning how to deal with creatures not bound by university rules.”\n— Emil, Vastlands roamer`
   },
   {
+    topFlug: true,
     slug: 'flow-state',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -133,6 +138,7 @@ export const mtgCards: MtgCard[] = [
     imgCard: 'card_flow_state.avif',
   },
   {
+    topFlug: true,
     slug: 'mathemagics',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -155,6 +161,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“I come up here to practice.\nYou can see the entire Garden twisting reality.\nIt's inspiring.”`
   },
   {
+    topFlug: true,
     slug: 'archaeomancers-map',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -176,6 +183,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Though the archaic had ravaged Titan’s Grave and stolen Jadzi from safety, her compassion soothed its frenzy.`
   },
   {
+    topFlug: true,
     slug: 'proctors-gaze',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -198,6 +206,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Be careful when traversing the Paradox Gardens. Not all experiments are perfectly contained.”\n—Professor Berta`
   },
   {
+    topFlug: true,
     slug: 'fields-of-strife',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -220,6 +229,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `A vast expanse that alters the rules of nature, offering a glimpse into the very structure of reality.`
   },
   {
+    topFlug: true,
     slug: 'spectacle-summit',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -231,6 +241,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Shaped by both its own wild nature and the magic of visiting artists, the Muse and the surrounding landscape are a wonder to behold.`
   },
   {
+    topFlug: true,
     slug: 'terramorphic-expanse-sos',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -253,6 +264,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'repel-calamity',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -264,6 +276,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Against cinder and maw,\nAgainst the dread Wildsear,\nWith bright sword in paw,\nRepel your own fear.”\n—Song of the Seasons, stanza 24`
   },
   {
+    topFlug: true,
     slug: 'return-the-favor',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -275,6 +288,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'erode',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -286,6 +300,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Our lives are built upon our pasts.\nWhat happens, then, if we are cut off from them?”\n— Augusta, dean of order`
   },
   {
+    topFlug: true,
     slug: 'token-spilit-0009',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -299,6 +314,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'ugin-eye-of-the-storms',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -351,6 +367,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `All challengers were summarily silenced.`
   },
   {
+    topFlug: true,
     slug: 'dalkovan-packbeast',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -364,6 +381,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `A burden shared is a burden lightened.\n—Mardu proverb`
   },
   {
+    topFlug: true,
     slug: 'descendant-of-storms',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -377,6 +395,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `The most elite of the Abzan are selected to join the Yathan: a prestigious group acting outside khan supervision for the good of the clan.`
   },
   {
+    topFlug: true,
     slug: 'dragonback-lancer',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -390,6 +409,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `The Mardu’s standing army need not always stand on the ground.`
   },
   {
+    topFlug: true,
     slug: 'duty-beyond-death',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -415,6 +435,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `All through the night, the ancestor whispered of ancient battles fought from this very rampart atop Arashin City.`
   },
   {
+    topFlug: true,
     slug: 'teeming-dragonstorm',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -454,6 +475,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Even dragons avoid Glintglaze Lake in this season. Which of you youngsters can tell me why?”\n—Teacher Eliam`
   },
   {
+    topFlug: true,
     slug: 'kishla-trawlers',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -467,6 +489,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Fish are like any other crop or flock. They must be carefully tended and never overharvested.”\n—Nasath, Kishla fisher`
   },
   {
+    topFlug: true,
     slug: 'marang-river-regent',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -480,6 +503,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'roiling-dragonstorm',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -584,6 +608,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Yes, yes, very good. However, I believe you were supposed to be working on your sword techniques?”\n—Taigam`
   },
   {
+    topFlug: true,
     slug: 'abzan-devotee',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -610,6 +635,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'worthy-cost',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -623,6 +649,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“‘Victory is survival’ is the tenet that guides us. My love, know that I will always ensure your survivial.”\n—Duvir, Mardu warrior, final letter`
   },
   {
+    topFlug: true,
     slug: 'dracogenesis',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -636,6 +663,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Let the dragonstorms rage. Let what seeks sustenance feed. Let Tarkir be what it was always meant to be.”\n—Sarkhan`
   },
   {
+    topFlug: true,
     slug: 'mox-jasper',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -712,6 +740,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'consider',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -725,6 +754,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Ivold gasped in surprise. Either a very strange insect had crawled onto one of the lenses or he was seeing geists at last!`
   },
   {
+    topFlug: true,
     slug: 'ponder',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -738,6 +768,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Tomorrow belongs to those who prepare for it today.`
   },
   {
+    topFlug: true,
     slug: 'submlime-epiphany',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -751,6 +782,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'think-twice',
     year: 2025,
     set: 'Tarkir Dragonstorm',
@@ -764,19 +796,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Either I know just the spell I need, or I’m about to.”`
   },
   {
-    slug: 'angel-of-vitality',
-    year: 2019,
-    set: 'Core Set 2020',
-    code: 'M20',
-    number: 4,
-    name: 'Angel of Vitality',
-    artist: 'Johaness Voss',
-    artistUrl: 'https://www.artstation.com/meehanjo/albums/302357',
-    imgFull: 'art_angel_of_vitality.avif',
-    imgCard: 'card_angel_of_vitality.avif',
-    flavor: ``
-  },
-  {
+    topFlug: true,
     slug: 'redemption-arc',
     year: 2024,
     set: 'Murders at Karlov Manor',
@@ -788,6 +808,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Crime doesn't pay nearly as well as the Agency.”`
   },
   {
+    topFlug: true,
     slug: 'transcendent-envoy',
     year: 2023,
     set: 'Wilds of Eldraine',
@@ -799,6 +820,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“The first grillins were made by the gods to capture falling stars; they were given the keenest eyes and the swiftest wings, and sent to keep watch above the clouds.”\n— The Cosmogony`,
   },
   {
+    topFlug: true,
     slug: 'songbirds-blessing',
     year: 2023,
     set: 'Wilds of Eldraine',
@@ -820,6 +842,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `There’s never a need to change the watch, for the servants of Norn are sleepless.`
   },
   {
+    topFlug: true,
     slug: 'basilica-shepherd',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -831,6 +854,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'crawling-chorus',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -842,6 +866,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `We need not be swift. We are inexorable.`
   },
   {
+    topFlug: true,
     slug: 'elesh-norn-regular',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -875,6 +900,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'indoctrination-attendant',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -886,6 +912,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'mondrak-glory-dominus',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -897,6 +924,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'norns-wellspring',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -931,6 +959,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `New Phyrexia's planar defenses scattered the planeswalker strike team on arrival. Elesh Norn knew they were coming.`
   },
   {
+    topFlug: true,
     slug: 'sinew-dancer',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -964,6 +993,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Faced with a blast that would level not only New Phyrexia, but also a dozen innocent worlds, Elspeth consigned it—and herself—to the nothingness in between.`
   },
   {
+    topFlug: true,
     slug: 'veil-of-assimilation',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -986,6 +1016,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `It is Jin-Gitaxias’s deepest exasperation that any part of his domain still requires maintenance.`
   },
   {
+    topFlug: true,
     slug: 'ichor-synthesizer',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1008,6 +1039,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Imagine a giant room, like a library … except instead of books, it’s filled with body parts.”\n—Kara Vrist, resistance spymaster`
   },
   {
+    topFlug: true,
     slug: 'mindsplice-apparatus',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1041,6 +1073,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Experimental Log 290: Leaving the subject’s pain receptors active appears to yield an unprecedented combination of incoherence and hyperawareness.”`
   },
   {
+    topFlug: true,
     slug: 'offer-of-immortality',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1063,6 +1096,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Without faith in each other, we truly would have nothing left. Isn’t that right, Malach? …Malach?”\n—Darven, Mirran rebel, last words`
   },
   {
+    topFlug: true,
     slug: 'blazing-crescendo',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1074,6 +1108,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“They call themselves the Quiet Furnace? Ironic.”\n—Tyvar`
   },
   {
+    topFlug: true,
     slug: 'free-from-flesh',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1085,6 +1120,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `He finally understood that phyresis was not an ending, but a new, perfect beginning.`
   },
   {
+    topFlug: true,
     slug: 'hexgold-slash',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1096,6 +1132,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“No matter how tough they are, even Phyrexians prefer to keep their guts on the inside.”\n—Jor Kadeen`
   },
   {
+    topFlug: true,
     slug: 'solphim-mayhem-dominus',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1151,6 +1188,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'venser-corpse-puppet',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1162,6 +1200,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'vivisection-evangelist',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1195,6 +1234,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `In Urabrask’s domain, mighty forges echo day and night with the clangor of the Great Work.`
   },
   {
+    topFlug: true,
     slug: 'the-fair-basilica',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1206,6 +1246,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `In Elesh Norn’s domain, the gospel of unity is the highest law.`
   },
   {
+    topFlug: true,
     slug: 'the-hunter-maze',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1217,6 +1258,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'white-suns-twilight',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1262,6 +1304,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'elesh-norn-variant-sc',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1273,6 +1316,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'elesh-norn-junji-ito',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -1292,18 +1336,6 @@ export const mtgCards: MtgCard[] = [
     artistUrl: 'https://www.originalmagicart.store/collections/jim-murray',
     imgFull: 'art_reveillark.avif',
     imgCard: 'card_reveillark.avif',
-  },
-  {
-    slug: 'shaile-dean-of-radiance',
-    year: 2022,
-    set: 'Strixhaven: School of Mages',
-    name: 'Shaile, Dean of Radiance',
-    artist: 'Yongjae Choi',
-    artistUrl: 'https://indusconcept.com/',
-    imgFull: 'art_shaile_dean_of_radiance.avif',
-    imgCard: 'card_shaile_dean_of_radiance.avif',
-    flavor: `「あなたは強い。自分で思っているよりもずっと。」`,
-    flavLang: 'ja',
   },
   {
     slug: 'drafna-fonder-of-lat-nam',
@@ -1337,6 +1369,45 @@ export const mtgCards: MtgCard[] = [
     imgFull: 'art_aeromoeba.avif',
     imgCard: 'card_aeromoeba.avif',
     flavor: `Some clouds heed no wind.`
+  },
+  {
+    topFlug: true,
+    slug: 'shaile-dean-of-radiance',
+    year: 2021,
+    set: 'Strixhaven: School of Mages',
+    name: 'Shaile, Dean of Radiance',
+    artist: 'Yongjae Choi',
+    artistUrl: 'https://indusconcept.com/',
+    imgFull: 'art_shaile_dean_of_radiance.avif',
+    imgCard: 'card_shaile_dean_of_radiance.avif',
+    flavor: `「あなたは強い。自分で思っているよりもずっと。」`,
+    flavLang: 'ja',
+  },
+  {
+    topFlug: true,
+    slug: 'square-up',
+    year: 2021,
+    set: 'Strixhaven: School of Mages',
+    name: 'Square Up',
+    artist: 'Manuel Castañón',
+    artistUrl: 'https://www.manuelcastanon.com/',
+    imgFull: 'art_square_up.avif',
+    imgCard: 'card_square_up.avif',
+    flavor: `型にはめて考えることが、最も過激な手段となることもある。`,
+    flavLang: 'ja',
+  },
+  {
+    topFlug: true,
+    slug: 'excavated-wall',
+    year: 2021,
+    set: ' Strixhaven: School of Mages',
+    name: 'Excavated Wall',
+    artist: 'Zezhou Chen',
+    artistUrl: 'https://zezhouchen.com/',
+    imgFull: 'art_excavated_wall.avif',
+    imgCard: 'card_excavated_wall.avif',
+    flavor: `「静寂に欺かれないようにしてください。ここの古い石は皆さんに語りかけようとしています。」\n――ロアホールドの学部長、オーガス`,
+    flavLang: 'ja',
   },
   {
     slug: 'angel-of-destiny',
@@ -1396,6 +1467,19 @@ export const mtgCards: MtgCard[] = [
     imgCard: 'card_ravnica_at_war.avif',
     flavor: `The heart of Ravnica dsappeared before anyone could strike a blow in its defense.`
   }, 
+  {
+    slug: 'angel-of-vitality',
+    year: 2019,
+    set: 'Core Set 2020',
+    code: 'M20',
+    number: 4,
+    name: 'Angel of Vitality',
+    artist: 'Johaness Voss',
+    artistUrl: 'https://www.artstation.com/meehanjo/albums/302357',
+    imgFull: 'art_angel_of_vitality.avif',
+    imgCard: 'card_angel_of_vitality.avif',
+    flavor: ``
+  },
   {
     slug: 'harsh-annotation',
     year: 2026,
@@ -1780,16 +1864,69 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    slug: 'ainok-strike-leader',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDC',
+    number: 29,
+    name: 'Ainok Strike Leader',
+    artist: 'Alexander Mokhov',
+    artistUrl: 'https://www.instagram.com/mokhman/',
+    imgFull: '',
+    imgCard: 'card_ainok_strike_leader.avif',
+    flavor: `When dalkovans need protecting, all respond.`
+  },
+  {
+    slug: 'reunion-of-the-house',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDC',
+    number: 55,
+    name: 'Reunion of the House',
+    artist: 'Quintin Gleim',
+    artistUrl: 'https://www.quintingleim.com/',
+    imgFull: '',
+    imgCard: 'card_reunion_of_the_house.avif',
+    flavor: `“We stand or fall as a family. All of us.”\n—Betor`
+  },
+  {
+    slug: 'will-of-the-mardu',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDC',
+    number: 57,
+    name: 'Will of the Mardu',
+    artist: 'Tuan Duong Chu',
+    artistUrl: 'https://www.artstation.com/duongct',
+    imgFull: '',
+    imgCard: 'card_will_of_the_mardu.avif',
+    flavor: ``
+  },
+  {
     slug: 'jaws-of-defeat',
     year: 2025,
     set: 'Tarkir Dragonstorm',
     code : 'TDC',
+    number: 67,
     name: 'Jaws of Defeat',
     artist: 'Andreas Zafiratos',
     artistUrl: '#',
     imgFull: '',
     imgCard: 'card_jaws_of_defeat.avif',
     flavor: `“The Jeskai like talking about their Way? Let’s see them talk their way out of this dilemma.”\n—Girdah, Abzan beastrider`
+  },
+  {
+    slug: 'hour-of-reckoning',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDC',
+    number: 120,
+    name: 'Hour of Reckoning',
+    artist: 'Joseph Meehan',
+    artistUrl: 'https://www.instagram.com/josephmeehanart/',
+    imgFull: '',
+    imgCard: 'card_hour_of_reckoning.avif',
+    flavor: `Those who are chosen do not doubt. Those who remain do not lament.`
   },
   {
     slug: 'incisor-glider',
@@ -2111,16 +2248,6 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
-    slug: 'winds-of-abandon',
-    year: 2019,
-    set: 'Modern Horizons',
-    name: 'Winds of Abandon',
-    artist: 'Maiko Aoji',
-    artistUrl: 'https://unblued.lomo.jp/',
-    imgFull: '',
-    imgCard: 'card_winds_of_abandon.avif',
-  },
-  {
     slug: 'workshop-elders',
     year: 2019,
     set: 'Throne of Eldraine',
@@ -2133,56 +2260,27 @@ export const mtgCards: MtgCard[] = [
     flavLang: 'ja',
   },
   {
-    slug: 'ainok-strike-leader',
-    year: 2025,
-    set: 'Tarkir Dragonstorm',
-    code: 'TDC',
-    number: 29,
-    name: 'Ainok Strike Leader',
-    artist: 'Alexander Mokhov',
-    artistUrl: 'https://www.instagram.com/mokhman/',
+    slug: 'winds-of-abandon',
+    year: 2019,
+    set: 'Modern Horizons',
+    name: 'Winds of Abandon',
+    artist: 'Maiko Aoji',
+    artistUrl: 'https://unblued.lomo.jp/',
     imgFull: '',
-    imgCard: 'card_ainok_strike_leader.avif',
-    flavor: `When dalkovans need protecting, all respond.`
+    imgCard: 'card_winds_of_abandon.avif',
   },
   {
-    slug: 'reunion-of-the-house',
-    year: 2025,
-    set: 'Tarkir Dragonstorm',
-    code: 'TDC',
-    number: 55,
-    name: 'Reunion of the House',
-    artist: 'Quintin Gleim',
-    artistUrl: 'https://www.quintingleim.com/',
+    slug: 'herald-of-the-sun',
+    year: 2019,
+    set: 'Core Set 2020',
+    number: 23,
+    name: 'Herald of the Sun',
+    artist: 'Micah Epstein',
+    artistUrl: 'https://www.instagram.com/micahepsteinart/',
     imgFull: '',
-    imgCard: 'card_reunion_of_the_house.avif',
-    flavor: `“We stand or fall as a family. All of us.”\n—Betor`
-  },
-  {
-    slug: 'will-of-the-mardu',
-    year: 2025,
-    set: 'Tarkir Dragonstorm',
-    code: 'TDC',
-    number: 57,
-    name: 'Will of the Mardu',
-    artist: 'Tuan Duong Chu',
-    artistUrl: 'https://www.artstation.com/duongct',
-    imgFull: '',
-    imgCard: 'card_will_of_the_mardu.avif',
-    flavor: ``
-  },
-  {
-    slug: 'hour-of-reckoning',
-    year: 2025,
-    set: 'Tarkir Dragonstorm',
-    code: 'TDC',
-    number: 120,
-    name: 'Hour of Reckoning',
-    artist: 'Joseph Meehan',
-    artistUrl: 'https://www.instagram.com/josephmeehanart/',
-    imgFull: '',
-    imgCard: 'card_hour_of_reckoning.avif',
-    flavor: `Those who are chosen do not doubt. Those who remain do not lament.`
+    imgCard: 'card_herald_of_the_sun.avif',
+    flavor: `「雲も闇も恐れてはなりません。この光がすべてをかき消します。」`,
+    flavLang: 'ja',
   },
   {
     slug: 'ancestral-vision',
