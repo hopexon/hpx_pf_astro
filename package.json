@@ -10,7 +10,8 @@
     "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "mtg:thumbs": "node scripts/generate-mtg-thumbs.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
@@ -25,6 +26,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "astro-breadcrumbs": "^3.4.0"
+    "astro-breadcrumbs": "^3.4.0",
+    "sharp": "^0.35.4"
   }
 }

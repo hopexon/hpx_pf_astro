@@ -29,13 +29,13 @@ import { mtgCards } from './data'
                 {card.imgFull ? (
                   <img
                     class='card__img'
-                    src={`/collections/mtg/${card.imgFull}`}
+                    src={`/collections/mtg/thumbs/${card.imgFull}`}
                     alt={`${card.name}`}
                     loading='lazy'/>
                 ) : (
                   <img
                     class='card__img'
-                    src={`/collections/mtg/${card.imgCard}`}
+                    src={`/collections/mtg/thumbs/${card.imgCard}`}
                     alt={`${card.name}`}
                     loading='lazy'/>
                 )}
