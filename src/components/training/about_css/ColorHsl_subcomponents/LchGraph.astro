@@ -1,0 +1,139 @@
+<div class="lch__graph__wrapper">
+  <span class="label__b">+b</span>
+  <span class="label__a">+a</span>
+  <span class="label__l">外縁ほど +L</span>
+  <div class="lch__graph">
+    {
+      Array.from({length:6}).map((_, index) => (
+        <span class={`value__label label__vertical__${index + 1}`}>{(index + 1) * 10}</span>
+      ))
+    }
+    {
+      Array.from({length:6}).map((_, index) => (
+        <span class={`value__label value__label__horizontal label__horizontal__${index + 1}`}>{(index + 1) * 10}</span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .lch__graph__wrapper {
+    position: relative;
+    container-type: inline-size;
+    padding: 50px;
+    margin-inline: auto;
+    inline-size: 100%;
+  }
+
+  .label__a,
+  .label__b,
+  .label__l {
+    position: absolute;
+    font-weight: 700;
+  }
+
+  .label__a {
+    inset-block-start: 50%;
+    inset-inline-end: 1rem;
+    transform: translateY(-50%);
+  }
+
+  .label__b {
+    inset-block-start: 1rem;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+  }
+
+  .label__l {
+    inset-block-start: 6rem;
+    inset-inline-end: 2rem;
+  }
+
+  .lch__graph {
+    --block-size: 200px;
+    --inline-size: 200px;
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    margin-inline: auto;
+    block-size: var(--block-size);
+    inline-size: var(--inline-size);
+    clip-path: circle(closest-side);
+    border: 1px solid var(--base-950);
+    border-radius: 50%;
+    background-image:
+      linear-gradient(
+        to right,
+        transparent calc(50% - 1px),
+        var(--base-400),
+        transparent calc(50% + 1px)
+        ),
+      linear-gradient(
+        to bottom,
+        transparent calc(50% - 1px),
+        var(--base-400),
+        transparent calc(50% + 1px)
+      ),
+      repeating-radial-gradient(
+        circle at center,
+        transparent 0 49px,
+        var(--base-400) 49px 50px
+      ),
+      radial-gradient(in lab, lab(60 0 0) 0%, transparent 72%),
+      conic-gradient(
+        in lab,
+        lab(60 0 80) 0deg,
+        lab(60 56 56) 45deg,
+        lab(60 80 0) 90deg,
+        lab(60 56 -56) 135deg,
+        lab(60 0 -80) 180deg,
+        lab(60 -56 -56) 225deg,
+        lab(60 -80 0) 270deg,
+        lab(60 -56 56) 315deg,
+        lab(60 0 80) 360deg
+      );
+
+    .value__label {
+      display: grid;
+      color: var(--base-700);
+    }
+
+    .value__label__horizontal {
+      justify-items: flex-end;
+      align-items: flex-end;
+      margin-right: 0.2em;
+    }
+    
+    .label__vertical__1 { grid-area: 6/7/7/8; }
+    .label__vertical__2 { grid-area: 5/7/6/8; }
+    .label__vertical__3 { grid-area: 4/7/5/8; }
+    .label__vertical__4 { grid-area: 3/7/4/8; }
+    .label__vertical__5 { grid-area: 2/7/3/8; }
+    .label__vertical__6 { grid-area: 1/7/2/8; }
+
+    .label__horizontal__1 { grid-area: 6/7/7/8; }
+    .label__horizontal__2 { grid-area: 6/8/7/9; }
+    .label__horizontal__3 { grid-area: 6/9/7/10; }
+    .label__horizontal__4 { grid-area: 6/10/7/11; }
+    .label__horizontal__5 { grid-area: 6/11/7/12; }
+    .label__horizontal__6 { grid-area: 6/12/7/13; }
+
+    @container (inline-size > 768px) {
+      --block-size: 40cqi;
+      --inline-size: 40cqi;
+    }
+
+    @container (inline-size > 1560px) {
+      --block-size: 600px;
+      --inline-size: 600px;
+
+      background-image:
+        repeating-radial-gradient(
+          circle at center,
+          transparent 0 49px,
+          var(--base-400) 49px 50px
+      );
+    }
+  }
+</style>

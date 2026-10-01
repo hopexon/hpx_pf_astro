@@ -17,6 +17,14 @@ export const mtgSets: MtgSets[] = [
     logoUrl: 'logo_secret_lair.avif',
   },
   {
+    name: 'Reality Fracture',
+    nameJa: 'リアリティ・フラクチャー',
+    year : 2026,
+    code: 'FRA',
+    slug: 'reality-fracture',
+    logoUrl: 'logo_reality_fracture.avif',
+  },
+  {
     name: 'Secrets of Strixhaven',
     nameJa: 'ストリクスヘイヴンの秘密',
     year : 2026,

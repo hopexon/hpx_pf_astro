@@ -1,0 +1,374 @@
+---
+const minSizeR = 0;
+const maxSizeR = 255;
+const defaultSizeR = 0;
+
+const minSizeG = 0;
+const maxSizeG = 255;
+const defaultSizeG = 0;
+
+const minSizeB = 0;
+const maxSizeB = 255;
+const defaultSizeB = 0;
+
+const minSizeA = 0;
+const maxSizeA = 100;
+const defaultSizeA = 100;
+---
+
+<details class="mt__2 acc__with__anim" open>
+  <summary>(RGB) RGB<span class="twister"></span></summary>
+  <div class="accordion__overflow__hidden">
+    <div class="content__wrap">
+      <p class="comment">
+        <code>sRGB</code>色空間を基準に指定する。<br />
+        色空間のデファクトスタンダードであり、色に関するあらゆる環境が対応していると考えてよい。拡張規格として<code
+          >AdobeRGB</code
+        >などが存在するものの、モニタ、実印刷共に対応環境が不揃いで汎用性にかけるため「失敗しないカラープロファイル」はsRGB一択となっている。<br
+        />
+        想定用途としては「正確なRGB指定を行いたい」場合や「既存デザインとの互換性が求められる」ケースなど。
+      </p>
+      <div class="mt__2 color__rgb__wrap">
+        <div class="color__rgb__slider__wrap">
+          <div class="color__rgb__slider">
+            <label class="content__subttl">R</label>
+            <input
+              id="rgb__r"
+              class="rgb__r"
+              type="range"
+              min={minSizeR}
+              max={maxSizeR}
+              value={defaultSizeR}
+              step="1"
+            />
+          </div>
+          <div class="color__rgb__slider">
+            <label class="content__subttl">G</label>
+            <input
+              id="rgb__g"
+              class="rgb__g"
+              type="range"
+              min={minSizeG}
+              max={maxSizeG}
+              value={defaultSizeG}
+              step="1"
+            />
+          </div>
+          <div class="color__rgb__slider">
+            <label class="content__subttl">B</label>
+            <input
+              id="rgb__b"
+              class="rgb__b"
+              type="range"
+              min={minSizeB}
+              max={maxSizeB}
+              value={defaultSizeB}
+              step="1"
+            />
+          </div>
+
+          <div class="color__rgb__slider">
+            <label class="content__subttl">A</label>
+            <input
+              id="rgb__a"
+              class="rgb__a"
+              type="range"
+              min={minSizeA}
+              max={maxSizeA}
+              value={defaultSizeA}
+              step="1"
+            />
+          </div>
+        </div>
+        <p class="mt__2 color__value__txt">
+          RGBA ({defaultSizeR}
+          {defaultSizeG}
+          {defaultSizeB}
+          {defaultSizeA / 100})
+        </p>
+        <div class="color__rgb__preview">
+            <svg
+              class="color__rgb__cube"
+              data-rgb-cube="white"
+              viewBox="0 0 465 445"
+              role="img"
+              aria-label="白が頂点の RGB カラーキューブ。各面をクリックまたはドラッグして色を調整できます。"
+            >
+              <g class="color__rgb__cube__faces">
+                <g
+                  class="color__rgb__cube__color-grid"
+                  data-rgb-grid="top"
+                  aria-hidden="true"></g>
+                <g
+                  class="color__rgb__cube__color-grid"
+                  data-rgb-grid="front"
+                  aria-hidden="true"></g>
+                <g
+                  class="color__rgb__cube__color-grid"
+                  data-rgb-grid="side"
+                  aria-hidden="true"></g>
+                <polygon
+                  class="color__rgb__cube__face"
+                  data-rgb-face="top"
+                  points="40,130 185,10 430,80 285,200"></polygon>
+                <polygon
+                  class="color__rgb__cube__face"
+                  data-rgb-face="front"
+                  points="40,365 285,435 285,200 40,130"></polygon>
+                <polygon
+                  class="color__rgb__cube__face"
+                  data-rgb-face="side"
+                  points="285,435 430,315 430,80 285,200"></polygon>
+              </g>
+              <circle cx="285" cy="200" r="5" fill="#fff" stroke="#222" stroke-width="2" pointer-events="none" aria-hidden="true"></circle>
+              <circle class="color__rgb__cube__point" cx="185" cy="245" r="8" style="display: none"
+              ></circle>
+            </svg>
+            <svg
+              class="color__rgb__cube"
+              data-rgb-cube="black"
+              viewBox="0 0 465 445"
+              role="img"
+              aria-label="黒が頂点の RGB カラーキューブ。各面をクリックまたはドラッグして色を調整できます。"
+            >
+              <g class="color__rgb__cube__faces">
+                <g class="color__rgb__cube__color-grid" data-rgb-grid="top" aria-hidden="true"></g>
+                <g class="color__rgb__cube__color-grid" data-rgb-grid="front" aria-hidden="true"></g>
+                <g class="color__rgb__cube__color-grid" data-rgb-grid="side" aria-hidden="true"></g>
+                <polygon class="color__rgb__cube__face" data-rgb-face="top" points="235,225 430,330 235,435 40,330"></polygon>
+                <polygon class="color__rgb__cube__face" data-rgb-face="front" points="235,225 235,10 40,115 40,330"></polygon>
+                <polygon class="color__rgb__cube__face" data-rgb-face="side" points="235,225 235,10 430,115 430,330"></polygon>
+              </g>
+              <circle cx="235" cy="225" r="5" fill="#111" stroke="#eee" stroke-width="2" pointer-events="none" aria-hidden="true"></circle>
+              <circle class="color__rgb__cube__point" cx="235" cy="225" r="8"></circle>
+            </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</details>
+
+<script>
+  document.addEventListener("astro:page-load", function () {
+    const rInput = document.getElementById("rgb__r") as HTMLInputElement;
+    const gInput = document.getElementById("rgb__g") as HTMLInputElement;
+    const bInput = document.getElementById("rgb__b") as HTMLInputElement;
+    const aInput = document.getElementById("rgb__a") as HTMLInputElement;
+    const cubePreview = document.querySelector<HTMLElement>(
+      ".color__rgb__preview",
+    );
+    const rgbaText = document.querySelector(".color__rgb__wrap p.mt__2");
+    type Axis = { x: number; y: number };
+    type CubeProjection = {
+      cube: SVGSVGElement;
+      origin: Axis;
+      redAxis: Axis;
+      greenAxis: Axis;
+      blueAxis: Axis;
+      surface: 0 | 255;
+    };
+    const projections: CubeProjection[] = Array.from(
+      document.querySelectorAll<SVGSVGElement>(".color__rgb__cube"),
+      (cube) => {
+        const isWhite = cube.dataset.rgbCube === "white";
+        return {
+          cube,
+          origin: isWhite ? { x: 185, y: 245 } : { x: 235, y: 225 },
+          redAxis: isWhite ? { x: -145, y: 120 } : { x: 195, y: 105 },
+          greenAxis: isWhite ? { x: 0, y: -235 } : { x: 0, y: -215 },
+          blueAxis: isWhite ? { x: 245, y: 70 } : { x: -195, y: 105 },
+          surface: isWhite ? 255 : 0,
+        };
+      },
+    );
+    let activeSurface: 0 | 255 = 0;
+
+    function clampChannel(value: number) {
+      return Math.round(Math.min(255, Math.max(0, value)));
+    }
+
+    function projectColor(r: number, g: number, b: number, projection: CubeProjection) {
+      const { origin, redAxis, greenAxis, blueAxis } = projection;
+      return {
+        x: origin.x + (redAxis.x * r + greenAxis.x * g + blueAxis.x * b) / 255,
+        y: origin.y + (redAxis.y * r + greenAxis.y * g + blueAxis.y * b) / 255,
+      };
+    }
+
+    function renderCubeFace(face: "top" | "front" | "side", projection: CubeProjection) {
+      const { cube, surface, redAxis, greenAxis, blueAxis } = projection;
+      const grid = cube.querySelector<SVGGElement>(
+        `[data-rgb-grid="${face}"]`,
+      );
+      if (!grid) return;
+
+      const divisions = 12;
+      const base =
+        face === "top"
+          ? projectColor(0, surface, 0, projection)
+          : face === "front"
+            ? projectColor(surface, 0, 0, projection)
+            : projectColor(0, 0, surface, projection);
+      const firstAxis = face === "top" ? redAxis : greenAxis;
+      const secondAxis = face === "side" ? redAxis : blueAxis;
+      const cells = document.createDocumentFragment();
+
+      for (let first = 0; first < divisions; first += 1) {
+        for (let second = 0; second < divisions; second += 1) {
+          const firstStart = first / divisions;
+          const firstEnd = (first + 1) / divisions;
+          const secondStart = second / divisions;
+          const secondEnd = (second + 1) / divisions;
+          const corners = [
+            [firstStart, secondStart],
+            [firstEnd, secondStart],
+            [firstEnd, secondEnd],
+            [firstStart, secondEnd],
+          ].map(
+            ([firstValue, secondValue]) =>
+              `${base.x + firstAxis.x * firstValue + secondAxis.x * secondValue},${base.y + firstAxis.y * firstValue + secondAxis.y * secondValue}`,
+          );
+          const firstValue = clampChannel((255 * (first + 0.5)) / divisions);
+          const secondValue = clampChannel((255 * (second + 0.5)) / divisions);
+          const color =
+            face === "top"
+              ? `rgb(${firstValue}, ${surface}, ${secondValue})`
+              : face === "front"
+                ? `rgb(${surface}, ${firstValue}, ${secondValue})`
+                : `rgb(${secondValue}, ${firstValue}, ${surface})`;
+          const cell = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "polygon",
+          );
+          cell.setAttribute("points", corners.join(" "));
+          cell.setAttribute("fill", color);
+          cells.appendChild(cell);
+        }
+      }
+      grid.replaceChildren(cells);
+    }
+
+    for (const projection of projections) {
+      renderCubeFace("top", projection);
+      renderCubeFace("front", projection);
+      renderCubeFace("side", projection);
+    }
+
+    function updateColor() {
+      const r = Number(rInput.value);
+      const g = Number(gInput.value);
+      const b = Number(bInput.value);
+      const a = Number(aInput.value) / 100;
+      const distanceToWhite = 255 - Math.max(r, g, b);
+      const distanceToBlack = Math.min(r, g, b);
+      if (distanceToWhite < distanceToBlack) activeSurface = 255;
+      if (distanceToBlack < distanceToWhite) activeSurface = 0;
+      if (rgbaText) {
+        rgbaText.textContent = `RGBA(${r} ${g} ${b} ${a})`;
+      }
+      if (cubePreview) {
+        cubePreview.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+      }
+      for (const projection of projections) {
+        const cubePoint = projection.cube.querySelector<SVGCircleElement>(
+          ".color__rgb__cube__point",
+        );
+        if (!cubePoint) continue;
+        const point = projectColor(r, g, b, projection);
+        cubePoint.setAttribute("cx", String(point.x));
+        cubePoint.setAttribute("cy", String(point.y));
+        cubePoint.style.fill = `rgb(${r}, ${g}, ${b})`;
+        cubePoint.style.stroke = r + g + b > 382 ? "#111111" : "#ffffff";
+        cubePoint.style.display = projection.surface === activeSurface
+          ? ""
+          : "none";
+      }
+    }
+
+    function getPointerPosition(event: PointerEvent, cube: SVGSVGElement) {
+      const point = cube.createSVGPoint();
+      point.x = event.clientX;
+      point.y = event.clientY;
+      return point.matrixTransform(cube.getScreenCTM()?.inverse());
+    }
+
+    function getPlaneValues(
+      point: DOMPoint,
+      base: { x: number; y: number },
+      firstAxis: { x: number; y: number },
+      secondAxis: { x: number; y: number },
+    ) {
+      const determinant =
+        firstAxis.x * secondAxis.y - firstAxis.y * secondAxis.x;
+      const x = point.x - base.x;
+      const y = point.y - base.y;
+      return {
+        first: clampChannel(
+          (255 * (x * secondAxis.y - y * secondAxis.x)) / determinant,
+        ),
+        second: clampChannel(
+          (255 * (firstAxis.x * y - firstAxis.y * x)) / determinant,
+        ),
+      };
+    }
+
+    function updateFromCube(event: PointerEvent, face: string, projection: CubeProjection) {
+      const point = getPointerPosition(event, projection.cube);
+      if (!point) return;
+      const { surface, redAxis, greenAxis, blueAxis } = projection;
+      activeSurface = surface;
+
+      if (face === "top") {
+        const values = getPlaneValues(point, projectColor(0, surface, 0, projection), redAxis, blueAxis);
+        rInput.value = String(values.first);
+        bInput.value = String(values.second);
+        gInput.value = String(surface);
+      } else if (face === "front") {
+        const values = getPlaneValues(
+          point,
+          projectColor(surface, 0, 0, projection),
+          greenAxis,
+          blueAxis,
+        );
+        gInput.value = String(values.first);
+        bInput.value = String(values.second);
+        rInput.value = String(surface);
+      } else {
+        const values = getPlaneValues(point, projectColor(0, 0, surface, projection), greenAxis, redAxis);
+        gInput.value = String(values.first);
+        rInput.value = String(values.second);
+        bInput.value = String(surface);
+      }
+      updateColor();
+    }
+
+    rInput.addEventListener("input", updateColor);
+    gInput.addEventListener("input", updateColor);
+    bInput.addEventListener("input", updateColor);
+    aInput.addEventListener("input", updateColor);
+
+    for (const projection of projections) {
+      projection.cube.querySelectorAll<SVGPolygonElement>("[data-rgb-face]")
+        .forEach((face) => {
+        let isDragging = false;
+        const faceName = face.dataset.rgbFace ?? "";
+        face.addEventListener("pointerdown", (event) => {
+          isDragging = true;
+          face.setPointerCapture(event.pointerId);
+          updateFromCube(event, faceName, projection);
+        });
+        face.addEventListener("pointermove", (event) => {
+          if (isDragging) updateFromCube(event, faceName, projection);
+        });
+        face.addEventListener("pointerup", () => {
+          isDragging = false;
+        });
+        face.addEventListener("pointercancel", () => {
+          isDragging = false;
+        });
+      });
+    }
+
+    updateColor();
+  });
+</script>

@@ -1,33 +1,13 @@
 ---
 import Layout from '../../../layouts/Layout.astro'
+import { Code } from 'astro:components';
 
-import { Code } from 'astro:components'
+import FontWeight from '../../../components/training/about_css/FontWeight.astro'
+import FontSize from '../../../components/training/about_css/FontSize.astro'
+import LineHeight from '../../../components/training/about_css/LineHeight.astro'
+import ColorHsl from '../../../components/training/about_css/ColorHsl.astro'
 
 import '../style.css'
-
-const minSizeLarge = 48
-const maxSizeLarge = 64
-const defaultSizeLarge = 48
-
-const minSizeNormal = 16
-const maxSizeNormal = 45
-const defaultSizeNormal = 16
-
-const minSizeR = 0
-const maxSizeR = 255
-const defaultSizeR = 0
-
-const minSizeG = 0
-const maxSizeG = 255
-const defaultSizeG = 0
-
-const minSizeB = 0
-const maxSizeB = 255
-const defaultSizeB = 0
-
-const minSizeA = 0
-const maxSizeA = 100
-const defaultSizeA = 100
 
 const animateBlockText = ['F','X','X','K','O','F','F','','B','U','L','L','S','H','I','T','','A','S','S','H','O','L','E',]
 
@@ -74,205 +54,21 @@ const popovermenuList = [
       <section class="section__wrapper">
         <h1 class='visually__hidden'>Modern Web Development with CSS</h1>
         
-        <!-- font-weight -->
-        <h2>font-weight</h2>
-        <div class="mt__1 font__weight__grid">
-          <div class="content__wrap">
-            <p class="content__subttl">Normal (400)</p>
-            <p class="mt__1 normal">Lorem Ipsum isNormal simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966</p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">Bold (700)</p>
-            <p class="mt__1 bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966</p>
-          </div>
-        </div>
-        
         <!-- font size -->
-        <h2 class="mt__8">font-size</h2>
-        <div class="mt__1 font__size__grid">
-        <div class="content__wrap">
-          <label class="content__subttl">
-            For Standard Use: 16 - 45px</label>
-          <input 
-            id="font__size__normal"
-            type="range"
-            min={minSizeNormal}
-            max={maxSizeNormal}
-            value={defaultSizeNormal}
-            step="1"
-          >
-          <p id="preview__txt__normal">Change Font Size</p>
-        </div>
-        <div class="content__wrap">
-          <label class="content__subttl">
-            For Visual Impact: 48 - 64px</label>
-          <input 
-            id="font__size__large"
-            type="range"
-            min={minSizeLarge}
-            max={maxSizeLarge}
-            value={defaultSizeLarge}
-            step="1"
-          >
-          <p id="preview__txt__large">Change Font Size</p>
-        </div>
-        <div class="content__wrap">
-          <p class='content__subttl'>14px<span class="caution">Caution</span></p>
-          <p class="mt__1">常用は避けるべき。<br />狭いスペースや付帯情報など、特定の状況でのみ使用可能。</p>
-        </div>
-        <div class="content__wrap">
-          <p class='content__subttl'>Under 13px<span class="dontuse">Don't Use</span></p>
-          <p class="mt__1">原則として許容されない。</p>
-        </div>
-        </div>
+        <FontWeight />
+
+        <!-- font size -->
+        <FontSize />
 
         <!-- line-height -->
-        <h2 class="mt__8">line-height</h2>
-        <div class="mt__1 line__height__grid">
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1</p>
-            <p class="mt__1 lh__1">主にボタンなど、コンポーネント内で使用されるワンラインのテキストで上下の余白を持っていない行間。主にボタンなど、コンポーネント内で使用されるワンラインのテキストで上下の余白を持っていない行間</p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.2<span class="default">default</span></p>
-            <p class="mt__1 lh__12">主に管理画面や業務システムの画面等で、膨大な情報を一覧表示したりなど、限られた画面領域での表示情報量を最優先した行間。主に管理画面や業務システムの画面等で、膨大な情報を一覧表示したりなど、限られた画面領域での表示情報量を最優先した行間</p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.3</p>
-            <p class="mt__1 lh__13">主に管理画面や業務システムの画面等で使用する、表示情報量を優先した行間。主に管理画面や業務システムの画面等で使用する、表示情報量を優先した行間</p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.4</p>
-            <p class="mt__1 lh__14">見出しなど、やや大きな文字に使用される行間。見出しなど、やや大きな文字に使用される行間。見出しなど、やや大きな文字に使用される行間。見出しなど、やや大きな文字に使用される行間。</p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.5</p>
-            <p class="mt__1 lh__15">一般的なウェブサイトの本文や見出しで使用される行間（本文の行間としては最低限度）。一般的なウェブサイトの本文や見出しで使用される行間（本文の行間としては最低限度）</p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.6</p>
-            <p class="mt__1 lh__16">一般的なウェブサイトの本文で使用される行間。一般的なウェブサイトの本文で使用される行間。一般的なウェブサイトの本文で使用される行間。一般的なウェブサイトの本文で使用される行間。</p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.7<span class="suggested">Suggested</span></p>
-            <p class="mt__1 lh__17">一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。</p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.75</p>
-            <p class="mt__1 lh__175">一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。採用するグリッド幅やフォントサイズに応じて170%と使い分ける。一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。採用するグリッド幅やフォントサイズに応じて170%と使い分ける</p>
-          </div>
-        </div>
+        <LineHeight />
 
         <!-- Color -->
-        <h2 class="mt__8">Color Models: rgba()</h2>
-        <div class="content__wrap">
-          <!-- <p class="comment">
-            <code>sRGB</code>色空間
-          </p> -->
-        </div>
-        <div class="mt__2 color__rgb__wrap">
-          <div class="color__rgb__slider__wrap">
-            <div class="color__rgb__slider">
-              <label class="content__subttl">R</label>
-              <input 
-                id="rgb__r"
-                class='rgb__r'
-                type="range"
-                min={minSizeR}
-                max={maxSizeR}
-                value={defaultSizeR}
-                step="1"
-              >
-            </div>
-            <div class="color__rgb__slider">
-              <label class="content__subttl">G</label>
-              <input 
-                id="rgb__g"
-                class='rgb__g'
-                type="range"
-                min={minSizeG}
-                max={maxSizeG}
-                value={defaultSizeG}
-                step="1"
-              >
-            </div>
-            <div class="color__rgb__slider">
-              <label class="content__subttl">B</label>
-              <input 
-                id="rgb__b"
-                class='rgb__b'
-                type="range"
-                min={minSizeB}
-                max={maxSizeB}
-                value={defaultSizeB}
-                step="1"
-              >
-            </div>
-
-            <div class="color__rgb__slider">
-              <label class="content__subttl">A</label>
-              <input 
-                id="rgb__a"
-                class='rgb__a'
-                type="range"
-                min={minSizeA}
-                max={maxSizeA}
-                value={defaultSizeA}
-                step="1"
-              >
-            </div>
-          </div>
-          <p class="mt__1 color__rgb__value">RGBA ({defaultSizeR} {defaultSizeG} {defaultSizeB} {defaultSizeA / 100})</p>
-          <label class="mt__1 color__rgb__background-control" for="rgb__background">
-            <span class="content__subttl color_background__value">Background Color >> </span><input id="rgb__background" type="color" value="#ffffff" />
-          </label>
-          <div class="color__rgb__preview">
-            <div class="color__rgb__background" aria-hidden="true"></div>
-            <div class="color__rgb__foreground">
-              <svg class="color__rgb__cube" viewBox="0 0 394 344" role="img" aria-label="RGB カラーキューブ。上のRGBスライダーの値を可視化しています。">
-                <defs>
-                  <pattern id="rgb-cube-grid" width="36" height="38" patternUnits="userSpaceOnUse">
-                    <path d="M 36 0 L 0 0 0 38" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1" />
-                  </pattern>
-                  <linearGradient id="rgb-white-glow-left" gradientUnits="userSpaceOnUse" x1="228" y1="130" x2="48" y2="76">
-                    <stop offset="0" stop-color="#fff" stop-opacity="0.7" />
-                    <stop offset="0.45" stop-color="#fff" stop-opacity="0.22" />
-                    <stop offset="1" stop-color="#fff" stop-opacity="0" />
-                  </linearGradient>
-                  <linearGradient id="rgb-white-glow-right" gradientUnits="userSpaceOnUse" x1="228" y1="130" x2="346" y2="66">
-                    <stop offset="0" stop-color="#fff" stop-opacity="0.7" />
-                    <stop offset="0.45" stop-color="#fff" stop-opacity="0.22" />
-                    <stop offset="1" stop-color="#fff" stop-opacity="0" />
-                  </linearGradient>
-                  <linearGradient id="rgb-white-glow-bottom" gradientUnits="userSpaceOnUse" x1="228" y1="130" x2="228" y2="320">
-                    <stop offset="0" stop-color="#fff" stop-opacity="0.7" />
-                    <stop offset="0.45" stop-color="#fff" stop-opacity="0.22" />
-                    <stop offset="1" stop-color="#fff" stop-opacity="0" />
-                  </linearGradient>
-                </defs>
-                <g class="color__rgb__cube__faces">
-                  <g class="color__rgb__cube__color-grid" data-rgb-grid="top" aria-hidden="true" />
-                  <g class="color__rgb__cube__color-grid" data-rgb-grid="front" aria-hidden="true" />
-                  <g class="color__rgb__cube__color-grid" data-rgb-grid="side" aria-hidden="true" />
-                  <polygon class="color__rgb__cube__face" data-rgb-face="top" points="166,202 48,266 48,76 166,12" />
-                  <polygon class="color__rgb__cube__face" data-rgb-face="front" points="166,202 346,256 346,66 166,12" />
-                  <polygon class="color__rgb__cube__face" data-rgb-face="side" points="166,202 48,266 228,320 346,256" />
-                  <g class="color__rgb__cube__white-corner" aria-hidden="true">
-                    <path class="color__rgb__cube__white-point" d="M 228 125 L 233 130 L 228 135 L 223 130 Z" />
-                    <line class="color__rgb__cube__white-glow" x1="221" y1="128" x2="48" y2="76" stroke="url(#rgb-white-glow-left)" />
-                    <line class="color__rgb__cube__white-glow" x1="235" y1="127" x2="346" y2="66" stroke="url(#rgb-white-glow-right)" />
-                    <line class="color__rgb__cube__white-glow" x1="228" y1="138" x2="228" y2="320" stroke="url(#rgb-white-glow-bottom)" />
-                  </g>
-                </g>
-                <circle class="color__rgb__cube__point" cx="166" cy="202" r="8" />
-              </svg>
-            </div>
-          </div>
-        </div>
+        <ColorHsl />
 
         <!-- elevation  -->
-        <h2 class="mt__8">Elevation</h2>
-        <div class="mt__1 comment__wrap">
+         <h2 class="mt__8">Elevation</h2>
+         <div class="mt__1 comment__wrap">
           <p class="comment">
             <code>filter: drop-shadow()</code>によるエレベーションを用いる場合は、エフェクトの大きさを<code>8段階</code>程度に分類する。<br>
             また高さを持った要素と背景要素の間でコントラスト比を保つ場合は、事前に要素へ持たせた<code>border</code>と背景の間で<code>3:1</code>のコントラスト比を確保する。<br>
@@ -280,8 +76,8 @@ const popovermenuList = [
             <br />
             「高さを持った要素」の上に「高さを持った要素」を配置する場合は、原則上側の要素は二段階高く設置すること。
           </p>
-        </div>
-        <div class="mt__2 elevation__grid">
+         </div>
+         <div class="mt__2 elevation__grid">
           {
             Array.from({ length: 8 }).map((_, index) => (
               <div class="elevation__content__wrap">
@@ -561,33 +357,6 @@ const popovermenuList = [
             </div>
           </div>
         </details>
-
-        <!-- tab -->
-        <h2 class="mt__8">Tab with Arrow Nav</h2>
-        <div class="mt__2 comment__wrap">
-          <p class="comment">
-            デジタル庁Storywriterが提供する「タブフォーカスに対応した」タブ切替要素。<br />
-            タブフォーカスに対応するためには同じくデジタル庁が提供する tab_aria.js が必要となるため注意。
-          </p>
-        </div>
-        <dads-tab-aria class="dads-tab">
-          <div class="mt__2 dads-tab__list" role="tablist">
-            <a class="dads-tab__tab" href="#ep-1" role="tab" aria-selected="true"><span>タブラベル</span></a>
-            <a class="dads-tab__tab" href="#ep-2" role="tab" aria-selected="false"><span>タブラベル</span></a>
-            <a class="dads-tab__tab" href="#ep-3" role="tab" aria-selected="false"><span>タブラベル</span></a>
-          </div>
-          <div class="dads-tab__panels">
-            <div id="ep-1" class="dads-tab__panel" role="tabpanel" tabindex="0">
-              タブパネルの内容（1番目）
-            </div>
-            <div id="ep-2" class="dads-tab__panel" role="tabpanel" tabindex="0">
-              タブパネルの内容（2番目）
-            </div>
-            <div id="ep-3" class="dads-tab__panel" role="tabpanel" tabindex="0">
-              タブパネルの内容（3番目）
-            </div>
-          </div>
-        </dads-tab-aria>
 
         <!-- modal -->
         <h2 class="mt__8">Modal with<br class="sp__only" /> Dialog Element</h2>
@@ -1110,168 +879,41 @@ const popovermenuList = [
           </details>
 
           <button type="button" class="popovermenu__btn popovermenu__btn__fixed item__hover" popovertarget='popovermenu-dialog'></button>
+
+          <h2 class="mt__8">round(), mod() and rem()</h2>
+          <details class="mt__2 acc__with__anim">
+            <summary>Sample Code<span class="twister"></span></summary>
+            <div class="accordion__overflow__hidden">
+              <div class="content__wrap">
+
+              </div>
+            </div>
+          </details>
+          <details class='acc__with__anim'>
+            <summary>Explanation<span class='twister'></span></summary>
+              <div class='accordion__overflow__hidden'>
+                <p class="comment">
+
+                </p>
+              </div>
+          </details>
       </section>
     </div>
   </div>
 </Layout>
 
-<!-- for popover: ブラウザ戻る(bfcache/Astro ClientRouterのキャッシュ復元)時に popover の内部状態が
-     「非表示のまま固着」し showPopover() が効かなくなるブラウザ側の既知の挙動への対策。
-     popover 属性を一度外して再付与することで、遷移復帰後も毎回まっさらな状態として登録し直す。 -->
-<script>
-document.addEventListener('astro:page-load', function () {
-  document.querySelectorAll<HTMLElement>('[popover]').forEach((popoverEl) => {
-    const popoverValue = popoverEl.getAttribute('popover') || 'auto'
-    popoverEl.removeAttribute('popover')
-    popoverEl.setAttribute('popover', popoverValue)
-  })
-})
-</script>
-
-<!-- for font-size -->
-<script>
-document.addEventListener('astro:page-load', function () {
-  const sliderLarge = document.querySelector<HTMLInputElement>('#font__size__large')
-  const textLarge = document.querySelector<HTMLElement>('#preview__txt__large')
-  const sliderNormal = document.querySelector<HTMLInputElement>('#font__size__normal')
-  const textNormal = document.querySelector<HTMLElement>('#preview__txt__normal')
-
-  if(sliderLarge && textLarge) {
-    const updateFontSize = () => {
-      const size = `${sliderLarge.value}px`
-      textLarge.style.fontSize = size
-    }
-  
-    sliderLarge?.addEventListener('input', updateFontSize)
-  }
-
-  if(sliderNormal && textNormal) {
-    const updateFontSize = () => {
-      const size = `${sliderNormal.value}px`
-      textNormal.style.fontSize = size
-    }
-  
-    sliderNormal?.addEventListener('input', updateFontSize)
-  }
-})
-</script>
-
-<!-- for color rgb -->
-<script>
-  document.addEventListener('astro:page-load', function () {
-    const rInput = document.getElementById('rgb__r') as HTMLInputElement
-    const gInput = document.getElementById('rgb__g') as HTMLInputElement
-    const bInput = document.getElementById('rgb__b') as HTMLInputElement
-    const aInput = document.getElementById('rgb__a') as HTMLInputElement
-    const backgroundInput = document.getElementById('rgb__background') as HTMLInputElement
-    const rgbaPreview = document.querySelector<HTMLElement>('.color__rgb__foreground')
-    const backgroundPreview = document.querySelector<HTMLElement>('.color__rgb__background')
-    const rgbaText = document.querySelector('.color__rgb__wrap p.mt__1')
-    const cube = document.querySelector<SVGSVGElement>('.color__rgb__cube')
-    const cubePoint = document.querySelector<SVGCircleElement>('.color__rgb__cube__point')
-
-    const origin = { x: 166, y: 202 }
-    const redAxis = { x: -118, y: 64 }
-    const greenAxis = { x: 0, y: -190 }
-    const blueAxis = { x: 180, y: 54 }
-
-    function clampChannel(value: number) {
-      return Math.round(Math.min(255, Math.max(0, value)))
-    }
-
-    function projectColor(r: number, g: number, b: number) {
-      return {
-        x: origin.x + (redAxis.x * r + greenAxis.x * g + blueAxis.x * b) / 255,
-        y: origin.y + (redAxis.y * r + greenAxis.y * g + blueAxis.y * b) / 255,
-      }
-    }
-
-    function renderCubeFace(face: 'top' | 'front' | 'side') {
-      const grid = cube?.querySelector<SVGGElement>(`[data-rgb-grid="${face}"]`)
-      if (!grid) return
-
-      const divisions = 12
-      const base = origin
-      const firstAxis = face === 'top' || face === 'side' ? redAxis : greenAxis
-      const secondAxis = face === 'front' ? blueAxis : face === 'top' ? greenAxis : blueAxis
-      const cells = document.createDocumentFragment()
-
-      for (let first = 0; first < divisions; first += 1) {
-        for (let second = 0; second < divisions; second += 1) {
-          const firstStart = first / divisions
-          const firstEnd = (first + 1) / divisions
-          const secondStart = second / divisions
-          const secondEnd = (second + 1) / divisions
-          const corners = [
-            [firstStart, secondStart], [firstEnd, secondStart], [firstEnd, secondEnd], [firstStart, secondEnd],
-          ].map(([firstValue, secondValue]) => `${base.x + firstAxis.x * firstValue + secondAxis.x * secondValue},${base.y + firstAxis.y * firstValue + secondAxis.y * secondValue}`)
-          const firstValue = clampChannel(255 * (first + 0.5) / divisions)
-          const secondValue = clampChannel(255 * (second + 0.5) / divisions)
-          const color = face === 'top'
-            ? `rgb(${firstValue}, ${secondValue}, 0)`
-            : face === 'front'
-              ? `rgb(0, ${firstValue}, ${secondValue})`
-              : `rgb(${firstValue}, 0, ${secondValue})`
-          const cell = document.createElementNS('http://www.w3.org/2000/svg', 'polygon')
-          cell.setAttribute('points', corners.join(' '))
-          cell.setAttribute('fill', color)
-          cells.appendChild(cell)
-        }
-      }
-      grid.replaceChildren(cells)
-    }
-
-    renderCubeFace('top')
-    renderCubeFace('front')
-    renderCubeFace('side')
-
-    function updateColor() {
-      const r = Number(rInput.value)
-      const g = Number(gInput.value)
-      const b = Number(bInput.value)
-      const a = Number(aInput.value) / 100
-      if (rgbaText) {
-        rgbaText.textContent = `RGBA(${r} ${g} ${b} ${a})`
-      }
-      if (rgbaPreview) {
-        rgbaPreview.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`
-      }
-      if (cubePoint) {
-        const point = projectColor(r, g, b)
-        cubePoint.setAttribute('cx', String(point.x))
-        cubePoint.setAttribute('cy', String(point.y))
-        cubePoint.style.fill = `rgb(${r}, ${g}, ${b})`
-        cubePoint.style.stroke = r + g + b > 382 ? '#111111' : '#ffffff'
-      }
-    }
-
-    rInput.addEventListener('input', updateColor)
-    gInput.addEventListener('input', updateColor)
-    bInput.addEventListener('input', updateColor)
-    aInput.addEventListener('input', updateColor)
-    function updateBackground() {
-      if (backgroundPreview) backgroundPreview.style.backgroundColor = backgroundInput.value
-    }
-
-    backgroundInput.addEventListener('input', updateBackground)
-
-    updateBackground()
-    updateColor()
-  })
-</script>
-
 <!-- for elevation -->
 <script>
 document.addEventListener('astro:page-load', function () {
-  const items = [...document.querySelectorAll<HTMLElement>('.shadow__animate')]
+  const items = [...document.querySelectorAll('.shadow__animate')]
   const stopButton = document.getElementById('stop__animation')
   const restartButton = document.getElementById('restart__animation')
 
   let isRunning = true
   let shouldChangeText = false
-  let timerId: number | null = null
+  let timerId = null
 
-  function animateItem(item: HTMLElement) {
+  function animateItem(item) {
     if(!isRunning || item.classList.contains('is-animating')) return
 
     const target = item.querySelector('.shadow__animate__item')
@@ -1351,12 +993,12 @@ document.addEventListener('astro:page-load', function () {
     'yu_gothic__fontfamily'
   ]
 
-  document.querySelectorAll<HTMLElement>('[data-font-class]').forEach((button) => {
+  document.querySelectorAll('[data-font-class]').forEach((button) => {
     button.addEventListener('click', () => {
       const fontClass = button.dataset.fontClass
 
       document.body.classList.remove(...fontClasses)
-      if(fontClass) document.body.classList.add(fontClass)
+      document.body.classList.add(fontClass)
     })
   })
 })

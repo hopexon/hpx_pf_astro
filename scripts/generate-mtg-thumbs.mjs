@@ -38,6 +38,11 @@ for (const file of usedFiles) {
     continue
   }
 
+  if (existsSync(outPath)) {
+    skipped++
+    continue
+  }
+
   await sharp(srcPath)
     .resize({ width: THUMB_WIDTH, withoutEnlargement: true })
     .avif({ quality: AVIF_QUALITY })

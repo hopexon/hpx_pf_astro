@@ -1,0 +1,77 @@
+---
+const minSizeLarge = 48;
+const maxSizeLarge = 64;
+const defaultSizeLarge = 48;
+
+const minSizeNormal = 16;
+const maxSizeNormal = 45;
+const defaultSizeNormal = 16;
+---
+
+<h2 class="mt__8">font-size</h2>
+<div class="mt__1 font__size__grid">
+  <div class="content__wrap">
+    <label class="content__subttl"> For Standard Use: 16 - 45px</label>
+    <input
+      id="font__size__normal"
+      type="range"
+      min={minSizeNormal}
+      max={maxSizeNormal}
+      value={defaultSizeNormal}
+      step="1"
+    />
+    <p id="preview__txt__normal">Change Font Size</p>
+  </div>
+  <div class="content__wrap">
+    <label class="content__subttl"> For Visual Impact: 48 - 64px</label>
+    <input
+      id="font__size__large"
+      type="range"
+      min={minSizeLarge}
+      max={maxSizeLarge}
+      value={defaultSizeLarge}
+      step="1"
+    />
+    <p id="preview__txt__large">Change Font Size</p>
+  </div>
+  <div class="content__wrap">
+    <p class="content__subttl">14px<span class="caution">Caution</span></p>
+    <p class="mt__1">
+      常用は避けるべき。<br
+      />狭いスペースや付帯情報など、特定の状況でのみ使用可能。
+    </p>
+  </div>
+  <div class="content__wrap">
+    <p class="content__subttl">
+      Under 13px<span class="dontuse">Don't Use</span>
+    </p>
+    <p class="mt__1">原則として許容されない。</p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", function () {
+    const sliderLarge = document.querySelector("#font__size__large");
+    const textLarge = document.querySelector("#preview__txt__large");
+    const sliderNormal = document.querySelector("#font__size__normal");
+    const textNormal = document.querySelector("#preview__txt__normal");
+
+    if (sliderLarge && textLarge) {
+      const updateFontSize = () => {
+        const size = `${sliderLarge.value}px`;
+        textLarge.style.fontSize = size;
+      };
+
+      sliderLarge?.addEventListener("input", updateFontSize);
+    }
+
+    if (sliderNormal && textNormal) {
+      const updateFontSize = () => {
+        const size = `${sliderNormal.value}px`;
+        textNormal.style.fontSize = size;
+      };
+
+      sliderNormal?.addEventListener("input", updateFontSize);
+    }
+  });
+</script>

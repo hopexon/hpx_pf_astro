@@ -1,0 +1,27 @@
+---
+import CompareCicleGraph from './CompareCircleGraph.astro'
+---
+
+<details class='acc__with__anim'>
+  <summary>Compare CIELab vs OKLab<span class='twister'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <p class="comment">
+          上段が<code>Lab</code>、下段が<code>OKLab</code>表色系。<br />
+          全てに視認できる差異がある。赤に関しては左端始点の明度を落とすと差異が確認しづらくなる(明度が高い範囲では大きな差異がある)
+        </p>
+        <h4 class="mt__2">↑Lab / ↓OKLab</h4>
+        <div class="color-function-preview compare-lab-preview-bl"></div>
+        <div class="color-function-preview compare-lab-preview-bl-ok"></div>
+        <div class="color-function-preview compare-lab-preview-red"></div>
+        <div class="color-function-preview compare-lab-preview-red-ok"></div>
+        <div class="color-function-preview compare-lab-preview-blue"></div>
+        <div class="color-function-preview compare-lab-preview-blue-ok"></div>
+        <div class="color-function-preview compare-lab-preview-yellow"></div>
+        <div class="color-function-preview compare-lab-preview-yellow-ok"></div>
+        <div class="color-function-preview compare-lab-preview-green"></div>
+        <div class="color-function-preview compare-lab-preview-green-ok"></div>
+        <CompareCicleGraph />
+      </div>
+    </div>
+</details>

@@ -1,0 +1,102 @@
+---
+import LabGraph from './LabGraph.astro'
+---
+
+<details class="acc__with__anim">
+  <summary>(Lab) Lab<span class="twister"></span></summary>
+  <div class="accordion__overflow__hidden">
+    <div class="content__wrap">
+      <p class="comment" style="margin-block-end: 0;">
+        いわゆる<code>CIELAB</code>と呼ばれるプロファイルで、人間の知覚を基準にした色空間。<br />
+        物体色を表すために用いられる最もポピュラーな表色系とされ、国際規格自体は76年に定められている。<br />
+        明度を保ったままの色調整に重用され、例えばRGBプロファイルで作成したデータをCMYK出力に変更したい場合のくすみ調整などに用いられる。<br />
+        こちらも同じくベースカラーを基にした相対色の作成が可能。
+      </p>
+      <ul>
+        <li>・<code>Lightness</code>: 知覚的な明度</li>
+        <li>・<code>a</code>: 緑から赤の軸。負側が緑、正側が赤</li>
+        <li>・<code>b</code>: 青から黄色の軸。負側が青、正側が黄色</li>
+      </ul>
+      <LabGraph />
+      <div class="mt__8 lab-controls">
+        <div class="lab-control">
+          <label for="lab__l" class="lab-label">Lightness:</label>
+          <input
+            type="range"
+            id="lab__l"
+            min=0
+            max=100
+            value=100
+            step="0.0001"
+          >
+        </div>
+        <div class="lab-control">
+          <label for="lab__a" class="lab-label">a:</label>
+          <input
+            type="range"
+            id="lab__a"
+            min=-125
+            max=125
+            value=0
+            step="0.0001"
+          >
+        </div>
+        <div class="lab-control">
+          <label for="lab__b" class="lab-label">b:</label>
+          <input
+            type="range"
+            id="lab__b"
+            min=-125
+            max=125
+            value=0
+            step="0.0001"
+          >
+        </div>
+        <div class="lab-control">
+          <label for="lab__al" class="lab-label">Alpha:</label>
+          <input
+            type="range"
+            id="lab__al"
+            min=0
+            max=1
+            value=1
+            step="0.01"
+          >
+        </div>
+      </div>
+      <div class="mt__2 lab-value color__value__txt">
+        <p>background-color: <span class="lab-value__text"></span></p>
+      </div>
+      <div class="color-function-preview lab-preview"></div>
+    </div>
+  </div>
+</details>
+
+<!-- Lab -->
+<script>
+  document.addEventListener('astro:page-load', function() {
+    const labLinput = document.getElementById('lab__l') as HTMLInputElement
+    const labAinput = document.getElementById('lab__a') as HTMLInputElement
+    const labBinput = document.getElementById('lab__b') as HTMLInputElement
+    const labAlinput = document.getElementById('lab__al') as HTMLInputElement
+    const labValueText = document.querySelector('.lab-value__text') as HTMLSpanElement
+    const labPreviewBox = document.querySelector('.lab-preview') as HTMLDivElement
+
+    const updateLabPreview = () => {
+      const l = labLinput.value
+      const a = labAinput.value
+      const b = labBinput.value
+      const al = labAlinput.value
+
+      labPreviewBox.style.backgroundColor = `lab(${l} ${a} ${b} / ${al})`
+      labValueText.textContent = `lab(${l} ${a} ${b} / ${al})`
+    }
+
+    labLinput.addEventListener('input', updateLabPreview)
+    labAinput.addEventListener('input', updateLabPreview)
+    labBinput.addEventListener('input', updateLabPreview)
+    labAlinput.addEventListener('input', updateLabPreview)
+
+    updateLabPreview()
+  })
+</script>
