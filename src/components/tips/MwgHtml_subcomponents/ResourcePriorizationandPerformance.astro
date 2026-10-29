@@ -1,0 +1,186 @@
+---
+import { Code } from 'astro:components'
+---
+
+<details class='acc__with__anim'>
+  <summary>Resouce Priorization and Performance<span class='twister' aria-hidden="true"></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <details class='acc__with__anim'>
+          <summary>All Do's and Don'ts<span class='twister' aria-hidden='true'></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <ul>
+                  <li>・KVなどLCPとして扱われる要素については<code>fetchpriority='high'</code>を付与し読み込み優先度を引き上げよう</li>
+                  <li>・もしLCPに背景画像が存在する場合は、<code>link rel='preload' as='image'</code>を<code>head</code>内に実装し、CSS側で指定の背景画像を優先的に読み込もう</li>
+                  <li>・遷移時点で画面外の画像、および<code>iframe</code>要素には<code>loading='lazy'</code>属性を付与し遅延読込みさせよう</li>
+                  <li>・レイアウトシフト(<code>CLS</code>)を防ぐため、全ての画像に<code>width</code> / <code>height</code>属性を付与しよう。<code>srcset / source</code>を組んでいる場合はそれぞれに必要だが、全セットでアスペクト比が共通の場合は大元の<code>img</code>要素への指定のみでOK</li>
+                  <li>・<code>picture</code> <code>sizes</code> <code>srcset</code>を適切に使い分けよう。詳細は<a href="#Images" class="item__hover" style="text-decoration: underline;">Images</a>項目を参照</li>
+                  <li>・間違ってもKVなどヒロイックなイメージに loading=lazy を付与してはいけない</li>
+                  <li>・fetchpriority='high' を乱用してはいけない。読み込み優先度はゼロサムのため、優先度の低い画像には<code>fetchpriority='low'</code>を明示し、高低の差を大きくすべき。</li>
+                </ul>
+            </div>
+          </div>
+        </details>
+        <details class='acc__with__anim'>
+          <summary>Use fetchpriority='high' for LCP Content<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        <!-- KVなど最もサイズの大きな要素に対しては fetchpriority='high' 属性を付与する -->
+        <!-- iOS 17.2 から対応 -->
+        <h1>Page Title</h1>
+        <div class="hero">
+          <img src="#" alt="key visual" class="img__kv" fetchpriority="high">
+        </div>
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>High vs Async vs Eager<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        KV = LCPと仮定して考える。
+
+        LCPに対し問答無用で付与すべきは fetchpriority = high であり、特に懸念はない。
+
+        loading = eager は「遅延させるな」という指示だが、要素に対するデフォルトの loading は eager であるため、明示的に指定する必要はない。
+
+        decoding = async はデコードに対する指示のため、優先度とは異なる指標を指示する。
+        ブラウザごとに恩恵が異なる可能性が高いため、付与を切り替えて実測するのが最も確実である。
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+        <details class='acc__with__anim'>
+          <summary>Use rel='preload' as='image' for background KV<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        KV画像が背景画像として実装されるのはよくあるパターンだが、
+        その場合 img に対する直接の fetchpriority='high' 指定が不可能となる。
+        
+        この場合は head 要素内に 画像をリンクとした link 要素を配置し、優先して背景画像を読み込むよう指定する。
+        この用法では link に対し fetchpriority が使用可能となる。
+        
+        <head>
+          <link 
+            rel="preload" 
+            as="image"
+            href="./img/KV.webp"
+            fetchpriority="high"
+          >
+        </head>
+        
+        なお imagesrcset を用いる場合でも同様に指定が可能。
+        <head>
+          <link 
+            rel="preload" 
+            as="image"
+            href="./img/KV.webp"
+            imagesrcset="./img/KV.webp 1x, ./img/KV@2x.webp 2x"
+            fetchpriority="high"
+          >
+        </head>
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+        <details class='acc__with__anim'>
+          <summary>Add loading='lazy' Attr for Secondory Contents<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        初期遷移時点でビューポートから外れる画像および iframe 要素については、
+        loading='lazy' を付与することでビューポートに近づくまたは含まれるまで読み込みを開始しないようにする。
+        
+        <body>
+          <hgroup>
+            <h1>Page Title</h1>
+            <p>subttl</p>
+            <img 
+              src="./img/kv.webp"
+              alt="key visual"
+              fetchpriority="high"
+            >
+          </hgroup>
+        
+          ...
+        
+          <img 
+            src="./img/aftercontent.webp"
+            alt="after content"
+            loading="lazy" 
+          >
+        </body>
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+        <details class='acc__with__anim'>
+          <summary>Specify Width and Height Attr for ALL Images<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        レイアウトシフト(CLS)を防ぐため、全ての img タグに対し width と height の指定が求められる。
+        
+        両属性は主にアスペクト比に基づいて描画領域をあらかじめ確保するために参照されるが、
+        その値は「基準画像」を基に指定するのがよい。
+        例えば基準画像がPCレイアウトの巨大なものであっても、
+        CSS側で予め画像幅が制限されていれば(SPレイアウト時に inline-size=100% など)、
+        その制限に基づいた横幅から属性を参照して割り出したアスペクト比を参考に必要な縦領域を確保する。
+        
+        アスペクト比の算出が目的であればCSS側で aspect-ratio を指定してやれば問題なさそうだが、
+        ブラウザがDOMを構成する時点で描画領域を確保できるメリットが大きく、
+        逆に「適切なサイズ属性が指定されていれば img に対してCSS側で aspect-ratio を指定する必要はない」と言える。
+        
+        <img 
+          src="./img/img_01.web"
+          alt="test image"
+          width="640"
+          height="400"
+        >
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+        <details class='acc__with__anim'>
+          <summary>Use Picture tag and Srcset Attr for Responsive Image Sets<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <p class="comment">
+                  詳細は上述の <a href="#Images" class="link__item item__hover" style="text-decoration: underline;">Image</a> カテゴリにて。
+                </p>
+              </div>
+          </div>
+        </details>
+        <details class='acc__with__anim'>
+          <summary>Don't Apply Loading Lazy for Heroic Image<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <p class="comment">
+                  その通り。
+                </p>
+            </div>
+          </div>
+        </details>
+        <details class='acc__with__anim'>
+          <summary>Don't Overuse fetchpriority='high'<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        Heroicでない画像については fetchpriority="low" の使用も検討する。
+        fetchpriority は最終的にゼロサムのため、
+        例えばカルーセル内など優先順位が明確に低い画像は low の付与を行うべき。
+
+        <img src="#" alt="test" fetchpriority="low">
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+</details>

@@ -1,0 +1,187 @@
+---
+import { Code } from 'astro:components'
+
+const popovermenuList = [
+  { name: "TOP", path: "/" },
+  { name: "Tools", path: "/tools" },
+  { name: "Tips", path: "/tips" },
+  // { name: "Music Review", path: "https://hpx-pfproject02.vercel.app/music-review/" },
+  { name: "Works", path: "/works" },
+  { name: "Collections", path: "/collections" },
+]
+---
+
+<h2 class="mt__8">Popover Menu</h2>
+        <div class="mt__2 popovermenu__content__wrap">
+          <!-- <button type="button" class="popovermenu__btn item__hover" command="show-modal" commandfor="popovermenu-dialog"></button> -->
+          <button
+            type="button"
+            class="popovermenu__btn item__hover" 
+            popovertarget='popovermenu-dialog'
+          >
+          </button>
+          <dialog
+              id="popovermenu-dialog"
+              class="popovermenu__dialog"
+              closedby="any"
+              aria-labelledby="dialog-title"
+              autofocus
+              popover
+          >
+            <div class="popovermenu__content__wrap">
+              <h2 id="popovermenu-heading" class="popovermenu__heading">MENU</h2>
+              <nav class="linkitem__wrap popovermenu__linkitem__wrap">
+                {
+                  popovermenuList.map((item) => (
+                    <a href={item.path} class="linkitem__link link__twister">
+                      {item.name}
+                    </a>
+                  ))
+                }
+              </nav>
+            </div>
+            <button 
+              type="button"  
+              class="popovermenu__close__btn item__hover"
+              popovertarget="popovermenu-dialog"
+              popovertargetaction="hide"
+            >
+              Close
+            </button>
+          </dialog>
+        </div>
+        <details class="mt__2 acc__with__anim">
+          <summary>Sample Code<span class="twister"></span></summary>
+          <div class="accordion__overflow__hidden">
+            <div class="content__wrap">
+              <Code code={`
+    <button
+      type="button"
+      class="popovermenu__btn item__hover" 
+      popovertarget='popovermenu-dialog'
+    >
+    </button>
+    <dialog
+        id="popovermenu-dialog"
+        class="popovermenu__dialog"
+        closedby="any"
+        aria-labelledby="dialog-title"
+        autofocus
+        popover
+    >
+      <div class="popovermenu__content__wrap">
+        <h2 id="popovermenu-heading" class="popovermenu__heading">MENU</h2>
+        <nav class="linkitem__wrap popovermenu__linkitem__wrap">
+          {
+            popovermenuList.map((item) => (
+              <a href={item.path} class="linkitem__link link__twister">
+                {item.name}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+      <button 
+        type="button"  
+        class="popovermenu__close__btn item__hover"
+        popovertarget="popovermenu-dialog"
+        popovertargetaction="hide"
+      >
+        Close
+      </button>
+    </dialog>
+              `} lang="html" theme="github-dark"></Code>
+              <Code code={`
+    dialog[popover] {
+      position: fixed; /* Safariで表示に不具合が出るので明示する必要がある */
+      inset-block-start: 50%;
+      inset-inline-start: auto;
+      inset-inline-end: calc(60 / 16 * 1rem); /* PCレイアウトのgutter片側分 */
+      margin: 0; /* ブラウザデフォルトのmarginをリセット */
+      block-size: 80dvh;
+      inline-size: 50dvw;
+      max-inline-size: calc((700 / 16) * 1rem); /* PCコンテンツサイズ / 2 */ 
+      color: var(--paper);
+      background-color: var(--base-950);
+      transform: translateY(-50%);
+      transition-duration: 0.2s;
+      transition-property: display, overlay, opacity, transform;
+      transition-timing-function: ease-out;
+      transition-behavior: allow-discrete;
+      overscroll-behavior-block: contain;
+      overflow: auto;
+
+      h2 {
+        color: var(--paper);
+        border-bottom: none;
+      }
+
+      @media screen and (min-width: 1400px) {
+        inset-inline-end: calc(50vw - calc(640 / 16 * 1rem));
+      }
+    }
+
+    .popovermenu__content__wrap {
+      padding: 2rem;
+    }
+
+    .popovermenu__linkitem__wrap {
+      padding-inline-start: 2rem;
+      margin-block-start: 3rem;
+    }
+
+    .popovermenu__close__btn {
+      position: fixed;
+      inset-block-start: 6rem;
+      inset-inline-end: calc(60 / 16 * 1rem);
+      font-size: calc(20 / 16 * 1rem);
+      font-weight: bold;
+      background-color: var(--base-950);
+      border-block-start: none;
+      border-inline-end: none;
+      opacity: 0.8;
+
+      @media screen and (min-width: 1560px) {
+        inset-inline-end: calc(50vw - calc(760 / 16 * 1rem));
+      }
+    }
+
+    @starting-style {
+      dialog[popover] {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+      }
+    }
+
+    [popover]:not(:popover-open) {
+      opacity: 0;
+    }
+              `} lang="css" theme="github-dark"></Code>
+            </div>
+          </div>
+        </details>
+
+        <details class="acc__with__anim">
+          <summary>Explanation<span class="twister"></span></summary>
+          <div class="accordion__overflow__hidden">
+            <div class="content__wrap">
+              <p class="comment">
+                ブロック要素(dialog / divなど)に<code>popover</code>属性を付与することで、非モーダルとなる<code>show()</code>にて同要素を展開する。<br />
+                <code>command</code>属性で展開する<code></code>
+              </p>
+
+              <h4 class="mt__2">▼ popover 属性</h4>
+              <ul>
+                <li>・<code>popover</code>: “popover”のみ指定した場合、デフォルト値<code>auto</code>が適用される。</li>
+                <li>・<code>popover="auto"</code>: 閉じるボタンのほか、ポップオーバー領域の外側を押下することでも閉じることが可能。</li>
+                <li>・<code>popover="manual"</code>: 閉じるボタンなど、ユーザ側が明示的に閉じる操作を行わないとモーダルが閉じない。</li>
+              </ul>
+              <h4 class="mt__2">▼ popovertargetaction 属性</h4>
+              <ul>
+                <li>・<code>show</code>: <code>popovertarget</code>属性で指定した id を持つ要素をポップオーバーとして表示する。</li>
+                <li>・<code>hide</code>: 同様にポップオーバーを非表示にする。</li>
+                <li>・<code>toggle</code>: こちらは単独で表示 / 非表示を切り替える。</li>
+              </ul>
+            </div>
+          </div>
+        </details>

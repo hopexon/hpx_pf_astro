@@ -1,0 +1,93 @@
+<details class="acc__with__anim">
+  <summary>(RGB) HWB<span class="twister"></span></summary>
+  <div class="accordion__overflow__hidden">
+    <div class="content__wrap">
+      <p class="comment">
+        <code>Hue(色相)</code>、<code>Whiteness(白色度)</code>、<code>Blackness(黑色度)</code>、 <code>Alpha(透明度)</code>の4項目で色を指定する方法。<br />
+        HSLと異なり色の変化を白・黒の差し引きで行う。<br />
+        こちらも同じくベースカラーを基にした相対色の作成が可能。<br />
+        用途としては「RGBからの差分を白黒ベースで作成したい場合」か。
+      </p>
+      <div class="mt__2 hwb-controls">
+        <div class="hwb-control">
+          <label for="hwb__h" class="hwb-label">Hue:</label>
+          <input 
+            type="range"
+            id="hwb__h"
+            min=0
+            max=360
+            value=0
+            step="1"
+          >
+        </div>
+        <div class="hwb-control">
+          <label for="hwb__w" class="hwb-label">Whiteness:</label>
+          <input 
+            type="range"
+            id="hwb__w"
+            min=0
+            max=100
+            value=50
+            step="1"
+          >
+        </div>
+        <div class="hwb-control">
+          <label for="hwb__b" class="hwb-label">Blackness:</label>
+          <input 
+            type="range"
+            id="hwb__b"
+            min=0
+            max=100
+            value=0
+            step="1"
+          >
+        </div>
+        <div class="hwb-control">
+          <label for="hwb__a" class="hwb-label">Alpha:</label>
+          <input 
+            type="range"
+            id="hwb__a"
+            min=0
+            max=1
+            value=1
+            step="0.01"
+          >
+        </div>
+      </div>
+      <div class="mt__2 hwb-value color__value__txt">
+        <p>background-color: <span class="hwb-value__text"></span></p>
+      </div>
+      <div class="color-function-preview hwb-preview"></div>
+    </div>
+  </div>
+</details>
+
+<!-- HWB -->
+<script>
+  document.addEventListener('astro:page-load', function() {
+    const hwbHinput = document.getElementById('hwb__h') as HTMLInputElement
+    const hwbWinput = document.getElementById('hwb__w') as HTMLInputElement
+    const hwbBinput = document.getElementById('hwb__b') as HTMLInputElement
+    const hwbAinput = document.getElementById('hwb__a') as HTMLInputElement
+
+    const hwbPreviewBox = document.querySelector('.hwb-preview') as HTMLDivElement
+
+    const hwbValueText = document.querySelector('.hwb-value .hwb-value__text') as HTMLSpanElement
+
+    const updateHwbPreview = () => {
+      const h = hwbHinput.value
+      const w = hwbWinput.value
+      const b = hwbBinput.value
+      const a = hwbAinput.value
+      hwbPreviewBox.style.backgroundColor = `hwb(calc(${h} * 1deg) calc(${w} * 1%) calc(${b} * 1%) / ${a})`
+
+      hwbValueText.textContent = `hwb(${h} ${w}% ${b}% / ${a})`
+    }
+    hwbHinput.addEventListener('input', updateHwbPreview)
+    hwbWinput.addEventListener('input', updateHwbPreview)
+    hwbBinput.addEventListener('input', updateHwbPreview)
+    hwbAinput.addEventListener('input', updateHwbPreview)
+
+    updateHwbPreview()
+  })
+</script>

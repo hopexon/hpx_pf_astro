@@ -1,0 +1,124 @@
+<details class="acc__with__anim">
+  <summary>(OKLab) OKLab / OKLCH<span class="twister"></span></summary>
+  <div class="accordion__overflow__hidden">
+    <div class="content__wrap">
+      <p class="comment">
+        Lab / LCH が<code>CIEL*A*B*</code>をベースに1976年制定されたものであるのに対し、<code>OKLab</code>および<code>OKLCH</code>は2020年に<code>CIE DE2000</code>準拠で策定された<code>OKLab</code>を基に設計された新興表色系である。<br />
+        Labに対するOKLabの優位性としては「色ムラの改善」特に青～紫周辺にグラデーションに発生していたムラを改善できる点が上げられる。<br />
+        人間の知覚的に正しい表色系として策定されたLabであるが、人間には「彩度が高いほど色差を見分けにくくなる」「色により色差を見分ける精度が根本的に異なってしまう」といった傾向があり、知覚ベースで考えた場合上述の通りLabでは青～紫周辺に不備が生ずる状況であった。<br />
+        具体的にどの色域でどのような不備が発生するかについては以下コニカミノルタ『色色雑学』に詳しい。<br />
+        <a style='font-style: italic;' class="item__hover" href="https://www.konicaminolta.jp/instruments/knowledge/color/section2/2-06/">▶ 新しい色差式（CIE DE2000）について。</a><br />
+        <br />
+        既存Lab/LCHとの使い分けとしては以下2点が挙げられやすい。<br />
+        ・Lab/LCH：印刷物などCIELABを用いる必要のある状況<br />
+        ・OKLab/OKLCH：WebUIの色設計、Web用カラースキームの作成<br />
+        <br />
+        またOKLabとOKLCHの違いとしては正しくLabとLCHの違いのままで、a軸b軸線上で色を作成したい場合はOKLab、色相や彩度を固定したままサブカラーを作成したい場合はOKLCH、となる。<br />
+        典型的ユースケースであるWebUI作成やカラースキーム作成においては、サブカラーを破綻無く作成しやすいOKLCHが優先されるだろう。<br />
+        つまるところ「新規格で用途は限られるがさらに人間の知覚に近づいたLab」といったところか。
+      </p>
+      <div class="mt__2 oklab-cont">
+        <div class="oklab-control">
+          <label for="oklab__l">L:</label>
+          <input type="range" id="oklab__l" min="0" max="1" value="1" step="0.01">
+        </div>
+        <div class="oklab-control">
+          <label for="oklab__a">a:</label>
+          <input type="range" id="oklab__a" min="-0.4" max="0.4" value="0.2" step="0.001">
+        </div>
+        <div class="oklab-control">
+          <label for="oklab__b">b:</label>
+          <input type="range" id="oklab__b" min="-0.4" max="0.4" value="0.2" step="0.001">
+        </div>
+        <div class="oklab-control">
+          <label for="oklab__al">Alpha:</label>
+          <input type="range" id="oklab__al" min="0" max="1" value="1" step="0.01">
+        </div>
+      </div>
+      <div class="mt__2 oklab-value color__value__txt">
+        <p>background-color: <span class="oklab-value__text"></span></p>
+      </div>
+      <div class="color-function-preview oklab-preview"></div>
+      <div class="mt__2 oklch-controls">
+        <div class="oklch-control">
+          <label for="oklch__l">L:</label>
+          <input type="range" id="oklch__l" min="0" max="1" value="1" step="0.01">
+        </div>
+        <div class="oklch-control">
+          <label for="oklch__c">C:</label>
+          <input type="range" id="oklch__c" min="0" max="0.4" value="0.2" step="0.004">
+        </div>
+        <div class="oklch-control">
+          <label for="oklch__h">H:</label>
+          <input type="range" id="oklch__h" min="-360" max="360" value="0" step="1">
+        </div>
+        <div class="oklch-control">
+          <label for="oklch__a">Alpha:</label>
+          <input type="range" id="oklch__a" min="0" max="1" value="1" step="0.01">
+        </div>
+      </div>
+      <div class="mt__2 oklch-value color__value__txt">
+        <p>background-color: <span class="oklch-value__text"></span></p>
+      </div>
+      <div class="color-function-preview oklch-preview"></div>
+    </div>
+  </div>
+</details>
+
+<!-- OKLab -->
+<script>
+  document.addEventListener('astro:page-load', function() {
+    const okLabLinput = document.getElementById('oklab__l') as HTMLInputElement
+    const okLabAinput = document.getElementById('oklab__a') as HTMLInputElement
+    const okLabBinput = document.getElementById('oklab__b') as HTMLInputElement
+    const okLabAlinput = document.getElementById('oklab__al') as HTMLInputElement
+    const okLabValueText = document.querySelector('.oklab-value__text') as HTMLSpanElement
+    const okLabPreviewBox = document.querySelector('.oklab-preview') as HTMLDivElement
+
+    const updateokLabPreview = () => {
+      const l = okLabLinput.value
+      const a = okLabAinput.value
+      const b = okLabBinput.value
+      const al = okLabAlinput.value
+
+      okLabPreviewBox.style.backgroundColor = `okLab(${l} ${a} ${b} / ${al})`
+      okLabValueText.textContent = `okLab(${l} ${a} ${b} / ${al})`
+    }
+
+    okLabLinput.addEventListener('input', updateokLabPreview)
+    okLabAinput.addEventListener('input', updateokLabPreview)
+    okLabBinput.addEventListener('input', updateokLabPreview)
+    okLabAlinput.addEventListener('input', updateokLabPreview)
+
+    updateokLabPreview()
+  })
+</script>
+
+<!-- OKLCH -->
+<script>
+  document.addEventListener('astro:page-load', function() {
+    const oklchLinput = document.getElementById('oklch__l') as HTMLInputElement
+    const oklchCinput = document.getElementById('oklch__c') as HTMLInputElement
+    const oklchHinput = document.getElementById('oklch__h') as HTMLInputElement
+    const oklchAinput = document.getElementById('oklch__a') as HTMLInputElement
+    const oklchValueText = document.querySelector('.oklch-value__text') as HTMLSpanElement
+    const oklchPreviewBox = document.querySelector('.oklch-preview') as HTMLDivElement
+
+    const updateokLchPreview = () => {
+      const l = oklchLinput.value
+      const c = oklchCinput.value
+      const h = oklchHinput.value
+      const a = oklchAinput.value
+
+      oklchPreviewBox.style.backgroundColor = `oklch(${l} ${c} ${h} / ${a})`
+      oklchValueText.textContent = `oklch(${l} ${c} ${h} / ${a})`
+    }
+
+    oklchLinput.addEventListener('input', updateokLchPreview)
+    oklchCinput.addEventListener('input', updateokLchPreview)
+    oklchHinput.addEventListener('input', updateokLchPreview)
+    oklchAinput.addEventListener('input', updateokLchPreview)
+
+    updateokLchPreview()
+  })
+</script>

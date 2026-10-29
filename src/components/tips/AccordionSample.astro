@@ -1,0 +1,163 @@
+---
+import { Code } from 'astro:components'
+---
+
+<h2 class="mt__8">Accordion</h2>
+<div class="mt__3 accordion__wrap">
+  {
+    Array.from({ length: 3 }).map((_, index) => (
+      <details
+        name="accordion__sample"
+        class={`accordion__sample__${index + 1}`}
+      >
+        <summary>
+          Accordion Sample
+          <span class="twister" />
+        </summary>
+        <div class="accordion__overflow__hidden">
+          <div class="accordion__content">
+            <p class="comment">
+              CSSのみで実装、かつ<code>iOS18.4</code>以降の<code>Safari</code>
+              に対応するアコーディオン。
+              <br />
+              <br />
+              各アコーディオンに<code>name</code>
+              を付与することで、最大展開個数を<code>1</code>
+              とする排他的な実装が可能。
+              <br />
+              <br />
+              <code>iOS18.4</code>から疑似要素<code>::details-content</code>
+              が指定可能となったため、
+              <code>
+                非展開時の ::details-content を grid-template-rows: 0fr
+              </code>
+              に、展開時は<code>1fr</code>に設定のうえ
+              <code>transition-property: grid-template-rows;</code>
+              を指定することでCSSのみの展開アニメーションが可能となる。
+              <br />
+              ただしそのままでは格納時に内容コンテンツがアコーディオンから逸脱してしまうため、コンテンツの
+              <code>div</code>ラップの上にさらに<code>overflow: hidden</code>
+              用の追加<code>div</code>ラップが必要となること、
+              <br />
+              併せて<code>grid-template-columns</code>は相対値プロパティのため、
+              <code>transition-behavior: allow-discrete</code>
+              により相対値プロパティへの<code>transition</code>
+              適用許可が必要となる。
+            </p>
+          </div>
+        </div>
+      </details>
+    ))
+  }
+</div>
+<!-- <h3 class="mt__2">Sample Code</h3> -->
+<details class="acc__with__anim">
+  <summary>Sample Code<span class="twister"></span></summary>
+  <div class="acc__with__anim__hidden">
+    <div class="content__wrap">
+      <Code
+        code={`
+    <details name='accordion__sample' class='accordion__sample__1' open=true>
+      <summary>Accordion Sample<span class='twister'></span></summary>
+      <div class="accordion__overflow__hidden">
+        <div class="accordion__content">
+          content...
+        </div>
+      </div>
+    </details>
+        `}
+        lang="html"
+        theme="github-dark"
+      />
+
+      <Code
+        code={`
+    /* 許可されていない場合は相対値への transition 適用を許可する */
+    html {
+      transition-behavior: allow-discrete; 
+    }
+
+    details {
+      &::details-content {
+        content-visibility: unset; /* Safari固有不具合への対策 */
+        display: block grid;
+        line-height: 1.7;
+          
+        @media(prefers-reduced-motion: no-preference) {
+          transition-duration: 300ms;
+          transition-property: grid-template-rows;
+        }
+      }
+          
+      &:not([open])::details-content {
+        grid-template-rows: 0fr;
+      }
+          
+      &[open]::details-content {
+        grid-template-rows: 1fr;
+      }
+    }
+
+    summary {
+      display: grid;
+      grid-template-columns: 1fr 30px;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      font-size: calc(24 / 16 * 1rem);
+      color: var(--paper);
+      background-color: var(--blue-400);
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--paper);
+      }
+    }
+
+    .accordion__overflow__hidden {
+      overflow: hidden;
+    }
+
+    .accordion__content {
+      padding: 1rem 1.5rem;
+      background-color: var(--base-50);
+    }
+        `}
+        lang="css"
+        theme="github-dark"
+      />
+    </div>
+  </div>
+</details>
+
+<!-- tab -->
+<h2 class="mt__8">Tab with Arrow Nav</h2>
+<div class="mt__2 comment__wrap">
+  <p class="comment">
+    デジタル庁Storywriterが提供する「タブフォーカスに対応した」タブ切替要素。<br
+    />
+    タブフォーカスに対応するためには同じくデジタル庁が提供する tab_aria.js が必要となるため注意。
+  </p>
+</div>
+<dads-tab-aria class="dads-tab">
+  <div class="mt__2 dads-tab__list" role="tablist">
+    <a class="dads-tab__tab" href="#ep-1" role="tab" aria-selected="true"
+      ><span>タブラベル</span></a
+    >
+    <a class="dads-tab__tab" href="#ep-2" role="tab" aria-selected="false"
+      ><span>タブラベル</span></a
+    >
+    <a class="dads-tab__tab" href="#ep-3" role="tab" aria-selected="false"
+      ><span>タブラベル</span></a
+    >
+  </div>
+  <div class="dads-tab__panels">
+    <div id="ep-1" class="dads-tab__panel" role="tabpanel" tabindex="0">
+      タブパネルの内容（1番目）
+    </div>
+    <div id="ep-2" class="dads-tab__panel" role="tabpanel" tabindex="0">
+      タブパネルの内容（2番目）
+    </div>
+    <div id="ep-3" class="dads-tab__panel" role="tabpanel" tabindex="0">
+      タブパネルの内容（3番目）
+    </div>
+  </div>
+</dads-tab-aria>

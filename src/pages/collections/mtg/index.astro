@@ -3,29 +3,41 @@ import Layout from '../../../layouts/Layout.astro'
 import { Image } from 'astro:assets'
 import './css/mtg.css'
 import SubheadLinks from '../../../components/collections/mtg/SubheadLinks'
-import { mtgCards } from './data';
+import { mtgCards } from './data'
 ---
 
 <Layout>
   <div>
-    <h1 class="page__ttl">Test</h1>
+    <h1 class="page__ttl">MTG&nbsp;&nbsp;-TOP-</h1>
     <div class="main__wrap">
-      <section class="section__wrapper mtg__section__wrapper">
-        <SubheadLinks />
-        <div class="grid">
-          {mtgCards.map(card => (
-            <a class="card__link" href={`/collections/mtg/${card.slug}`}>
+      <section class="section__wrapper mtg__section__wrapper mtg__section__top">
+        <div class="mtg__controls">
+          <SubheadLinks />
+          <div class="mtg__links mtg__actions">
+            <button type="button" class="mtg__link" data-mtg-shuffle-btn>
+              Shuffle
+            </button>
+            <button type="button" class="mtg__link" data-mtg-reset-btn>
+              Reset
+            </button>
+          </div>
+        </div>
+        <div class="grid" data-randomize-top-cards>
+          {mtgCards.filter(card => card.topFlug).map(card => (
+            <a class="card__link" href={`/collections/mtg/${card.slug}`} data-card-slug={card.slug}>
               <div class="card__thumb">
                 {card.imgFull ? (
                   <img
                     class='card__img'
-                    src={`/collections/mtg/${card.imgFull}`} 
-                    alt={`${card.name}`} />
+                    src={`/collections/mtg/thumbs/${card.imgFull}`}
+                    alt={`${card.name}`}
+                    loading='lazy'/>
                 ) : (
                   <img
                     class='card__img'
-                    src={`/collections/mtg/${card.imgCard}`} 
-                    alt={`${card.name}`} />
+                    src={`/collections/mtg/thumbs/${card.imgCard}`}
+                    alt={`${card.name}`}
+                    loading='lazy'/>
                 )}
               </div>
             </a>
@@ -35,3 +47,118 @@ import { mtgCards } from './data';
     </div>
   </div>
 </Layout>
+
+<script>
+  const STORAGE_KEY = 'mtg-top-card-order'
+  const PAGE_PATH = '/collections/mtg'
+  const GRID_BOUND_ATTR = 'data-shuffle-controls-bound'
+  const globalState = window as Window & {
+    __mtgShuffleCleanupBound?: boolean
+    __mtgShufflePageLoadBound?: boolean
+  }
+
+  const initMtgTopShuffle = (): void => {
+    const grid = document.querySelector<HTMLElement>('[data-randomize-top-cards]')
+    const shuffleButton = document.querySelector<HTMLButtonElement>('[data-mtg-shuffle-btn]')
+    const resetButton = document.querySelector<HTMLButtonElement>('[data-mtg-reset-btn]')
+    if (!grid || !shuffleButton || !resetButton) return
+
+    if (grid.getAttribute(GRID_BOUND_ATTR) === 'true') return
+
+    const getCards = (): HTMLAnchorElement[] =>
+      Array.from(grid.querySelectorAll<HTMLAnchorElement>('.card__link'))
+
+    const saveOrder = (cards: HTMLAnchorElement[]): void => {
+      const order = cards.map(card => card.dataset.cardSlug).filter(Boolean)
+      if (order.length > 0) {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify(order))
+      }
+    }
+
+    const defaultOrder = getCards()
+      .map(card => card.dataset.cardSlug)
+      .filter((slug): slug is string => typeof slug === 'string' && slug.length > 0)
+
+    const applyOrder = (order: string[]): void => {
+      const cards = getCards()
+      const cardMap = new Map<string, HTMLAnchorElement>(
+        cards
+          .filter(card => typeof card.dataset.cardSlug === 'string' && card.dataset.cardSlug.length > 0)
+          .map(card => [card.dataset.cardSlug as string, card])
+      )
+      const sortedCards: HTMLAnchorElement[] = []
+
+      order.forEach(slug => {
+        const card = cardMap.get(slug)
+        if (card) {
+          sortedCards.push(card)
+          cardMap.delete(slug)
+        }
+      })
+
+      cardMap.forEach(card => sortedCards.push(card))
+      sortedCards.forEach(card => grid.appendChild(card))
+    }
+
+    const restoreOrder = (): void => {
+      const raw = sessionStorage.getItem(STORAGE_KEY)
+      if (!raw) return
+
+      try {
+        const savedOrder = JSON.parse(raw)
+        if (Array.isArray(savedOrder) && savedOrder.length > 0) {
+          applyOrder(savedOrder)
+        }
+      } catch {
+        sessionStorage.removeItem(STORAGE_KEY)
+      }
+    }
+
+    const shuffleCards = (): void => {
+      const cards = getCards()
+
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[cards[i], cards[j]] = [cards[j], cards[i]]
+      }
+
+      cards.forEach(card => grid.appendChild(card))
+      saveOrder(cards)
+    }
+
+    const resetCards = (): void => {
+      applyOrder(defaultOrder)
+      sessionStorage.removeItem(STORAGE_KEY)
+    }
+
+    restoreOrder()
+    shuffleButton.addEventListener('click', shuffleCards)
+    resetButton.addEventListener('click', resetCards)
+    grid.setAttribute(GRID_BOUND_ATTR, 'true')
+  }
+
+  if (!globalState.__mtgShuffleCleanupBound) {
+    document.addEventListener('click', event => {
+      if (!(event.target instanceof Element)) return
+
+      const link = event.target.closest<HTMLAnchorElement>('a[href]')
+      if (!link) return
+
+      const nextUrl = new URL(link.href, window.location.origin)
+      const isLeavingMtgTop =
+        window.location.pathname === PAGE_PATH && nextUrl.pathname !== PAGE_PATH
+
+      if (isLeavingMtgTop) {
+        sessionStorage.removeItem(STORAGE_KEY)
+      }
+    })
+    globalState.__mtgShuffleCleanupBound = true
+  }
+
+  if (!globalState.__mtgShufflePageLoadBound) {
+    document.addEventListener('astro:page-load', initMtgTopShuffle)
+    globalState.__mtgShufflePageLoadBound = true
+  }
+
+  initMtgTopShuffle()
+</script>

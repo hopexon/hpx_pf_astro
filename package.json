@@ -10,16 +10,23 @@
     "dev": "astro dev --host",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "mtg:thumbs": "node scripts/generate-mtg-thumbs.mjs"
   },
   "dependencies": {
-    "@astrojs/mdx": "^6.0.3",
-    "@astrojs/react": "^5.0.7",
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/mdx": "^8.0.1",
+    "@astrojs/react": "^6.0.6",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "astro": "^6.4.7",
+    "astro": "^7.3.3",
     "astro-expressive-code": "^0.43.1",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "astro-breadcrumbs": "^3.4.0",
+    "sharp": "^0.35.4"
   }
 }

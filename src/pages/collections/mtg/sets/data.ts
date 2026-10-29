@@ -17,6 +17,14 @@ export const mtgSets: MtgSets[] = [
     logoUrl: 'logo_secret_lair.avif',
   },
   {
+    name: 'Reality Fracture',
+    nameJa: 'リアリティ・フラクチャー',
+    year : 2026,
+    code: 'FRA',
+    slug: 'reality-fracture',
+    logoUrl: 'logo_reality_fracture.avif',
+  },
+  {
     name: 'Secrets of Strixhaven',
     nameJa: 'ストリクスヘイヴンの秘密',
     year : 2026,
@@ -49,12 +57,36 @@ export const mtgSets: MtgSets[] = [
     logoUrl: 'logo_phyrexia_all_will_be_one.avif',
   },
   {
+    name: 'Strixhaven: School of Mages',
+    nameJa: 'ストリクスヘイヴン：魔法学院',
+    year : 2021,
+    code: 'STX',
+    slug: 'strixhaven-school-of-mages',
+    logoUrl: 'logo_strixhaven_school_of_mages.avif',
+  },
+  {
     name: 'Zendikar Rising',
     nameJa: 'ゼンディカーの夜明け',
     year : 2020,
     code: 'ZNR',
     slug: 'zendikar-rising',
     logoUrl: 'logo_zendikar_rising.avif',
+  },
+  {
+    name: 'Core Set 2020',
+    nameJa: '基本セット2020',
+    year : 2019,
+    code: 'M20',
+    slug: 'core-set-2020',
+    logoUrl: 'logo_core_set_2020.avif',
+  },
+  {
+    name: 'Iconic Masters',
+    nameJa: 'アイコニック・マスターズ',
+    year : 2017,
+    code: 'IMA',
+    slug: 'iconic-masters',
+    logoUrl: 'logo_iconic_masters.avif',
   },
 ]
 

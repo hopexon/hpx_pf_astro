@@ -1,0 +1,43 @@
+---
+import Layout  from "../../layouts/Layout.astro"
+
+interface Frontmatter {
+  title: string
+  description?: string
+  pubDate?: string | Date
+  tags?: string[]
+}
+
+interface MDXModule {
+  default: any
+  Contents: any
+  frontmatter: Frontmatter
+}
+
+const mdxFiles = await import.meta.glob<MDXModule>('../../content/tips/*.mdx', { eager: true })
+
+const tips = Object.entries(mdxFiles).map(([path, module]) => {
+  const slug = path.split('/').pop()?.replace('.mdx', '')
+  return {
+    slug,
+    frontmatter: module.frontmatter
+  }
+})
+---
+
+<Layout>
+  <div>
+    <h1 class="page__ttl">Tips</h1>
+    <div class="main__wrap">
+      <section class="section__wrapper">
+        {
+          tips.map((tip) => (
+            <a href={`./tips/${tip.slug}`} class="linkitem__link link__twister">
+              {tip.frontmatter.title}
+            </a>
+          ))
+        }
+      </section>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,123 @@
+<div class="mt__8"></div>
+<h4 style="margin-block-end: -2rem;">▼Graph</h4>
+<div class="content__wrap">
+  <p class="comment">
+    ※<code>b</code>は以下図における“奥行き”である
+  </p>
+</div>
+<div class="lab__graph__wrap">
+  <span class="scale__vertical">↑<br />C</span>
+  <span class="scale__center">a →</span>
+  <div class="lab__graph">
+    <div class="item center"><span class="center__label">くすんだ(dull)</span></div>
+    <div class="item leftup">極薄い(very pale)</div>
+    <div class="item centerup">薄い(pale)</div>
+    <div class="item rightup">明るい(light)</div>
+    <div class="item leftcenter">灰(grayish)</div>
+    <div class="item rightcenter">鮮やかな(vivid)</div>
+    <div class="item leftbottom">ごく暗い(very dark)</div>
+    <div class="item centerbottom">暗い(dark)</div>
+    <div class="item rightbottom">濃い(deep)</div>
+  </div>
+  <span class="scale__horizontal">H →</span>
+</div>
+
+<style>
+  .lab__graph__wrap {
+    position: relative;
+    padding: calc(50 / 16 * 1rem);
+    margin-inline: auto;
+    inline-size: fit-content;
+    
+    .scale__vertical,
+    .scale__horizontal,
+    .scale__center {
+      display: block;
+      position: absolute;
+      content: '';
+      font-weight: 700;
+      /* color: var(--blue-400); */
+      text-align: center;
+    }
+    
+    .scale__vertical {
+      inset-block-start: 3rem;
+      inset-inline-start: 1.75rem;
+    }
+
+    .scale__horizontal {
+      inset-inline-end: 3rem;
+    }
+
+    .scale__center {
+      inset-block-start: 50%;
+      inset-inline-end: 0.5rem;
+      transform: translateY(-50%);
+    }
+  }
+  
+  .lab__graph {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    margin-inline: auto;
+    block-size: 600px;
+    inline-size: 600px;
+    border: 1px dotted var(--base-950);
+    background-image:
+      radial-gradient(ellipse at top left, lab(100% 0 0), transparent),
+      radial-gradient(ellipse at bottom left, lab(0% 0 0), transparent),
+      radial-gradient(ellipse at top right, lab(100% -34.8141 -64.7344), transparent),
+      radial-gradient(ellipse at bottom right, lab(0% -34.8141 -64.7344), transparent);
+
+    .item {
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      background-color: hsl(48 100% 97% / 0.75);
+      z-index: 2;
+    }
+
+    .center { 
+      position: relative;
+      grid-area: 8 / 6 / 9 / 11; 
+      /* background-color: hsl(48 100% 97% / 0.75); */
+      background-color: transparent;
+      z-index: 2;
+      isolation: isolate;
+      
+      .center__label {
+        position: relative;
+        padding: 0.5rem 1rem;
+        background-color: hsl(48 100% 97% / 0.75);
+        z-index: 1;
+      }
+
+      &::before {
+        position: absolute;
+        content: '';
+        block-size: 1px;
+        inline-size: 550px;
+        background-color: var(--base-950);
+        z-index: 0;
+      }
+
+      &::after {
+        position: absolute;
+        content: '';
+        block-size: 550px;
+        inline-size: 1px;
+        background-color: var(--base-950);
+        z-index: 0;
+      }
+    }
+    .leftup { grid-area: 1 / 1 / 2 / 5; }
+    .centerup { grid-area: 2 / 6 / 3 / 9; }
+    .rightup { grid-area: 3 / 12 / 4 / 15; }
+    .leftcenter { grid-area: 9 / 1 / 10 / 4; }
+    .rightcenter { grid-area: 7 / 12 / 8 / 15; }
+    .leftbottom { grid-area: 14 / 1 / 15 / 5; }
+    .centerbottom { grid-area: 13 / 6 / 14 / 9; }
+    .rightbottom { grid-area: 13 / 12 / 14 / 15; }
+  }
+</style>

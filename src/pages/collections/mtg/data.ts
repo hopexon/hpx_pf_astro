@@ -1,6 +1,9 @@
 export type MtgCard = {
+  topFlug?: boolean
   slug: string
   set: string
+  code?: string
+  number?: string | number
   name: string
   artist: string
   artistUrl: string | null
@@ -35,6 +38,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `...submerged in reveries, gasping for reality...`
   },
   {
+    topFlug: true,
     slug: 'psychic-corrosion',
     year: 2024,
     set: 'Secret Lair',
@@ -68,6 +72,151 @@ export const mtgCards: MtgCard[] = [
     flavor: `...trade the whole world for one more moment...`
   },
   {
+    topFlug: true,
+    slug: 'blossom-blessed-angel',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Blossom-Blessed Angel',
+    artist: 'Joshua Raphael',
+    artistUrl: 'https://www.instagram.com/jsraphael_/?hl=ja',
+    imgFull: 'art_blossom-blessed_angel.avif',
+    imgCard: 'card_blossom-blessed_angel.avif',
+    flavor: ``
+  },
+  {
+    slug: 'predictive-preparations',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Predictive Preparations',
+    artist: 'Nathaniel Himawan',
+    artistUrl: 'https://www.instagram.com/ninesicks/',
+    imgFull: 'art_predictive_preparations.avif',
+    imgCard: 'card_predictive_preparations.avif',
+    flavor: `Fatehold battlemages believe the best way to win a duel is to first study the outcome.`
+  },
+  {
+    topFlug: true,
+    slug: 'shatterwing-pegasus',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Shatterwing Pegasus',
+    number: 25,
+    artist: 'Antonio José Manzanedo',
+    artistUrl: 'https://www.instagram.com/ajmanzanedo/',
+    imgFull: 'art_shatterwing_pegasus.avif',
+    imgCard: 'card_shatterwing_pegasus.avif',
+    flavor: `Winged with the shards of shattered star arches, it circles above the Eradia. A rare glimmer of hope for students caught in the perilous wasteland that surrounds Jace’s tower.`
+  },
+  {
+    topFlug: true,
+    slug: 'countersculpt',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Countersculpt',
+    number: 25,
+    artist: 'Anna Podedworna',
+    artistUrl: 'https://www.artstation.com/akreon',
+    imgFull: 'art_countersculpt.avif',
+    imgCard: 'card_countersculpt.avif',
+    flavor: ``
+  },
+  {
+    slug: 'infinit-coursework',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Infinit Coursework',
+    number: 31,
+    artist: 'Randy Vargas',
+    artistUrl: 'https://www.instagram.com/vargasni/',
+    imgFull: 'art_infinit_coursework.avif',
+    imgCard: 'card_infinit_coursework.avif',
+    flavor: `Theorem dreams soon became nightmares.`
+  },
+  {
+    slug: 'jaces-machinations',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Jace’s Machinations',
+    number: 32,
+    artist: 'Serena Malyon',
+    artistUrl: 'https://www.instagram.com/smalyon/',
+    imgFull: 'art_jaces_machinations.avif',
+    imgCard: 'card_jaces_machinations.avif',
+    flavor: ``
+  },
+  {
+    slug: 'perfected-theory',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Perfected Theory',
+    number: 34,
+    artist: 'Marta Nael',
+    artistUrl: 'https://www.artstation.com/martanael',
+    imgFull: 'art_perfected_theory.avif',
+    imgCard: 'card_perfected_theory.avif',
+    flavor: `In the Meditation Realm, Jace had seen himself reflected in a Multiverse complete in every detail. Now he only had to make it real.`
+  },
+  {
+    slug: 'seasoned-cryomancer',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Seasoned Cryomancer',
+    number: 38,
+    artist: 'Andrea Piparo',
+    artistUrl: 'https://www.facebook.com/AndreaPiparoArt/',
+    imgFull: 'art_seasoned_cryomancer.avif',
+    imgCard: 'card_seasoned_cryomancer.avif',
+    flavor: ``
+  },
+  {
+    slug: 'sphinx-of-false-conclusions',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Sphinx of False Conclusions',
+    number: 40,
+    artist: 'Wylie Beckert',
+    artistUrl: '',
+    imgFull: 'art_sphinx_of_false_conclusions.avif',
+    imgCard: 'card_sphinx_of_false_conclusions.avif',
+    flavor: `https://www.wyliebeckert.com/?show=portfolio`
+  },
+  {
+    slug: 'tomik-orzhov-lawmage',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Tomik, Orzhov Lawmage',
+    number: 206,
+    artist: 'Randy Vargas',
+    artistUrl: 'https://www.instagram.com/vargasni/',
+    imgFull: 'art_tomik_orzhov_lawmage.avif',
+    imgCard: 'card_tomik_orzhov_lawmage.avif',
+    flavor: `“Many wield the law as a cudgel. I prefer to use it as a shield.”`
+  },
+  {
+    slug: 'way-of-the-mentor',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Way of the Mentor',
+    number: 208,
+    artist: 'Danny Schwartz',
+    artistUrl: 'https://bsky.app/profile/dannyschwartzart.bsky.social',
+    imgFull: 'art_way_of_the_mentor.avif',
+    imgCard: 'card_way_of_the_mentor.avif',
+    flavor: ``
+  },
+  {
+    slug: 'liliana-the-faultless-borderless',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Liliana the Faultless',
+    number: 293,
+    artist: 'Aleski Briclot',
+    artistUrl: 'https://www.instagram.com/aleksibriclot/',
+    imgFull: 'art_liliana_the_faultless_borderless.avif',
+    imgCard: 'card_liliana_the_faultless_borderless.avif',
+    flavor: ``
+  },
+  {
     slug: 'transcendent-archaic',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -79,6 +228,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Even as most archaics raged across Arcavios, others seemed to sink into contemplation.`
   },
   {
+    topFlug: true,
     slug: 'daydream',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -110,6 +260,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“You're the one who bought a priceless scroll to duel!”`
   },
   {
+    topFlug: true,
     slug: 'essence-scatter',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -121,6 +272,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Venturing beyond campus means learning how to deal with creatures not bound by university rules.”\n— Emil, Vastlands roamer`
   },
   {
+    topFlug: true,
     slug: 'flow-state',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -131,6 +283,7 @@ export const mtgCards: MtgCard[] = [
     imgCard: 'card_flow_state.avif',
   },
   {
+    topFlug: true,
     slug: 'mathemagics',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -153,9 +306,10 @@ export const mtgCards: MtgCard[] = [
     flavor: `“I come up here to practice.\nYou can see the entire Garden twisting reality.\nIt's inspiring.”`
   },
   {
+    topFlug: true,
     slug: 'archaeomancers-map',
-    year: 2021,
-    set: 'Commander 2021',
+    year: 2026,
+    set: 'Secrets of Strixhaven',
     name: 'Archaeomancer\'s Map',
     artist: 'Ovidio Cartagena',
     artistUrl: 'https://www.ovidiocartagena.com/',
@@ -164,8 +318,8 @@ export const mtgCards: MtgCard[] = [
   },
   {
     slug: 'oracles-restoration',
-    year: 2021,
-    set: 'Commander 2021',
+    year: 2026,
+    set: 'Secrets of Strixhaven',
     name: 'Oracle\'s Restoration',
     artist: 'Elliot Lang',
     artistUrl: 'https://www.elliotlang.com/',
@@ -174,17 +328,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Though the archaic had ravaged Titan’s Grave and stolen Jadzi from safety, her compassion soothed its frenzy.`
   },
   {
-    slug: 'transcendent-envoy',
-    year: 2023,
-    set: 'Wilds of Eldraine - Commander',
-    name: 'Transcendent Envoy',
-    artist: 'Zezhou Chen',
-    artistUrl: 'https://www.artstation.com/zezhou',
-    imgFull: 'art_transcendent_envoy.avif',
-    imgCard: 'card_transcendent_envoy.avif',
-    flavor: `“The first grillins were made by the gods to capture falling stars; they were given the keenest eyes and the swiftest wings, and sent to keep watch above the clouds.”\n— The Cosmogony`,
-  },
-  {
+    topFlug: true,
     slug: 'proctors-gaze',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -207,6 +351,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Be careful when traversing the Paradox Gardens. Not all experiments are perfectly contained.”\n—Professor Berta`
   },
   {
+    topFlug: true,
     slug: 'fields-of-strife',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -229,6 +374,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `A vast expanse that alters the rules of nature, offering a glimpse into the very structure of reality.`
   },
   {
+    topFlug: true,
     slug: 'spectacle-summit',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -240,6 +386,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Shaped by both its own wild nature and the magic of visiting artists, the Muse and the surrounding landscape are a wonder to behold.`
   },
   {
+    topFlug: true,
     slug: 'terramorphic-expanse-sos',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -262,9 +409,10 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'repel-calamity',
     year: 2026,
-    set: 'Secrets of Strixhaven MA',
+    set: 'Secrets of Strixhaven',
     name: 'Repel Calamity',
     artist: 'Alex Stone',
     artistUrl: 'https://www.alexstoneart.com/',
@@ -273,9 +421,10 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Against cinder and maw,\nAgainst the dread Wildsear,\nWith bright sword in paw,\nRepel your own fear.”\n—Song of the Seasons, stanza 24`
   },
   {
+    topFlug: true,
     slug: 'return-the-favor',
     year: 2026,
-    set: 'Secrets of Strixhaven MA',
+    set: 'Secrets of Strixhaven',
     name: 'Return the Favor',
     artist: 'Aitor Sebastian',
     artistUrl: 'https://www.artstation.com/inkeyjay',
@@ -284,6 +433,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'erode',
     year: 2026,
     set: 'Secrets of Strixhaven',
@@ -295,23 +445,42 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Our lives are built upon our pasts.\nWhat happens, then, if we are cut off from them?”\n— Augusta, dean of order`
   },
   {
-    slug: 'redemption-arc',
-    year: 2024,
-    set: 'Murders at Karlov Manor - Commander',
-    name: 'Redemption Arc',
-    artist: 'Dominik Mayer',
-    artistUrl: 'https://www.dominikmayer.art/',
-    imgFull: 'art_redemption_arc.avif',
-    imgCard: 'card_redemption_arc.avif',
-    flavor: `“Crime doesn't pay nearly as well as the Agency.”`
+    topFlug: true,
+    slug: 'token-spilit-0009',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: '0009',
+    name: 'Token: Spilit',
+    artist: 'Zara Alfonso',
+    artistUrl: 'https://zaraalfonso.com/',
+    imgFull: 'art_token_spilit_0009.avif',
+    imgCard: 'card_token_spilit_0009.avif',
+    flavor: ``
+  },
+  {
+    topFlug: true,
+    slug: 'ugin-eye-of-the-storms',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 1,
+    name: 'Ugin, Eye of the Storms',
+    artist: 'Joshua Raphael',
+    artistUrl: 'https://www.artstation.com/jsraphael',
+    imgFull: 'art_ugin_eye_of_the_storms.avif',
+    imgCard: 'card_ugin_eye_of_the_storms.avif',
+    flavor: ``
   },
   {
     slug: 'anafenza-unyielding-lineage',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 2,
     name: 'Anafenza, Unyielding Lineage',
-    artist: 'Lie Setiawan',
-    artistUrl: 'https://www.liesetiawan.com/',
+    artist: 'Matt Stewart',
+    artistUrl: 'https://www.matthew-stewart.com/',
     imgFull: 'art_anafenza_unyielding_lineage.avif',
     imgCard: 'card_anafenza_unyielding_lineage.avif',
     flavor: `“Kin and clan call to me—and I will always answer.”`
@@ -320,17 +489,49 @@ export const mtgCards: MtgCard[] = [
     slug: 'arashin-sunshield',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 3,
     name: 'Arashin Sunshield',
-    artist: 'Lie Setiawan',
-    artistUrl: 'https://www.liesetiawan.com/',
+    artist: 'Inkognit',
+    artistUrl: 'https://www.instagram.com/inkognit_art/',
     imgFull: 'art_arashin_sunshield.avif',
     imgCard: 'card_arashin_sunshield.avif',
     flavor: `“The best way to protect the citizens is to defend Arashin, not hunt dragonstorms across Tarkir.”\n—Sadesh of House Mevak`
   },
   {
+    slug: 'clarion-conqueror',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 5,
+    name: 'Clarion Conqueror',
+    artist: 'Nathaniel Himawan',
+    artistUrl: 'https://www.instagram.com/ninesicks/',
+    imgFull: 'art_clarion_conqueror.avif',
+    imgCard: 'card_clarion_conqueror.avif',
+    flavor: `All challengers were summarily silenced.`
+  },
+  {
+    topFlug: true,
+    slug: 'dalkovan-packbeast',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 7,
+    name: 'Dalkovan Packbeast',
+    artist: 'Constantin Marin',
+    artistUrl: 'https://www.artstation.com/conmaart/',
+    imgFull: 'art_dalkovan_packbeast.avif',
+    imgCard: 'card_dalkovan_packbeast.avif',
+    flavor: `A burden shared is a burden lightened.\n—Mardu proverb`
+  },
+  {
+    topFlug: true,
     slug: 'descendant-of-storms',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 8,
     name: 'Descendant of Storms',
     artist: 'Lie Setiawan',
     artistUrl: 'https://www.liesetiawan.com/',
@@ -339,9 +540,12 @@ export const mtgCards: MtgCard[] = [
     flavor: `The most elite of the Abzan are selected to join the Yathan: a prestigious group acting outside khan supervision for the good of the clan.`
   },
   {
+    topFlug: true,
     slug: 'dragonback-lancer',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 9,
     name: 'Dragonback Lancer',
     artist: 'Diego Gisbert',
     artistUrl: 'https://www.artstation.com/diegogisbert',
@@ -350,9 +554,12 @@ export const mtgCards: MtgCard[] = [
     flavor: `The Mardu’s standing army need not always stand on the ground.`
   },
   {
+    topFlug: true,
     slug: 'duty-beyond-death',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 10,
     name: 'Duty Beyond Death',
     artist: 'Kev Fang',
     artistUrl: 'https://kevfang.com/',
@@ -363,6 +570,8 @@ export const mtgCards: MtgCard[] = [
     slug: 'fortress-kin-guard',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 12,
     name: 'Fortress Kin-Guard',
     artist: 'Daneen Wilkerson',
     artistUrl: 'https://www.daneenart.com/',
@@ -371,9 +580,12 @@ export const mtgCards: MtgCard[] = [
     flavor: `All through the night, the ancestor whispered of ancient battles fought from this very rampart atop Arashin City.`
   },
   {
+    topFlug: true,
     slug: 'teeming-dragonstorm',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 30,
     name: 'Teeming Dragonstorm',
     artist: 'Leon Tukker',
     artistUrl: 'https://www.artstation.com/leontukker',
@@ -382,9 +594,24 @@ export const mtgCards: MtgCard[] = [
     flavor: `“So, these dragons intend to also manifest through a sandstorm? I take some offense to that.”\n—Felothar, khan of the Abzan`
   },
   {
+    slug: 'dirgur-island-dragon',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 40,
+    name: 'Dirgur Island Dragon',
+    artist: 'Daniel Ljunggren',
+    artistUrl: 'https://darylart.com/magic-the-gathering/',
+    imgFull: 'art_dirgur_island_dragon.avif',
+    imgCard: 'card_dirgur_island_dragon.avif',
+    flavor: ``
+  },
+  {
     slug: 'iceridge-serpent',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 49,
     name: 'Iceridge Serpent',
     artist: 'Brian Valeza',
     artistUrl: 'https://www.artstation.com/tots',
@@ -393,9 +620,12 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Even dragons avoid Glintglaze Lake in this season. Which of you youngsters can tell me why?”\n—Teacher Eliam`
   },
   {
+    topFlug: true,
     slug: 'kishla-trawlers',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 50,
     name: 'Kishla Trawlers',
     artist: 'Iris Compiet',
     artistUrl: 'https://www.originalmagicart.store/collections/iris-compiet',
@@ -404,9 +634,26 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Fish are like any other crop or flock. They must be carefully tended and never overharvested.”\n—Nasath, Kishla fisher`
   },
   {
+    topFlug: true,
+    slug: 'marang-river-regent',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 51,
+    name: 'Marang River Regent',
+    artist: 'John Tedrick',
+    artistUrl: 'https://www.artstation.com/tedrick94',
+    imgFull: 'art_marang_river_regent.avif',
+    imgCard: 'card_marang_river_regent.avif',
+    flavor: ``
+  },
+  {
+    topFlug: true,
     slug: 'roiling-dragonstorm',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 55,
     name: 'Roiling Dragonstorm',
     artist: 'Gaboleps',
     artistUrl: 'https://www.instagram.com/gaboleps_art/?hl=ja',
@@ -415,9 +662,37 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Beware dragonstorms that strike from the sea. Their size always disguises their force.”\n—Narset`
   },
   {
+    slug: 'spectral-denial',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 58,
+    name: 'Spectral Denial',
+    artist: 'Xabi Gaztelua',
+    artistUrl: 'https://xabigaztelua.com/',
+    imgFull: 'art_spectral_denial.avif',
+    imgCard: 'card_spectral_denial.avif',
+    flavor: `Temur mages are experts at channeling elemental energy, shaping it into familiar forms from the world around them.`
+  },
+  {
+    slug: 'stillness-in-motion',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 59,
+    name: 'Stillness in Motion',
+    artist: 'Kai Carpenter',
+    artistUrl: 'https://www.instagram.com/kt.carpenter/',
+    imgFull: 'art_stillness_in_motion.avif',
+    imgCard: 'card_stillness_in_motion.avif',
+    flavor: `“The Meditation Realm is a willful puzzle. Seek, and it will impede. Wait, and it will permit passage.”`
+  },
+  {
     slug: 'taigam-master-opportunist',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 60,
     name: 'Taigam, Master Opportunist',
     artist: 'Joshua Raphael',
     artistUrl: 'https://www.artstation.com/jsraphael',
@@ -426,9 +701,186 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    slug: 'temur-devotee',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 61,
+    name: 'Temur Devotee',
+    artist: 'Marina Ortega Lorente',
+    artistUrl: 'https://www.artstation.com/marinaortega',
+    imgFull: 'art_temur_devotee.avif',
+    imgCard: 'card_temur_devotee.avif',
+    flavor: `Whisperers are conduits to the spirits of the land. They provide healing, guidance, and support to the Temur people.`
+  },
+  {
+    slug: 'unending-whisper',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 62,
+    name: 'Unending Whisper',
+    artist: 'Danny Schwartz',
+    artistUrl: 'https://www.dannyschwartzart.com/',
+    imgFull: 'art_unending_whisper.avif',
+    imgCard: 'card_unending_whisper.avif',
+    flavor: `In the Endless Song, Temur’s whisperers hear spirits murmur of the past, present, and future.`
+  },
+  {
+    slug: 'urenis_rebuff',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 63,
+    name: 'Urenis Rebuff',
+    artist: 'Sergio Cosmai',
+    artistUrl: 'https://www.artstation.com/sergiocosmai',
+    imgFull: 'art_urenis_rebuff.avif',
+    imgCard: 'card_urenis_rebuff.avif',
+    flavor: `“You say you come in peace. That you come here at all is an act of war.”`
+  },
+  {
+    slug: 'wingspan-stride',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 66,
+    name: 'Wingspan Stride',
+    artist: 'Jake Murray',
+    artistUrl: 'https://www.instagram.com/jakemurraystudio/',
+    imgFull: 'art_wingspan_stride.avif',
+    imgCard: 'card_wingspan_stride.avif',
+    flavor: `“Yes, yes, very good. However, I believe you were supposed to be working on your sword techniques?”\n—Taigam`
+  },
+  {
+    topFlug: true,
+    slug: 'abzan-devotee',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 68,
+    name: 'Abzan Devotee',
+    artist: 'Forrest Imel',
+    artistUrl: 'https://www.instagram.com/forrest_i/',
+    imgFull: 'art_abzan_devotee.avif',
+    imgCard: 'card_abzan_devotee.avif',
+    flavor: `The Kin-Trees rediscovered after Dromoka’s fall are tended by carefully chosen wardens.`
+  },
+  {
+    slug: 'scavenger-regent',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 90,
+    name: 'Scavenger Regent',
+    artist: 'John Tedrick',
+    artistUrl: 'https://www.artstation.com/tedrick94',
+    imgFull: 'art_scavenger_regent.avif',
+    imgCard: 'card_scavenger_regent.avif',
+    flavor: ``
+  },
+  {
+    slug: 'the-sibsig-ceremony',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 91,
+    name: 'The Sibsig Ceremony',
+    artist: 'Eli Minaya',
+    artistUrl: 'https://www.bad-king.com/',
+    imgFull: 'art_the_sibsig_ceremony.avif',
+    imgCard: 'card_the_sibsig_ceremony.avif',
+    flavor: `“Once flesh, now gold and jade. Once dead, now alive again. Once respected, now honored beyond imagination.”`
+  },
+  {
+    slug: 'unburied-earthcarver',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 95,
+    name: 'Unburied Earthcarver',
+    artist: 'Inkognit',
+    artistUrl: 'https://www.inkognit.com/',
+    imgFull: 'art_unburied_earthcarver.avif',
+    imgCard: 'card_unburied_earthcarver.avif',
+    flavor: `“Unless you actually see my spirit join the Kin-Tree, never assume me so unprofessional as to die on the job.”\n—Ezcul of House Zanhar`
+  },
+  {
+    topFlug: true,
+    slug: 'worthy-cost',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 99,
+    name: 'Worthy Cost',
+    artist: 'Andrew Mar',
+    artistUrl: 'https://www.instagram.com/andrewkmar/',
+    imgFull: 'art_worthy_cost.avif',
+    imgCard: 'card_worthy_cost.avif',
+    flavor: `“Victory is survival’ is the tenet that guides us. My love, know that I will always ensure your survivial.”\n—Duvir, Mardu warrior, final letter`
+  },
+  {
+    topFlug: true,
+    slug: 'Breaching Dragonstorm',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 101,
+    name: 'Breaching Dragonstorm',
+    artist: 'Danny Schwartz',
+    artistUrl: 'https://www.dannyschwartz.com/',
+    imgFull: 'art_breaching_dragonstorm.avif',
+    imgCard: 'card_breaching_dragonstorm.avif',
+    flavor: ``
+  },
+  {
+    topFlug: true,
+    slug: 'dracogenesis',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 105,
+    name: 'Dracogenesis',
+    artist: 'Kai Carpenter',
+    artistUrl: 'https://www.instagram.com/kt.carpenter/',
+    imgFull: 'art_dracogenesis.avif',
+    imgCard: 'card_dracogenesis.avif',
+    flavor: `“Let the dragonstorms rage. Let what seeks sustenance feed. Let Tarkir be what it was always meant to be.”\n—Sarkhan`
+  },
+  {
+    slug: 'Equilibrium Adept',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 106,
+    name: 'Equilibrium Adept',
+    artist: 'Leroy Steinmann',
+    artistUrl: 'https://www.instagram.com/leroy_steinmann/',
+    imgFull: 'art_equilibrium_adept.avif',
+    imgCard: 'card_equilibrium_adept.avif',
+    flavor: `He regained balance while his opponent regained consciousness.`
+  },
+  {
+    topFlug: true,
+    slug: 'Fleeting Effigy',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 108,
+    name: 'Fleeting Effigy',
+    artist: 'Darren Tan',
+    artistUrl: 'https://www.artstation.com/wraithdt',
+    imgFull: 'art_fleeting_effigy.avif',
+    imgCard: 'card_fleeting_effigy.avif',
+    flavor: `The brushfires of Cori Mountain take on a life all their own.`
+  },
+  {
+    topFlug: true,
     slug: 'mox-jasper',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 246,
     name: 'Mox Jasper',
     artist: 'Steven Belledin',
     artistUrl: 'https://www.stevenbelledin.com/',
@@ -437,9 +889,153 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Rage. Greed. Arrogance. People only accuse dragons of what they fear in themselves.”\n—Sarkhan`
   },
   {
+    slug: 'teeming-dragonstorm-borderless',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 293,
+    name: 'Teeming Dragonstorm',
+    artist: 'Dibujante Nocturno',
+    artistUrl: 'https://www.instagram.com/dibujantenocturno/',
+    imgFull: 'art_teeming_dragonstorm_borderless.avif',
+    imgCard: 'card_teeming_dragonstorm_borderless.avif',
+    flavor: `When caught in a dragonstorm, Mardu and Abzan scouts have no choice but to ride together`
+  },
+  {
+    slug: 'anafenza-unyielding-lineage-borderless',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 327,
+    name: 'Anafenza, Unyielding Lineage',
+    artist: 'Martina Fackova',
+    artistUrl: 'https://martinafackovaart.com/',
+    imgFull: 'art_anafenza_unyielding_lineage_borderless.avif',
+    imgCard: 'card_anafenza_unyielding_lineage_borderless.avif',
+  },
+  {
+    slug: 'stillness-in-motion-borderless',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 334,
+    name: 'Stillness in Motion',
+    artist: 'Kevin Glint',
+    artistUrl: 'https://www.artstation.com/glintastickevin/albums/13673257/',
+    imgFull: 'art_stillness_in_motion_borderless.avif',
+    imgCard: 'card_stillness_in_motion_borderless.avif',
+  },
+  // {
+  //   slug: 'aligned-heart',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 148,
+  //   name: 'Aligned Heart',
+  //   artist: 'Aurore Folny',
+  //   artistUrl: 'https://aurorefolny.com/',
+  //   imgFull: 'art_aligned_heart.avif',
+  //   imgCard: 'card_aligned_heart.avif',
+  //   flavor: `When hearts and minds align, so too do actions.`
+  // },
+  // {
+  //   slug: 'tempest-technique',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 56,
+  //   name: 'Tempest Technique',
+  //   artist: 'Nino Vecia',
+  //   artistUrl: 'https://www.originalmagicart.store/collections/nino-vecia',
+  //   imgFull: 'art_tempest_technique.avif',
+  //   imgCard: 'card_tempest_technique.avif',
+  //   flavor: ``
+  // },
+  // {
+  //   topFlug: true,
+  //   slug: 'consider',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 148,
+  //   name: 'Consider',
+  //   artist: 'Zezhou Chen',
+  //   artistUrl: 'https://www.zezhouchen.com/',
+  //   imgFull: 'art_consider.avif',
+  //   imgCard: 'card_consider.avif',
+  //   flavor: `Ivold gasped in surprise. Either a very strange insect had crawled onto one of the lenses or he was seeing geists at last!`
+  // },
+  // {
+  //   topFlug: true,
+  //   slug: 'ponder',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 159,
+  //   name: 'Ponder',
+  //   artist: 'Dan Murayama Scott',
+  //   artistUrl: 'https://danscottart.com/',
+  //   imgFull: 'art_ponder.avif',
+  //   imgCard: 'card_ponder.avif',
+  //   flavor: `Tomorrow belongs to those who prepare for it today.`
+  // },
+  // {
+  //   topFlug: true,
+  //   slug: 'submlime-epiphany',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 167,
+  //   name: 'Sublime Epiphany',
+  //   artist: 'Lindsey Look',
+  //   artistUrl: 'https://www.instagram.com/lindseylook/',
+  //   imgFull: 'art_sublime_epiphany.avif',
+  //   imgCard: 'card_sublime_epiphany.avif',
+  //   flavor: ``
+  // },
+  // {
+  //   topFlug: true,
+  //   slug: 'think-twice',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 168,
+  //   name: 'Think Twice',
+  //   artist: 'Anthony Francisco',
+  //   artistUrl: 'https://www.instagram.com/anthony_francisco_art/',
+  //   imgFull: 'art_think_twice.avif',
+  //   imgCard: 'card_think_twice.avif',
+  //   flavor: `“Either I know just the spell I need, or I’m about to.”`
+  // },
+  {
+    topFlug: true,
+    slug: 'redemption-arc',
+    year: 2024,
+    set: 'Murders at Karlov Manor',
+    name: 'Redemption Arc',
+    artist: 'Dominik Mayer',
+    artistUrl: 'https://www.dominikmayer.art/',
+    imgFull: 'art_redemption_arc.avif',
+    imgCard: 'card_redemption_arc.avif',
+    flavor: `“Crime doesn't pay nearly as well as the Agency.”`
+  },
+  {
+    topFlug: true,
+    slug: 'transcendent-envoy',
+    year: 2023,
+    set: 'Wilds of Eldraine',
+    name: 'Transcendent Envoy',
+    artist: 'Zezhou Chen',
+    artistUrl: 'https://zezhouchen.com/',
+    imgFull: 'art_transcendent_envoy.avif',
+    imgCard: 'card_transcendent_envoy.avif',
+    flavor: `“The first grillins were made by the gods to capture falling stars; they were given the keenest eyes and the swiftest wings, and sent to keep watch above the clouds.”\n— The Cosmogony`,
+  },
+  {
+    topFlug: true,
     slug: 'songbirds-blessing',
     year: 2023,
-    set: 'Wilds of Eldraine - Commander',
+    set: 'Wilds of Eldraine',
     name: 'Songbird\'s Blessing',
     artist: 'Eelis Kyttanen',
     artistUrl: 'https://www.artofeelis.com/',
@@ -458,6 +1054,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `There’s never a need to change the watch, for the servants of Norn are sleepless.`
   },
   {
+    topFlug: true,
     slug: 'basilica-shepherd',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -469,6 +1066,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'crawling-chorus',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -480,6 +1078,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `We need not be swift. We are inexorable.`
   },
   {
+    topFlug: true,
     slug: 'elesh-norn-regular',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -513,6 +1112,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'indoctrination-attendant',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -524,6 +1124,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'mondrak-glory-dominus',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -535,6 +1136,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'norns-wellspring',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -569,6 +1171,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `New Phyrexia's planar defenses scattered the planeswalker strike team on arrival. Elesh Norn knew they were coming.`
   },
   {
+    topFlug: true,
     slug: 'sinew-dancer',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -602,6 +1205,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `Faced with a blast that would level not only New Phyrexia, but also a dozen innocent worlds, Elspeth consigned it—and herself—to the nothingness in between.`
   },
   {
+    topFlug: true,
     slug: 'veil-of-assimilation',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -624,6 +1228,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `It is Jin-Gitaxias’s deepest exasperation that any part of his domain still requires maintenance.`
   },
   {
+    topFlug: true,
     slug: 'ichor-synthesizer',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -646,6 +1251,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Imagine a giant room, like a library … except instead of books, it’s filled with body parts.”\n—Kara Vrist, resistance spymaster`
   },
   {
+    topFlug: true,
     slug: 'mindsplice-apparatus',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -679,6 +1285,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Experimental Log 290: Leaving the subject’s pain receptors active appears to yield an unprecedented combination of incoherence and hyperawareness.”`
   },
   {
+    topFlug: true,
     slug: 'offer-of-immortality',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -701,6 +1308,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“Without faith in each other, we truly would have nothing left. Isn’t that right, Malach? …Malach?”\n—Darven, Mirran rebel, last words`
   },
   {
+    topFlug: true,
     slug: 'blazing-crescendo',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -712,6 +1320,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“They call themselves the Quiet Furnace? Ironic.”\n—Tyvar`
   },
   {
+    topFlug: true,
     slug: 'free-from-flesh',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -723,6 +1332,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `He finally understood that phyresis was not an ending, but a new, perfect beginning.`
   },
   {
+    topFlug: true,
     slug: 'hexgold-slash',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -734,6 +1344,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `“No matter how tough they are, even Phyrexians prefer to keep their guts on the inside.”\n—Jor Kadeen`
   },
   {
+    topFlug: true,
     slug: 'solphim-mayhem-dominus',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -789,6 +1400,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'venser-corpse-puppet',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -800,6 +1412,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'vivisection-evangelist',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -833,6 +1446,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `In Urabrask’s domain, mighty forges echo day and night with the clangor of the Great Work.`
   },
   {
+    topFlug: true,
     slug: 'the-fair-basilica',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -844,6 +1458,7 @@ export const mtgCards: MtgCard[] = [
     flavor: `In Elesh Norn’s domain, the gospel of unity is the highest law.`
   },
   {
+    topFlug: true,
     slug: 'the-hunter-maze',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -855,6 +1470,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'white-suns-twilight',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -900,6 +1516,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'elesh-norn-variant-sc',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -911,6 +1528,7 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    topFlug: true,
     slug: 'elesh-norn-junji-ito',
     year: 2023,
     set: 'Phyrexia: All Will Be One',
@@ -930,18 +1548,6 @@ export const mtgCards: MtgCard[] = [
     artistUrl: 'https://www.originalmagicart.store/collections/jim-murray',
     imgFull: 'art_reveillark.avif',
     imgCard: 'card_reveillark.avif',
-  },
-  {
-    slug: 'shaile-dean-of-radiance',
-    year: 2022,
-    set: 'Strixhaven: School of Mages',
-    name: 'Shaile, Dean of Radiance',
-    artist: 'Yongjae Choi',
-    artistUrl: 'https://indusconcept.com/',
-    imgFull: 'art_shaile_dean_of_radiance.avif',
-    imgCard: 'card_shaile_dean_of_radiance.avif',
-    flavor: `「あなたは強い。自分で思っているよりもずっと。」`,
-    flavLang: 'ja',
   },
   {
     slug: 'drafna-fonder-of-lat-nam',
@@ -975,6 +1581,45 @@ export const mtgCards: MtgCard[] = [
     imgFull: 'art_aeromoeba.avif',
     imgCard: 'card_aeromoeba.avif',
     flavor: `Some clouds heed no wind.`
+  },
+  {
+    topFlug: true,
+    slug: 'shaile-dean-of-radiance',
+    year: 2021,
+    set: 'Strixhaven: School of Mages',
+    name: 'Shaile, Dean of Radiance',
+    artist: 'Yongjae Choi',
+    artistUrl: 'https://indusconcept.com/',
+    imgFull: 'art_shaile_dean_of_radiance.avif',
+    imgCard: 'card_shaile_dean_of_radiance.avif',
+    flavor: `「あなたは強い。自分で思っているよりもずっと。」`,
+    flavLang: 'ja',
+  },
+  {
+    topFlug: true,
+    slug: 'square-up',
+    year: 2021,
+    set: 'Strixhaven: School of Mages',
+    name: 'Square Up',
+    artist: 'Manuel Castañón',
+    artistUrl: 'https://www.manuelcastanon.com/',
+    imgFull: 'art_square_up.avif',
+    imgCard: 'card_square_up.avif',
+    flavor: `型にはめて考えることが、最も過激な手段となることもある。`,
+    flavLang: 'ja',
+  },
+  {
+    topFlug: true,
+    slug: 'excavated-wall',
+    year: 2021,
+    set: ' Strixhaven: School of Mages',
+    name: 'Excavated Wall',
+    artist: 'Zezhou Chen',
+    artistUrl: 'https://zezhouchen.com/',
+    imgFull: 'art_excavated_wall.avif',
+    imgCard: 'card_excavated_wall.avif',
+    flavor: `「静寂に欺かれないようにしてください。ここの古い石は皆さんに語りかけようとしています。」\n――ロアホールドの学部長、オーガス`,
+    flavLang: 'ja',
   },
   {
     slug: 'angel-of-destiny',
@@ -1034,6 +1679,112 @@ export const mtgCards: MtgCard[] = [
     imgCard: 'card_ravnica_at_war.avif',
     flavor: `The heart of Ravnica dsappeared before anyone could strike a blow in its defense.`
   }, 
+  {
+    slug: 'angel-of-vitality',
+    year: 2019,
+    set: 'Core Set 2020',
+    code: 'M20',
+    number: 4,
+    name: 'Angel of Vitality',
+    artist: 'Johaness Voss',
+    artistUrl: 'https://www.artstation.com/meehanjo/albums/302357',
+    imgFull: 'art_angel_of_vitality.avif',
+    imgCard: 'card_angel_of_vitality.avif',
+    flavor: ``
+  },
+  {
+    slug: 'germinate-recruits',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Germinate Recruits',
+    artist: 'Rovina Cai',
+    artistUrl: 'https://rovinacai.com/portfolio',
+    imgFull: '',
+    imgCard: 'card_germinate_recruits.avif',
+    flavor: `“Bring me the underperformers. I will make them flourish.”\n—Kwia Vigorbloom`
+  },
+  {
+    slug: 'Kindred-judgment',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Kindred Judgment',
+    artist: 'Ekaterina Burmak',
+    artistUrl: 'https://www.instagram.com/kate_burmak_art/',
+    imgFull: '',
+    imgCard: 'card_kindred_judgment.avif',
+    flavor: `In the end, the light shone, the land flourished, and the dead and vile were washed away.`
+  },
+  {
+    slug: 'prophesied-end',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Prophesied End',
+    artist: 'A.M.Sartor',
+    artistUrl: 'https://amsartor.com/',
+    imgFull: '',
+    imgCard: 'card_prophesied_end.avif',
+    flavor: `Upon death, an oracle of Arcavios returns to the very source of their world. Jace followed Jadzi’s mind to witness two planes becoming one.`
+  },
+  {
+    slug: 'repurposed-enforcer',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Repurposed Enforcer',
+    number: 19,
+    artist: 'Chris Rallis',
+    artistUrl: 'https://www.rallisart.com/gallery',
+    imgFull: '',
+    imgCard: 'card_repurposed_enforcer.avif',
+    flavor: `A face half remembered, a form fit to serve.`
+  },
+  {
+    slug: 'plan-for-all-outcomes',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Plan for All Outcomes',
+    number: 35,
+    artist: 'Chris Cold',
+    artistUrl: 'http://chriscold.com/',
+    imgFull: '',
+    imgCard: 'card_plan_for_all_outcomes.avif',
+    flavor: ``
+  },
+  {
+    slug: 'semester-foreseer',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Semester Foreseer',
+    number: 39,
+    artist: 'Alix Branwyn',
+    artistUrl: 'https://www.alixbranwyn.com/',
+    imgFull: '',
+    imgCard: 'card_semester_foreseer.avif',
+    flavor: ``
+  },
+  {
+    slug: 'liliana-the-faultless',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Liliana the Faultless',
+    number: 200,
+    artist: 'Marta Nael',
+    artistUrl: 'https://www.artstation.com/martanael/albums/5405672',
+    imgFull: '',
+    imgCard: 'card_liliana_the_faultless.avif',
+    flavor: `All mistakes can be fixed. Even you.`
+  },
+  {
+    slug: 'yoshimaru-beloved-companion',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Yoshimaru, Beloved Companion',
+    number: 209,
+    artist: 'Brian Valeza',
+    artistUrl: 'https://www.artstation.com/tots/albums/5001190',
+    imgFull: '',
+    imgCard: 'card_yoshimaru_beloved_companion.avif',
+    flavor: `The Emperor spared no comfort for the friend who had so diligently awaited her return.`
+  },
   {
     slug: 'harsh-annotation',
     year: 2026,
@@ -1146,7 +1897,7 @@ export const mtgCards: MtgCard[] = [
   {
     slug: 'deduce',
     year: 2026,
-    set: 'Secrets of Strixhaven MA',
+    set: 'Secrets of Strixhaven',
     name: 'Deduce',
     artist: 'Dominik Mayer',
     artistUrl: 'https://www.dominikmayer.art/',
@@ -1157,7 +1908,7 @@ export const mtgCards: MtgCard[] = [
   {
     slug: 'stargaze',
     year: 2026,
-    set: 'Secrets of Strixhaven MA',
+    set: 'Secrets of Strixhaven',
     name: 'Stargaze',
     artist: 'Pau Adam',
     artistUrl: '#',
@@ -1176,9 +1927,23 @@ export const mtgCards: MtgCard[] = [
     imgCard: 'card_staff_of_the_storyteller.avif',
   },
   {
+    slug: 'token-spilit-0006',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: '0006',
+    name: 'Token: Spilit',
+    artist: 'Julie Dillon',
+    artistUrl: 'https://www.juliedillonart.com/magic-the-gathering',
+    imgFull: '',
+    imgCard: 'card_token_spilit_0006.avif',
+  }, 
+  {
     slug: 'rally-the-monastery',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 19,
     name: 'Rally the Monastery',
     artist: 'David Astruga',
     artistUrl: 'https://davidastruga.com/',
@@ -1189,6 +1954,8 @@ export const mtgCards: MtgCard[] = [
     slug: 'rebellious-strike',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 20,
     name: 'Rebellious Strike',
     artist: 'Evyn Fong',
     artistUrl: 'https://evynfong.square.site/',
@@ -1200,6 +1967,8 @@ export const mtgCards: MtgCard[] = [
     slug: 'riling-dawnbreaker',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 21,
     name: 'Riling Dawnbreaker',
     artist: 'Tuan Duong Chu',
     artistUrl: 'https://www.artstation.com/duongct',
@@ -1210,6 +1979,8 @@ export const mtgCards: MtgCard[] = [
     slug: 'starry-eyed-skyrider',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 25,
     name: 'Starry-Eyed Skyrider',
     artist: 'Lindsey Look',
     artistUrl: 'https://www.lindseylook.com/',
@@ -1221,6 +1992,8 @@ export const mtgCards: MtgCard[] = [
     slug: 'static-snare',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 26,
     name: 'Static Snare',
     artist: 'Yohann Schepacz',
     artistUrl: 'https://www.artstation.com/oxanstudio',
@@ -1231,6 +2004,8 @@ export const mtgCards: MtgCard[] = [
     slug: 'stormplain-detainment',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 28,
     name: 'Stormplain Detainment',
     artist: 'Livia Prima',
     artistUrl: 'https://www.instagram.com/dopaprime/',
@@ -1239,20 +2014,24 @@ export const mtgCards: MtgCard[] = [
     flavor: `Elspeth saw their capture as an inconvenience, costing them precious time. Narset saw it as an opportunity to recruit allies to their cause.`
   },
   {
-    slug: 'ambling-stormshell',
+    slug: 'essence-anchor',
     year: 2025,
     set: 'Tarkir Dragonstorm',
-    name: 'Ambling Stormshell',
-    artist: 'Carlos Palma Cruchaga',
-    artistUrl: 'https://www.instagram.com/carlos_cruchaga/?hl=ja',
+    code: 'TDM',
+    number: 44,
+    name: 'Essence Anchor',
+    artist: 'David Astruga',
+    artistUrl: 'https://davidastruga.com/',
     imgFull: '',
-    imgCard: 'card_ambling_stormshell.avif',
+    imgCard: 'card_essence_anchor.avif',
     flavor: ``
   },
   {
     slug: 'focus-the-mind',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 45,
     name: 'Focus the Mind',
     artist: 'Fariba Khamseh',
     artistUrl: 'https://www.artstation.com/faribakhamseh',
@@ -1264,6 +2043,8 @@ export const mtgCards: MtgCard[] = [
     slug: 'fresh-start',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 46,
     name: 'Fresh Start',
     artist: 'Joe Slucher',
     artistUrl: 'https://www.deviantart.com/joeslucher/gallery?page=4',
@@ -1275,6 +2056,8 @@ export const mtgCards: MtgCard[] = [
     slug: 'humbling-elder',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 48,
     name: 'Humbling Elder',
     artist: 'Yohann Schepacz',
     artistUrl: 'https://www.artstation.com/oxanstudio',
@@ -1283,15 +2066,173 @@ export const mtgCards: MtgCard[] = [
     flavor: `“There is no better way to measure a person’s true character than to let them think they’re above you.”\n—Master Xian`
   },
   {
+    slug: 'naga-fleshcrafter',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 52,
+    name: 'Naga Fleshcrafter',
+    artist: 'Valera Lutfullina',
+    artistUrl: 'https://www.artstation.com/jortagul',
+    imgFull: '',
+    imgCard: 'card_naga_fleshcrafter.avif',
+    flavor: ``
+  },
+  {
+    slug: 'snowmelt-stag',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 57,
+    name: 'Snowmelt Stag',
+    artist: 'Lorenzo Mastroianni',
+    artistUrl: 'https://www.instagram.com/lorenzomastroianniart/',
+    imgFull: '',
+    imgCard: 'card_snowmelt_stag.avif',
+    flavor: `Elementals conjured by Temur mages are forever watchful and swift.`
+  },
+  {
+    slug: 'desperate-measures',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 78,
+    name: 'Desperate Measures',
+    artist: 'Gaboleps',
+    artistUrl: 'https://www.instagram.com/gaboleps_art/',
+    imgFull: '',
+    imgCard: 'card_desperate_measures.avif',
+    flavor: `"Sing for us when we depart for battle, and sing for us if we fail to return."\n—Mardu parting`
+  },
+  {
+    slug: 'kin-tree-nurturer',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 83,
+    name: 'Kin-Tree Nurturer',
+    artist: 'Loïc Canavaggia',
+    artistUrl: 'https://www.artstation.com/canavaggia',
+    imgFull: '',
+    imgCard: 'card_kin_tree_nurturer.avif',
+    flavor: `“Thank the ancestors. A few more weeks, and we would have discovered nothing but dead wood and lost kin.”`
+  },
+  {
+    slug: 'wail-of_war',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 98,
+    name: 'Wail of War',
+    artist: 'Xavier Ribeiro',
+    artistUrl: 'https://www.artstation.com/lozano',
+    imgFull: '',
+    imgCard: 'card_wail_of_war.avif',
+    flavor: `Mardu war shrieks ensure their enemies are defeated before the battle even starts.`
+  },
+  {
+    slug: 'yathan-tombguard',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 100,
+    name: 'Yathan Tombguard',
+    artist: 'Izzy',
+    artistUrl: 'https://www.izzymedrano.com/',
+    imgFull: '',
+    imgCard: 'card_yathan_tombguard.avif',
+    flavor: `“Our khan would grant you clemency. She is naive. And unfortunately for you, she is also not here.”`
+  },
+  {
     slug: 'sage-of-the-skies',
     year: 2025,
     set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 328,
     name: 'Sage of the Skies',
     artist: 'Wayne Wu',
     artistUrl: 'https://www.artstation.com/390227',
     imgFull: '',
     imgCard: 'card_sage_of_the_skies.avif',
   },
+  {
+    slug: 'ambling-stormshell',
+    year: 2025,
+    set: 'Tarkir Dragonstorm',
+    code: 'TDM',
+    number: 332,
+    name: 'Ambling Stormshell',
+    artist: 'Carlos Palma Cruchaga',
+    artistUrl: 'https://www.instagram.com/carlos_cruchaga/?hl=ja',
+    imgFull: 'art_ambling_stormshell.avif',
+    imgCard: 'card_ambling_stormshell.avif',
+    flavor: ``
+  },
+  // {
+  //   slug: 'ainok-strike-leader',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 29,
+  //   name: 'Ainok Strike Leader',
+  //   artist: 'Alexander Mokhov',
+  //   artistUrl: 'https://www.instagram.com/mokhman/',
+  //   imgFull: '',
+  //   imgCard: 'card_ainok_strike_leader.avif',
+  //   flavor: `When dalkovans need protecting, all respond.`
+  // },
+  // {
+  //   slug: 'reunion-of-the-house',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 55,
+  //   name: 'Reunion of the House',
+  //   artist: 'Quintin Gleim',
+  //   artistUrl: 'https://www.quintingleim.com/',
+  //   imgFull: '',
+  //   imgCard: 'card_reunion_of_the_house.avif',
+  //   flavor: `“We stand or fall as a family. All of us.”\n—Betor`
+  // },
+  // {
+  //   slug: 'will-of-the-mardu',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 57,
+  //   name: 'Will of the Mardu',
+  //   artist: 'Tuan Duong Chu',
+  //   artistUrl: 'https://www.artstation.com/duongct',
+  //   imgFull: '',
+  //   imgCard: 'card_will_of_the_mardu.avif',
+  //   flavor: ``
+  // },
+  // {
+  //   slug: 'jaws-of-defeat',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code : 'TDC',
+  //   number: 67,
+  //   name: 'Jaws of Defeat',
+  //   artist: 'Andreas Zafiratos',
+  //   artistUrl: '#',
+  //   imgFull: '',
+  //   imgCard: 'card_jaws_of_defeat.avif',
+  //   flavor: `“The Jeskai like talking about their Way? Let’s see them talk their way out of this dilemma.”\n—Girdah, Abzan beastrider`
+  // },
+  // {
+  //   slug: 'hour-of-reckoning',
+  //   year: 2025,
+  //   set: 'Tarkir Dragonstorm',
+  //   code: 'TDC',
+  //   number: 120,
+  //   name: 'Hour of Reckoning',
+  //   artist: 'Joseph Meehan',
+  //   artistUrl: 'https://www.instagram.com/josephmeehanart/',
+  //   imgFull: '',
+  //   imgCard: 'card_hour_of_reckoning.avif',
+  //   flavor: `Those who are chosen do not doubt. Those who remain do not lament.`
+  // },
   {
     slug: 'incisor-glider',
     year: 2023,
@@ -1612,16 +2553,6 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
-    slug: 'winds-of-abandon',
-    year: 2019,
-    set: 'Modern Horizons',
-    name: 'Winds of Abandon',
-    artist: 'Maiko Aoji',
-    artistUrl: 'https://unblued.lomo.jp/',
-    imgFull: '',
-    imgCard: 'card_winds_of_abandon.avif',
-  },
-  {
     slug: 'workshop-elders',
     year: 2019,
     set: 'Throne of Eldraine',
@@ -1632,6 +2563,41 @@ export const mtgCards: MtgCard[] = [
     imgCard: 'card_workshop_elders.avif',
     flavor: `「ベッドの下を恐れなくてもいい。おもちゃたちが見張っていてくれる。」\n—グレートヘンジを超えて`,
     flavLang: 'ja',
+  },
+  {
+    slug: 'winds-of-abandon',
+    year: 2019,
+    set: 'Modern Horizons',
+    name: 'Winds of Abandon',
+    artist: 'Maiko Aoji',
+    artistUrl: 'https://unblued.lomo.jp/',
+    imgFull: '',
+    imgCard: 'card_winds_of_abandon.avif',
+  },
+  {
+    slug: 'herald-of-the-sun',
+    year: 2019,
+    set: 'Core Set 2020',
+    number: 23,
+    name: 'Herald of the Sun',
+    artist: 'Micah Epstein',
+    artistUrl: 'https://www.instagram.com/micahepsteinart/',
+    imgFull: '',
+    imgCard: 'card_herald_of_the_sun.avif',
+    flavor: `「雲も闇も恐れてはなりません。この光がすべてをかき消します。」`,
+    flavLang: 'ja',
+  },
+  {
+    slug: 'ancestral-vision',
+    year: 2017,
+    set: 'Iconic Masters',
+    code : 'IMA',
+    name: 'Ancestral Vision',
+    artist: 'John Avon',
+    artistUrl: 'https://www.instagram.com/johnavonartist/',
+    imgFull: '',
+    imgCard: 'card_ancestral_vision.avif',
+    flavor: ``
   },
 ]
 

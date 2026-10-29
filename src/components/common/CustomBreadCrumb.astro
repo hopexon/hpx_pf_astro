@@ -1,0 +1,116 @@
+---
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  crumbs: Crumb[];
+}
+
+const { crumbs } = Astro.props;
+---
+
+<nav aria-label="Breadcrumbs" class="custom-breadcrumbs">
+  <ol>
+    <li>
+      <a class="custom-breadcrumbs__link" href="/">
+        <svg
+          slot="index"
+          aria-label="Home Page"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z">
+          </path><polyline points="9 22 9 12 15 12 15 22"></polyline>
+        </svg>
+      </a>
+    </li>
+    {
+      crumbs.map((crumb, index) => {
+        const isLast = index === crumbs.length - 1;
+        return (
+          <>
+            <li class="separator">
+              <svg
+                slot="separator"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </li>
+            <li>
+              {/* {isLast || !crumb.href ? (
+                <span aria-current="page">{crumb.label}</span>
+              ) : (
+                <a href={crumb.href}>{crumb.label}</a>
+              )} */}
+              <a href={crumb.href}>{crumb.label}</a>
+            </li>
+          </>
+        );
+      })
+    }
+  </ol>
+</nav>
+
+<style>
+  .custom-breadcrumbs {
+    --display: none;
+    --padding-inline: 1rem;
+
+    display: var(--display);
+    padding-inline: var(--padding-inline);
+    margin-block-start: 1rem;
+    color: var(--base-500);
+
+    @media screen and (min-width: 768px) {
+      --display: flex;
+      --padding-inline: var(--gutter-inline);
+    }
+
+    a:has([aria-current="location"]) {
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+
+    @media (any-hover: hover) {
+      a:has([aria-current="location"]:hover) {
+        opacity: 0.6;
+        transition: opacity 0.2s;
+      }
+    }
+  }
+
+  .custom-breadcrumbs ol {
+    display: flex;
+    column-gap: 0.25rem;
+    color: var(--base-500);
+  }
+
+  .custom-breadcrumbs__link {
+    opacity: 1;
+    transition: opacity 0.2s;
+
+    @media (any-hover: hover) {
+      &:hover {
+        opacity: 0.6;
+        transition: opacity 0.2s;
+      }
+    }
+  }
+</style>

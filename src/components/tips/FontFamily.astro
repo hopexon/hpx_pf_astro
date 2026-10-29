@@ -1,0 +1,205 @@
+---
+import { Code } from 'astro:components'
+
+const sansSerifParam = [
+  { name: "Windows CJK Chromium", ja: "Noto Sans JP<br />※ブラウザ指定のsans-serifフォントに依存", en: "Noto Sans JP<br />※ブラウザ指定のsans-serifフォントに依存" },
+  { name: "Windows CJK Firefox", ja: "Meiryo<br />※ブラウザ指定のデフォルトフォントに依存", en: "Meiryo<br />※ブラウザ指定のデフォルトフォントに依存" },
+  { name: "Windows EN Chromium", ja: "Noto Sans JP", en: "Arial" },
+  { name: "Windows EN Firefox", ja: "Meiryo", en: "Arial" },
+  { name: "macOS CJK Chromium", ja: "Hiragino Kakugo ProN", en: "Hiragino Kakugo ProN" },
+  { name: "macOS CJK Firefox", ja: "Hiragino Kakugo ProN", en: "Hiragino Kakugo ProN" },
+  { name: "macOS CJK Safari", ja: "Hiragino Kakugo", en: "Hiragino Kakugo" },
+  { name: "macOS EN Chromium", ja: "Hiragino Kakugo", en: "Helvetica" },
+  { name: "macOS EN Firefox", ja: "Hiragino Kakugo ProN", en: "Helvetica" },
+  { name: "macOS EN Safari", ja: "Hiragino Kakugo ProN<br>※検証ツール上ではHelvetica", en: "Helvetica" },
+  { name: "iOS(systemlang: JA)", ja: "Hiragino Kakugo", en: "Hiragino Kakugo" },
+  { name: "iOS(systemlang: EN)", ja: "Hiragino Kakugo ProN", en: "Helvetica" },
+  { name: "Android", ja: "Noto Sans CJK JP", en: "Roboto" }
+]
+
+const systemUiParam = [
+  { name: "Windows Chromium", ja: "Yu Gothic UI", en: "Yu Gothic UI" },
+  { name: "Windows Firefox", ja: "Yu Gothic UI", en: "Yu Gothic UI" },
+  { name: "macOS Chromium<br>systemlang: JA", ja: "Hiragino Kakugo ProN", en: "San Francisco<br>※検証ツール上では .SF NS" },
+  { name: "macOS Chromium<br>systemlang: EN", ja: ".Hiragino Kaku Gothic Interface", en: "San Francisco<br>※同上" },
+  { name: "macOS Firefox", ja: "Hiragino Kakugo ProN", en: "San Francisco<br>※同上" },
+  { name: "macOS Safari", ja: ".Hiragino Kaku Gothic Interface<br>※検証ツール上では AppleSystemUIFont", en: "San Francisco<br>※同上" },
+  { name: "iOS", ja: ".Hiragino Kaku Gothic Interface", en: "San Francisco" },
+  { name: "Android", ja: "Noto Sans CJK JP", en: "Roboto" }
+]
+
+---
+
+<h2 class="mt__8">font-famliy<br class="sp__only" /><span style='font-size: 0.6em;'> (for Windows CJK)</span></h2>
+        <div class="font__family__grid">
+          <div class="mt__2 btns__wrap">
+            <button class="btn__item item__hover" data-font-class="default__fontfamily" type="button">Default (Noto Sans JP)</button>
+            <button class="btn__item item__hover" data-font-class="udp__fontfamily" type="button">UDP Gothic</button>
+            <button class="btn__item item__hover" data-font-class="meiryo__fontfamily" type="button">Meiryo</button>
+            <button class="btn__item item__hover" data-font-class="yu__gothic__ui__fontfamily" type="button">Yu Gothic UI</button>
+            <button class="btn__item item__hover" data-font-class="yu_gothic__fontfamily" type="button">Yu Gothic</button>
+          </div>
+          <div class="mt__2 font__family__samples__wrap">
+            <p>
+              組織はA新しAい技術Aを見てAいます。彼はB丁寧Bにこの問B題をB改善しBていBます。<br>
+              あなたはやや過去を学んでいます。チームは実績を見ています。システムは継続的に現在を信じています。これはデータを実施しています。彼らは機会を評価しています。企業はとても実績を見ています。あなたは過去を思っています。誰もが情報を試しています。プロジェクトはわずかにデータを感じています。彼女は目標を提案しています。彼らは新しい技術を期待しています。多くの人々が継続的に情報を知っています。<br />
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.
+            </p>
+          </div>
+        </div>
+        <h4 class="mt__2">▼ Most Stable Font Settings in 2026</h4>
+        <Code code={`
+    html {
+      font-family: 
+        "Helvetica Neue",
+        "zenkaku-gothic-new",
+        "Hiragino Sans",
+        Arial,
+        "Noto Sans JP", // or BIZ UDPGothic or Meiryo,
+        sans-serif;
+    }
+
+    or
+
+    html {
+      font-family: 
+        sans-serif,
+        system-ui;
+    } 
+        `} lang="css" theme="github-dark"></Code>
+
+        <details class="acc__with__anim">
+          <summary>Explanation<span class="twister"></span></summary>
+          <div class="accordion__overflow__hidden">
+            <div class="content__wrap">
+              <h4 class="mt__1">▼ sans-serif 対応表</h4>
+                <p class="sans__serif">
+                  This is a text written with sans-serif.<br />
+                  Check the acctual font with devtool.<br />
+                  sans-serif を使用したテキストです。<br />
+                  検証ツールを用いて実際に用いられているフォントを確認してください。
+                </p>
+
+                <!-- graph for sp -->
+                <div class="sp__only">
+                  {
+                    sansSerifParam.map((param) => (
+                      <div class="sp__sans__serif__grid">
+                        <div class="th sp__name">{param.name}</div>
+                        <div class="th sp__ja">JA</div>
+                        <div class="td sp__txt__ja" set:html={param.ja} />
+                        <div class="th sp__en">EN</div>
+                        <div class="td sp__txt__en" set:html={param.en} />
+                      </div> 
+                    ))
+                  }
+                </div>
+
+                <!-- graph for pc -->
+                <div class="pc__only">
+                  <div class="mt__1 sans__serif__grid">
+                    <div class="th"></div>
+                    <div class="th">和文</div>
+                    <div class="th">英文</div>
+                    {sansSerifParam.map((param) => (
+                      <div class="td">{param.name}</div>
+                      <div class="td" set:html={param.ja} />
+                      <div class="td" set:html={param.en} />
+                    ))}
+                  </div>
+                </div>
+
+              <h4 class="mt__3">▼ system-ui 対応表</h4>
+                <div class="content__wrap">
+                  <p class="system__ui">
+                    This is a text written with system-ui.<br />
+                    Check the acctual font with devtool.<br />
+                    system-ui を使用したテキストです。<br />
+                    検証ツールを用いて実際に用いられているフォントを確認してください。
+                  </p>
+                </div>
+                <!-- graph for sp -->
+                <div class="sp__only">
+                  {
+                    systemUiParam.map((param) => (
+                      <div class="sp__sans__serif__grid">
+                        <div class="th sp__name" set:html={param.name} />
+                        <div class="th sp__ja">JA</div>
+                        <div class="td sp__txt__ja" set:html={param.ja} />
+                        <div class="th sp__en">EN</div>
+                        <div class="td sp__txt__en" set:html={param.en} />
+                      </div>
+                    ))
+                  }
+                </div>
+
+                <!-- graph for pc -->
+                <div class="pc__only">
+                  <div class="mt__1 sans__serif__grid">
+                    <div class="th"></div>
+                    <div class="th">和文</div>
+                    <div class="th">英文</div>
+                    {systemUiParam.map((param) => (
+                      <div class="td" set:html={param.name} />
+                      <div class="td" set:html={param.ja} />
+                      <div class="td" set:html={param.en} />
+                    ))}
+                  </div>
+                </div>
+
+              <h4 class="mt__3">▼sans-serif とは</h4>
+                <div class="content__wrap">
+                  <p class="comment">
+                    その環境が使用可能なデバイスフォント(デフォルトでOSにインストールされているもの)を指定する値。<br />
+                    実際にどのフォントが用いられるかはデバイス規定フォントに依存する。
+                  </p>
+                </div>
+
+              <h4 class="mt__2">▼system-ui とは</h4>
+                <div class="content__wrap">
+                  <p class="comment">
+                    その環境が使用可能なデバイスフォント(デフォルトでOSにインストールされているもの)を指定する値。<br />
+                    実際にどのフォントが用いられるかはデバイス規定フォントに依存する。
+                  </p>
+                </div>
+
+              <h4 class="mt__2">▼sans-serif と system-ui の違い</h4>
+                <div class="content__wrap">
+                  <p class="comment">
+                    上記表の通り、指定されるフォントが異なるのみ。<br />
+                    ブラウザによっては<code>sans-serif</code>用の設定項目が個別に設けられている場合がある。
+                  </p>
+                </div>
+
+              <h4 class="mt__2">▼結局どうすればよいのか</h4>
+                <div class="content__wrap">
+                  <p class="comment">
+                    現状適切なデフォルト値が指定されているため、<code>system-ui</code>または<code>sans-serif</code>の指定で問題ない。<br />
+                    が、常にブラウザ自体の挙動に依存する形となるため、意図しない挙動の発生リスクが常に付きまとう。<br />
+                    デザインデータが厳密に存在する場合、または段落ちなどレイアウトに気を配る必要のあるページの場合は、やはり引き続き明確にフォントを指定し挙動を管理すべきである。
+                  </p>
+                </div>
+            </div>
+          </div>
+        </details>
+
+        <script>
+document.addEventListener('astro:page-load', function () {
+  const fontClasses = [
+    'default__fontfamily',
+    'udp__fontfamily',
+    'meiryo__fontfamily',
+    'yu__gothic__ui__fontfamily',
+    'yu_gothic__fontfamily'
+  ]
+
+  document.querySelectorAll('[data-font-class]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const fontClass = button.dataset.fontClass
+
+      document.body.classList.remove(...fontClasses)
+      document.body.classList.add(fontClass)
+    })
+  })
+})
+</script>

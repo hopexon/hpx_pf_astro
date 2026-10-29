@@ -433,6 +433,10 @@ main {
 }
 
 .fadeInTrigger {
+  --opacity: 1;
+}
+
+.fadeInTrigger.is-pending {
   --opacity: 0;
 }
 
@@ -529,6 +533,23 @@ main {
   background: var(--color);
   border-radius: 50%;
   transform: rotate(0deg) translateX(0) scale(0.5);
+}
+
+.to__top__scroll {
+  position: fixed;
+  inset-inline-end: 1rem;
+  inset-block-end: 1rem;
+  inline-size: fit-content;
+  /* font-size: 2rem; */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease-out; 
+}
+
+.to__top__scroll.is-active {
+  pointer-events: inherit;
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
 }
 
 @keyframes stretch {

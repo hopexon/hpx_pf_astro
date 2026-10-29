@@ -1,0 +1,177 @@
+---
+import { Code } from 'astro:components'
+---
+
+<h2 id="modalsample" class="mt__8">Modal with<br class="sp__only" /> Dialog Element</h2>
+<div class="mt__2 my__dialog__content__wrap">
+  <div class="btns__wrap">
+    <button type="button" class="test__dialog__open__btn btn__item item__hover" command="show-modal" commandfor="test-dialog">Open Modal</button>
+  </div>
+  <div class="my__dialog__wrap">
+    <dialog
+      id="test-dialog"
+      class="my__dialog js-modalDialog"
+      closedby="any"
+      aria-labelledby="dialog-title"
+      autofocus
+      inert
+    >
+      <h1 id="my-dialog-heading" class="my__dialog__heading">Heading</h1>
+      <p class="my__dialog__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.</p>
+      <button type="button"  class="my__dialog__close__btn" commandfor="test-dialog" command="close">Close</button>
+    </dialog>
+  </div>
+</div>
+
+
+<details class="mt__2 acc__with__anim">
+  <summary>Sample Code<span class="twister"></span></summary>
+  <div class="accordion__overflow__hidden">
+    <div class="content__wrap">
+      <Code code={`
+    <div class="dialog__open__wrap">
+      <button type="button"command="show-modal" commandfor="test-dialog">Open Modal</button>
+    </div>
+
+    <dialog
+      id="test-dialog"
+      class="test__dialog"
+      closedby="any"
+      aria-labelledby="dialog-title"
+      autofocus
+    >
+      <h1 id="my-dialog-heading">Heading</h1>
+      <p>Content</p>
+      <button type="button" command="close" commandfor="test-dialog">Close</button>
+    </dialog>
+        `} lang="html" theme="github-dark">
+      </Code>
+
+      <Code code={`
+    :root {
+      scrollbar-gutter: stable;
+    } 
+
+    // 背面のスクロールを無効化
+    :root:has(:modal) {
+      overflow: hidden;
+    }
+
+    .dialog:not(:modal):not([popover]) {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    dialog {
+      position: fixed; /* Safari固有不具合への対策 */
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      margin: 0; /* ユーザエージェントのデフォルト値をリセット */
+      max-block-size: 40vh;
+      inline-size: min(90vw, calc(600 / 16) * 1rem);
+      transform: translate(-50%, -50%);
+      transition-duration: 300ms;
+      transition-property: display, overlay, opacity, transform; /* overlay はFirefox, Safari27時点で非対応 */
+      transition-timing-function: ease-out;
+      transition-behavior: allow-discrete;
+      overscroll-behavior-block: contain; /* モーダル表示中の縦方向における規定のスクロールオーバーフロー動作を解除する */
+
+      &::backdrop {
+        background-color: oklch(from black l c h / 50%);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        transition-duration: inherit;
+        transition-property: opacity;
+        transition-timing-function: inherit;
+      }
+    }
+
+    @starting-style {
+      dialog:modal {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95); /* スケールアニメーションを追加 */
+      }
+      dialog:modal::backdrop {
+        opacity: 0;
+      }
+    }
+        `} lang="css" theme="github-dark">
+      </Code>
+    </div>
+  </div>
+</details>
+
+<details class="acc__with__anim">
+  <summary>Explanation<span class="twister"></span></summary>
+  <div class="accordion__overflow__hidden">
+    <div class="content__wrap">
+      <h4 class="mt__1">▼dialog attr: command</h4>
+        <ul class="comment">
+          <li>・<code>command='show-modal'</code>: モーダルUIの展開</li>
+          <li>・<code>command='close'</code>: モーダルUIを閉じる</li>
+          <li>・<code>command='toggle-popover'</code>: ポップオーバーUIの開閉</li>
+          <li>・<code>command='show-popover'</code>: ポップオーバーUIの展開</li>
+          <li>・<code>command='hide-popover'</code>: ポップオーバーUIを閉じる</li>
+          <li>・<code>command='request-close'</code>: requesttclose() の機能を提供(from chrome 139~)</li>
+        </ul>
+      <h4 class="mt__1">▼dialog attr: closedby</h4>
+        <ul class="comment">
+          <li>・<code>closedby='any'</code>: ダイアログの外側を押下 or ESCでダイアログが閉じる</li>
+          <li>・<code>closedby='closerequest'</code>: ESCでのみダイアログが閉じる</li>
+          <li>・<code>closedby='none'</code>: ESCでもダイアログが閉じない</li>
+          <li>※いずれも <code>command='close'</code> 属性を発火させた場合は閉じる</li>
+        </ul>
+      <h4 class="mt__1">▼root:has(:modal) と body:has(dialog[open]) の違い</h4>
+        <p class="comment">
+          従来支配的であった<code>body:has(dialog[open])</code>は、<code>showModal()</code>と異なる<code>show()</code>メソッドを用いた"背景の操作をブロックしない非モーダル"という表示方法についても背景要素をブロックしてしまう。<br />
+          <code>popover API</code>の登場により上述の方法による非モーダル要素の登場機会は減ったものの、依然として不具合の原因となる可能性は存在する。<br />
+          <br />
+          <code>:modal</code>疑似クラスを用いることで、<code>showModal()</code>メソッドで開かれた<code>dialog</code>要素のような「ユーザがその操作をしている間ほかのすべての要素との操作をブロックする状態にある要素」のみを選択可能となる。<br />
+          <br />
+          <code>:modal</code> 疑似クラスは動画など特定の要素を<code>requestFullscreen()</code> APIを用いてフルスクリーンを表示する際にも適用されるため、 <code>:root:has(:modal)</code> はフルスクリーン表示時にも併せて対応可能となる。<br />
+          <br />
+          なおスクロールを制御するCSSとしては<code>overflow: clip</code>も存在する。<br />
+          基本的には意図しないスクロールコンテナやスタッキングコンテキストの出現を防げるため<code>overflow: clip</code>が優先されるが、現状<code>Firefox</code>にてルート要素に対する<code>overflow: clip</code>を用いたスクロール抑制が機能していないため、同目的には<code>hidden</code>が推奨される。
+        </p>
+      <h4 class="mt__1">▼なぜ :root に overflow: hidden を設定するか</h4>
+        <p class="comment">
+          <code>position: sticky</code>との兼ね合いにより、<code>body</code>への<code>overflow: hidden</code>指定は推奨されない。<br />
+          <code>sticky</code> は「最も近い親のスクロールコンテナを基準に固定される」仕組みのため、<code>body</code>要素に<code>overflow: hidden</code> を設定することで同要素が新たなスクロールコンテナとなり、本来<code>:root</code>(または<code>html</code>)に紐づいていたはずの<code>sticky</code>が<code>body</code>基準に移行してしまい、不具合が発生する。<br />
+          一方CSSの仕様として「ルート要素に付与された<code>overflow</code>プロパティはそのままブラウザの表示領域全体(いわゆるビューポート)に転送される」ため、<code>:root</code>への指定では新たなスクロールコンテナは生成されず、不具合には発展しない。
+        </p>
+    </div>
+  </div>
+</details>
+
+<details class="acc__with__anim">
+  <summary>Invoker Command API Polyfill<span class='twister'></span></summary>
+  <div class="accordion__overflow__hidden">
+    <div class="content__wrap">
+      <p class="comment">
+        現状<code>command</code>属性と<code>commandfor</code>属性が全ブラウザ対応ではないため、主要環境で有効化するためには<code>invokers-polyfill</code>を用いる必要がある。<br />
+      </p>
+    </div>
+    <div class="content__wrap">
+      <Code code={`
+    # npm から直接ライブラリを使用する場合
+    $ npm install invokers-polyfill
+    $ npm install dialog-closedby-polyfill
+              `} lang='bash' theme='github-dark'>
+      </Code>
+      <Code code={`
+    // main.js など
+    import 'invokers-polyfill'
+    import 'dialog-closedby-polyfill'
+              `} lang='js' theme="github-dark">
+      </Code>
+      <Code code={`
+    <!-- CDNで使用する場合 -->
+    <head>
+      <script type="module" src="https://unpkg.com/invokers-polyfill@latest/invoker.min.js"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/dialog-closedby-polyfill@latest/index.min.js"></script>
+    </head>
+              `} lang="html" theme="github-dark">
+      </Code>
+    </div>
+  </div>
+</details>

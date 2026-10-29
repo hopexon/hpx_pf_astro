@@ -1,0 +1,324 @@
+---
+import { Code } from 'astro:components'
+---
+
+<details class='mt__2 acc__with__anim'>
+  <summary>Fundamental Semantics<span class='twister' aria-hidden="true"></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        
+        <details class='acc__with__anim'>
+          <summary>All Do's and Don'ts<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <ul>
+                  <li>・イカれたレンダリング結果にならないよう、<code>HTML5 doctype !DOCTYPE html</code>を使おう</li>
+                  <li>・スクリーンリーダと翻訳ツールを補助するために、<code>html</code>要素には<code>lang=''</code>属性を付与しよう</li>
+                  <li>・<code>head</code>に<code>meta name='viewport'を</code>付与しよう。値は<code>width=device-width, initial-scale=1.0</code>尼設定しよう</li>
+                  <li>・<code>.showModal()</code>で表示されるダイアログ要素を除いて、ページ全体で<code>h1</code>は一つにしよう。</li>
+                  <li>・見出し<code>h◯</code>要素の順番は番号をスキップせずに用いよう</li>
+                  <li>・<code>div</code>の乱用は避け、役割ごとに<code>header</code><code>nav</code><code>aside</code><code>main</code>などセマンティックな要素を使おう</li>
+                  <li>・検索用要素には<code>role='search'</code>ではなく<code>search</code>要素を使おう</li>
+                  <li>・<code>button</code>はボタン、<code>a</code>はリンク、役割を混濁させないようにしよう</li>
+                  <li>・<code>button</code>には<code>type=''</code>属性を必ず付与しよう。デフォルトは<code>submit</code>なので、意図せぬ通信が発生するぞ</li>
+                  <li>・リストには<code>ul</code><code>ol</code><code>dl</code>要素を使おう</li>
+                  <li>・リンクやボタンなどのユーザインタラクティブな要素には必ずアクセシブルな名称や補足を入れよう</li>
+                  <li>・装飾用要素や画像には<code>aria-hidden='true'</code>を使い、アシストツール群からの補足を回避させよう</li>
+                  <li>・装飾用要素や画像は<code>alt</code>を空にし、aria-hidden と併せて装飾用であることをDOMに伝えよう</li>
+                  <li>・逆にロゴ、ボタン、データ表示など意味を持つ画像群には必ずアクセシブルな名称を付与しよう</li>
+                  <li>・<code>bool</code>である属性、例えば<code>disabled</code>を<code>disabled='disabled'</code>と記載してはいけない</li>
+                  <li>・専用の要素があるにも関わらず、<code>aria-role</code>で無理やり意味を変えて別要素で代替してはいけない</li>
+                  <li>・特別な理由無く、要素本来の意味を<code>aria-role=''</code>で書き換えてはいけない</li>
+                  <li>・フォーカス可能な要素、またはその親祖先に<code>role='presentation'</code>や<code>aria-hidden='true'</code></li>を付与してはいけない
+                  <li>・ページのズーム機能を排除してはいけない</li>
+                </ul>
+              </div>
+          </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Correct HTML Template<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class="content__wrap">
+                <Code code={`
+        <!-- HTML5 doctype を用いること -->
+        <!DOCTYPE html>
+    
+        <!-- スクリーンリーダー補助のためhtmlタグには lang 属性を付与すること -->
+        <html lang="ja">
+        <head>
+          <meta charset="UTF-8">
+          <!-- meta name viewport は以下設定で必ず実装すること -->
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Document</title>
+        </head>
+                `} lang='html' theme='github-dark'></Code>
+              </div>
+            </div>
+        </details>
+        <details class='acc__with__anim'>
+          <summary>h tag<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class="content__wrap">
+                <Code code={`
+        <!-- モーダルダイアログ要素を除き、h1 タグは一ページに一つとすること -->
+        <h1 class="main__ttl">Main Title</h1>
+
+        <!-- h タグの順序はスキップしてはいけない -->
+        <h2>...</h2>
+          ...
+          <h3>...</h3>
+            ...             
+                `} lang='html' theme='github-dark'></Code>
+              </div>
+            </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Use Semantic Tags<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class="content__wrap">
+                <Code code={`
+        <!-- divを乱用するのではなく、header, nav, aside, main, footer などセマンティックなタグでマークアップすること -->
+        <nav class="navigation">
+          <ul>
+            <li class="link__item">
+              <a href="#">TOP</a>
+            </li>
+            <li class="link__item">
+              <a href="#">About</a>
+            </li>
+            <li class="link__item">
+              <a href="#">Content</a>
+            </li>
+          </ul>
+        </nav>
+
+        <!-- 悪例 -->
+        <div class="navigation">
+          ...
+        </div>
+                `} lang='html' theme='github-dark'></Code>
+              </div>
+            </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Use Search Tag<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class="content__wrap">
+                <Code code={`
+        <!-- 検索絞り込み機能は role="search" ではなく search 要素で実装すること -->
+        <search>
+          <form action="/search" method="get">
+            <label for="keyword">Keyword</label>
+            <input type="search" id="keyword" name="q">
+            <button type="submit">Search</button>
+          </form>
+        </search>
+
+        <!-- 悪例 -->
+        <div role="search">
+          ...
+        </div>
+                `} lang='html' theme='github-dark'></Code>
+              </div>
+            </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Separate Depending on Button and Link<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class="content__wrap">
+                <Code code={`
+      <!-- 機能の起動はbutton、リンクは a と混同しないこと -->
+      <nav>
+        <ul>
+          <li><a href="#">Link_1</a></li>
+          <li><a href="#">Link_2</a></li>
+        </ul>
+      </nav>
+
+      <!-- type は省略すると自動で submit になる -->
+      <!-- 意図せぬ送信を防ぐため type は必ず明示すること -->
+      <button type="button" commandfor="my-dialog" command="show-modal">Open Modal</button>
+      <button type="submit">Send</button>
+
+      <!-- 悪例 -->
+      <nav>
+        <ul>
+          <li><button type="button"></button></li>
+          <li><button type="button"></button></li>
+        </ul>
+      </nav>
+
+      <button>Vote Up the Function</button>
+                `} lang='html' theme='github-dark'></Code>
+              </div>
+            </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Elements For Listing<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class="content__wrap">
+                <Code code={`
+        <!-- リストには ul ol dl タグを使用すること -->
+        <ul>
+          <li><a href="#"></a>Link_1</li>
+          <li><a href="#"></a>Link_2</li>
+        </ul>
+
+        <dl>
+          <dt>Content A</dt>
+          <dd>Desc A</dd>
+          <dt>Content B</dt>
+          <dd>Desc B</dd>
+        </dl>
+
+        <!-- Don'ts -->
+        <div>
+          <div>Content A</div>
+          <div>Desc A</div>
+          <div>Content B</div>
+          <div>Desc B</div>
+        </div>
+                `} lang='html' theme='github-dark'></Code>
+              </div>
+            </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Give aria-hidden='true' and Blank alt for Purely Decorative Images<span class='twister' aria-hidden='true'></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        完全に修飾目的の画像には、
+        ・SVG画像であれば aria-hidden="true" 
+        ・img画像であれば alt=""
+        を設定し、各種アクセシビリティ判定から排除させる。
+
+        それぞれにはDOMに「コレは修飾用要素である」と伝える機能があり、
+        例えば inert もユーザのインタラクトを完全に排除できるため代替可能と考えられるかもしれないが、
+        inert にそのような伝達機能は無い。
+
+        <span class="twister" aria-hidden="true"></span>
+
+        <img src="#" alt="">
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Give a Accessible Name<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class="content__wrap">
+                <Code code={`
+        <!-- リンクやボタンなどユーザーがインタラクトできる要素には必ずアクセシブルな記述を含ませる -->
+        <button type="button">Start Animation</button>
+
+        <!-- アイコンだけの場合 -->
+        <button type="button" aria-label="Start Animation">
+          <svg> ... </svg>
+        </button>
+
+        <!-- 画像リンクの場合は alt -->
+        <a href="#">
+          <img src="#" alt="Start Animation">
+        </a>
+                `} lang='html' theme='github-dark'></Code>
+              </div>
+            </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Don't use Boolean Attributes with Redundant Values<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        <!-- disalbled など boolean 系の属性に対し boolean 系の値を渡してはいけない -->
+        <details open="open">
+          ...
+        </details>
+        
+        <!-- 単独でOK -->
+        <details open>
+          ...
+        </details>
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Don't Change the Native Role of Each Elements<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        <!-- 特段の理由無く、各要素の既存ロールを上書きしてはいけない -->
+        <a href="#" role="button">Submit</a>
+        
+        <!-- ネイティブロールだけでは対応できないものを aria で補う(ただし用法はかなり難しい) -->
+        <button
+          type="button"
+          aria-expanded="false"
+          aria-control="menu"
+        >Menu
+        </button>
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Don't Use Attributes about Hidden contents for Focusable Elements<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        <!-- aria-hidden='true' や role='presentation' をフォーカス可能な要素に付与してはいけない -->
+        <img 
+          src="#"
+          alt="Link for Menu"
+          aria-control="menu"
+          role="presentation"  
+        >
+        
+        <!-- 同様にそれらはフォーカス可能な要素の親要素や祖先に付与してもいけない -->
+        <div class="img__wrapper">
+          <img 
+            src="#"
+            alt="Link for Menu"
+            aria-control="menu"
+            role="presentation"  
+          >
+        </div>
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Use Viewport Meta Correctry<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        <!-- 以下を推奨 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
+
+        <!-- 以下のような meta viewport 設定はアクセシビリティを著しく低下させる -->
+        <!-- ユーザによるズームの禁止 -->
+        <meta name="viewport" content="user-scalable=no">
+        <!-- ユーザによるズームの禁止 -->
+        <meta name="viewport" content="initlal-scale=1.0, maximum-scale=1.0">
+        <!-- 画面幅の固定 -->
+        <meta name="viewport" content="width=1000">
+        <!-- width の未指定によるクライアント画面幅への最適化不足 -->
+        <meta name="viewport" content="initial-scale=1.0, ...">
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+</details>

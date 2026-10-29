@@ -1,42 +1,74 @@
 ---
-import Layout  from "../../layouts/Layout.astro"
+import Layout from '../../layouts/Layout.astro'
 
-interface Frontmatter {
-  title: string
-  description?: string
-  pubDate?: string | Date
-  tags?: string[]
-}
+import {
+  FontWeight,
+  FontSize,
+  LineHeight,
+  ColorHsl,
+  Elevation,
+  FontFamily,
+  AccordionSample,
+  ModalSample,
+  PopoverSample,
+  WhereIsHasNot,
+  // RoundModRem,
+  MwgHtml,
+  MwgCss,
+  Images
+} from '../../components/tips'
 
-interface MDXModule {
-  default: any
-  Contents: any
-  frontmatter: Frontmatter
-}
-
-const mdxFiles = await import.meta.glob<MDXModule>('../../content/tips/*.mdx', { eager: true })
-
-const tips = Object.entries(mdxFiles).map(([path, module]) => {
-  const slug = path.split('/').pop()?.replace('.mdx', '')
-  return {
-    slug,
-    frontmatter: module.frontmatter
-  }
-})
+import './style.css'
 ---
 
 <Layout>
   <div>
-    <h1 class="page__ttl">Tips</h1>
     <div class="main__wrap">
       <section class="section__wrapper">
-        {
-          tips.map((tip) => (
-            <a href={`./tips/${tip.slug}`} class="linkitem__link link__twister">
-              {tip.frontmatter.title}
-            </a>
-          ))
-        }
+        <h1 class='visually__hidden'>Modern Web Development with CSS</h1>
+        
+        <!-- font size -->
+        <FontWeight />
+
+        <!-- font size -->
+        <FontSize />
+
+        <!-- line-height -->
+        <LineHeight />
+
+        <!-- Color -->
+        <ColorHsl />
+
+        <!-- Images -->
+        <Images />
+
+        <!-- elevation  -->
+        <Elevation />
+
+        <!-- font-family -->
+        <FontFamily />
+
+        <!-- accordion -->
+        <AccordionSample />
+
+        <!-- modal -->
+        <ModalSample />
+
+        <!-- popover -->
+        <PopoverSample />
+
+        <!-- where is has not -->
+        <WhereIsHasNot />
+
+        <!-- round mod rem -->
+        <!-- <RoundModRem /> -->
+
+        <!-- MWG html guide -->
+        <MwgHtml />
+
+        <!-- MWG css guide -->
+        <MwgCss />
+
       </section>
     </div>
   </div>

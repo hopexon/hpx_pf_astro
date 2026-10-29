@@ -1,0 +1,68 @@
+---
+import LchGraph from './LchGraph.astro'
+---
+
+<details class="acc__with__anim">
+  <summary>(Lab) LCH<span class="twister"></span></summary>
+  <div class="accordion__overflow__hidden">
+    <div class="content__wrap">
+      <div class="comment">
+        <code>Lab</code>をベースに考案された表色系で、Labを円筒形上に表したもの。<br />
+        それぞれ<code>L(明度)</code>、<code>C(彩度)</code>、<code>H(色相角度)</code>を表す。<br />
+        詳細は以下図を参照。
+      </div>
+      <LchGraph />
+      <div class="mt__2 lch-controls">
+        <div class="lch-control">
+          <label for="lch__l">L:</label>
+          <input type="range" id="lch__l" min="0" max="100" value="100" step="1">
+        </div>
+        <div class="lch-control">
+          <label for="lch__c">C:</label>
+          <input type="range" id="lch__c" min="0" max="230" value="115" step="1">
+        </div>
+        <div class="lch-control">
+          <label for="lch__h">H:</label>
+          <input type="range" id="lch__h" min="-360" max="360" value="0" step="1">
+        </div>
+        <div class="lch-control">
+          <label for="lch__a">A:</label>
+          <input type="range" id="lch__a" min="0" max="100" value="100" step="100">
+        </div>
+      </div>
+      <div class="mt__2 lch-value color__value__txt">
+        <p>background-color: <span class="lch-value__text"></span></p>
+      </div>
+      <div class="color-function-preview lch-preview"></div>
+    </div>
+  </div>
+</details>
+
+<!-- LCH -->
+ <script>
+  document.addEventListener('astro:page-load', function() {
+    const lchLinput = document.getElementById('lch__l') as HTMLInputElement
+    const lchCinput = document.getElementById('lch__c') as HTMLInputElement
+    const lchHinput = document.getElementById('lch__h') as HTMLInputElement
+    const lchAinput = document.getElementById('lch__a') as HTMLInputElement
+    const lchValueText = document.querySelector('.lch-value__text') as HTMLSpanElement
+    const lchPreviewBox = document.querySelector('.lch-preview') as HTMLDivElement
+
+    const updateLchPreview = () => {
+      const l = lchLinput.value
+      const c = lchCinput.value
+      const h = lchHinput.value
+      const a = lchAinput.value
+
+      lchPreviewBox.style.backgroundColor = `lch(${l} ${c} ${h} / ${a})`
+      lchValueText.textContent = `lch(${l} ${c} ${h} / ${a})`
+    }
+
+    lchLinput.addEventListener('input', updateLchPreview)
+    lchCinput.addEventListener('input', updateLchPreview)
+    lchHinput.addEventListener('input', updateLchPreview)
+    lchAinput.addEventListener('input', updateLchPreview)
+
+    updateLchPreview()
+  })
+ </script>

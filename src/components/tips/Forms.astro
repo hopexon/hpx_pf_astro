@@ -1,0 +1,191 @@
+---
+import { Code } from 'astro:components'
+---
+
+<h2 id="forms" class="mt__8">Forms</h2>
+
+<details class='mt__2 acc__with__anim' open>
+  <summary>Samples<span class='twister' aria-hidden='true'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <h4 class='mt__2'>▼form要素</h4>
+        <p class="comment">
+          全てのフォームは<code>form</code>要素から始まる。<br />
+          <code>section</code>や<code>footer</code>と同様にコンテナ要素だが、フォーム用のユニークな属性に対応するなどフォームを含めるために特化している。<br />
+          全ての属性は省略可能だが、少なくとも<code>action</code>と<code>method</code>属性は常に設定するべき。<br />
+          ・<code>action</code>：フォームで収集したデータを送信すべき場所(URL)を定義する<br />
+          ・<code>method</code>：データを送信するために使用するHTTPメソッド(<code>get</code>または<code>post</code>)を定義する。
+        </p>
+
+        <h4 class="mt__6">▼label, input, textarea 要素</h4>
+        <p class="comment">
+          単純な問い合わせフィールドを作成する。
+        </p>
+
+        <form action="/my-handling-form-page" method="post">
+          <p class="form__line__wrap">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="user_name"
+              placeholder=" Mary Sue"
+            />
+          </p>
+          <p class="form__line__wrap">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="name"
+              name="user_email"
+              placeholder=" example@xxx.co.jp"
+            />
+          </p>
+          <p class="form__line__wrap">
+            <label for="message">Message:</label>
+            <textarea 
+              name="user_message" 
+              id="message"
+              placeholder="Apply your message"
+            ></textarea>
+          </p>
+        </form>
+      
+        <Code code={`
+    <form action="/my-handling-form-page" method="post">
+      <p class="form__line__wrap">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="user_name"
+          placeholder=" Mary Sue"
+        />
+      </p>
+      <p class="form__line__wrap">
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="name"
+          name="user_email"
+          placeholder=" example@xxx.co.jp"
+        />
+      </p>
+      <p class="form__line__wrap">
+        <label for="message">Message:</label>
+        <textarea 
+          name="user_message" 
+          id="message"
+          placeholder="Apply your message"
+        ></textarea>
+      </p>
+    </form>
+        `} lang='html' theme='github-dark'>
+        </Code>
+
+        <p class="mt__3 comment">
+          上記では以下の要素が用いられている。<br />
+          <ul>
+            <li>・<code>p</code>：コードを扱いやすく構造化するため、およびスタイル設定を容易にするためにラップする。</li>
+            <li>・<code>label</code>：<code>for</code>属性を入力フォームが持つ id と紐づけることで、特定の入力欄に対するラベルであるとして明示し、アクセシビリティを向上させる。具体的な一例として、紐づけが完了した状態のラベルをクリックすると、対応したウィジェット(入力欄)がアクティブ化する</li>
+            <li>・<code>input</code>：<code>type='text'</code>そのままの場合シンプルな単一行の入力欄。<code>type='email'</code>とした場合メールアドレスだけを受け付ける入力欄となるほか、iOS などのデバイスではアドレス入力ようにふさわしいキーボードレイアウトへと自動で変化させる</li>
+            <li>・<code>textarea</code>要素は複数行のテキストフィールド。input と異なり空要素ではなく、閉じタグが用意されていることに注意</li>
+          </ul>
+        </p>
+
+        <h4 class="mt__6">▼input 要素</h4>
+          <form>
+            <p>
+              <label for="test-select-type">Select the type:</label>
+              <input type="text" id="test-select-type" class="test-select-type" name="test-select-type" placeholder="text">
+            </p>
+            <p>
+              <label for="test-select-type">Apply the placeholder:</label>
+              <input type="text" id="test-select-placeholder" class="test-select-placeholder" name="test-select-placeholder" placeholder="placeholder">
+            </p>
+            <p>
+              <label for="test-select-type">Add attrs:</label>
+              <input type="text" id="test-select-disabled" class="test-select-disabled" name="test-select-disabled" placeholder="feel free to...">
+            </p>
+          </form>
+
+          <form>
+            <label for="test-input">Change the property of input below: </label>
+            <input 
+              type="text"
+              id="test-input"
+              class="test-input"
+              name="test-input"
+              placeholder=""
+            >
+          </form>
+
+        <h4 class="mt__3">input 要素の注意点</h4>
+        <ul>
+          <li>・<code>type='text'</code>などで単一行の入力欄とした場合、欄内でたとえ改行を行ってもフォーム内容の送信時"自動的に改行コードが削除される"</li>
+          <li>・</li>
+          <li>・</li>
+          <li>・</li>
+          <li>・</li>
+        </ul>
+      </div>
+    </div>
+</details>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const testInputEl = document.getElementById('test-input')
+    const testTypeChangeBox = document.getElementById('test-select-type')
+    const testPlaceholderChangeBox = document.getElementById('test-select-placeholder')
+    const testDisabledChangeBox = document.getElementById('test-select-disabled')
+    
+
+    if(
+      !(testInputEl instanceof HTMLInputElement) || 
+      !(testTypeChangeBox instanceof HTMLInputElement) || 
+      !(testPlaceholderChangeBox instanceof HTMLInputElement) ||
+      !(testDisabledChangeBox instanceof HTMLInputElement)
+    ) return
+
+    testTypeChangeBox.addEventListener('change', () => {
+      testInputEl.type = testTypeChangeBox.value.trim()
+    })
+
+    testPlaceholderChangeBox.addEventListener('change', () => {
+      testInputEl.placeholder = testPlaceholderChangeBox.value.trim()
+    })
+
+    testDisabledChangeBox.addEventListener('change', () => {
+      const value = testDisabledChangeBox.value.trim()
+      testInputEl.readOnly = value.includes('readonly')
+      testInputEl.disabled = value.includes('disabled')
+      testInputEl.spellcheck = value.includes('spellcheck')
+      testInputEl.hidden = value.includes('hidden')
+    })
+
+  })
+</script>
+
+<style>
+  form {
+    display: grid;
+    row-gap: 1rem;
+    inline-size: min(100%, 40rem);
+    /* margin-inline: auto; */
+  }
+
+  .form__line__wrap {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+  }
+
+  label,
+  input,
+  textarea {
+    display: inline-block;
+  }
+
+  label {
+    inline-size: 100%;
+  }
+</style>

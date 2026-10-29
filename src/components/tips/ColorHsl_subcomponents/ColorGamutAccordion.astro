@@ -1,0 +1,27 @@
+---
+import { Code } from 'astro:components'
+---
+
+<details class='acc__with__anim'>
+  <summary>@media color-gamut<span class='twister'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <Code code={`
+    /* 指定可能な色空間は srgb / p3 / rec2020 の3つ */
+    @media (color-gamut: rec2020) {
+      background-image: radial-gradient(in oklab, oklch(0.6 0 0), transparent 72%);
+    }
+
+    @media (color-gamut: p3) {
+      background-color: color(display-p3 1 1 0);
+    }
+        `} lang="css" theme="github-dark"></Code>
+        <p class="comment">
+          「クライアント(ブラウザ)が指定した色域に対応しているか」によって適用するスタイルを変更するためのメディア特性。<br />
+          ・srgb：ユーザエージェントと出力機器が<code>sRGB</code>に対応しているか否か。大概のモニタが対応。<br />
+          ・p3：<code>Display P3</code>またはそれ以上の色域に対応しているか。sRGBが含まれる。<br />
+          ・rec2020：<code>ITU-R 勧告 BT.2020</code>またはそれ以上に対応しているか。P3を含む。
+        </p>
+      </div>
+    </div>
+</details>

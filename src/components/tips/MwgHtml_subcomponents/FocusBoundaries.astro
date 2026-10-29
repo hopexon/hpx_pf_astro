@@ -1,0 +1,54 @@
+---
+import { Code } from 'astro:components'
+---
+
+<details class='acc__with__anim'>
+  <summary>Focus Boundaries and Visibility<span class='twister' aria-hidden='true'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <details class='acc__with__anim'>
+          <summary>All Do's Don'ts<span class='twister' aria-hidden='true'></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <ul>
+                  <li>・その時点で画面に展開されていないメニューなど、総体として"隠された"セクションには<code>inert</code>属性を付与しよう。タブアクセスおよびアクセシビリティツリーからの排除が可能となる。</li>
+                  <li>・<code>showModal()</code>メソッドで開かれるモーダルダイアログ要素については、デフォルトでbody全体(たぶん)に inert が付与された場合の挙動を取る(タブ以外にフォーカスが当たらない)ため、特段対応の必要はない。</li>
+                  <li>・inert を付与した要素にはペアとしてCSSで<code>opacity: 0.5;</code>を付与し、視覚的にも非活性であることを伝えよう</li>
+                  <li>・タブフォーカス順はDOMの並び順に沿うため、特に項目が連続する<code>nav</code>などにおいて、<code>order</code>や<code>flex-flow: row-reverse</code>などで"DOMの変更を伴わない"見た目だけの並び順変更はタブフォーカスを混乱させる</li>
+                  <li>・<code>tabindex=''</code>に正の数(1,2,3...)を当ててはいけない。タブフォーカスさせたい場合は<code>='0'</code>、JSにフォーカスさせたい場合は<code>='-1'</code>を用いる</li>
+                  <li>・<code>element.focus(&#123; preventScroll: true &#125;)</code>はユーザビリティテストなしに用いてはならない。画面外またはオフスクリーンの要素に対してフォーカスが当たったままフォーカスを見失う可能性がある</li>
+                </ul>
+            </div>
+          </div>
+        </details>
+
+        <details class='acc__with__anim'>
+          <summary>Do Use the Global inert Attr for Entire Hidden Sections<span class='twister' aria-hidden='true'></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        非展開中のメニューなど"隠された"セクションに対しては inert を当て、
+        アクセシビリティツリーからの参照や不要なタブフォーカスを排除する。
+
+        const dialogItems = document.querySelectorAll<HTMLDialogElement>
+        
+        dialogItems.forEach((dialog) => {
+          const syncInert = () => {
+            dialog.toggleAttribute('inert', !dialog.open)
+          }
+        
+          syncInert()
+        
+          const observer = new MutationObserver(syncInert)
+          observer.observe(dialog, {
+            attributes: true,
+            attributeFilter: ['open']
+          })
+        })
+                `} lang='js' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+</details>
