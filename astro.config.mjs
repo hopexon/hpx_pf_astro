@@ -6,7 +6,7 @@ import mdx from '@astrojs/mdx'
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    expressiveCode(),
+    expressiveCode({ removeUnusedThemes: false }),
     react(),
     mdx()],
   vite: {
