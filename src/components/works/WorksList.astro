@@ -1,0 +1,66 @@
+---
+interface Props {
+  title: string
+  venue: string
+  date: string
+  imgBaseName: string
+  alt: string
+  width: number | string
+  height: number | string
+  index: number
+}
+const { title, venue, date, imgBaseName, alt, width, height, index } = Astro.props
+---
+
+<div class="artwork__wrapper fadeInTrigger fadeInItem">
+  {
+    title !== '' && (
+      <dl class="artwork__info">
+        <dt class="artwork__ttl">{title}</dt>
+        <dd class="artwork__date">{date}</dd>
+        {venue !== '' && <dd class="artwork__venue">{venue}</dd>}
+      </dl>
+    )
+  }
+  <img
+    src={`/works/${imgBaseName}_A2.avif`}
+    alt={alt || title}
+    width={Number(width)}
+    height={Number(height)}
+    style="width: 100%; max-inline-size: 1000px; height: auto;"
+    class="artwork__img"
+    loading={index === 0 ? 'eager' : 'lazy'}
+    fetchpriority={index === 0 ? 'high' : 'auto'}
+  />
+</div>
+
+<script>
+  const observeWorks = () => {
+    const items = document.querySelectorAll('.artwork__wrapper.fadeInTrigger')
+
+    if (!('IntersectionObserver' in window)) {
+      items.forEach((item) => item.classList.add('is-appeared'))
+      return
+    }
+
+    items.forEach((item) => item.classList.add('is-pending'))
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('is-pending')
+            entry.target.classList.add('is-appeared')
+            currentObserver.unobserve(entry.target)
+          }
+        })
+      },
+      { rootMargin: '0px 0px -20% 0px', threshold: 0 }
+    )
+
+    items.forEach((item) => observer.observe(item))
+    document.addEventListener('astro:before-swap', () => observer.disconnect(), { once: true })
+  }
+
+  document.addEventListener('astro:page-load', observeWorks)
+</script>

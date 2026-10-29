@@ -1,0 +1,408 @@
+---
+import { Code } from 'astro:components'
+---
+
+<h2 id='Images' class="mt__8">Images</h2>
+
+<details class='mt__2 acc__with__anim'>
+  <summary>Explanation<span class='twister'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <p class="comment">
+            <code>sizes</code>属性の登場により画像の実装は実に面倒なことになっている。<br />
+            <br />
+            原則<code>picture</code>要素で拡張子フォールバックを担保し、各クエリごとに表示幅が固定(画面幅に追従しない)の場合は、「<code>DPI</code>に沿う画像密度」のみ考慮すればよいので<code>密度記述子 1x</code>、<br />
+            画面幅の拡大に合わせグングン画像が拡大していく場合は<code>幅記述子 sizes + w</code>が妥当となる。<br />
+            <br />
+            sizes 属性内で幅記述子と密度記述子は併記不可能なため一見同属性では高 DPI 環境へ対応できないように思えるが、大方の場合ブラウザ側が CSS 表示幅と DPI を掛けた横幅から要求する画像を判断するため、幅記述子でも<code>@3x</code>までをざっくり用意すれば高 DPI への対応は可能。<br />
+            <br />
+            具体的なパターンに基づいた事例は以下 Sample Code を参照。<br />
+            <br />
+            <pre>
+              <code style="background-color: inherit;">
+    表示する画像がガチンコで1枚だけ？
+      ├─ はい → <code>srcset</code>も<code>sizes</code>も不要（<code>img src</code>だけ）
+      └─ いいえ
+          └─ CSS 上の表示幅は画面幅に応じて変わる？
+              ├─ いいえ 各クエリごとに幅が固定 >> サイズ記述子のみでOK
+              └─ はい <code>width: 100%</code>などで流動的に変わる >> <code>picture + sizes + 幅記述子</code>
+              </code>
+            </pre>
+        </p>
+        <h4 class="mt__2">▼共通ルール</h4>
+        <ul>
+          <li>・<code>sizes</code>属性は"レンダリング時の画面幅"を基に最適な画像サイズを選択する。</li>
+          <li>・<code>sizes</code>属性は"画面幅拡大に合わせ大サイズの画像へ自動で切り替える"が、縮小時は元に戻さない(※ブラウザの挙動に依存する)</li>
+          <li>・フォールバックが発生する可能性の高い拡張子から上行に記述する</li>
+          <li>・<code>PC</code>に対し<code>SP</code>を上行に記載する</li>
+          <li>・拡張子ごとにPCとSPをまとめる</li>
+          <li>・全<code>img, source</code>に<code>width, height</code>を指定する(省略可能パターンもあるが考えるだけ無駄)</li>
+          <li>・密度記述子のみの場合<code>sizes</code>属性は不要</li>
+        </ul>
+      </div>
+    </div>
+</details>
+
+<details class='acc__with__anim'>
+  <summary>Sample Code - with Different Aspects<span class='twister'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <Code code={`
+
+    各クエリごとに画像の表示幅が固定で、DPIにのみ注意すればよい場合は、
+    密度記述子 Nx を用いてDPIに比例した倍数の解像度を持つ画像セットを用意する
+
+    <!-- 密度記述子 -->
+    <picture>
+      <source
+        media="(max-width: 767px)"
+        type="image/avif"
+        srcset="img_01_sp.avif 1x, img_01_sp@2x.avif 2x, img_01_sp@3x.avif 3x"
+        width="300"
+        height="400"
+      >
+      <source
+        media="(max-width: 1200px)"
+        type="image/avif"
+        srcset="img_01_tb.avif 1x, img_01_tb@2x.avif 2x, img_01_tb@3x.avif 3x"
+        width="1000"
+        height="1000"
+      >
+      <source
+        type="image/avif"
+        srcset="img_01.avif 1x, img_01@2x.avif 2x, img_01@3x.avif 3x"
+        width="1200"
+        height="900"
+      />
+      <source
+        media="(max-width: 767px)"
+        type="image/webp"
+        srcset="img_01_sp.webp 1x, img_01_sp@2x.webp 2x, img_01_sp@3x.webp 3x"
+        width="300"
+        height="400"
+      >
+      <source
+        media="(max-width: 1200px)"
+        type="image/webp"
+        srcset="img_01_tb.webp 1x, img_01_tb@2x.webp 2x, img_01_tb@3x.webp 3x"
+        width="1000"
+        height="1000"
+      >
+      <source 
+        type="image/webp"
+        srcset="img_01.webp 1x, img_01@2x.webp 2x, img_01@3x.webp 3x"
+        width="1200"
+        height="900"
+      />
+      <source
+        media="(max-width: 767px)"
+        srcset="img_01_sp.jpg 1x, img_01_sp@2x.jpg 2x, img_01_sp@3x.jpg 3x"
+        width="300"
+        height="400"
+      >
+      <source
+        media="(max-width: 1200px)"
+        srcset="img_01_tb.jpg 1x, img_01_tb@2x.jpg 2x, img_01_tb@3x.jpg 3x"
+        width="1000"
+        height="1000"
+      >
+      <img
+        srcset="img_01.jpg 1x, img_01@2x.jpg 2x, img_01@3x.jpg 3x"
+        src="img_01.jpg"
+        width="1200"
+        height="900"
+        alt="test image"
+        loading="lazy"
+      >
+    </picture>
+        `} lang='html' theme='github-dark'></Code>
+      </div>
+    </div>
+</details>
+
+<details class='acc__with__anim'>
+  <summary>Sample Code - with Different Aspects / Responsive Size<span class='twister'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <Code code={`
+
+    ・クエリごとに画像のアスペクト比が変化する
+    ・inline-size: 100% など画面幅に合わせ表示サイズ横幅が可変する
+    場合は
+    ・アスペクト比変化への対応：picture タグ
+    ・画面幅に合わせた表示サイズの変化 sizes 属性
+    で対応する
+
+    <!-- クエリごとにアスペクト比が異なる且つ横幅が可変する画像に対する picture + 幅記述子 -->
+    <picture>
+      <source
+        media="(max-width: 767px)"
+        type="image/avif"
+        srcset="img_01_sp.avif 300w, img_01_sp@2x.avif 600w, img_01_sp@3x.avif 900w"
+        sizes="100dvw"
+        width="300"
+        height="400"
+      >
+      <source
+        media="(max-width: 1200px)"
+        type="image/avif"
+        srcset="img_01_tb.avif 1000w, img_01_tb@2x.avif 2000w, img_01_tb@3x.avif 3000w"
+        sizes="100dvw"
+        width="1000"
+        height="1000"
+      >
+      <source
+        type="image/avif"
+        srcset="img_01.avif 1200w, img_01@2x.avif 2400w, img_01@3x.avif 3600w"
+        sizes="1200px"
+        width="1200"
+        height="900"
+      />
+      <source
+        media="(max-width: 767px)"
+        type="image/webp"
+        srcset="img_01_sp.webp 300w, img_01_sp@2x.webp 600w, img_01_sp@3x.webp 900w"
+        sizes="100dvw"
+        width="300"
+        height="400"
+      >
+      <source
+        media="(max-width: 1200px)"
+        type="image/webp"
+        srcset="img_01_tb.webp 1000w, img_01_tb@2x.webp 2000w, img_01_tb@3x.webp 3000w"
+        sizes="100dvw"
+        width="1000"
+        height="1000"
+      >
+      <source 
+        type="image/webp"
+        srcset="img_01.webp 1200w, img_01@2x.webp 2400w, img_01@3x.webp 3600w"
+        sizes="1200px"
+        width="1200"
+        height="900"
+      />
+      <source
+        media="(max-width: 767px)"
+        srcset="img_01_sp.jpg 300w, img_01_sp@2x.jpg 600w, img_01_sp@3x.jpg 900w"
+        sizes="100dvw"
+        width="300"
+        height="400"
+      >
+      <source
+        media="(max-width: 1200px)"
+        srcset="img_01_tb.jpg 1000w, img_01_tb@2x.jpg 2000w, img_01_tb@3x.jpg 3000w"
+        sizes="100dvw"
+        width="1000"
+        height="1000"
+      >
+      <img
+        srcset="img_01.jpg 1200w, img_01@2x.jpg 2400w, img_01@3x.jpg 3600w"
+        src="img_01.jpg"
+        width="1200"
+        height="900"
+        sizes="(max-width: 1200px) 100dvw, 1200px"
+        alt="test image"
+        loading="lazy"
+      >
+    </picture>
+        `} lang='html' theme='github-dark'></Code>
+      </div>
+    </div>
+</details>
+
+<details class='acc__with__anim'>
+  <summary>Sample Code - with Same Aspects / Different Extension<span class='twister'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <Code code={`
+    ・画像のアスペクト比がクエリ間で共通
+    ・画面横幅に合わせ画像表示サイズも拡縮する
+    場合は sizes 属性のみの対応で問題ない。
+    複数拡張子に対応するため picture 要素は使用することになるが、記述量は例2より大幅に削減される。
+
+    <!-- 画像のアスペクト比がクエリで変わらない且つ画面幅に画像サイズが追従する場合 -->
+    <picture>
+      <source
+        type="image/avif"
+        srcset="img_01_sp.avif 300w, img_01_sp@2x.avif 600w, img_01_sp@3x.avif 900w, img_01_tb.avif 1000w, img_01.avif 1200w, img_01_tb@2x.avif 2000w, img_01@2x.avif 2400w, img_01_tb@3x.avif 3000w, img_01@3x.avif 3600w"
+        sizes="(max-width: 1200px) 100dvw, 1200px"
+      >
+      <source
+        type="image/webp"
+        srcset="img_01_sp.webp 300w, img_01_sp@2x.webp 600w, img_01_sp@3x.webp 900w, img_01_tb.webp 1000w, img_01.webp 1200w, img_01_tb@2x.webp 2000w, img_01@2x.webp 2400w, img_01_tb@3x.webp 3000w, img_01@3x.webp 3600w"
+        sizes="(max-width: 1200px) 100dvw, 1200px"
+      >
+      <img
+        srcset="img_01_sp.jpg 300w, img_01_sp@2x.jpg 600w, img_01_sp@3x.jpg 900w, img_01_tb.jpg 1000w, img_01.jpg 1200w, img_01_tb@2x.jpg 2000w, img_01@2x.jpg 2400w, img_01_tb@3x.jpg 3000w, img_01@3x.jpg 3600w"
+        src="img_01.jpg"
+        width="1200"
+        height="900"
+        sizes="(max-width: 1200px) 100dvw, 1200px"
+        alt="test image"
+        loading="lazy"
+      >
+    </picture>
+        `} lang='html' theme='github-dark'></Code>
+      </div>
+    </div>
+</details>
+
+<details class='acc__with__anim'>
+  <summary>Exhibition of Sample 3<span class='twister'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <picture>
+          <source
+            type="image/avif"
+            srcset="img_01_sp.avif 300w, img_01_sp@2x.avif 600w, img_01_sp@3x.avif 900w, img_01_tb.avif 1000w, img_01.avif 1200w, img_01_tb@2x.avif 2000w, img_01@2x.avif 2400w, img_01_tb@3x.avif 3000w, img_01@3x.avif 3600w"
+            sizes="(max-width: 1200px) 100dvw, 1200px"
+          >
+          <source
+            type="image/webp"
+            srcset="img_01_sp.webp 300w, img_01_sp@2x.webp 600w, img_01_sp@3x.webp 900w, img_01_tb.webp 1000w, img_01.webp 1200w, img_01_tb@2x.webp 2000w, img_01@2x.webp 2400w, img_01_tb@3x.webp 3000w, img_01@3x.webp 3600w"
+            sizes="(max-width: 1200px) 100dvw, 1200px"
+          >
+          <img
+            srcset="img_01_sp.jpg 300w, img_01_sp@2x.jpg 600w, img_01_sp@3x.jpg 900w, img_01_tb.jpg 1000w, img_01.jpg 1200w, img_01_tb@2x.jpg 2000w, img_01@2x.jpg 2400w, img_01_tb@3x.jpg 3000w, img_01@3x.jpg 3600w"
+            src="img_01.jpg"
+            width="1200"
+            height="600"
+            sizes="(max-width: 1200px) 100dvw, 1200px"
+            alt="test image"
+            loading="lazy"
+          >
+        </picture>
+      </div>
+    </div>
+</details>
+
+<details class='acc__with__anim'>
+  <summary>Templates<span class='twister'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <Code code={`
+    上から
+    ・picture + x / Aspects Difference in Each Query  / Fixed Image Size 
+    ・picture + w + size / Aspects Difference in Each Query / Adjastable Image Size
+    ・picture + w + size / No Aspects Difference in Any Query / Adjastable Image Size
+
+  ==================================
+
+    <picture>
+      <source
+        media="(max-width: 767px)"
+        type="image/avif"
+        srcset=".avif 1x, .avif 2x, .avif 3x"
+        width=""
+        height=""
+      >
+      <source
+        type="image/avif"
+        srcset=".avif 1x, .avif 2x, .avif 3x"
+        width=""
+        height=""
+      />
+      <source
+        media="(max-width: 767px)"
+        type="image/webp"
+        srcset=".webp 1x, .webp 2x, .webp 3x"
+        width=""
+        height=""
+      >
+      <source 
+        type="image/webp"
+        srcset=".webp 1x, .webp 2x, .webp 3x"
+        width=""
+        height=""
+      />
+      <source
+        media="(max-width: 767px)"
+        srcset=".jpg 1x, .jpg 2x, .jpg 3x"
+        width=""
+        height=""
+      >
+      <img
+        srcset=".jpg 1x, .jpg 2x, .jpg 3x"
+        src=".jpg"
+        width=""
+        height=""
+        alt=""
+      >
+    </picture>
+
+  ==================================
+
+    <picture>
+      <source
+        media="(max-width: 767px)"
+        type="image/avif"
+        srcset=".avif 300w, .avif 600w, .avif 900w"
+        sizes="100dvw"
+        width=""
+        height=""
+      >
+      <source
+        type="image/avif"
+        srcset=".avif 1200w, .avif 2400w, .avif 3600w"
+        sizes="1200px"
+        width="1200"
+        height="900"
+      />
+      <source
+        media="(max-width: 767px)"
+        type="image/webp"
+        srcset=".webp 300w, .webp 600w, .webp 900w"
+        sizes="100dvw"
+        width=""
+        height=""
+      >
+      <source 
+        type="image/webp"
+        srcset=".webp 1200w, .webp 2400w, .webp 3600w"
+        sizes="1200px"
+        width=""
+        height=""
+      />
+      <source
+        media="(max-width: 767px)"
+        srcset=".jpg 300w, .jpg 600w, .jpg 900w"
+        sizes="100dvw"
+        width=""
+        height=""
+      >
+      <img
+        srcset=".jpg 1200w, .jpg 2400w, .jpg 3600w"
+        src=".jpg"
+        width=""
+        height=""
+        sizes="(max-width: 1200px) 100dvw, 1200px"
+        alt=""
+      >
+    </picture>
+
+  ==================================
+
+    <picture>
+      <source
+        type="image/avif"
+        srcset=".avif 300w, .avif 600w, .avif 900w, .avif 1000w, .avif 1200w, .avif 2000w, .avif 2400w, .avif 3000w, .avif 3600w"
+        sizes="(max-width: 1200px) 100dvw, 1200px"
+      >
+      <source
+        type="image/webp"
+        srcset=".webp 300w, .webp 600w, .webp 900w, .webp 1000w, .webp 1200w, .webp 2000w, .webp 2400w, .webp 3000w, .webp 3600w"
+        sizes="(max-width: 1200px) 100dvw, 1200px"
+      >
+      <img
+        srcset=".jpg 300w, .jpg 600w, .jpg 900w, .jpg 1000w, .jpg 1200w, .jpg 2000w, .jpg 2400w, .jpg 3000w, .jpg 3600w"
+        src=".jpg"
+        width=""
+        height=""
+        sizes="(max-width: 1200px) 100dvw, 1200px"
+        alt=""
+      >
+    </picture>
+        `} lang='html' theme='github-dark'></Code>
+      </div>
+    </div>
+</details>

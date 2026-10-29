@@ -1,0 +1,134 @@
+---
+import Code from 'astro:components'
+---
+
+<details class='acc__with__anim'>
+  <summary>Inheritance and The Cascade<span class='twister' aria-hidden='true'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <p class="comment">
+          <code>BEM</code>などの命名則を用いて構造を示すことは避ける。<br />
+          代替として<code>Cascade Layers</code>や<code>:where()</code>を用いて制作者が自然に意図を反映できるようなしくみを構築する。
+        </p>
+        <p class="comment">
+          Cascade Layers(<code>@layer</code>)を用いて明示的なスタイル階層を定義しておき、且つ階層の優先度を定義する(例：reset > base > theme > components > utilities ...)。<br />
+          併せて :where() を用いて妥当な、明確な意味合いを持つ競合でのみ継承度の比較が行われるようにすることで、スタイルのオーバーライドを簡易にする。<br />
+          なお<code>:not()</code>や遠い祖先からの継承など特殊ケースにおいては :where() の使用を控えること。
+        </p>
+        <p class="comment">
+          明示的な値の代わりに<code>inherit</code>, <code>initial</code>, <code>unset</code>, <code>revert</code>などの共通キーワードを積極的に使用することで、スタイルの流れや意味合いをより明快にするとともに保守性を向上させる。<br />
+        </p>
+        <h4 class='mt__2'>▼各値の詳細</h4>
+        <ul>
+          <li>・<code>initial</code>：「W3C」が定義する各プロパティの初期値を値とする。ユーザエージェントやリセットCSSの初期値ではないことに注意</li>
+          <li>・<code>inherit</code>：該当プロパティを持つ最も近い親または祖先要素の値を継承する。いずれの祖先も該当プロパティを保持していない場合は<code>initial</code>と同じ挙動を取る。注意点として"例えそのプロパティが非継承プロパティであったとしても強制的に継承する"点が<code>unset</code>と異なる</li>
+          <li>・<code>unset</code>：親または祖先が該当のプロパティを保持しており<code>且つそのプロパティが"継承プロパティである場合"</code>はその値を継承する。該当プロパティが非継承プロパティの場合、およびいずれの親または祖先要素も該当プロパティを保持敷いていない場合は<code>initial</code>と同一の挙動を取る</li>
+          <li>・<code>revert</code>：その環境の<code>スタイルオリジン</code>までロールバックする。例えば<code>Stylus</code>拡張などでブラウザ上に閲覧者が独自のスタイルを当てている場合はページ自体のスタイルを破棄して閲覧者作成のスタイルへ、特に閲覧者側指定のスタイルが無ければユーザエージェントの初期値に戻す</li>
+        </ul>
+        <h4 class='mt__2'>▼代表的な継承プロパティ</h4>
+        <ul class="cascadable__list">
+          <li>color</li>
+          <li>font</li>
+          <li>font-family</li>
+          <li>font-size</li>
+          <li>font-stretch</li>
+          <li>font-style</li>
+          <li>font-variant</li>
+          <li>font-weight</li>
+          <li>font-feature-settings</li>
+          <li>font-kerning</li>
+          <li>font-language-override</li>
+          <li>font-optical-sizing</li>
+          <li>font-variation-settings</li>
+          <li>line-height</li>
+          <li>letter-spacing</li>
+          <li>word-spacing</li>
+          <li>text-align</li>
+          <li>text-indent</li>
+          <li>text-transform</li>
+          <li>white-space</li>
+          <li>word-break</li>
+          <li>overflow-wrap</li>
+          <li>direction</li>
+          <li>writing-mode</li>
+          <li>visibility</li>
+          <li>cursor</li>
+          <li>list-style</li>
+          <li>list-style-image</li>
+          <li>list-style-position</li>
+          <li>list-style-type</li>
+          <li>quotes</li>
+          <li>tab-size</li>
+          <li>orphans</li>
+          <li>widows</li>
+          <li>border-collapse</li>
+          <li>border-spacing</li>
+          <li>caption-side</li>
+          <li>empty-cells</li>
+          <li>text-rendering</li>
+          <li>text-justify</li>
+        </ul>
+        <h4 class='mt__2'>▼代表的な非継承プロパティ</h4>
+        <ul class="cascadable__list">
+          <li>margin</li>
+          <li>margin-top</li>
+          <li>margin-right</li>
+          <li>margin-bottom</li>
+          <li>margin-left</li>
+          <li>padding</li>
+          <li>padding-top</li>
+          <li>padding-right</li>
+          <li>padding-bottom</li>
+          <li>padding-left</li>
+          <li>width</li><li>height</li>
+          <li>min-width</li><li>max-width</li>
+          <li>min-height</li><li>max-height</li>
+          <li>display</li>
+          <li>position</li>
+          <li>top</li><li>right</li><li>bottom</li><li>left</li>
+          <li>z-index</li>
+          <li>float</li><li>clear</li>
+          <li>overflow</li>
+          <li>overflow-x</li><li>overflow-y</li>
+          <li>box-sizing</li>
+          <li>box-shadow</li>
+          <li>opacity</li>
+          <li>transform</li>
+          <li>transform-origin</li>
+          <li>transition</li>
+          <li>animation</li>
+          <li>background</li>
+          <li>background-color</li>
+          <li>background-image</li>
+          <li>background-position</li>
+          <li>background-size</li>
+          <li>background-repeat</li>
+          <li>border</li>
+          <li>border-width</li><li>border-style</li><li>border-color</li>
+          <li>border-radius</li>
+          <li>outline</li>
+          <li>outline-width</li><li>outline-style</li><li>outline-color</li>
+          <li>flex</li>
+          <li>flex-grow</li><li>flex-shrink</li><li>flex-basis</li>
+          <li>flex-direction</li><li>flex-wrap</li>
+          <li>justify-content</li>
+          <li>align-items</li><li>align-content</li><li>align-self</li>
+          <li>order</li>
+          <li>gap</li><li>row-gap</li><li>column-gap</li>
+          <li>grid</li>
+          <li>grid-template</li>
+          <li>grid-template-columns</li><li>grid-template-rows</li>
+          <li>grid-column</li><li>grid-row</li><li>grid-area</li>
+          <li>grid-gap</li>
+          <li>content</li>
+          <li>counter-reset</li>
+          <li>counter-increment</li>
+          <li>object-fit</li>
+          <li>object-position</li>
+          <li>resize</li>
+          <li>pointer-events</li>
+          <li>user-select</li>
+        </ul>
+      </div>
+    </div>
+</details>

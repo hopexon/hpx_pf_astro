@@ -1,0 +1,68 @@
+---
+import { Code } from 'astro:components'
+---
+
+<details class='acc__with__anim'>
+  <summary>DisClousures: Details and Summary<span class='twister' aria-hidden="true"></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <details class='acc__with__anim'>
+          <summary>All Dos and Don'ts<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <p class="comment">※ 詳細は <a href="#accordionsample" class="item__hover" style="text-decoration: underline;">Accordion</a> を参照のこと。</p>
+                <ul>
+                  <li>・ブラウザネイティブなアコーディオン実装のため<code>details</code>要素と<code>summary</code>要素を使おう</li>
+                  <li>・summary は details の最初の子要素にしよう</li>
+                  <li>・summary を見出し要素として使わなければならない場合は、より堅牢な実装方法を検討しよう(後述)</li>
+                  <li>・展開中 details のスタイリングには<code>details[open]</code>セレクタを使おう</li>
+                  <li>・details が内包するコンテンツのスタイリングには<code>::details-content</code>セレクタを使おう</li>
+                  <li>・複数アコーディオンのうち展開動作を排他的にしたい場合は<code>name</code>属性を使おう</li>
+                  <li>・summary 内に他のインタラクティブな要素を直接含めてはいけない(<code>a</code>, <code>link</code>など)</li>
+                  <li>・開閉状態が分かる装飾無しに、summary にデフォルトの三角形を消すのはやめよう</li>
+                  <li>・summary に対し<code>title</code>属性でツールチップを設けるのはやめよう</li>
+                </ul>
+                <Code code={`
+        
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+        <details class='acc__with__anim'>
+          <summary>If You Hafta Combine Headings and Summary<span class='twister' aria-hidden="true"></span></summary>
+            <div class='accordion__overflow__hidden'>
+              <div class='content__wrap'>
+                <Code code={`
+        以下の場合、h2 の意味は summary に上書きされ機能を果たさない。
+        
+        <details>
+          <summary><h2>Category Title</h2></summary>
+          <div>
+            <div>
+              contents...
+            </div>
+          </div>
+        </details>
+        
+        
+        summary に見出しとしての意味を持たせなければならない場合は、以下のような例を検討する。
+        
+        <h2>
+          <button
+            type="button"
+            aria-expanded="false"
+            aria-controls="significant-section-content"
+          >
+            Siginificant Section
+          </button>
+        </h2>
+        <div id="significant-section-content" hidden>
+          contents...
+        </div>
+                `} lang='html' theme='github-dark'></Code>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+</details>

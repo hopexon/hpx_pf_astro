@@ -199,7 +199,7 @@ export const mtgCards: MtgCard[] = [
     name: 'Way of the Mentor',
     number: 208,
     artist: 'Danny Schwartz',
-    artistUrl: 'https://www.instagram.com/dannyschwartzart/',
+    artistUrl: 'https://bsky.app/profile/dannyschwartzart.bsky.social',
     imgFull: 'art_way_of_the_mentor.avif',
     imgCard: 'card_way_of_the_mentor.avif',
     flavor: ``

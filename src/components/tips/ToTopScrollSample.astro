@@ -1,0 +1,59 @@
+---
+import { Code } from 'astro:components'
+---
+
+<h2 id="to-top-sample" class="mt__8">toTop Button</h2>
+
+<details class='mt__2 acc__with__anim'>
+  <summary>Sample Code<span class='twister' aria-hidden='true'></span></summary>
+    <div class='accordion__overflow__hidden'>
+      <div class="content__wrap">
+        <Code code={`
+    <button 
+      type="button" 
+      id="to__top__scroll"
+      class="to__top__scroll"
+      aria-label="ページの先頭に戻る"
+    >
+      <span aria-hidden="true">▲</span>
+    </button>
+        `} lang='html' theme='github-dark'>
+        </Code>
+
+        <Code code={`
+    document.addEventListener('astro:page-load', () => {
+      const toTopBtn = document.getElementById('to__top__scroll')
+      if (!(toTopBtn instanceof HTMLButtonElement)) return
+
+      const judgeActivation = () => {
+        const isActive = window.scrollY >= 100
+
+        // 条件 isActive が true であればクラス is-active の付与状態をトグルする
+        toTopBtn.classList.toggle('is-active', isActive)
+
+        // タブフォーカスを disabled で無効化する
+        toTopBtn.disabled = !isActive
+      }
+
+      judgeActivation()
+
+      // passive: true = preventdefault を参照先イベントに用いない
+      window.addEventListener('scroll', judgeActivation, { passive: true })
+
+      toTopBtn.addEventListener('click', () => {
+        window.scroll({
+          top: 0,
+          behavior: 'smooth'
+        })
+      })
+
+      // before-swap = DOMが更新される直前
+      // 遷移などで更新される直前に監視イベントを破棄し、次の状態での重複を防ぐ
+      document.addEventListener('astro:before-swap', () => {
+        window.removeEventListener('scroll', judgeActivation)
+      }, { once: true })
+    })
+        `} lang='js' theme='github-dark'></Code>
+      </div>
+    </div>
+</details>

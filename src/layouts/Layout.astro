@@ -1,36 +1,37 @@
 ---
-import { ClientRouter } from "astro:transitions"
-import GlobalHeader from "../components/common/GlobalHeader.astro"
-import GlobalFooter from "../components/common/GlobalFooter.astro"
-import ToTopBtn from "../components/common/ToTopBtn.tsx"
-import "../styles/global.css"
+import { ClientRouter } from 'astro:transitions'
+import GlobalHeader from '../components/common/GlobalHeader.astro'
+import GlobalFooter from '../components/common/GlobalFooter.astro'
+import '../styles/global.css'
+import ToTopScroll from '../components/common/ToTopScroll.astro'
+
+interface Props {
+	title?: string
+	description?: string
+}
+
+const { title = 'Astro Basics', description } = Astro.props
 ---
 
 <!doctype html>
 <html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="generator" content={Astro.generator} />
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
     <slot name="head" />
-    <title>Astro Basics</title>
+		<title>{title}</title>
+		{description && <meta name="description" content={description} />}
     <ClientRouter />
-    <script
-      type="module"
-      src="https://unpkg.com/invokers-polyfill@latest/invoker.min.js"></script>
-    <script
-      type="module"
-      src="https://cdn.jsdelivr.net/npm/dialog-closedby-polyfill@latest/index.min.js"
-    ></script>
-  </head>
-  <body>
+	</head>
+	<body>
     <GlobalHeader transition: persist />
-    <main>
-      <slot />
-      <ToTopBtn client:load />
-    </main>
+	<main>
+    <slot />
+  </main>
+    <ToTopScroll />
     <GlobalFooter transition: persist />
-  </body>
+	</body>
 </html>

@@ -1,0 +1,143 @@
+---
+const animateBlockText = ['F','X','X','K','O','F','F','','B','U','L','L','S','H','I','T','','A','S','S','H','O','L','E',]
+---
+
+<h2 class="mt__8">Elevation</h2>
+<div class="mt__1 comment__wrap">
+  <p class="comment">
+    <code>filter: drop-shadow()</code
+    >によるエレベーションを用いる場合は、エフェクトの大きさを<code>8段階</code
+    >程度に分類する。<br />
+    また高さを持った要素と背景要素の間でコントラスト比を保つ場合は、事前に要素へ持たせた<code
+      >border</code
+    >と背景の間で<code>3:1</code>のコントラスト比を確保する。<br />
+    つまり<code>border</code>を持たない要素に高さをもたせてはいけない。<br />
+    <br />
+    「高さを持った要素」の上に「高さを持った要素」を配置する場合は、原則上側の要素は二段階高く設置すること。
+  </p>
+</div>
+<div class="mt__2 elevation__grid">
+  {
+    Array.from({ length: 8 }).map((_, index) => (
+      <div class="elevation__content__wrap">
+        <div
+          class={`elevation__shadow__square elevation__shadow__${index + 1}`}
+        />
+        <p class="elevation__shadow__caption">drop shadow {index + 1}</p>
+      </div>
+    ))
+  }
+  <!-- without blur -->
+  {
+    Array.from({ length: 8 }).map((_, index) => (
+      <div class="elevation__content__wrap">
+        <div
+          class={`elevation__shadow__square elevation__shadow__${index + 11}`}
+        />
+        <p class="elevation__shadow__caption">no blur {index + 1}</p>
+      </div>
+    ))
+  }
+</div>
+<div class="mt__8 btns__wrap">
+  <button
+    type="button"
+    class="shadow__animate__control btn__item item__hover"
+    id="stop__animation">Shut Up!!</button
+  >
+  <button
+    type="button"
+    class="shadow__animate__control btn__item item__hover"
+    id="restart__animation">Just Kidding</button
+  >
+</div>
+<div class="mt__2 shadow__animate__grid">
+  {
+    Array.from({ length: 24 }).map((_, index) => (
+      <div class={`shadow__animate animate__${index + 1}`}>
+        <div class="shadow__animate__item">
+          {animateBlockText[index % animateBlockText.length]}
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  document.addEventListener("astro:page-load", function () {
+    const items = [...document.querySelectorAll(".shadow__animate")];
+    const stopButton = document.getElementById("stop__animation");
+    const restartButton = document.getElementById("restart__animation");
+
+    let isRunning = true;
+    let shouldChangeText = false;
+    let timerId = null;
+
+    function animateItem(item) {
+      if (!isRunning || item.classList.contains("is-animating")) return;
+
+      const target = item.querySelector(".shadow__animate__item");
+
+      if (!target) return;
+
+      item.classList.add("is-animating");
+      target.classList.add("is-active");
+
+      if (shouldChangeText) {
+        const textVal = Math.random();
+        if (textVal < 0.33) {
+          target.textContent = "HE!";
+        } else if (textVal > 0.66) {
+          target.textContent = "HO!";
+        } else {
+          target.textContent = "HA!";
+        }
+      }
+
+      window.setTimeout(() => {
+        target.classList.remove("is-active");
+        item.classList.remove("is-animating");
+      }, 150);
+    }
+
+    function animateRandomItem() {
+      if (!isRunning || items.length === 0) return;
+
+      const item = items[Math.floor(Math.random() * items.length)];
+      animateItem(item);
+
+      const delay = Math.floor(Math.random()) + 5;
+      timerId = window.setTimeout(animateRandomItem, delay);
+    }
+
+    stopButton?.addEventListener("click", () => {
+      isRunning = false;
+
+      if (timerId !== null) {
+        clearTimeout(timerId);
+        timerId = null;
+      }
+
+      items.forEach((item) => {
+        const target = item.querySelector(".shadow__animate__item");
+
+        item.classList.remove("is-animating");
+
+        if (target) {
+          target.classList.remove("is-active");
+          target.textContent = "!!";
+        }
+      });
+    });
+
+    restartButton?.addEventListener("click", () => {
+      if (isRunning) return;
+
+      isRunning = true;
+      shouldChangeText = true;
+      animateRandomItem();
+    });
+
+    animateRandomItem();
+  });
+</script>

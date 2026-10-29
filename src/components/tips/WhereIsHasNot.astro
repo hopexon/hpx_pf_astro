@@ -1,0 +1,178 @@
+---
+import { Code } from 'astro:components'
+---
+
+<h2 class="mt__8">:where() :is() :has() :not()</h2>
+          <details class="mt__3 acc__with__anim">
+            <summary>Sample Code<span class="twister"></span></summary>
+            <div class="accordion__overflow__hidden">
+              <div class="content__wrap">
+                <Code code={`
+    /* 引数に当てはまる要素全て(継承度最低) */
+    :where(h1, h2, p:not(first-child)) {
+      color: blue;
+    }
+
+    /* 引数に当てはまる要素全て(継承度 = 引数のうち最も高い継承度) */
+    :is(h1, h2, p:not(first-child)) {
+      color: blue;
+    }
+
+    /* :modal 要素を持った場合の :root */
+    :root:has(:modal) {
+      overflow: hidden;
+    }
+
+    /* 子要素に p を持つ div */
+    div:has(> p) {
+      border: 1px solid var(--base-950);
+    }
+
+    /* h2 を兄弟に持つ h1 */
+    h1:has(+ h2) {
+      margin-block-end: 1rem;
+    }
+
+    /* h2, h3, h4 のいずれかを兄弟要素に持つ h1, h2, h3 のいずれかまたは全て */
+    :is(h1, h2, h3):has(:is(+ h2, h3, h4)) {
+      margin-block-end: 1rem;
+    }
+
+    /* 非展開時の details 要素に含まれる ::details-content */
+    details:not([open])::details-content {
+      grid-template-rows: 0fr;
+    }
+                `} lang="css" theme="github-dark"></Code>
+              </div>
+            </div>
+          </details>
+
+          <details class="acc__with__anim">
+            <summary>Explanation<span class="twister"></span></summary>
+            <div class="accordion__overflow__hidden">
+              <div class="content__wrap">
+                <h4 class="mt__2">▼ :where()</h4>
+                <p class="comment">
+                  引数として指定された全てのセレクタを対象にスタイルを適用させる疑似クラス。<br />
+                  特有の点として<code>あらゆる他セレクタより継承度が低くなる</code>仕様があり、例えば以下の形で<code>:where()</code>を用いての<code>h2</code>スタイルの上書きは出来ない。
+                </p>
+                <Code code={`
+    h1 {
+      color: red;
+    }
+
+    :where(h1, h2, p:not(first-child)) {
+      color: blue;
+    }
+                `} lang="css" theme="github-dark"></Code>
+
+                <h4 class="mt__2">▼ :is()</h4>
+                <p class="comment">
+                  記述方法は<code>:where()</code>と同様だが特性は真逆であり<code>指定した引数の中で最も高い継承度を継承</code>する。<br />
+                  以下例で<code>:where()</code>が最大の継承度を保持しているとした場合、指定した引数全てが<code>h1</code>と同様の強い継承度を持つ。<br />
+                  伴って後述の<code>:is()</code>にて指定の<code>color: blue;</code>は<code>h1</code>に適用される。
+                </p>
+                <Code code={`
+    html body main section h1 {
+      color: red;
+    }
+
+    :is(h1, h2, p:not(first-child)) {
+      color: blue;
+    }
+                `} lang="css" theme="github-dark"></Code>
+
+                <h4 class="mt__2">▼ :has()</h4>
+                <p class="comment">
+                  引数として取った要素が、<code>:has()</code>の指定元要素から相対位置(相対セレクターリスト)として存在する場合にスタイルを適用する。伴って基準セレクタの親要素や兄弟要素を指定することが可能。具体的な使用例は上記サンプルソースを参照。<br />
+                  なお複数の独特な仕様や注意点が存在するため、使用は慎重に行う必要がある。
+                </p>
+                <ul>
+                  <li>・DOMが更新されるたびブラウザが<code>:has()</code>を再評価するため、実装方法次第では甚大なパフォーマンス低下を発生させる</li>
+                  <li>・<code>:has()</code> の中に<code>:has()</code>を入れ子することは出来ない</li>
+                  <li>・<code>:has()</code>の引数に疑似要素を指定することは出来ない(循環クエリ発生の危険性があるため)</li>
+                </ul>
+                <Code code={`
+    div:has(p:has(> span)) {
+      /* 入れ子の :has() は不可 */
+    }
+
+    details:has(::details-content) {
+      /* 疑似要素の引数への指定は不可 */
+    }
+                `} lang="css" theme="github-dark"></Code>
+
+                <h4 class="mt__2">▼ :has() と論理演算</h4>
+                <p class="comment">
+                  <code>:has()</code>はその用法によって「引数のいずれか一つを持つか」または「引数全てを持つか」の識別に用いることができる。<br />
+                  「引数のすべてを持つ場合」を指定したい場合は<code>:has()</code>を連結する。
+                </p>
+                <Code code={`
+    /* video、または audio を持つ場合 */
+    .content__wrap:has(video, audio) {
+      ...
+    }
+
+    /* video または audio を持つ場合 */
+    .content__wrap:has(video):has(audio) {
+      ...
+    }
+                `} lang="css" theme="github-dark"></Code>
+
+                <h4 class="mt__2">▼ :has() と正規表現</h4>
+                <p class="comment">
+                  <code>:has()</code>はその用法によって「先読みアサーション」的な使用が可能となる。
+                </p>
+                <Code code={`
+    /* 肯定先読み abc(?=xyz) */
+    .abc:has(+ .xyz) {
+      ...
+    }
+
+    /* 否定先読み abc(?!xyz) */
+    .abc:has(+ :not(.xyz)) {
+      ...
+    }
+                `} lang="css" theme="github-dark"></Code>
+
+                <h4 class="mt__2">▼ :has() とパフォーマンス懸念</h4>
+                <p class="comment">
+                  ・広範な規模となる引数の指定を避ける<br />
+                  アンカーセレクタ<code>A:has(B)</code>の<code>A</code>は、<code>body</code>や<code>:root</code>、全称セレクタのように子要素が大量となるものを指定してはいけない。<br />
+                  上述の通り<code>:has()</code>は DOM が更新されるたび都度再評価されるため、そのような指定は膨大な数の子要素が精査されるため。<br />
+                  <br />
+                  ・引数は結合子を用いて可能な限り対象を絞る<br />
+                  同様の理由で、<code>.A:has(> .B)</code>や <code>.A:has(+ .B)</code>のように予め可能な限り走査の対象となる要素を絞ることで、パフォーマンス負荷を抑えることができる。
+                </p>
+                <Code code={`
+    /* 実はよろしくない */
+    :root:has(:modal) {
+      ...
+    }            
+
+    .content__wrap:has(> .astro-code) {
+      ...
+    }
+                `} lang="css" theme="github-dark"></Code>
+
+                <h4 class="mt__2">▼ :not()</h4>
+                <p class="comment">
+                  基本的な考え方は<code>:has()</code>と同様だが、独自の注意すべき挙動がいくつか存在する。
+                </p>
+                <ul>
+                  <li>・無意味なセレクターを作成可能。<code>:not(*)</code>など</li>
+                  <li>・無理やり詳細度を上げることが可能。<code>#foo:has(#bar)</code>など</li>
+                  <li>・<code>:not(.foo)</code>のような指定には<code>body</code>や<code>html</code>も含まれる</li>
+                  <li>・例えば<code>body:not(table) a</code>は<code>table</code>内の 子孫<code>a</code>を含んでしまう。<code>table</code>が包括する全ての<code>a</code>を指定したい場合は<code>body:not(table a)</code> とする</li>
+                  <li>・複数のセレクタを同時に否定可能。例えば<code>body:not(.foo, .bar)</code>は <code>body:not(.foo):not(.bar)</code>と同等</li>
+                  <li>・<code>:has()</code>と異なり、<code>:not()</code>単独では指定した引数のうちいずれかが無効の場合そのほかの引数も全て無効となる。回避する場合は<code>:not(:is(.foo, .bar))</code>とする</li>
+                </ul>
+                <h4 class="mt__2">▼ 寛容な解釈</h4>
+                <p class="comment">
+                  CSSの仕様として<code>where / is / not / has</code>は「寛容なセレクター解釈」を行う。<br />
+                  通常、引数を伴うセレクタはひとつでもその引数の解釈に失敗すると、単独であっても複数であっても全ての引数(セレクターリスト)を無効とするが、<br />
+                  これらは解釈に失敗した引数のみ無視し、そのほかの正常なセレクタは引き続き扱い続ける。
+                </p>
+              </div>
+            </div>
+          </details>
