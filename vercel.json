@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openai.vercel.sh/vercel.json",
+  "git": {
+    "deploymentEnabled": {
+      "main": false
+    }
+  }
+}

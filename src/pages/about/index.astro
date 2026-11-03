@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro'
+---
+
+<Layout title="About">
+  <div>
+    <h1 class="page__ttl">About me</h1>
+    <div class="main__wrap">
+      <div class="section__wrapper">
+        <div class="about__wrapper" data-lang="ja">
+          <h2>◯&nbsp;どちら様ですか</h2>
+          <dl>
+            <dt>出家清剛<span>Kiyotaka Dekke</span></dt>
+            <dd>・年齢: 32</dd>
+            <dd>・: 180cm</dd>
+            <dd>・Right Grip: 40kg</dd>
+            <dd>・Left Grip: 10kg</dd>
+            <dd>・Right Eye: 1.0</dd>
+            <dd>・Left Eye: 0.05</dd>
+          </dl>
+
+          <h2>◯&nbsp;何をしていますか</h2>
+          <p>
+            マークアップ中心のWebエンジニアです。<br />
+            AWSもやや噛んでおりますが、無資格のため眉唾です。<br />
+            手描きでのフライヤーデザインも請け負っております。
+          </p>
+
+          <h2>◯&nbsp;何を使えますか</h2>
+
+          <h2>◯&nbsp;職歴</h2>
+          <dl>
+            <dt>博報堂プロダクツデザインスタジオ</dt>
+            <dd>2023/01 ～ 2025/08</dd>
+            <dd>HTML5 / CSS / Scss / Tailwind / JS / JQuery / TS / EJS / Webpack / Vite / NodeJS / PHP(ちょっとだけ) / VueJS(ちょっとだけ)</dd>
+            <dd>Movable Type / AEM / Drupal / Squad Beyond</dd>
+            <dd>AWS S3 / Cloudfront / Amprify</dd>
+            <dd>Github / Gitlab / </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .about__wrapper {
+    :where(h2:not(:first-of-type)) { 
+      --margin-block-start: 4rem;
+      
+      margin-block-start: var(--margin-block-start);
+
+      @media screen and (min-width: 768px) {
+        --margin-block-start: 8rem;
+      }
+    }
+
+    :where(p, dl, dt, dd) {
+      line-height: 1.7;
+    }
+  }
+</style>

@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 
 const topMenuList = [
+  { name: "About", path: "/about" },
   { name: "Works", path: "/works" },
   { name: "Tools", path: "/tools" },
   { name: "Tips", path: "/tips" },
@@ -15,14 +16,16 @@ const topMenuList = [
     <h1 class="page__ttl">TOP</h1>
     <div class="main__wrap">
       <section class="section__wrapper">
-        <div class="linkitem__wrap">
-          {
-            topMenuList.map((item) => (
-              <a href={item.path} class="linkitem__link link__twister">
-                {item.name}
-              </a>
-            ))
-          }
+        <div class="indexmenu">
+          <div class="indexmenu__linkitem__wrap">
+            {
+              topMenuList.map((item) => (
+                <a href={item.path} class="linkitem__link link__twister">
+                  {item.name}
+                </a>
+              ))
+            }
+          </div>
         </div>
       </section>
     </div>

@@ -1019,3 +1019,246 @@ dialog.popovermenu__dialog {
     }
   }
 }
+
+/* Page structure and navigation */
+.tips__page {
+  min-inline-size: 0;
+
+  .section__wrapper {
+    min-inline-size: 0;
+  }
+
+  .tips__intro {
+    padding-block: 1.5rem 0;
+  }
+
+  .tips__eyebrow {
+    color: var(--blue-700);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+  }
+
+  .tips__intro h1 {
+    margin-block: 0.5rem 1rem;
+    font-size: clamp(1.875rem, 1.2rem + 3vw, 3.5rem);
+    line-height: 1.15;
+    color: var(--blue-800);
+  }
+
+  .tips__lead {
+    line-height: 1.8;
+    color: var(--base-700);
+  }
+
+  .tips__contents {
+    margin-block-start: 1.5rem;
+    border: 1px solid var(--blue-200);
+    border-radius: 0.75rem;
+    overflow: clip;
+    background: var(--base-50);
+
+    > summary {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      min-block-size: 3.5rem;
+      padding: 1rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--blue-800);
+      background: transparent;
+      border: 0;
+    }
+
+    &[open] > summary span {
+      rotate: 45deg;
+    }
+
+    ol {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+      gap: 0.25rem 1rem;
+      padding: 0 1rem 1rem;
+      text-indent: 0;
+    }
+
+    li { margin: 0; }
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      min-block-size: 2.75rem;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+    }
+
+    a span {
+      color: var(--blue-600);
+      font-size: 0.75rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    a:hover,
+    a:focus-visible { background: var(--blue-50); }
+  }
+
+  .tips__topic {
+    min-inline-size: 0;
+    scroll-margin-block-start: 5.5rem;
+  }
+
+  .tips__topic > h2:first-child {
+    padding-block-start: 4rem;
+  }
+
+  .standard__grid,
+  .font__weight__grid,
+  .font__size__grid,
+  .line__height__grid {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 33.75rem), 1fr));
+  }
+
+  :is(.standard__grid, .font__weight__grid, .font__size__grid, .line__height__grid) > * {
+    min-inline-size: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .tips__page {
+    .tips__contents ol {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 0.25rem;
+    }
+
+    .tips__contents a {
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .section__wrapper {
+      padding-inline: clamp(1rem, 4vw, 1.5rem);
+      padding-block-start: 3.5rem;
+    }
+
+    h2 {
+      font-size: clamp(1.625rem, 1.1rem + 2.5vw, 2.25rem);
+      line-height: 1.25;
+      padding-block-end: 0.625rem;
+    }
+
+    h3 { font-size: 1.375rem; line-height: 1.4; }
+    h4 { font-size: 1.125rem; line-height: 1.5; }
+
+    .content__subttl {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+      line-height: 1.5;
+    }
+
+    :is(.default, .suggested, .caution, .dontuse) {
+      margin-inline-start: 0;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      white-space: nowrap;
+    }
+
+    .content__wrap { padding: 1rem; }
+
+    :is(.font__weight__grid, .font__size__grid, .line__height__grid, .standard__grid) {
+      gap: 1rem;
+    }
+
+    .font__size__grid .content__wrap {
+      grid-template-rows: auto auto 1fr;
+    }
+
+    input[type="range"] {
+      min-inline-size: 0;
+      inline-size: 100%;
+      min-block-size: 2.75rem;
+      margin-inline: 0;
+    }
+
+    :is(.btns__wrap, .shadow__animate__controls) {
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      max-inline-size: 100%;
+    }
+
+    .btn__item {
+      min-block-size: 2.75rem;
+      padding: 0.625rem 1rem;
+      font-size: 0.9375rem;
+    }
+
+    .font__family__grid .btns__wrap {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      inline-size: 100%;
+      gap: 0.75rem;
+    }
+
+    .font__family__grid .btn__item { inline-size: 100%; }
+
+    summary {
+      grid-template-columns: minmax(0, 1fr) 1.125rem;
+      gap: 0.75rem;
+      min-block-size: 3.25rem;
+      padding: 0.875rem 1rem;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .twister { inline-size: 1.125rem; block-size: 2px; }
+
+    .accordion__content { padding: 1rem; }
+
+    .acc__with__anim .content__wrap {
+      padding-inline: 1rem;
+    }
+
+    .acc__with__anim .astro-code { margin-inline: -1rem; }
+
+    pre {
+      max-inline-size: 100%;
+      overflow-x: auto;
+      font-size: 0.8125rem;
+    }
+
+    :is(.hsl-control, .hwb-control, .lab-control, .lab-grad-control, .lch-control, .oklab-control, .oklch-control, .color-control) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.125rem;
+      margin-block-end: 0.5rem;
+    }
+
+    .hsl-controls--rgb { margin-inline-start: 0; margin-block-start: 2rem; }
+    .color__value__txt { font-size: 1rem; line-height: 1.7; }
+    .color-function-preview,
+    .lab-grad-random-preview { inline-size: 100%; block-size: 11rem; }
+    .color-preview-wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+    .color-preview-color { block-size: 7rem; font-size: 0.75rem; }
+    .hsl-wheel-result { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .hsl-wheel { inline-size: min(100%, 18.75rem); block-size: auto; aspect-ratio: 1; margin-inline: auto; }
+    .compare__circles__wrapper { grid-template-columns: minmax(0, 1fr); }
+    .lch__graph__wrapper { padding: 2rem; }
+
+    .elevation__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+    .elevation__shadow__caption { font-size: 0.75rem; }
+    .shadow__animate__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); padding-inline-end: 0.625rem; }
+    .shadow__animate__control.btn__item { font-size: 1rem; }
+    .sp__sans__serif__grid .sp__name { padding: 0.75rem; text-align: center; }
+    .sp__sans__serif__grid .td { padding: 0.5rem; }
+    .color-scheme-grid { grid-template-columns: minmax(3rem, 0.6fr) repeat(2, minmax(0, 1fr)); font-size: 0.8125rem; }
+    .dads-tab__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .dads-tab__tab { padding: 0.75rem; font-size: 1rem; }
+    .dads-tab__panel { padding: 1rem; }
+    .popovermenu__content__wrap { padding: 1.25rem; }
+    .popovermenu__linkitem__wrap { padding-inline-start: 0; }
+  }
+}

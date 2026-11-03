@@ -5,6 +5,7 @@
     ※<code>b</code>は以下図における“奥行き”である
   </p>
 </div>
+<div class="lab__graph__scroll" role="region" aria-label="Lab色空間の図（横にスクロールできます）" tabindex="0">
 <div class="lab__graph__wrap">
   <span class="scale__vertical">↑<br />C</span>
   <span class="scale__center">a →</span>
@@ -21,8 +22,14 @@
   </div>
   <span class="scale__horizontal">H →</span>
 </div>
+</div>
 
 <style>
+  .lab__graph__scroll {
+    max-inline-size: 100%;
+    overflow-x: auto;
+  }
+
   .lab__graph__wrap {
     position: relative;
     padding: calc(50 / 16 * 1rem);
