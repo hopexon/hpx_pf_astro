@@ -175,10 +175,70 @@ export const mtgCards: MtgCard[] = [
     name: 'Sphinx of False Conclusions',
     number: 40,
     artist: 'Wylie Beckert',
-    artistUrl: '',
+    artistUrl: 'https://www.wyliebeckert.com/',
     imgFull: 'art_sphinx_of_false_conclusions.avif',
     imgCard: 'card_sphinx_of_false_conclusions.avif',
-    flavor: `https://www.wyliebeckert.com/?show=portfolio`
+    flavor: ``
+  },
+  {
+    slug: 'surveillance-phantasm',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Surveillance Phantasm',
+    number: 42,
+    artist: 'Randy Vargas',
+    artistUrl: 'https://www.instagram.com/vargasni/',
+    imgFull: 'art_surveillance_phantasm.avif',
+    imgCard: 'card_surveillance_phantasm.avif',
+    flavor: ``
+  },
+  {
+    slug: 'theorists-proxy',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Theorist\'s Proxy',
+    number: 44,
+    artist: 'Matt Stewart',
+    artistUrl: 'https://www.matthew-stewart.com//',
+    imgFull: 'art_theorists_proxy.avif',
+    imgCard: 'card_theorists_proxy.avif',
+    flavor: ``
+  },
+  {
+    slug: 'unsummon',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Unsummon',
+    number: 46,
+    artist: 'Ioannis Fiore',
+    artistUrl: 'https://www.instagram.com/ioannisfiore/',
+    imgFull: 'art_unsummon.avif',
+    imgCard: 'card_unsummon.avif',
+    flavor: `“The Multiverse is a work in progress. There will need to be revisions.”\n—The Theorist, Jace Beleren`
+  },
+  {
+    slug: 'darklight-phoenix',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Darklight Phoenix',
+    number: 53,
+    artist: 'Wayne Reynolds',
+    artistUrl: 'https://www.waynereynolds.com/',
+    imgFull: 'art_darklight_phoenix.avif',
+    imgCard: 'card_darklight_phoenix.avif',
+    flavor: `Some eclipses never exit totality.`
+  },
+  {
+    slug: 'extended-absence',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Extended Absence',
+    number: 54,
+    artist: 'Nathaniel Himawan',
+    artistUrl: 'https://www.instagram.com/ninesicks/',
+    imgFull: 'art_extended_absence.avif',
+    imgCard: 'card_extended_absence.avif',
+    flavor: `“On the bright side, the corpus inversion spell performed as expected.”\n—Zim, Theorix mage`
   },
   {
     slug: 'tomik-orzhov-lawmage',
@@ -203,6 +263,18 @@ export const mtgCards: MtgCard[] = [
     imgFull: 'art_way_of_the_mentor.avif',
     imgCard: 'card_way_of_the_mentor.avif',
     flavor: ``
+  },
+  {
+    slug: 'fblthp-impossibly-lost',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Fblthp, Impossibly Lost',
+    number: 213,
+    artist: 'Simon Dominic',
+    artistUrl: 'https://www.monsterart.co.uk/',
+    imgFull: 'art_fblthp_impossibly_lost.avif',
+    imgCard: 'card_fblthp_impossibly_lost.avif',
+    flavor: `Fblthp had definitely made a wrong turn.`
   },
   {
     slug: 'liliana-the-faultless-borderless',
@@ -1762,6 +1834,30 @@ export const mtgCards: MtgCard[] = [
     flavor: ``
   },
   {
+    slug: 'the-theorist-jace-beleren',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'The Theorist, Jace Beleren',
+    number: 43,
+    artist: 'Ekaterina Burmak',
+    artistUrl: 'https://www.instagram.com/kate_burmak_art/',
+    imgFull: '',
+    imgCard: 'card_the_theorist_jace_beleren.avif',
+    flavor: ``
+  },
+  {
+    slug: 'undulating-witness',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Undulating Witness',
+    number: 45,
+    artist: 'Alexander Ostrowski',
+    artistUrl: 'https://www.alexanderostrowski.com/',
+    imgFull: '',
+    imgCard: 'card_undulating_witness.avif',
+    flavor: `Twisting in the wind like a strange banner, it keeps watch over the horizon and tower alike.`
+  },
+  {
     slug: 'liliana-the-faultless',
     year: 2026,
     set: 'Reality Fracture',
@@ -1784,6 +1880,54 @@ export const mtgCards: MtgCard[] = [
     imgFull: '',
     imgCard: 'card_yoshimaru_beloved_companion.avif',
     flavor: `The Emperor spared no comfort for the friend who had so diligently awaited her return.`
+  },
+  {
+    slug: 'hapatra-the-desert-frost',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Hapatra, the Desert Frost',
+    number: 215,
+    artist: 'Jodie Muir',
+    artistUrl: 'https://jodiemuir.squarespace.com/',
+    imgFull: '',
+    imgCard: 'card_hapatra_the_desert_frost.avif',
+    flavor: `“Kefnet always told me to apply my knowledge. I merely chose to apply it in usurping him.”`
+  },
+  {
+    slug: 'jace-reality-sculptor',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Jace, Reality Sculptor',
+    number: 216,
+    artist: 'Martina Fackova',
+    artistUrl: 'https://martinafackovaart.com/',
+    imgFull: '',
+    imgCard: 'card_jace_reality_sculptor.avif',
+    flavor: ``
+  },
+  {
+    slug: 'way-of-mind-sculptor',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Way of Mind Sculptor',
+    number: 224,
+    artist: 'Josh Hass',
+    artistUrl: 'https://joshhass.com//',
+    imgFull: '',
+    imgCard: 'card_way_of_mind_sculptor.avif',
+    flavor: ``
+  },
+  {
+    slug: 'precise-redaction',
+    year: 2026,
+    set: 'Reality Fracture',
+    name: 'Precise Redaction',
+    number: 362,
+    artist: 'Florencia Degraf',
+    artistUrl: 'https://www.florenciadegraf.com/',
+    imgFull: '',
+    imgCard: 'card_precise_redaction.avif',
+    flavor: ``
   },
   {
     slug: 'harsh-annotation',

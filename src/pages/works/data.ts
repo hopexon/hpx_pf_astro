@@ -18,6 +18,15 @@ export const works = [
     height: '1414'
   },
   {
+    title: 'Spiral',
+    date: '2025.06.20',
+    venue: 'Precious Hall (Sapporo)',
+    imgBaseName: 'spiral_250620',
+    alt: 'Spiral20250620',
+    width: '1000',
+    height: '1414'
+  },
+  {
     title: '-',
     date: '2025.10.18',
     venue: '',
@@ -59,15 +68,6 @@ export const works = [
     venue: '',
     imgBaseName: 'ranshima_251205',
     alt: 'Ranshima20251205',
-    width: '1000',
-    height: '1414'
-  },
-  {
-    title: 'Spiral',
-    date: '2025.06.20',
-    venue: 'Precious Hall (Sapporo)',
-    imgBaseName: 'spiral_250620',
-    alt: 'Spiral20250620',
     width: '1000',
     height: '1414'
   },

@@ -19,57 +19,45 @@ import {
 } from '../../components/tips'
 
 import './style.css'
+const topics = [
+  { id: 'font-weight', label: 'font-weight', component: FontWeight },
+  { id: 'font-size', label: 'font-size', component: FontSize },
+  { id: 'line-height', label: 'line-height', component: LineHeight },
+  { id: 'color-functions', label: 'Color Functions', component: ColorHsl },
+  { id: 'images', label: 'Images', component: Images },
+  { id: 'elevation', label: 'Elevation', component: Elevation },
+  { id: 'font-family', label: 'font-family', component: FontFamily },
+  { id: 'accordion', label: 'Accordion', component: AccordionSample },
+  { id: 'modal', label: 'Dialog', component: ModalSample },
+  { id: 'popover', label: 'Popover', component: PopoverSample },
+  { id: 'selectors', label: 'CSS Selectors', component: WhereIsHasNot },
+  { id: 'html-guide', label: 'HTML Guide', component: MwgHtml },
+  { id: 'css-guide', label: 'CSS Guide', component: MwgCss },
+]
 ---
 
-<Layout>
-  <div>
-    <div class="main__wrap">
-      <section class="section__wrapper">
-        <h1 class='visually__hidden'>Modern Web Development with CSS</h1>
-        
-        <!-- font size -->
-        <FontWeight />
-
-        <!-- font size -->
-        <FontSize />
-
-        <!-- line-height -->
-        <LineHeight />
-
-        <!-- Color -->
-        <ColorHsl />
-
-        <!-- Images -->
-        <Images />
-
-        <!-- elevation  -->
-        <Elevation />
-
-        <!-- font-family -->
-        <FontFamily />
-
-        <!-- accordion -->
-        <AccordionSample />
-
-        <!-- modal -->
-        <ModalSample />
-
-        <!-- popover -->
-        <PopoverSample />
-
-        <!-- where is has not -->
-        <WhereIsHasNot />
-
-        <!-- round mod rem -->
-        <!-- <RoundModRem /> -->
-
-        <!-- MWG html guide -->
-        <MwgHtml />
-
-        <!-- MWG css guide -->
-        <MwgCss />
-
-      </section>
+<Layout title="Tips | Modern Web Development">
+  <div class="tips__page main__wrap">
+    <div class="section__wrapper">
+      <header class="tips__intro">
+        <p class="tips__eyebrow">HTML / CSS</p>
+        <h1>Web Development Tips</h1>
+        <details class="tips__contents">
+          <summary>Contents<span aria-hidden="true">＋</span></summary>
+          <div class="accordion__overflow__hidden">
+            <nav aria-label="Tipsの目次">
+              <ol>
+                {topics.map(({ id, label }, index) => (
+                  <li><a href={`#${id}`}><span>{String(index + 1).padStart(2, '0')}</span>{label}</a></li>
+                ))}
+              </ol>
+            </nav>
+          </div>
+        </details>
+      </header>
+      {topics.map(({ id, component: Component }) => (
+        <section id={id} class="tips__topic"><Component /></section>
+      ))}
     </div>
   </div>
 </Layout>
