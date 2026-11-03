@@ -21,6 +21,7 @@ const { title = 'Astro Basics', description } = Astro.props
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="robots" content="noindex" />
     <slot name="head" />
 		<title>{title}</title>
 		{description && <meta name="description" content={description} />}
