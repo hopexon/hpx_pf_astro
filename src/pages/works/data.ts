@@ -18,6 +18,24 @@ export const works = [
     height: '1414'
   },
   {
+    title: 'On and On Designed by Tosh',
+    date: '2026.12.04',
+    venue: 'Numm Aoyama (Tokyo)',
+    imgBaseName: 'onandon_202612_3',
+    alt: 'onandon_261012_4',
+    width: '1000',
+    height: '1414'
+  },
+  {
+    title: '',
+    date: '',
+    venue: '',
+    imgBaseName: 'onandon_202612_4',
+    alt: 'onandon_202612_4',
+    width: '1000',
+    height: '1414'
+  },
+  {
     title: 'Spiral',
     date: '2025.06.20',
     venue: 'Precious Hall (Sapporo)',
@@ -135,7 +153,7 @@ export const works = [
     height: '1409'
   },
   {
-    title: 'On and On',
+    title: 'On and On Designed by Tosh',
     date: '2026.05.23',
     venue: 'Numm Aoyama (Tokyo)',
     imgBaseName: 'onandon_260523',
@@ -162,11 +180,11 @@ export const works = [
     height: '1409'
   },
   {
-    title: '',
-    date: '',
-    venue: '',
+    title: 'On and On Designed by Tosh',
+    date: '2026.03.21',
+    venue: 'Numm Aoyama (Tokyo)',
     imgBaseName: 'onandon_260321_2',
-    alt: 'On And On 20260321_2',
+    alt: 'On And On 20260321',
     width: '1000',
     height: '1409'
   },

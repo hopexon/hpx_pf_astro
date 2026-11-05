@@ -2,6 +2,7 @@
   --margin-block-start: 1rem;
 
   display: grid;
+  grid-template-rows: 1fr;
   justify-content: center;
   margin-block-start: var(--margin-block-start);
   transition-timing-function: ease-in;
@@ -37,11 +38,12 @@
   --column-gap: 0.8rem;
 
   display: grid;
-  grid-template-columns: max-content 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
   grid-template-areas:
-  'ttl date'
-  'venue venue';
+  'ttl'
+  'date'
+  'venue';
   align-items: baseline;
   column-gap: var(--column-gap);
   margin-inline-start: 0.5em;
@@ -49,7 +51,7 @@
   min-block-size: 1px;
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .artwork__info {
     --column-gap: 1.5rem;
 
@@ -57,7 +59,7 @@
     grid-template-columns: repeat(3, max-content);
     grid-template-rows: 1fr;
   }
-}
+} */
 
 
 .artwork__ttl,
@@ -112,7 +114,7 @@
 
 .artwork__img {
   display: block;
-  margin-block-start: -0.5rem;
+  margin-block-start: 0.5rem;
   pointer-events: none;
   -webkit-touch-callout:none;
   -webkit-user-select:none;

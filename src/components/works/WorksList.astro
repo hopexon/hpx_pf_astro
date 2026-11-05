@@ -16,7 +16,7 @@ const { title, venue, date, imgBaseName, alt, width, height, index } = Astro.pro
   {
     title !== '' && (
       <dl class="artwork__info">
-        <dt class="artwork__ttl">{title}</dt>
+        <dt class="artwork__ttl" set:html={title} />
         <dd class="artwork__date">{date}</dd>
         {venue !== '' && <dd class="artwork__venue">{venue}</dd>}
       </dl>
