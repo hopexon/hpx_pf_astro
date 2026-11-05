@@ -69,9 +69,9 @@ main {
   --padding-inline: 0;
   --block-size: fit-content;
   --inline-size: fit-content;
-  --background-color: var(--blue-400);
-  --border-top-left-radius: 0.5rem;
-  --border-bottom-left-radius: 0.5rem;
+  /* --border-top-left-radius: 0.5rem; */
+  /* --border-bottom-left-radius: 0.5rem; */
+  --background-color: var(--orange-400);
   --transition-duration: 200ms;
   --opacity: 0.8;
 
@@ -83,10 +83,11 @@ main {
   margin-inline: auto 0;
   block-size: var(--block-size);
   inline-size: var(--inline-size);
+  /* background-color: var(--base-950); */
   background-color: var(--background-color);
-  color: var(--blue-50);
-  border-top-left-radius: var(--border-bottom-left-radius);
-  border-bottom-left-radius: var(--border-bottom-left-radius);
+  color: var(--paper);
+  /* border-top-left-radius: var(--border-bottom-left-radius); */
+  /* border-bottom-left-radius: var(--border-bottom-left-radius); */
   transition: transform, opacity;
   transition-duration: var(--transition-duration);
   transition-timing-function: ease-out;
@@ -98,9 +99,9 @@ main {
     --padding-inline: var(--gutter-inline);
     --block-size: auto;
     --inline-size: 100%;
-    --background-color: var(--blue-400);
-    --border-top-left-radius: 0;
-    --border-bottom-left-radius: 0;
+    /* --border-top-left-radius: 0; */
+    /* --border-bottom-left-radius: 0; */
+    --background-color: var(--base-950);
     --transition-duration: 100ms;
     --opacity: 0.85;
 
@@ -149,32 +150,59 @@ main {
   content: '';
   margin-inline: auto;
   inline-size: 2em;
-  border-block-end: 2px solid var(--blue-50);
+  border-block-end: 2px solid #fff;
   transition: transform 0.3s ease-out;
 }
 
-.globalheader:has(dialog[open]) .nav__btn__sp::before {
+.globalheader:has(dialog:popover-open) .nav__btn__sp::before {
   transform: rotate(-180deg);
   transition: transform 0.3s ease-out;
 }
 
+:root:has(#nav__sp:popover-open) {
+  overflow: hidden;
+}
+
 .globalheader dialog {
-  max-height: 60vh;
+  block-size: 70dvh;
+  max-block-size: calc(600 / 16 * 1rem);
+  inline-size: 90dvw;
+  max-inline-size: calc(500 / 16 * 1rem);
+  color: var(--paper);
+  background-color: var(--base-950);
+  border: 6px solid var(--paper);
+  filter: drop-shadow(10px 10px 0 rgba(0, 0, 0, 1));
   outline: none;
+  /* modal.css の display / overlay 遷移を外す。overlay 非対応環境で閉じる際に
+     先に top layer から抜け、段階的に消えて見えるのを防ぐ */
+  transition-property: opacity;
 }
 
-.globalheader dialog .dialog__inner {
-  display: flex;
-  flex-flow: column nowrap;
-  row-gap: 2rem;
-  padding: 2rem 2rem 2rem 1.5rem;
-  min-inline-size: calc(100vw - 30vw);
-  font-weight: 700;
-  background-color: var(--paper);
+.globalheader dialog:not(:popover-open) {
+  opacity: 0;
 }
 
-.globalheader dialog .dialog__inner .nav__linkItem {
-  outline: none;
+/* modal.css の dialog:not(:modal)::backdrop (opacity: 0) を開いている間だけ打ち消す */
+.globalheader #nav__sp:popover-open::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .globalheader #nav__sp:popover-open::backdrop {
+    opacity: 0;
+  }
+}
+
+/* フェードアウトは top layer に留まれる環境のみ。非対応環境は即座に閉じる */
+@supports (overlay: auto) {
+  .globalheader dialog {
+    transition-property: opacity, display, overlay;
+  }
+}
+
+.nav__sp__linkitem__wrap {
+  padding-inline-start: 2rem;
+  margin-block-start: 3rem;
 }
 
 .globalheader dialog .link__twister {
@@ -357,58 +385,6 @@ main {
   }
 }
 
-/* index menu */
-.indexmenu {
-  /* --inset-block-start: 50%; */
-  /* --inset-inline-start: 50%; */
-  --max-block-size: calc(600 / 16 * 1rem);
-  --inline-size: 90dvw;
-  --max-inline-size: calc(500 / 16 * 1rem);
-  --filter-drop-shadow: drop-shadow(10px 10px 0 rgba(0, 0, 0, 1));
-  /* --transform: translate(-50%, -50%); */
-
-  /* inset-block-start: var(--inset-block-start); */
-  /* inset-inline-start: var(--inset-inline-start); */
-  margin-inline: auto;
-  block-size: 70dvh;
-  max-block-size: var(--max-block-size);
-  inline-size: var(--inline-size);
-  max-inline-size: var(--max-inline-size);
-  color: var(--paper);
-  background-color: var(--base-950);
-  border: 6px solid var(--paper);
-  filter: var(--filter-drop-shadow);
-  /* transform: var(--transform); */
-
-  @media screen and (min-width: 768px) {
-    --inset-block-start: 11rem;
-    --inset-inline-start: auto;
-    --max-block-size: calc(700 / 16 * 1rem);
-    --inline-size: 50vw;
-    --max-inline-size: calc((1300 / 2) / 16 * 1rem);
-    --filter-drop-shadow: drop-shadow(30px 30px 0 rgba(0, 0, 0, 1));
-    --transform: translate(0, 0);
-
-    --inset-inline-end: calc(54 / 16 * 1rem);
-
-    inset-inline-end: var(--inset-inline-end);
-  }
-
-  @media screen and (min-width: 1400px) {
-    --inset-inline-end: calc(50vw - calc(640 / 16 * 1rem));
-  }
-
-  h2 {
-    color: var(--paper);
-    border-bottom: none;
-  }
-}
-
-.indexmenu__linkitem__wrap {
-  padding-inline-start: 2rem;
-  margin-block-start: 3rem;
-}
-
 /* Utility */
 .linkitem__link {
   inline-size: fit-content;
@@ -588,19 +564,39 @@ main {
 }
 
 .to__top__scroll {
+  --inset-inline-end: 0.5rem;
+
   position: fixed;
-  inset-inline-end: 1rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
   inset-block-end: 1rem;
-  inline-size: fit-content;
-  /* font-size: 2rem; */
+  inset-inline-end: var(--inset-inline-end);
+  block-size: 2rem;
+  inline-size: 2rem;
+  background-color: var(--orange-400);
+  border: none;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s ease-out; 
+  z-index: 1;
+
+
+  span {
+    display: block;
+    padding-block-end: 0.25rem;
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    --inset-inline-end: 1rem;
+  }
 }
 
 .to__top__scroll.is-active {
   pointer-events: inherit;
-  opacity: 1;
+  opacity: 0.8;
   transition: opacity 0.15s ease-out;
 }
 

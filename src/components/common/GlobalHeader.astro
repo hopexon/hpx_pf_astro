@@ -25,46 +25,28 @@ const NAV = [
 
   <button
     type='button'
-    commandfor='nav__sp'
-    command='show-modal'
+    popovertarget='nav__sp'
     class='nav__btn__sp sp__only'
-    aria-controls='nav__sp'></button>
+    aria-label='メニュー'>
+  </button>
 
   <dialog
     id='nav__sp'
-    closedby='any'
+    popover
     autofocus
-    aria-labelledby='nav__sp__heading'
+    aria-label='メニュー'
   >
-    <div class='dialog__inner'>
+    <nav class='nav__sp__linkitem__wrap'>
       {
         NAV.map((item) => (
           <a
             href={item.path}
-            class='nav__linkItem link__twister w-fit nav__item__sp'
+            class='linkitem__link link__twister'
           >
             {item.name}
           </a>
         ))
       }
-    </div>
+    </nav>
   </dialog>
 </header>
-
-<script>
-  const btn = document.querySelector<HTMLButtonElement>('.nav__btn__sp')
-  const dialog = document.getElementById('nav__sp') as HTMLDialogElement | null
-
-  if (btn && dialog) {
-    btn.addEventListener('click', () => {
-      dialog.showModal()
-    })
-
-    // バックドロップクリックで閉じる (e.target がダイアログ自体 = backdrop 領域)
-    dialog.addEventListener('click', (e) => {
-      if (e.target === dialog) {
-        dialog.close()
-      }
-    })
-  }
-</script>
