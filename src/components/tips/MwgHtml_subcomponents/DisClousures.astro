@@ -22,9 +22,6 @@ import { Code } from 'astro:components'
                   <li>・開閉状態が分かる装飾無しに、summary にデフォルトの三角形を消すのはやめよう</li>
                   <li>・summary に対し<code>title</code>属性でツールチップを設けるのはやめよう</li>
                 </ul>
-                <Code code={`
-        
-                `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
         </details>
@@ -33,32 +30,32 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        以下の場合、h2 の意味は summary に上書きされ機能を果たさない。
-        
-        <details>
-          <summary><h2>Category Title</h2></summary>
-          <div>
-            <div>
-              contents...
-            </div>
-          </div>
-        </details>
-        
-        
-        summary に見出しとしての意味を持たせなければならない場合は、以下のような例を検討する。
-        
-        <h2>
-          <button
-            type="button"
-            aria-expanded="false"
-            aria-controls="significant-section-content"
-          >
-            Siginificant Section
-          </button>
-        </h2>
-        <div id="significant-section-content" hidden>
+    以下の場合、h2 の意味は summary に上書きされ機能を果たさない。
+    
+    <details>
+      <summary><h2>Category Title</h2></summary>
+      <div>
+        <div>
           contents...
         </div>
+      </div>
+    </details>
+    
+    
+    summary に見出しとしての意味を持たせなければならない場合は、以下のような例を検討する。
+    
+    <h2>
+      <button
+        type="button"
+        aria-expanded="false"
+        aria-controls="significant-section-content"
+      >
+        Siginificant Section
+      </button>
+    </h2>
+    <div id="significant-section-content" hidden>
+      contents...
+    </div>
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>

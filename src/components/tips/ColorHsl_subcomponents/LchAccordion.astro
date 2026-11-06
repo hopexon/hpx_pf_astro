@@ -1,8 +1,7 @@
 ---
 import LchGraph from './LchGraph.astro'
 ---
-
-<details class="acc__with__anim">
+<tips-lch-accordion><details class="acc__with__anim">
   <summary>(Lab) LCH<span class="twister"></span></summary>
   <div class="accordion__overflow__hidden">
     <div class="content__wrap">
@@ -39,30 +38,47 @@ import LchGraph from './LchGraph.astro'
 </details>
 
 <!-- LCH -->
- <script>
-  document.addEventListener('astro:page-load', function() {
-    const lchLinput = document.getElementById('lch__l') as HTMLInputElement
-    const lchCinput = document.getElementById('lch__c') as HTMLInputElement
-    const lchHinput = document.getElementById('lch__h') as HTMLInputElement
-    const lchAinput = document.getElementById('lch__a') as HTMLInputElement
-    const lchValueText = document.querySelector('.lch-value__text') as HTMLSpanElement
-    const lchPreviewBox = document.querySelector('.lch-preview') as HTMLDivElement
+ 
+</tips-lch-accordion>
 
-    const updateLchPreview = () => {
-      const l = lchLinput.value
-      const c = lchCinput.value
-      const h = lchHinput.value
-      const a = lchAinput.value
+<script>
+class TipsLchAccordion extends HTMLElement {
+  connectedCallback() {
+    this.init1()
+  }
 
-      lchPreviewBox.style.backgroundColor = `lch(${l} ${c} ${h} / ${a})`
-      lchValueText.textContent = `lch(${l} ${c} ${h} / ${a})`
-    }
+  init1() {
+      const lchLinput = this.querySelector('#lch__l') as HTMLInputElement
+      const lchCinput = this.querySelector('#lch__c') as HTMLInputElement
+      const lchHinput = this.querySelector('#lch__h') as HTMLInputElement
+      const lchAinput = this.querySelector('#lch__a') as HTMLInputElement
+      const lchValueText = this.querySelector('.lch-value__text') as HTMLSpanElement
+      const lchPreviewBox = this.querySelector('.lch-preview') as HTMLDivElement
 
-    lchLinput.addEventListener('input', updateLchPreview)
-    lchCinput.addEventListener('input', updateLchPreview)
-    lchHinput.addEventListener('input', updateLchPreview)
-    lchAinput.addEventListener('input', updateLchPreview)
+      const updateLchPreview = () => {
+        const l = lchLinput.value
+        const c = lchCinput.value
+        const h = lchHinput.value
+        const a = lchAinput.value
 
-    updateLchPreview()
-  })
- </script>
+        lchPreviewBox.style.backgroundColor = `lch(${l} ${c} ${h} / ${a})`
+        lchValueText.textContent = `lch(${l} ${c} ${h} / ${a})`
+      }
+
+      lchLinput.addEventListener('input', updateLchPreview)
+      lchCinput.addEventListener('input', updateLchPreview)
+      lchHinput.addEventListener('input', updateLchPreview)
+      lchAinput.addEventListener('input', updateLchPreview)
+
+      updateLchPreview()
+  }
+}
+
+customElements.define('tips-lch-accordion', TipsLchAccordion)
+</script>
+
+<style>
+  tips-lch-accordion {
+    display: contents;
+  }
+</style>

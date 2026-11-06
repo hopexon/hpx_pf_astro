@@ -1,4 +1,5 @@
-<details class="acc__with__anim">
+
+<tips-hwb-accordion><details class="acc__with__anim">
   <summary>(RGB) HWB<span class="twister"></span></summary>
   <div class="accordion__overflow__hidden">
     <div class="content__wrap">
@@ -63,31 +64,47 @@
 </details>
 
 <!-- HWB -->
+</tips-hwb-accordion>
+
 <script>
-  document.addEventListener('astro:page-load', function() {
-    const hwbHinput = document.getElementById('hwb__h') as HTMLInputElement
-    const hwbWinput = document.getElementById('hwb__w') as HTMLInputElement
-    const hwbBinput = document.getElementById('hwb__b') as HTMLInputElement
-    const hwbAinput = document.getElementById('hwb__a') as HTMLInputElement
+class TipsHwbAccordion extends HTMLElement {
+  connectedCallback() {
+    this.init1()
+  }
 
-    const hwbPreviewBox = document.querySelector('.hwb-preview') as HTMLDivElement
+  init1() {
+      const hwbHinput = this.querySelector('#hwb__h') as HTMLInputElement
+      const hwbWinput = this.querySelector('#hwb__w') as HTMLInputElement
+      const hwbBinput = this.querySelector('#hwb__b') as HTMLInputElement
+      const hwbAinput = this.querySelector('#hwb__a') as HTMLInputElement
 
-    const hwbValueText = document.querySelector('.hwb-value .hwb-value__text') as HTMLSpanElement
+      const hwbPreviewBox = this.querySelector('.hwb-preview') as HTMLDivElement
 
-    const updateHwbPreview = () => {
-      const h = hwbHinput.value
-      const w = hwbWinput.value
-      const b = hwbBinput.value
-      const a = hwbAinput.value
-      hwbPreviewBox.style.backgroundColor = `hwb(calc(${h} * 1deg) calc(${w} * 1%) calc(${b} * 1%) / ${a})`
+      const hwbValueText = this.querySelector('.hwb-value .hwb-value__text') as HTMLSpanElement
 
-      hwbValueText.textContent = `hwb(${h} ${w}% ${b}% / ${a})`
-    }
-    hwbHinput.addEventListener('input', updateHwbPreview)
-    hwbWinput.addEventListener('input', updateHwbPreview)
-    hwbBinput.addEventListener('input', updateHwbPreview)
-    hwbAinput.addEventListener('input', updateHwbPreview)
+      const updateHwbPreview = () => {
+        const h = hwbHinput.value
+        const w = hwbWinput.value
+        const b = hwbBinput.value
+        const a = hwbAinput.value
+        hwbPreviewBox.style.backgroundColor = `hwb(calc(${h} * 1deg) calc(${w} * 1%) calc(${b} * 1%) / ${a})`
 
-    updateHwbPreview()
-  })
+        hwbValueText.textContent = `hwb(${h} ${w}% ${b}% / ${a})`
+      }
+      hwbHinput.addEventListener('input', updateHwbPreview)
+      hwbWinput.addEventListener('input', updateHwbPreview)
+      hwbBinput.addEventListener('input', updateHwbPreview)
+      hwbAinput.addEventListener('input', updateHwbPreview)
+
+      updateHwbPreview()
+  }
+}
+
+customElements.define('tips-hwb-accordion', TipsHwbAccordion)
 </script>
+
+<style>
+  tips-hwb-accordion {
+    display: contents;
+  }
+</style>

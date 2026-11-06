@@ -1,316 +1,373 @@
-<details class="acc__with__anim">
-  <summary>(RGB) HSL<span class="twister"></span></summary>
-  <div class="accordion__overflow__hidden">
-    <div class="content__wrap">
-      <!-- HSL -->
-      <p class="comment">
-        <code>Hue(色相)</code>、<code>彩度(Saturation)</code>、<code>輝度/明度(Lightness)</code>、<code>透明度(Alpha)</code>の4項目で色を指定する方法。<br />
-        Hueについては<code>360度</code>周期で指定できるため、例えば<code>calc(360 - 480)</code>と計算したい場合は 120 と丸められる。この特徴を活かして色相を特定間隔で移動させ、要素が連続する場合のグラデーションを簡易に作成することができる。<br>
-        つまるところ<code>RGB()</code>つまり色相を<code>H</code>で固定し、彩度、明度で差分を出していく用途に適切。
-      </p>
-      <div class="mt__2 hsl-controls">
-        <div class="hsl-control">
-          <label for="hue__h" class="hsl-label">・Hue:</label>
-          <input 
-            type="range"
-            id="hue__h"
-            min=-360
-            max=360
-            value=0
-            step="1"
-          >
+<tips-hsl-accordion
+  ><details class="acc__with__anim">
+    <summary>(RGB) HSL<span class="twister"></span></summary>
+    <div class="accordion__overflow__hidden">
+      <div class="content__wrap">
+        <!-- HSL -->
+        <p class="comment">
+          <code>Hue(色相)</code>、<code>彩度(Saturation)</code>、<code
+            >輝度/明度(Lightness)</code
+          >、<code>透明度(Alpha)</code>の4項目で色を指定する方法。<br />
+          Hueについては<code>360度</code>周期で指定できるため、例えば<code
+            >calc(360 - 480)</code
+          >と計算したい場合は 120
+          と丸められる。この特徴を活かして色相を特定間隔で移動させ、要素が連続する場合のグラデーションを簡易に作成することができる。<br
+          />
+          つまるところ<code>RGB()</code>つまり色相を<code>H</code
+          >で固定し、彩度、明度で差分を出していく用途に適切。
+        </p>
+        <div class="mt__2 hsl-controls">
+          <div class="hsl-control">
+            <label for="hue__h" class="hsl-label">・Hue:</label>
+            <input
+              type="range"
+              id="hue__h"
+              min="-360"
+              max="360"
+              value="0"
+              step="1"
+            />
+          </div>
+          <div class="hsl-control">
+            <label for="hue__s" class="hsl-label">・Saturation:</label>
+            <input
+              type="range"
+              id="hue__s"
+              min="0"
+              max="100"
+              value="0"
+              step="1"
+            />
+          </div>
+          <div class="hsl-control">
+            <label for="hue__l" class="hsl-label">・Lightness:</label>
+            <input
+              type="range"
+              id="hue__l"
+              min="0"
+              max="100"
+              value="0"
+              step="1"
+            />
+          </div>
+          <div class="hsl-control">
+            <label for="hue__a" class="hsl-label">・Alpha:</label>
+            <input
+              type="range"
+              id="hue__a"
+              min="0"
+              max="1"
+              value="1"
+              step="0.01"
+            />
+          </div>
         </div>
-        <div class="hsl-control">
-          <label for="hue__s" class="hsl-label">・Saturation:</label>
-          <input 
-            type="range"
-            id="hue__s"
-            min=0
-            max=100
-            value=0
-            step="1"
-          >
+        <div class="mt__1 hsl-value hsl-value--basic color__value__txt">
+          <p>background-color: <span class="hsl-value__text"></span></p>
         </div>
-        <div class="hsl-control">
-          <label for="hue__l" class="hsl-label">・Lightness:</label>
-          <input 
-            type="range"
-            id="hue__l"
-            min=0
-            max=100
-            value=0
-            step="1"
-          >
+        <div class="color-function-preview hsl-preview hsl-preview--basic">
         </div>
-        <div class="hsl-control">
-          <label for="hue__a" class="hsl-label">・Alpha:</label>
-          <input 
-            type="range"
-            id="hue__a"
-            min=0
-            max=1
-            value=1
-            step="0.01"
-          >
-        </div>
-      </div>
-      <div class="mt__1 hsl-value hsl-value--basic color__value__txt">
-        <p>background-color: <span class="hsl-value__text"></span></p>
-      </div>
-      <div class="color-function-preview hsl-preview hsl-preview--basic"></div>
 
-      <h4 class="mt__8">HSL with Relative Color</h4>
-      <p>
-        大半の色指定関数はベースカラーに<code>rgb()</code>、<code>hwb()</code>、<code>Lab()</code>などを基準として指定可能、相対色の作成を行うことができる。
-      </p>
-      <div class="mt__2 hsl-controls hsl-controls--rgb">
-        <div class="hsl-control">
-          <label for="hsl__rgb__r" class="hsl-label">・Red:</label>
-          <input 
-            type="range"
-            id="hsl__rgb__r"
-            min=0
-            max=255
-            value=0
-            step="1"
-          >
+        <h4 class="mt__8">HSL with Relative Color</h4>
+        <p>
+          大半の色指定関数はベースカラーに<code>rgb()</code>、<code>hwb()</code
+          >、<code>Lab()</code
+          >などを基準として指定可能、相対色の作成を行うことができる。
+        </p>
+        <div class="mt__2 hsl-controls hsl-controls--rgb">
+          <div class="hsl-control">
+            <label for="hsl__rgb__r" class="hsl-label">・Red:</label>
+            <input
+              type="range"
+              id="hsl__rgb__r"
+              min="0"
+              max="255"
+              value="0"
+              step="1"
+            />
+          </div>
+          <div class="hsl-control">
+            <label for="hsl__rgb__g" class="hsl-label">・Green:</label>
+            <input
+              type="range"
+              id="hsl__rgb__g"
+              min="0"
+              max="255"
+              value="0"
+              step="1"
+            />
+          </div>
+          <div class="hsl-control">
+            <label for="hsl__rgb__b" class="hsl-label">・Blue:</label>
+            <input
+              type="range"
+              id="hsl__rgb__b"
+              min="0"
+              max="255"
+              value="0"
+              step="1"
+            />
+          </div>
         </div>
-        <div class="hsl-control">
-          <label for="hsl__rgb__g" class="hsl-label">・Green:</label>
-          <input 
-            type="range"
-            id="hsl__rgb__g"
-            min=0
-            max=255
-            value=0
-            step="1"
-          >
+        <div class="hsl__controls hsl-control--hsla">
+          <div class="hsl-control">
+            <label for="hsl__rgb__h" class="hsl-label">・Hue:</label>
+            <input
+              type="range"
+              id="hsl__rgb__h"
+              min="-360"
+              max="360"
+              value="0"
+              step="1"
+            />
+          </div>
+          <div class="hsl-control">
+            <label for="hsl__rgb__s" class="hsl-label">・Saturation:</label>
+            <input
+              type="range"
+              id="hsl__rgb__s"
+              min="0"
+              max="100"
+              value="0"
+              step="1"
+            />
+          </div>
+          <div class="hsl-control">
+            <label for="hsl__rgb__l" class="hsl-label">・Lightness:</label>
+            <input
+              type="range"
+              id="hsl__rgb__l"
+              min="0"
+              max="100"
+              value="0"
+              step="1"
+            />
+          </div>
+          <div class="hsl-control">
+            <label for="hsl__rgb__a" class="hsl-label">・Alpha:</label>
+            <input
+              type="range"
+              id="hsl__rgb__a"
+              min="0"
+              max="1"
+              value="1"
+              step="0.01"
+            />
+          </div>
         </div>
-        <div class="hsl-control">
-          <label for="hsl__rgb__b" class="hsl-label">・Blue:</label>
-          <input 
-            type="range"
-            id="hsl__rgb__b"
-            min=0
-            max=255
-            value=0
-            step="1"
-          >
+        <div class="mt__1 hsl-value hsl-value--rgb color__value__txt">
+          <p>background-color: <span class="hsl-value__text"></span></p>
         </div>
-      </div>
-      <div class="hsl__controls hsl-control--hsla">
-        <div class="hsl-control">
-          <label for="hsl__rgb__h" class="hsl-label">・Hue:</label>
-          <input 
-            type="range"
-            id="hsl__rgb__h"
-            min=-360
-            max=360
-            value=0
-            step="1"
-          >
-        </div>
-        <div class="hsl-control">
-          <label for="hsl__rgb__s" class="hsl-label">・Saturation:</label>
-          <input 
-            type="range"
-            id="hsl__rgb__s"
-            min=0
-            max=100
-            value=0
-            step="1"
-          >
-        </div>
-        <div class="hsl-control">
-          <label for="hsl__rgb__l" class="hsl-label">・Lightness:</label>
-          <input 
-            type="range"
-            id="hsl__rgb__l"
-            min=0
-            max=100
-            value=0
-            step="1"
-          >
-        </div>
-        <div class="hsl-control">
-          <label for="hsl__rgb__a" class="hsl-label">・Alpha:</label>
-          <input 
-            type="range"
-            id="hsl__rgb__a"
-            min=0
-            max=1
-            value=1
-            step="0.01"
-          >
-        </div>
-      </div>
-      <div class="mt__1 hsl-value hsl-value--rgb color__value__txt">
-        <p>background-color: <span class="hsl-value__text"></span></p>
-      </div>
-      <div class="color-function-preview hsl-preview hsl-preview--rgb"></div>
+        <div class="color-function-preview hsl-preview hsl-preview--rgb"></div>
 
-      <h4 class="mt__8">HSL with Conic Gradient</h4>
-      <div class="mt__2 hsl-controls hsl-controls--wheel">
-        <div class="hsl-control">
-          <label for="hsl__wheel__rotation" class="hsl-label">Hue Rotation:</label>
-          <input 
-            type="range"
-            id="hsl__wheel__rotation"
-            min=-360
-            max=360
-            value=0
-            step="1"
-          >
-        </div>
-      </div>
-      <div class="mt__2 hsl-wheel-result">
-        <div class="hsl-wheel-value color__value__txt">
-          <p>background: <span class="hsl-wheel-value__text"></span></p>
+        <h4 class="mt__8">HSL with Conic Gradient</h4>
+        <div class="mt__2 hsl-controls hsl-controls--wheel">
+          <div class="hsl-control">
+            <label for="hsl__wheel__rotation" class="hsl-label"
+              >Hue Rotation:</label
+            >
+            <input
+              type="range"
+              id="hsl__wheel__rotation"
+              min="-360"
+              max="360"
+              value="0"
+              step="1"
+            />
+          </div>
         </div>
         <div class="hsl-wheel"></div>
+        <div class="mt__2 hsl-wheel-result">
+          <div class="hsl-wheel-value color__value__txt">
+            <p>background: <span class="hsl-wheel-value__text"></span></p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</details>
+  </details>
 
-<!-- HSL -->
+  <!-- HSL -->
+</tips-hsl-accordion>
+
 <script>
-  document.addEventListener('astro:page-load', function() {
-    const hInput = document.getElementById('hue__h') as HTMLInputElement
-    const sInput = document.getElementById('hue__s') as HTMLInputElement
-    const lInput = document.getElementById('hue__l') as HTMLInputElement
-    const aInput = document.getElementById('hue__a') as HTMLInputElement
-
-    const previewBox = document.querySelector('.hsl-preview--basic') as HTMLDivElement
-
-    const previewValueText = document.querySelector('.hsl-value--basic .hsl-value__text') as HTMLSpanElement
-
-    const hslSetRandomDefault = () => {
-      hInput.value = String(Math.floor(Math.random() * 361) - 180)
-      sInput.value = String(Math.floor(Math.random() * 101))
-      lInput.value = String(Math.floor(Math.random() * 101))
-      aInput.value = '1'
+  class TipsHslAccordion extends HTMLElement {
+    connectedCallback() {
+      this.init1();
+      this.init2();
+      this.init3();
     }
 
-    const updatePreview = () => {
-      const h = hInput.value
-      const s = sInput.value
-      const l = lInput.value
-      const a = aInput.value
-      previewBox.style.backgroundColor = `hsl(${h} ${s}% ${l}% / ${a})`
+    init1() {
+      const hInput = this.querySelector("#hue__h") as HTMLInputElement;
+      const sInput = this.querySelector("#hue__s") as HTMLInputElement;
+      const lInput = this.querySelector("#hue__l") as HTMLInputElement;
+      const aInput = this.querySelector("#hue__a") as HTMLInputElement;
 
-      previewValueText.textContent = `hsl(${h} ${s}% ${l}% / ${a})`
+      const previewBox = this.querySelector(
+        ".hsl-preview--basic",
+      ) as HTMLDivElement;
+
+      const previewValueText = this.querySelector(
+        ".hsl-value--basic .hsl-value__text",
+      ) as HTMLSpanElement;
+
+      const hslSetRandomDefault = () => {
+        hInput.value = String(Math.floor(Math.random() * 361) - 180);
+        sInput.value = String(Math.floor(Math.random() * 101));
+        lInput.value = String(Math.floor(Math.random() * 101));
+        aInput.value = "1";
+      };
+
+      const updatePreview = () => {
+        const h = hInput.value;
+        const s = sInput.value;
+        const l = lInput.value;
+        const a = aInput.value;
+        previewBox.style.backgroundColor = `hsl(${h} ${s}% ${l}% / ${a})`;
+
+        previewValueText.textContent = `hsl(${h} ${s}% ${l}% / ${a})`;
+      };
+
+      hInput.addEventListener("input", updatePreview);
+      sInput.addEventListener("input", updatePreview);
+      lInput.addEventListener("input", updatePreview);
+      aInput.addEventListener("input", updatePreview);
+
+      hslSetRandomDefault();
+      updatePreview();
     }
 
-    hInput.addEventListener('input', updatePreview)
-    sInput.addEventListener('input', updatePreview)
-    lInput.addEventListener('input', updatePreview)
-    aInput.addEventListener('input', updatePreview)
+    init2() {
+      const withRgbRinput = this.querySelector(
+        "#hsl__rgb__r",
+      ) as HTMLInputElement;
+      const withRgbGinput = this.querySelector(
+        "#hsl__rgb__g",
+      ) as HTMLInputElement;
+      const withRgbBinput = this.querySelector(
+        "#hsl__rgb__b",
+      ) as HTMLInputElement;
+      // const withRgb_Ainput = this.querySelector('#hsl__rgb__a') as HTMLInputElement
 
-    hslSetRandomDefault()
-    updatePreview()
-  })
+      const withRgbHinput = this.querySelector(
+        "#hsl__rgb__h",
+      ) as HTMLInputElement;
+      const withRgbSinput = this.querySelector(
+        "#hsl__rgb__s",
+      ) as HTMLInputElement;
+      const withRgbLinput = this.querySelector(
+        "#hsl__rgb__l",
+      ) as HTMLInputElement;
+      const withRgbAinput = this.querySelector(
+        "#hsl__rgb__a",
+      ) as HTMLInputElement;
+
+      const setRgbHslRandomDefault = () => {
+        withRgbRinput.value = String(Math.floor(Math.random() * 256));
+        withRgbGinput.value = String(Math.floor(Math.random() * 256));
+        withRgbBinput.value = String(Math.floor(Math.random() * 256));
+        // withRgb_Ainput.value = '1'
+
+        withRgbHinput.value = String(Math.floor(Math.random() * 361));
+        withRgbSinput.value = String(Math.floor(Math.random() * 101));
+        withRgbLinput.value = String(Math.floor(Math.random() * 101));
+        withRgbAinput.value = "1";
+      };
+
+      const updateWithRgbPreview = () => {
+        const r = withRgbRinput.value;
+        const g = withRgbGinput.value;
+        const b = withRgbBinput.value;
+        // const a = withRgb_Ainput.value
+
+        const h = withRgbHinput.value;
+        const s = withRgbSinput.value;
+        const l = withRgbLinput.value;
+        const ha = withRgbAinput.value;
+
+        const rgbString = `rgb(${r} ${g} ${b})`;
+        // h/s/l keywords keep rgb's own channels; calc() offsets them by the slider values
+        const hslStyleString = `hsl(from ${rgbString} calc(h + ${h}) calc(s + ${s}) calc(l + ${l}) / ${ha})`;
+
+        const previewBox = this.querySelector(
+          ".hsl-preview--rgb",
+        ) as HTMLDivElement;
+        const previewValueText = this.querySelector(
+          ".hsl-value--rgb .hsl-value__text",
+        ) as HTMLSpanElement;
+
+        previewBox.style.backgroundColor = hslStyleString;
+        previewValueText.textContent = hslStyleString;
+      };
+
+      withRgbRinput.addEventListener("input", updateWithRgbPreview);
+      withRgbGinput.addEventListener("input", updateWithRgbPreview);
+      withRgbBinput.addEventListener("input", updateWithRgbPreview);
+      // withRgb_Ainput.addEventListener('input', updateWithRgbPreview)
+      withRgbHinput.addEventListener("input", updateWithRgbPreview);
+      withRgbSinput.addEventListener("input", updateWithRgbPreview);
+      withRgbLinput.addEventListener("input", updateWithRgbPreview);
+      withRgbAinput.addEventListener("input", updateWithRgbPreview);
+
+      setRgbHslRandomDefault();
+      updateWithRgbPreview();
+    }
+
+    init3() {
+      const withConicGradientRotationInput = this.querySelector(
+        "#hsl__wheel__rotation",
+      ) as HTMLInputElement;
+
+      const previewCircle = this.querySelector(".hsl-wheel") as HTMLDivElement;
+
+      const updateCirclePreview = () => {
+        const rotation = withConicGradientRotationInput.value;
+        const previewValueText = this.querySelector(
+          ".hsl-wheel-value__text",
+        ) as HTMLSpanElement;
+
+        previewCircle.style.background = `conic-gradient(
+          hsl(calc(360 + ${rotation}) 100% 50%),
+          hsl(calc(315 + ${rotation}) 100% 50%),
+          hsl(calc(270 + ${rotation}) 100% 50%),
+          hsl(calc(225 + ${rotation}) 100% 50%),
+          hsl(calc(180 + ${rotation}) 100% 50%),
+          hsl(calc(135 + ${rotation}) 100% 50%),
+          hsl(calc(90 + ${rotation}) 100% 50%),
+          hsl(calc(45 + ${rotation}) 100% 50%),
+          hsl(calc(0 + ${rotation}) 100% 50%)
+        )`;
+
+        previewValueText.textContent = `conic-gradient(
+          hsl(calc(360 + ${rotation}) 100% 50%),
+          hsl(calc(315 + ${rotation}) 100% 50%),
+          hsl(calc(270 + ${rotation}) 100% 50%),
+          hsl(calc(225 + ${rotation}) 100% 50%),
+          hsl(calc(180 + ${rotation}) 100% 50%),
+          hsl(calc(135 + ${rotation}) 100% 50%),
+          hsl(calc(90 + ${rotation}) 100% 50%),
+          hsl(calc(45 + ${rotation}) 100% 50%),
+          hsl(calc(0 + ${rotation}) 100% 50%)
+        )`;
+      };
+
+      withConicGradientRotationInput.addEventListener(
+        "input",
+        updateCirclePreview,
+      );
+
+      updateCirclePreview();
+    }
+  }
+
+  customElements.define("tips-hsl-accordion", TipsHslAccordion);
 </script>
 
+<style>
+  tips-hsl-accordion {
+    display: contents;
+  }
+</style>
 <!-- HSL with RGB -->
-<script>
-  document.addEventListener('astro:page-load', function() {
-    const withRgbRinput = document.getElementById('hsl__rgb__r') as HTMLInputElement
-    const withRgbGinput = document.getElementById('hsl__rgb__g') as HTMLInputElement
-    const withRgbBinput = document.getElementById('hsl__rgb__b') as HTMLInputElement
-    // const withRgb_Ainput = document.getElementById('hsl__rgb__a') as HTMLInputElement
-
-    const withRgbHinput = document.getElementById('hsl__rgb__h') as HTMLInputElement
-    const withRgbSinput = document.getElementById('hsl__rgb__s') as HTMLInputElement
-    const withRgbLinput = document.getElementById('hsl__rgb__l') as HTMLInputElement
-    const withRgbAinput = document.getElementById('hsl__rgb__a') as HTMLInputElement
-
-    const setRgbHslRandomDefault = () => {
-      withRgbRinput.value = String(Math.floor(Math.random() * 256))
-      withRgbGinput.value = String(Math.floor(Math.random() * 256))
-      withRgbBinput.value = String(Math.floor(Math.random() * 256))
-      // withRgb_Ainput.value = '1'
-
-      withRgbHinput.value = String(Math.floor(Math.random() * 361))
-      withRgbSinput.value = String(Math.floor(Math.random() * 101))
-      withRgbLinput.value = String(Math.floor(Math.random() * 101))
-      withRgbAinput.value = '1'
-    }
-
-    const updateWithRgbPreview = () => {
-      const r = withRgbRinput.value
-      const g = withRgbGinput.value
-      const b = withRgbBinput.value
-      // const a = withRgb_Ainput.value
-
-      const h = withRgbHinput.value
-      const s = withRgbSinput.value
-      const l = withRgbLinput.value
-      const ha = withRgbAinput.value
-
-      const rgbString = `rgb(${r} ${g} ${b})`
-      // h/s/l keywords keep rgb's own channels; calc() offsets them by the slider values
-      const hslStyleString = `hsl(from ${rgbString} calc(h + ${h}) calc(s + ${s}) calc(l + ${l}) / ${ha})`
-
-      const previewBox = document.querySelector('.hsl-preview--rgb') as HTMLDivElement
-      const previewValueText = document.querySelector('.hsl-value--rgb .hsl-value__text') as HTMLSpanElement
-
-      previewBox.style.backgroundColor = hslStyleString
-      previewValueText.textContent = hslStyleString
-    }
-
-    withRgbRinput.addEventListener('input', updateWithRgbPreview)
-    withRgbGinput.addEventListener('input', updateWithRgbPreview)
-    withRgbBinput.addEventListener('input', updateWithRgbPreview)
-    // withRgb_Ainput.addEventListener('input', updateWithRgbPreview)
-    withRgbHinput.addEventListener('input', updateWithRgbPreview)
-    withRgbSinput.addEventListener('input', updateWithRgbPreview)
-    withRgbLinput.addEventListener('input', updateWithRgbPreview)
-    withRgbAinput.addEventListener('input', updateWithRgbPreview)
-
-    setRgbHslRandomDefault()
-    updateWithRgbPreview()
-  })
-</script>
 
 <!-- HSL with Conic Gradient -->
-<script>
-  document.addEventListener('astro:page-load', function() {
-    const withConicGradientRotationInput = document.getElementById('hsl__wheel__rotation') as HTMLInputElement
-
-    const previewCircle = document.querySelector('.hsl-wheel') as HTMLDivElement
-
-    const updateCirclePreview = () => {
-      const rotation = withConicGradientRotationInput.value
-      const previewValueText = document.querySelector('.hsl-wheel-value__text') as HTMLSpanElement
-
-      previewCircle.style.background = `conic-gradient(
-        hsl(calc(360 + ${rotation}) 100% 50%),
-        hsl(calc(315 + ${rotation}) 100% 50%),
-        hsl(calc(270 + ${rotation}) 100% 50%),
-        hsl(calc(225 + ${rotation}) 100% 50%),
-        hsl(calc(180 + ${rotation}) 100% 50%),
-        hsl(calc(135 + ${rotation}) 100% 50%),
-        hsl(calc(90 + ${rotation}) 100% 50%),
-        hsl(calc(45 + ${rotation}) 100% 50%),
-        hsl(calc(0 + ${rotation}) 100% 50%)
-      )`
-
-      previewValueText.textContent = `conic-gradient(
-        hsl(calc(360 + ${rotation}) 100% 50%),
-        hsl(calc(315 + ${rotation}) 100% 50%),
-        hsl(calc(270 + ${rotation}) 100% 50%),
-        hsl(calc(225 + ${rotation}) 100% 50%),
-        hsl(calc(180 + ${rotation}) 100% 50%),
-        hsl(calc(135 + ${rotation}) 100% 50%),
-        hsl(calc(90 + ${rotation}) 100% 50%),
-        hsl(calc(45 + ${rotation}) 100% 50%),
-        hsl(calc(0 + ${rotation}) 100% 50%)
-      )`
-    }
-
-    withConicGradientRotationInput.addEventListener('input', updateCirclePreview)
-
-    updateCirclePreview()
-  })
-</script>

@@ -27,24 +27,24 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        非展開中のメニューなど"隠された"セクションに対しては inert を当て、
-        アクセシビリティツリーからの参照や不要なタブフォーカスを排除する。
+    非展開中のメニューなど"隠された"セクションに対しては inert を当て、
+    アクセシビリティツリーからの参照や不要なタブフォーカスを排除する。
 
-        const dialogItems = document.querySelectorAll<HTMLDialogElement>
-        
-        dialogItems.forEach((dialog) => {
-          const syncInert = () => {
-            dialog.toggleAttribute('inert', !dialog.open)
-          }
-        
-          syncInert()
-        
-          const observer = new MutationObserver(syncInert)
-          observer.observe(dialog, {
-            attributes: true,
-            attributeFilter: ['open']
-          })
-        })
+    const dialogItems = document.querySelectorAll<HTMLDialogElement>
+    
+    dialogItems.forEach((dialog) => {
+      const syncInert = () => {
+        dialog.toggleAttribute('inert', !dialog.open)
+      }
+    
+      syncInert()
+    
+      const observer = new MutationObserver(syncInert)
+      observer.observe(dialog, {
+        attributes: true,
+        attributeFilter: ['open']
+      })
+    })
                 `} lang='js' theme='github-dark'></Code>
             </div>
           </div>

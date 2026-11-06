@@ -7,8 +7,7 @@ const minSizeNormal = 16;
 const maxSizeNormal = 45;
 const defaultSizeNormal = 16;
 ---
-
-<h2 class="mt__8">font-size</h2>
+<tips-font-size><h2 class="mt__8">font-size</h2>
 <div class="mt__1 font__size__grid">
   <div class="content__wrap">
     <label class="content__subttl"> For Standard Use: 16 - 45px</label>
@@ -48,30 +47,45 @@ const defaultSizeNormal = 16;
     <p class="mt__1">原則として許容されない。</p>
   </div>
 </div>
+</tips-font-size>
 
 <script>
-  document.addEventListener("astro:page-load", function () {
-    const sliderLarge = document.querySelector("#font__size__large");
-    const textLarge = document.querySelector("#preview__txt__large");
-    const sliderNormal = document.querySelector("#font__size__normal");
-    const textNormal = document.querySelector("#preview__txt__normal");
+class TipsFontSize extends HTMLElement {
+  connectedCallback() {
+    this.init1()
+  }
 
-    if (sliderLarge && textLarge) {
-      const updateFontSize = () => {
-        const size = `${sliderLarge.value}px`;
-        textLarge.style.fontSize = size;
-      };
+  init1() {
+      const sliderLarge = this.querySelector<HTMLInputElement>("#font__size__large");
+      const textLarge = this.querySelector<HTMLElement>("#preview__txt__large");
+      const sliderNormal = this.querySelector<HTMLInputElement>("#font__size__normal");
+      const textNormal = this.querySelector<HTMLElement>("#preview__txt__normal");
 
-      sliderLarge?.addEventListener("input", updateFontSize);
-    }
+      if (sliderLarge && textLarge) {
+        const updateFontSize = () => {
+          const size = `${sliderLarge.value}px`;
+          textLarge.style.fontSize = size;
+        };
 
-    if (sliderNormal && textNormal) {
-      const updateFontSize = () => {
-        const size = `${sliderNormal.value}px`;
-        textNormal.style.fontSize = size;
-      };
+        sliderLarge?.addEventListener("input", updateFontSize);
+      }
 
-      sliderNormal?.addEventListener("input", updateFontSize);
-    }
-  });
+      if (sliderNormal && textNormal) {
+        const updateFontSize = () => {
+          const size = `${sliderNormal.value}px`;
+          textNormal.style.fontSize = size;
+        };
+
+        sliderNormal?.addEventListener("input", updateFontSize);
+      }
+  }
+}
+
+customElements.define('tips-font-size', TipsFontSize)
 </script>
+
+<style>
+  tips-font-size {
+    display: contents;
+  }
+</style>

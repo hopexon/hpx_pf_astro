@@ -1,4 +1,5 @@
-<details class="acc__with__anim">
+
+<tips-lab-gradient-accordion><details class="acc__with__anim">
   <summary>Lab with Gradient<span class="twister"></span></summary>
   <div class="accordion__overflow__hidden">
     <div class="content__wrap">
@@ -48,90 +49,105 @@
 </details>
 
 <!-- Lab with Gradation Random-->
+</tips-lab-gradient-accordion>
+
 <script>
-  document.addEventListener('astro:page-load', function() {
-    const labGRandomPreviewBox = document.querySelector('.lab-grad-random-preview') as HTMLDivElement
-    const transitionDuration = 2000
+class TipsLabGradientAccordion extends HTMLElement {
+  connectedCallback() {
+    this.init1()
+    this.init2()
+  }
 
-    type LabColor = [number, number, number]
+  init1() {
+      const labGRandomPreviewBox = this.querySelector('.lab-grad-random-preview') as HTMLDivElement
+      const transitionDuration = 2000
 
-    const randomLabColor = (): LabColor => [
-      Math.random() * 100,
-      Math.random() * 250 - 125,
-      Math.random() * 250 - 125,
-    ]
+      type LabColor = [number, number, number]
 
-    const interpolateLabColor = (from: LabColor, to: LabColor, progress: number): LabColor => [
-      from[0] + (to[0] - from[0]) * progress,
-      from[1] + (to[1] - from[1]) * progress,
-      from[2] + (to[2] - from[2]) * progress,
-    ]
+      const randomLabColor = (): LabColor => [
+        Math.random() * 100,
+        Math.random() * 250 - 125,
+        Math.random() * 250 - 125,
+      ]
 
-    let startColor1 = randomLabColor()
-    let targetColor1 = randomLabColor()
-    let startColor2 = randomLabColor()
-    let targetColor2 = randomLabColor()
-    let transitionStart = 0
+      const interpolateLabColor = (from: LabColor, to: LabColor, progress: number): LabColor => [
+        from[0] + (to[0] - from[0]) * progress,
+        from[1] + (to[1] - from[1]) * progress,
+        from[2] + (to[2] - from[2]) * progress,
+      ]
 
-    const updateLabGRandomPreview = (timestamp: number) => {
-      if (transitionStart === 0) transitionStart = timestamp
+      let startColor1 = randomLabColor()
+      let targetColor1 = randomLabColor()
+      let startColor2 = randomLabColor()
+      let targetColor2 = randomLabColor()
+      let transitionStart = 0
 
-      const progress = Math.min((timestamp - transitionStart) / transitionDuration, 1)
-      const color1 = interpolateLabColor(startColor1, targetColor1, progress)
-      const color2 = interpolateLabColor(startColor2, targetColor2, progress)
+      const updateLabGRandomPreview = (timestamp: number) => {
+        if (transitionStart === 0) transitionStart = timestamp
 
-      labGRandomPreviewBox.style.backgroundImage = `linear-gradient(to right, lab(${color1.join(' ')}), lab(${color2.join(' ')}))`
+        const progress = Math.min((timestamp - transitionStart) / transitionDuration, 1)
+        const color1 = interpolateLabColor(startColor1, targetColor1, progress)
+        const color2 = interpolateLabColor(startColor2, targetColor2, progress)
 
-      if (progress === 1) {
-        startColor1 = targetColor1
-        targetColor1 = randomLabColor()
-        startColor2 = targetColor2
-        targetColor2 = randomLabColor()
-        transitionStart = timestamp
+        labGRandomPreviewBox.style.backgroundImage = `linear-gradient(to right, lab(${color1.join(' ')}), lab(${color2.join(' ')}))`
+
+        if (progress === 1) {
+          startColor1 = targetColor1
+          targetColor1 = randomLabColor()
+          startColor2 = targetColor2
+          targetColor2 = randomLabColor()
+          transitionStart = timestamp
+        }
+
+        window.requestAnimationFrame(updateLabGRandomPreview)
       }
 
       window.requestAnimationFrame(updateLabGRandomPreview)
-    }
+  }
 
-    window.requestAnimationFrame(updateLabGRandomPreview)
-  })
+  init2() {
+      const labGLInput1 = this.querySelector('#lab__grad__l') as HTMLInputElement
+      const labGAInput1 = this.querySelector('#lab__grad__a') as HTMLInputElement
+      const labGBInput1 = this.querySelector('#lab__grad__b') as HTMLInputElement
+      const labGAlInput1 = this.querySelector('#lab__grad__al') as HTMLInputElement
+      const labGLInput2 = this.querySelector('#lab__grad__l__2') as HTMLInputElement
+      const labGAInput2 = this.querySelector('#lab__grad__a__2') as HTMLInputElement
+      const labGBInput2 = this.querySelector('#lab__grad__b__2') as HTMLInputElement
+      const labGAlInput2 = this.querySelector('#lab__grad__al__2') as HTMLInputElement
+      const labGPreviewBox = this.querySelector('.lab-grad-preview') as HTMLDivElement
+
+      const updateLabGPreview = () => {
+        const l1 = labGLInput1.value
+        const a1 = labGAInput1.value
+        const b1 = labGBInput1.value
+        const al1 = labGAlInput1.value
+        const l2 = labGLInput2.value
+        const a2 = labGAInput2.value
+        const b2 = labGBInput2.value
+        const al2 = labGAlInput2.value
+
+        labGPreviewBox.style.backgroundImage = `linear-gradient(to right, lab(${l1} ${a1} ${b1} / ${al1}), lab(${l2} ${a2} ${b2} / ${al2}))`
+      }
+
+      labGLInput1.addEventListener('input', updateLabGPreview)
+      labGAInput1.addEventListener('input', updateLabGPreview)
+      labGBInput1.addEventListener('input', updateLabGPreview)
+      labGAlInput1.addEventListener('input', updateLabGPreview)
+      labGLInput2.addEventListener('input', updateLabGPreview)
+      labGAInput2.addEventListener('input', updateLabGPreview)
+      labGBInput2.addEventListener('input', updateLabGPreview)
+      labGAlInput2.addEventListener('input', updateLabGPreview)
+
+      updateLabGPreview()
+  }
+}
+
+customElements.define('tips-lab-gradient-accordion', TipsLabGradientAccordion)
 </script>
 
+<style>
+  tips-lab-gradient-accordion {
+    display: contents;
+  }
+</style>
 <!-- Lab with Gradation-->
-<script>
-  document.addEventListener('astro:page-load', function() {
-    const labGLInput1 = document.getElementById('lab__grad__l') as HTMLInputElement
-    const labGAInput1 = document.getElementById('lab__grad__a') as HTMLInputElement
-    const labGBInput1 = document.getElementById('lab__grad__b') as HTMLInputElement
-    const labGAlInput1 = document.getElementById('lab__grad__al') as HTMLInputElement
-    const labGLInput2 = document.getElementById('lab__grad__l__2') as HTMLInputElement
-    const labGAInput2 = document.getElementById('lab__grad__a__2') as HTMLInputElement
-    const labGBInput2 = document.getElementById('lab__grad__b__2') as HTMLInputElement
-    const labGAlInput2 = document.getElementById('lab__grad__al__2') as HTMLInputElement
-    const labGPreviewBox = document.querySelector('.lab-grad-preview') as HTMLDivElement
-
-    const updateLabGPreview = () => {
-      const l1 = labGLInput1.value
-      const a1 = labGAInput1.value
-      const b1 = labGBInput1.value
-      const al1 = labGAlInput1.value
-      const l2 = labGLInput2.value
-      const a2 = labGAInput2.value
-      const b2 = labGBInput2.value
-      const al2 = labGAlInput2.value
-
-      labGPreviewBox.style.backgroundImage = `linear-gradient(to right, lab(${l1} ${a1} ${b1} / ${al1}), lab(${l2} ${a2} ${b2} / ${al2}))`
-    }
-
-    labGLInput1.addEventListener('input', updateLabGPreview)
-    labGAInput1.addEventListener('input', updateLabGPreview)
-    labGBInput1.addEventListener('input', updateLabGPreview)
-    labGAlInput1.addEventListener('input', updateLabGPreview)
-    labGLInput2.addEventListener('input', updateLabGPreview)
-    labGAInput2.addEventListener('input', updateLabGPreview)
-    labGBInput2.addEventListener('input', updateLabGPreview)
-    labGAlInput2.addEventListener('input', updateLabGPreview)
-
-    updateLabGPreview()
-  })
-</script>

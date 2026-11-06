@@ -1,8 +1,7 @@
 ---
 import { Code } from 'astro:components'
 ---
-
-<h2 id="forms" class="mt__8">Forms</h2>
+<tips-forms><h2 id="forms" class="mt__8">Forms</h2>
 
 <details class='mt__2 acc__with__anim' open>
   <summary>Samples<span class='twister' aria-hidden='true'></span></summary>
@@ -131,41 +130,55 @@ import { Code } from 'astro:components'
       </div>
     </div>
 </details>
+</tips-forms>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const testInputEl = document.getElementById('test-input')
-    const testTypeChangeBox = document.getElementById('test-select-type')
-    const testPlaceholderChangeBox = document.getElementById('test-select-placeholder')
-    const testDisabledChangeBox = document.getElementById('test-select-disabled')
+class TipsForms extends HTMLElement {
+  connectedCallback() {
+    this.init1()
+  }
+
+  init1() {
+      const testInputEl = this.querySelector('#test-input')
+      const testTypeChangeBox = this.querySelector('#test-select-type')
+      const testPlaceholderChangeBox = this.querySelector('#test-select-placeholder')
+      const testDisabledChangeBox = this.querySelector('#test-select-disabled')
     
 
-    if(
-      !(testInputEl instanceof HTMLInputElement) || 
-      !(testTypeChangeBox instanceof HTMLInputElement) || 
-      !(testPlaceholderChangeBox instanceof HTMLInputElement) ||
-      !(testDisabledChangeBox instanceof HTMLInputElement)
-    ) return
+      if(
+        !(testInputEl instanceof HTMLInputElement) || 
+        !(testTypeChangeBox instanceof HTMLInputElement) || 
+        !(testPlaceholderChangeBox instanceof HTMLInputElement) ||
+        !(testDisabledChangeBox instanceof HTMLInputElement)
+      ) return
 
-    testTypeChangeBox.addEventListener('change', () => {
-      testInputEl.type = testTypeChangeBox.value.trim()
-    })
+      testTypeChangeBox.addEventListener('change', () => {
+        testInputEl.type = testTypeChangeBox.value.trim()
+      })
 
-    testPlaceholderChangeBox.addEventListener('change', () => {
-      testInputEl.placeholder = testPlaceholderChangeBox.value.trim()
-    })
+      testPlaceholderChangeBox.addEventListener('change', () => {
+        testInputEl.placeholder = testPlaceholderChangeBox.value.trim()
+      })
 
-    testDisabledChangeBox.addEventListener('change', () => {
-      const value = testDisabledChangeBox.value.trim()
-      testInputEl.readOnly = value.includes('readonly')
-      testInputEl.disabled = value.includes('disabled')
-      testInputEl.spellcheck = value.includes('spellcheck')
-      testInputEl.hidden = value.includes('hidden')
-    })
+      testDisabledChangeBox.addEventListener('change', () => {
+        const value = testDisabledChangeBox.value.trim()
+        testInputEl.readOnly = value.includes('readonly')
+        testInputEl.disabled = value.includes('disabled')
+        testInputEl.spellcheck = value.includes('spellcheck')
+        testInputEl.hidden = value.includes('hidden')
+      })
 
-  })
+  }
+}
+
+customElements.define('tips-forms', TipsForms)
 </script>
 
+<style>
+  tips-forms {
+    display: contents;
+  }
+</style>
 <style>
   form {
     display: grid;

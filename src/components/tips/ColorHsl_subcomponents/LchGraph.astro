@@ -3,14 +3,15 @@
   <span class="label__a">+a</span>
   <span class="label__l">外縁ほど +L</span>
   <div class="lch__graph">
+    <span class="value__label value__label__horizontal label__zero">0</span>
     {
-      Array.from({length:6}).map((_, index) => (
-        <span class={`value__label label__vertical__${index + 1}`}>{(index + 1) * 10}</span>
+      [3, 6].map((n) => (
+        <span class={`value__label label__vertical__${n}`}>{n * 10}</span>
       ))
     }
     {
-      Array.from({length:6}).map((_, index) => (
-        <span class={`value__label value__label__horizontal label__horizontal__${index + 1}`}>{(index + 1) * 10}</span>
+      [3, 6].map((n) => (
+        <span class={`value__label value__label__horizontal label__horizontal__${n}`}>{n * 10}</span>
       ))
     }
   </div>
@@ -36,26 +37,56 @@
     font-weight: 700;
   }
 
+  .label__a,
+  .label__l {
+    --graph-radius: 100px;
+
+    inset-inline: calc(50% + var(--graph-radius) + 0.5rem) auto;
+    white-space: nowrap;
+
+    @container (inline-size > 768px) {
+      --graph-radius: 20cqi;
+    }
+
+    @container (inline-size > 1560px) {
+      --graph-radius: 300px;
+    }
+  }
+
   .label__a {
     inset-block-start: 50%;
-    inset-inline-end: 1rem;
     transform: translateY(-50%);
   }
 
   .label__b {
-    inset-block-start: 1rem;
+    --inset-block-start: 0.25rem;
+
+    inset-block-start: var(--inset-block-start);
     inset-inline-start: 50%;
     transform: translateX(-50%);
+
+    @media screen and (min-width: 768px) {
+      --inset-block-start: 1rem;
+    }
   }
 
   .label__l {
-    inset-block-start: 6rem;
-    inset-inline-end: 2rem;
+    --font-size: 0.8rem;
+
+    inset-block-start: calc(50% - var(--graph-radius) * 0.6);
+    transform: translateY(-50%);
+    font-size: var(--font-size);
+
+    @media screen and (min-width: 768px) {
+      --font-size: 1rem;
+    }
   }
 
   .lch__graph {
     --block-size: 200px;
     --inline-size: 200px;
+    /* 10単位あたりの間隔 = 直径の1/12。サイズ変更に円の線と数値を追従させる */
+    --ring-step: calc(var(--inline-size) / 12);
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -81,8 +112,8 @@
       ),
       repeating-radial-gradient(
         circle at center,
-        transparent 0 49px,
-        var(--base-400) 49px 50px
+        transparent 0 calc(var(--ring-step) - 1px),
+        var(--base-400) calc(var(--ring-step) - 1px) var(--ring-step)
       ),
       radial-gradient(in lab, lab(60 0 0) 0%, transparent 72%),
       conic-gradient(
@@ -101,6 +132,9 @@
     .value__label {
       display: grid;
       color: var(--base-700);
+      font-size: clamp(0.6rem, calc(var(--ring-step) * 0.7), 1rem);
+      line-height: 1;
+      white-space: nowrap;
     }
 
     .value__label__horizontal {
@@ -109,6 +143,11 @@
       margin-right: 0.2em;
     }
     
+    .label__zero {
+      grid-area: 6/7/7/8;
+      justify-items: flex-start;
+      margin-inline: 0.2em 0;
+    }
     .label__vertical__1 { grid-area: 6/7/7/8; }
     .label__vertical__2 { grid-area: 5/7/6/8; }
     .label__vertical__3 { grid-area: 4/7/5/8; }
@@ -135,8 +174,8 @@
       background-image:
         repeating-radial-gradient(
           circle at center,
-          transparent 0 49px,
-          var(--base-400) 49px 50px
+          transparent 0 calc(var(--ring-step) - 1px),
+          var(--base-400) calc(var(--ring-step) - 1px) var(--ring-step)
       );
     }
   }

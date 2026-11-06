@@ -30,8 +30,8 @@ const customCrumbs = [
 <html lang="ja">
   <head>
     <HeadMeta
-      title={card?.name}
-      description={card ? `${card.name}(${card.set})のカード情報` : undefined}
+      title=`${card?.name} | MTG Collection`
+      description={card ? `${card.name} / ${card.set}` : undefined}
       image={cardImage}
     />
     <slot name="head" />
