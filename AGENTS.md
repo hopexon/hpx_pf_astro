@@ -8,6 +8,8 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+Please prioritize implementation using Web Components rather than `astro:page-load`.
+
 ## Web Guidance
 
 When you got questions about web development, please follow Modern Web Guidance as a basic reference.
