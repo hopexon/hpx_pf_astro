@@ -10,17 +10,27 @@ import PanelSection from '../../components/common/PanelSection.astro'
       <div class="section__wrapper">
         <div class="about__wrapper" data-lang="ja">
           <PanelSection class="who">
-            <h2>◯&nbsp;どちら様ですか</h2>
-            <dl>
-              <dt>HPX</dt>
-              <dd>・年齢: 32</dd>
-              <dd>・身長: 180cm</dd>
-              <dd>・体重: 100kg</dd>
-              <dd>・顔面: 髭まみれ</dd>
-              <dd>・北海道苫前郡羽幌町出身</dd>
-              <dd>・小樽商科大学商学部卒</dd>
-              <dd>・北海道札幌市在住</dd>
-            </dl>
+            <div class="who__profile">
+              <h2>◯&nbsp;どちら様ですか</h2>
+              <dl>
+                <dt>HPX</dt>
+                <dd>・年齢: 32</dd>
+                <dd>・身長: 180cm</dd>
+                <dd>・体重: 100kg</dd>
+                <dd>・顔面: 髭まみれ</dd>
+                <dd>・北海道苫前郡羽幌町出身</dd>
+                <dd>・小樽商科大学商学部卒</dd>
+                <dd>・北海道札幌市在住</dd>
+              </dl>
+            </div>
+            <img
+              class="who__logo"
+              src="/hpx_logo.webp"
+              alt="HPX Logo"
+              width="2043"
+              height="2043"
+              loading="lazy"
+            >
           </PanelSection>
 
           <PanelSection class="doing">
@@ -150,6 +160,43 @@ import PanelSection from '../../components/common/PanelSection.astro'
 
 <style>
   .about__wrapper {
+
+    :global(.who) {
+      --grid-template-columns: 1fr;
+      --gap: 2rem;
+
+      display: grid;
+      grid-template-columns: var(--grid-template-columns);
+      align-items: center;
+      gap: var(--gap);
+
+      @media screen and (min-width: 521px) {
+        --grid-template-columns: max-content minmax(0, 200px);
+        --justify-content: space-around;
+
+        justify-content: var(--justify-content);
+      }
+
+      @media screen and (min-width: 768px) {
+        --padding-inline: 3rem;
+        --grid-template-columns: max-content minmax(0, 250px);
+        --gap: 3rem;
+        --justify-content: inherit;
+      }
+    }
+
+    .who__logo {
+      --max-inline-size: 200px;
+
+      justify-self: center;
+      inline-size: 100%;
+      max-inline-size: var(--max-inline-size);
+
+      @media screen and (min-width: 768px) {
+        --max-inline-size: 250px;
+      }
+    }
+
     :global(.skill dl),
     :global(.job-history dl) {
       text-indent: hanging 1em;
