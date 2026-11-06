@@ -3,8 +3,8 @@
 // ClientRouter・<slot name="head" />・ページ固有の script は各レイアウト側に置く。
 // 仮のメタ情報は後で差し替える
 const siteName = 'HPX Portfolio'
-const defaultDescription = 'A Web Portfolio of HPX'
-const defaultImage = '' // TODO: デフォルトのOGP画像パス(例: '/og-default.png' 1200x630)。空の間は og:image を出さない
+const defaultDescription = 'Web Portfolio of HPX'
+const defaultImage = '/ogp.webp' // TODO: デフォルトのOGP画像パス(例: '/og-default.png' 1200x630)。空の間は og:image を出さない
 
 interface Props {
   title?: string
@@ -31,7 +31,7 @@ const ogImage = image ? new URL(image, Astro.site) : undefined
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
 <link rel="icon" href="/favicon.ico" />
 
 <!-- セキュリティ(ClientRouter とインラインスタイルに対応できる範囲の設定) -->
