@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1600" width="1600" height="1600" role="img" aria-label="23個の扇形を放射状に並べた円形ロゴ">
+  <!-- 12時から時計回り。150〜165度の区画は元画像に合わせて空ける。 -->
+  <rect width="1600" height="1600" fill="#fff" />
+  <g stroke="#fff" stroke-width="8" stroke-linejoin="round">
+    <path class="sector" data-angle="0" style="--sector-index: 0; --base-color: #d9d7cd" fill="#d9d7cd" d="M 800 800 L 800 0 A 800 800 0 0 1 1007.055 27.259 Z" />
+    <path class="sector" data-angle="15" style="--sector-index: 1; --base-color: #cdccc2" fill="#cdccc2" d="M 800 800 L 1007.055 27.259 A 800 800 0 0 1 1200 107.18 Z" />
+    <path class="sector" data-angle="30" style="--sector-index: 2; --base-color: #b7b5ab" fill="#b7b5ab" d="M 800 800 L 1200 107.18 A 800 800 0 0 1 1365.685 234.315 Z" />
+    <path class="sector" data-angle="45" style="--sector-index: 3; --base-color: #868480" fill="#868480" d="M 800 800 L 1365.685 234.315 A 800 800 0 0 1 1492.82 400 Z" />
+    <path class="sector" data-angle="60" style="--sector-index: 4; --base-color: #6f6e69" fill="#6f6e69" d="M 800 800 L 1492.82 400 A 800 800 0 0 1 1572.741 592.945 Z" />
+    <path class="sector" data-angle="75" style="--sector-index: 5; --base-color: #585653" fill="#585653" d="M 800 800 L 1572.741 592.945 A 800 800 0 0 1 1600 800 Z" />
+    <path class="sector" data-angle="90" style="--sector-index: 6; --base-color: #3f3e3c" fill="#3f3e3c" d="M 800 800 L 1600 800 A 800 800 0 0 1 1572.741 1007.055 Z" />
+    <path class="sector" data-angle="105" style="--sector-index: 7; --base-color: #343331" fill="#343331" d="M 800 800 L 1572.741 1007.055 A 800 800 0 0 1 1492.82 1200 Z" />
+    <path class="sector" data-angle="120" style="--sector-index: 8; --base-color: #282726" fill="#282726" d="M 800 800 L 1492.82 1200 A 800 800 0 0 1 1365.685 1365.685 Z" />
+    <path class="sector" data-angle="135" style="--sector-index: 9; --base-color: #1c1b1a" fill="#1c1b1a" d="M 800 800 L 1365.685 1365.685 A 800 800 0 0 1 1200 1492.82 Z" />
+    <path class="sector" data-angle="165" style="--sector-index: 10; --base-color: #1c1b1a" fill="#1c1b1a" d="M 800 800 L 1007.055 1572.741 A 800 800 0 0 1 800 1600 Z" />
+    <path class="sector" data-angle="180" style="--sector-index: 11; --base-color: #282726" fill="#282726" d="M 800 800 L 800 1600 A 800 800 0 0 1 592.945 1572.741 Z" />
+    <path class="sector" data-angle="195" style="--sector-index: 12; --base-color: #343331" fill="#343331" d="M 800 800 L 592.945 1572.741 A 800 800 0 0 1 400 1492.82 Z" />
+    <path class="sector" data-angle="210" style="--sector-index: 13; --base-color: #3f3e3c" fill="#3f3e3c" d="M 800 800 L 400 1492.82 A 800 800 0 0 1 234.315 1365.685 Z" />
+    <path class="sector" data-angle="225" style="--sector-index: 14; --base-color: #585653" fill="#585653" d="M 800 800 L 234.315 1365.685 A 800 800 0 0 1 107.18 1200 Z" />
+    <path class="sector" data-angle="240" style="--sector-index: 15; --base-color: #6f6e69" fill="#6f6e69" d="M 800 800 L 107.18 1200 A 800 800 0 0 1 27.259 1007.055 Z" />
+    <path class="sector" data-angle="255" style="--sector-index: 16; --base-color: #868480" fill="#868480" d="M 800 800 L 27.259 1007.055 A 800 800 0 0 1 0 800 Z" />
+    <path class="sector" data-angle="270" style="--sector-index: 17; --base-color: #b7b5ab" fill="#b7b5ab" d="M 800 800 L 0 800 A 800 800 0 0 1 27.259 592.945 Z" />
+    <path class="sector" data-angle="285" style="--sector-index: 18; --base-color: #cdccc2" fill="#cdccc2" d="M 800 800 L 27.259 592.945 A 800 800 0 0 1 107.18 400 Z" />
+    <path class="sector" data-angle="300" style="--sector-index: 19; --base-color: #d9d7cd" fill="#d9d7cd" d="M 800 800 L 107.18 400 A 800 800 0 0 1 234.315 234.315 Z" />
+    <path class="sector" data-angle="315" style="--sector-index: 20; --base-color: #e5e3d8" fill="#e5e3d8" d="M 800 800 L 234.315 234.315 A 800 800 0 0 1 400 107.18 Z" />
+    <path class="sector" data-angle="330" style="--sector-index: 21; --base-color: #f1efe3" fill="#f1efe3" d="M 800 800 L 400 107.18 A 800 800 0 0 1 592.945 27.259 Z" />
+    <path class="sector" data-angle="345" style="--sector-index: 22; --base-color: #e5e3d8" fill="#e5e3d8" d="M 800 800 L 592.945 27.259 A 800 800 0 0 1 800 0 Z" />
+  </g>
+  <!-- 横断する白線は図形を分割せず、全区画の上に重ねる。 -->
+  <g fill="none" stroke="#fff" stroke-width="8">
+    <path d="M 400 107 L 800 670" />
+    <path d="M 1205 397 L 800 1205" />
+    <path d="M 27 594 L 1004 1558" />
+  </g>
+  <circle cx="800" cy="800" r="32" fill="#fff" />
+</svg>

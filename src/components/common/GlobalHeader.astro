@@ -1,11 +1,11 @@
 ---
 const NAV = [
-  { name: 'TOP', path: '/' },
+  { name: 'TOP', path: '/top' },
   { name: 'About', path: '/about' },
+  { name: 'Works', path: '/works' },
   { name: 'Tools', path: '/tools' },
   { name: 'Tips', path: '/tips' },
-  { name: 'Works', path: '/works' },
-  { name: 'Collections', path: '/collections' }
+  // { name: 'Collections', path: '/collections' }
 ]
 ---
 
@@ -23,6 +23,18 @@ const NAV = [
     }
   </nav>
 
+  <a
+    href='/'
+    class='global__logo pc__only'
+    aria-label='トップへ戻る'>
+    <img
+      src='/hpx_logo_header.svg'
+      alt=''
+      width='32'
+      height='32'
+    />
+  </a>
+
   <button
     type='button'
     command='show-modal'
@@ -31,6 +43,7 @@ const NAV = [
     aria-label='メニュー'>
   </button>
 
+  <nav-dialog>
   <dialog
     id='nav__sp'
     closedby='any'
@@ -48,6 +61,17 @@ const NAV = [
         ))
       }
     </nav>
+    <a
+      href='/'
+      class='nav__logo__sp'
+      aria-label='トップへ戻る'>
+      <img
+        src='/hpx_logo_header.svg'
+        alt=''
+        width='40'
+        height='40'
+      />
+    </a>
     <button
       type='button'
       command='close'
@@ -56,9 +80,28 @@ const NAV = [
       aria-label='メニューを閉じる'>
     </button>
   </dialog>
+  </nav-dialog>
 </header>
 
 <script>
   import 'invokers-polyfill';
   import 'dialog-closedby-polyfill';
+
+  // ダイアログ領域外(::backdrop)押下で閉じる。closedby/polyfill に依存しない保険
+  class NavDialog extends HTMLElement {
+    connectedCallback() {
+      this.addEventListener('click', this.#onClick)
+    }
+    disconnectedCallback() {
+      this.removeEventListener('click', this.#onClick)
+    }
+    #onClick = (e: Event) => {
+      const dialog = e.target
+      if (!(dialog instanceof HTMLDialogElement) || !dialog.open) return
+      const { clientX: x, clientY: y } = e as MouseEvent
+      const r = dialog.getBoundingClientRect()
+      if (x < r.left || x > r.right || y < r.top || y > r.bottom) dialog.close()
+    }
+  }
+  customElements.define('nav-dialog', NavDialog)
 </script>

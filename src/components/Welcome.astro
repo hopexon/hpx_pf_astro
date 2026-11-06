@@ -1,210 +1,305 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+import logoSvg from '../../public/hpx_logo.svg?raw'
+
+const driftSlots = Array.from({ length: 23 }, (_, index) => index)
+for (let index = driftSlots.length - 1; index > 0; index--) {
+  const other = Math.floor(Math.random() * (index + 1))
+  ;[driftSlots[index], driftSlots[other]] = [driftSlots[other], driftSlots[index]]
+}
+let driftIndex = 0
+
+const cutLines = logoSvg.match(/<g fill="none" stroke="#fff" stroke-width="8">[\s\S]*?<\/g>/)?.[0] ?? ''
+const animatedLogoSvg = logoSvg
+  .replace(cutLines, '')
+  .replace(/<rect width="1600" height="1600" fill="#fff" \/>/, '')
+  .replace(
+  /<path class="sector" data-angle="(\d+)" style="([^"]+)" fill="([^"]+)" d="([^"]+)" \/>/g,
+  (_, angle: string, style: string, fill: string, path: string) => {
+    const radians = (Number(angle) + 7.5 - 90) * Math.PI / 180
+    const distanceFactor = 0.8 + Math.random() * 0.4
+    const duration = 4.6
+    const delay = driftSlots[driftIndex++] * 0.2 + Math.random() * 0.04 - duration
+    const clipId = `moving-sector-${angle}`
+    const motionStyle = [
+      `--drift-x: ${(Math.cos(radians) * distanceFactor).toFixed(5)}`,
+      `--drift-y: ${(Math.sin(radians) * distanceFactor).toFixed(5)}`,
+      `--drift-duration: ${duration.toFixed(3)}s`,
+      `--drift-delay: ${delay.toFixed(3)}s`,
+    ].join('; ')
+
+    return `<g class="sector" data-angle="${angle}" fill="${fill}" style="${style}; ${motionStyle}">
+      <defs><clipPath id="${clipId}"><path d="${path}" /></clipPath></defs>
+      <path d="${path}" />
+      <g clip-path="url(#${clipId})">${cutLines}</g>
+    </g>`
+  },
+)
 ---
 
-<div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
-			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
-			</section>
-		</section>
-	</main>
+<welcome-logo>
+  <div class="animated">
+    <div class="stage">
+      <div class="logo" set:html={animatedLogoSvg} />
+      <a class='item__hover' href="/top/">ENTER</a>
+    </div>
+  </div>
+</welcome-logo>
 
-	<a href="https://astro.build/blog/astro-6-beta/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 6.0?</h2>
-		<p>
-			Redesigned dev server, fonts, live collections, built-in CSP support, and more! Click to
-			explore Astro 6.0's new features.
-		</p>
-	</a>
-</div>
+<script>
+  // 移動距離(CSS px)。1000px以上はPC用に大きくする。
+  const SP_DISTANCE = 80
+  const PC_DISTANCE = 160
+
+  // ClientRouterのページ遷移でDOMが差し替わっても、要素の追加・削除に合わせて
+  // connectedCallback / disconnectedCallbackが呼ばれるため、監視の開始と解除が自動で行われる。
+  class WelcomeLogo extends HTMLElement {
+    #resizeObserver?: ResizeObserver
+    #pcQuery = window.matchMedia('(min-width: 1000px)')
+    #svg: SVGSVGElement | null = null
+
+    connectedCallback() {
+      this.#svg = this.querySelector('svg')
+      if (!this.#svg) return
+
+      this.#resizeObserver = new ResizeObserver(() => this.#update())
+      this.#resizeObserver.observe(this.#svg)
+      this.#pcQuery.addEventListener('change', this.#update)
+    }
+
+    disconnectedCallback() {
+      this.#resizeObserver?.disconnect()
+      this.#pcQuery.removeEventListener('change', this.#update)
+      this.#svg = null
+    }
+
+    // アロー関数にして、removeEventListenerに同じ参照を渡せるようにする。
+    #update = () => {
+      const svg = this.#svg
+      const width = svg?.getBoundingClientRect().width ?? 0
+      if (!svg || width <= 0) return
+      const distance = this.#pcQuery.matches ? PC_DISTANCE : SP_DISTANCE
+      svg.style.setProperty('--drift-distance', `${distance * svg.viewBox.baseVal.width / width}px`)
+    }
+  }
+
+  customElements.define('welcome-logo', WelcomeLogo)
+</script>
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
+  welcome-logo {
+    display: contents;
+  }
 
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
-	}
+  .animated {
+    --button-gap: 3rem;
+    --button-space: calc(var(--button-gap) + 3rem);
 
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-content: center;
+    box-sizing: border-box;
+    min-block-size: 80dvh;
+    padding-block: var(--button-space);
 
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
-	}
+    @media screen and (min-width: 1000px) {
+      --button-gap: 1rem;
+    }
 
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
-	}
+    .stage {
+      position: relative;
+      inline-size: 100%;
+      max-inline-size: 1000px;
+    }
 
-	#links {
-		display: flex;
-		gap: 16px;
-	}
+    a {
+      --padding: 0.25rem 2rem;
+      --font-size: 1rem;
+      --font-weight: 500;
 
-	#links a {
-		display: flex;
-		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
-		text-decoration: none;
-		transition: color 0.2s;
-	}
+      position: absolute;
+      inset-block-start: calc(100% + var(--button-gap));
+      inset-inline-start: 50%;
+      padding: var(--padding);
+      font-size: var(--font-size);
+      font-weight: var(--font-weight);
+      color: var(--paper);
+      background-color: var(--orange-400);
+      translate: -50% 0;
+      z-index: 1;
 
-	#links a:hover {
-		color: rgb(78, 80, 86);
-	}
+      @media screen and (min-width: 768px) {
+        --font-size: calc(16 / 16 * 1rem);
 
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
+        border: 4px solid var(--paper);
+      }
 
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
+      @media screen and (min-width: 1000px) {
+        --padding: 0.25rem 4rem;
 
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
-	}
+        opacity: 1;
+        transition: all 0.15s ease-out;
 
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
-	}
+        @media (any-hover: hover) {
+          &:hover {
+            background-color: var(--base-950);
+            /* opacity: 0.8; */
+            transition: all 0.15s ease-out;
+          }
+        }
+      }
+    }
+  }
 
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
+  .logo,
+  .logo :global(svg) {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: 1000px;
+    /* block-size: auto; */
+    /* aspect-ratio: 1; */
+  }
 
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
+  .logo {
+    /* 外側へ移動した三角形が隣のプレビューにはみ出さない余白。 */
+    box-sizing: border-box;
+    padding: calc(52 / 16 * 1rem);
+    inline-size: 100%;
+    max-inline-size: 
+  }
 
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
+  .logo :global(svg) {
+    overflow: visible;
+  }
 
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
+  .animated {
+    /* 空いている区画を飛ばし、23個で一周する。 */
+    --cycle-duration: 1.25s;
+    --sector-count: 23;
+    --step-duration: calc(var(--cycle-duration) / var(--sector-count));
+  }
 
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
+  .animated :global(.sector) {
+    translate: 0 0;
+    animation:
+      light-sector var(--cycle-duration) steps(1, end) infinite,
+      drift-sector var(--drift-duration) cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    /* 負の遅延で初回から7区画を点灯させ、一周の境目でも連続させる。 */
+    animation-delay:
+      calc((var(--sector-index) - var(--sector-count)) * var(--step-duration)),
+      var(--drift-delay);
+  }
 
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
+  .animated:has(.pause:checked) :global(.sector) {
+    animation-play-state: paused;
+  }
 
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
-		}
-	}
+  /* 各段階は一周の1/23。中心から左右3区画ずつ、合計7区画を点灯する。 */
+  /* @keyframes light-sector {
+    0%, 100% {
+      filter: brightness(1.25);
+    }
+    4.347826%, 95.652174% {
+      filter: brightness(1.1);
+    }
+    8.695652%, 91.304348% {
+      filter: brightness(1);
+    }
+    13.043478%, 86.956522% {
+      filter: brightness(1);
+    }
+    17.391304% {
+      filter: brightness(1);
+    }
+  } */
 
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
-		}
+  
+   /* * 色を直接指定する場合は、このブロックのコメントを外す。
+   * animation-nameを切り替えるため、上のbrightnessの定義はそのままでよい。
+   * 4つの色は中心・1区画隣・2区画隣・3区画隣の順。
+   * */
+  /* .animated {
+    --light-color-center: var(--paper);
+    --light-color-near: var(--base-50);
+    --light-color-middle: var(--base-100);
+    --light-color-outer: var(--base-150);
+  }
 
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
+  .animated :global(.sector) {
+    animation-name: color-sector, drift-sector;
+    filter: none;
+  }
 
-		#links {
-			flex-wrap: wrap;
-		}
+  @keyframes color-sector {
+    0%, 100% {
+      fill: var(--light-color-center);
+    }
+    4.347826%, 95.652174% {
+      fill: var(--light-color-near);
+    }
+    8.695652%, 91.304348% {
+      fill: var(--light-color-middle);
+    }
+    13.043478%, 86.956522% {
+      fill: var(--light-color-outer);
+    }
+    17.391304% {
+      fill: var(--base-color);
+    }
+  } */
 
-		#links a.button {
-			padding: 14px 18px;
-		}
 
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
+  /*
+   * 以前のゆっくり往復するアニメーション（保存用）。
+   * 戻す場合は新しいdrift-sectorと置き換え、上のanimationの2項目目を
+   * drift-sector var(--drift-duration) ease-in-out infinite に戻す。
+   * frontmatterのduration / delayも、保存してある以前の設定に戻す。
+   *
+  @keyframes drift-sector {
+    0%, 100% {
+      translate: 0 0;
+    }
+    50% {
+      translate:
+        calc(var(--drift-x) * var(--drift-distance, 40px))
+        calc(var(--drift-y) * var(--drift-distance, 40px));
+    }
+  }
+  */
 
-		h1 {
-			line-height: 1.5;
-		}
-	}
+  /* 4.6秒周期のうち、0.15秒で飛び出し、0.85秒まで保持、1秒で戻る。 */
+  @keyframes drift-sector {
+    0%, 21.73913%, 100% {
+      translate: 0 0;
+    }
+    3.26087%, 18.478261% {
+      translate:
+        calc(var(--drift-x) * var(--drift-distance, 40px))
+        calc(var(--drift-y) * var(--drift-distance, 40px));
+    }
+  }
+
+  .reduced-motion-note {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animated :global(.sector) {
+      animation: none;
+    }
+
+    .playback-control {
+      display: none;
+    }
+
+    .reduced-motion-note {
+      display: block;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .previews {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
 </style>

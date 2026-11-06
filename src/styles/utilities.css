@@ -108,6 +108,10 @@ main {
     --opacity: 0.85;
 
     position: sticky;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 1.5rem;
     container-type: inline-size;
   }
 }
@@ -129,8 +133,32 @@ main {
   display: flex;
   flex-flow: row nowrap;
   column-gap: min(3.8cqi, 2.5rem);
-  inline-size: 100%;
   font-weight: bold;
+}
+
+.global__logo {
+  display: none;
+  justify-self: end;
+  line-height: 0;
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.6;
+      transition: opacity 0.15s ease-out;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
+.global__logo img {
+  display: block;
+  inline-size: 2rem;
+  block-size: 2rem;
 }
 
 .global__nav__pc.pc__only {
@@ -191,6 +219,19 @@ main {
 .nav__close__sp::before {
   content: '✕';
   font-size: 1.5rem;
+}
+
+.nav__logo__sp {
+  position: absolute;
+  inset-block-end: 1rem;
+  inset-inline-end: 1rem;
+  line-height: 0;
+}
+
+.nav__logo__sp img {
+  display: block;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
 }
 
 .nav__sp__linkitem__wrap {
