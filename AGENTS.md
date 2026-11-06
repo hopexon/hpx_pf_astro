@@ -8,6 +8,11 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Web Guidance
+
+When you got questions about web development, please follow Modern Web Guidance as a basic reference.
+Probably local files are put at .agent/skills/modern-web-guidance/
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
