@@ -16,6 +16,7 @@
 .mtg__links {
   /* --grid-template-columns: repeat(2, 1fr); */
   --column-gap: 2.2rem;
+  --padding: 0.5rem;
   --margin-block: 0 2rem;
 
   container-type: inline-size;
@@ -25,17 +26,18 @@
   flex-flow: row nowrap;
   justify-content: center;
   column-gap: var(--column-gap);
-  padding: 1rem .5rem;
+  padding: var(--padding);
   margin-block: var(--margin-block);
   margin-inline: auto;
   inline-size: min(400px, 100%);
   color: var(--paper);
   text-align: center;
-  background-color: var(--base-500);
+  background-color: var(--base-800);
   border-radius: 2rem;
 
   @media screen and (min-width: 768px) {
     --column-gap: 3rem;
+    --padding: 1rem 0.5rem;
     --margin-block: -1rem 4rem;
     
     max-block-size: calc(60 / 16 * 1rem);

@@ -4,6 +4,8 @@
   "exclude": ["dist"],
   // "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }
