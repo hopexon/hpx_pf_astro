@@ -25,15 +25,15 @@ const NAV = [
 
   <button
     type='button'
-    popovertarget='nav__sp'
+    command='show-modal'
+    commandfor='nav__sp'
     class='nav__btn__sp sp__only'
     aria-label='メニュー'>
   </button>
 
   <dialog
     id='nav__sp'
-    popover
-    autofocus
+    closedby='any'
     aria-label='メニュー'
   >
     <nav class='nav__sp__linkitem__wrap'>
@@ -48,5 +48,17 @@ const NAV = [
         ))
       }
     </nav>
+    <button
+      type='button'
+      command='close'
+      commandfor='nav__sp'
+      class='nav__close__sp'
+      aria-label='メニューを閉じる'>
+    </button>
   </dialog>
 </header>
+
+<script>
+  import 'invokers-polyfill';
+  import 'dialog-closedby-polyfill';
+</script>

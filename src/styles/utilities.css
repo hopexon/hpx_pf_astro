@@ -1,6 +1,8 @@
 /* Base */
 body {
-  background-color: var(--paper);
+  /* background-color: var(--paper); */
+  /* background: linear-gradient(135deg, #B7B5AC 0%, #fffcf0 100%); */
+  background: linear-gradient(167deg, #b7b5ac, #e0ded3 27%, #fffcf0);
   font-family: 
     "monsterrat",
     "zenkaku-gothic-new",
@@ -154,15 +156,12 @@ main {
   transition: transform 0.3s ease-out;
 }
 
-.globalheader:has(dialog:popover-open) .nav__btn__sp::before {
+.globalheader:has(dialog:modal) .nav__btn__sp::before {
   transform: rotate(-180deg);
   transition: transform 0.3s ease-out;
 }
 
-:root:has(#nav__sp:popover-open) {
-  overflow: hidden;
-}
-
+/* :root:has(:modal) の scroll lock は modal.css 側で共通適用 */
 .globalheader dialog {
   block-size: 70dvh;
   max-block-size: calc(600 / 16 * 1rem);
@@ -173,31 +172,25 @@ main {
   border: 6px solid var(--paper);
   filter: drop-shadow(10px 10px 0 rgba(0, 0, 0, 1));
   outline: none;
-  /* modal.css の display / overlay 遷移を外す。overlay 非対応環境で閉じる際に
-     先に top layer から抜け、段階的に消えて見えるのを防ぐ */
-  transition-property: opacity;
 }
 
-.globalheader dialog:not(:popover-open) {
-  opacity: 0;
+.nav__close__sp {
+  position: absolute;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.5rem;
+  inline-size: 3rem;
+  block-size: 3rem;
+  background: none;
+  border: none;
+  color: inherit;
 }
 
-/* modal.css の dialog:not(:modal)::backdrop (opacity: 0) を開いている間だけ打ち消す */
-.globalheader #nav__sp:popover-open::backdrop {
-  opacity: 1;
-}
-
-@starting-style {
-  .globalheader #nav__sp:popover-open::backdrop {
-    opacity: 0;
-  }
-}
-
-/* フェードアウトは top layer に留まれる環境のみ。非対応環境は即座に閉じる */
-@supports (overlay: auto) {
-  .globalheader dialog {
-    transition-property: opacity, display, overlay;
-  }
+.nav__close__sp::before {
+  content: '✕';
+  font-size: 1.5rem;
 }
 
 .nav__sp__linkitem__wrap {
