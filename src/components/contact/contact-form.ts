@@ -60,6 +60,7 @@ class ContactForm extends HTMLElement {
   #widgetId?: string
   #generation = 0
   #sending = false
+  #defaultErrors = new WeakMap<HTMLElement, string>()
   #submissionId = crypto.randomUUID()
   #form!: HTMLFormElement
   #fieldset!: HTMLFieldSetElement
@@ -150,6 +151,12 @@ class ContactForm extends HTMLElement {
     const field = event.target
     if (!(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) return
     field.setCustomValidity('')
+    const hint = this.querySelector<HTMLElement>(`[data-field-error="${field.name}"]`)
+    const defaultMessage = hint && this.#defaultErrors.get(hint)
+    if (hint && defaultMessage !== undefined) {
+      hint.textContent = defaultMessage
+      this.#defaultErrors.delete(hint)
+    }
     this.#syncValidity(event)
     this.#submissionId = crypto.randomUUID()
   }
@@ -185,7 +192,10 @@ class ContactForm extends HTMLElement {
             const message = messages?.[0]
             if (!message || !(field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement)) continue
             const hint = this.querySelector<HTMLElement>(`[data-field-error="${name}"]`)
-            if (hint) hint.textContent = message
+            if (hint) {
+              if (!this.#defaultErrors.has(hint)) this.#defaultErrors.set(hint, hint.textContent ?? '')
+              hint.textContent = message
+            }
             field.setCustomValidity(message)
             field.setAttribute('aria-invalid', 'true')
             firstInvalid ??= field

@@ -420,6 +420,19 @@ main {
 }
 
 /* Utility */
+/* 視覚的に隠しつつ読み上げを維持し、フォーカス・操作時には表示する */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  inline-size: 1px !important;
+  block-size: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
 .linkitem__link {
   inline-size: fit-content;
 }
