@@ -2,7 +2,7 @@
 
 Personal portfolio site of HPX — profile, drawings, web dev tips, and small tools.
 
-**Live:** https://hpx-pfproject01.vercel.app/
+**Live:** [https://hpx-dev.com/](https://hpx-dev.com/)
 
 ## Tech Stack
 
@@ -27,22 +27,3 @@ Personal portfolio site of HPX — profile, drawings, web dev tips, and small to
 | `/tools`          | Utility tools for developers and designers    |
 | `/tools/interval` | Fingerboard map tool for guitarists           |
 | `/contact`        | Contact form                                  |
-
-## Getting Started
-
-```sh
-nvm use
-pnpm install --frozen-lockfile
-pnpm run dev:bg    # start dev server in background (127.0.0.1:4321)
-pnpm run build     # build to ./dist/
-```
-
-### Environment Variables (contact form)
-
-| Name                   | Scope  |
-| :--------------------- | :----- |
-| `RESEND_API_KEY`       | server |
-| `TURNSTILE_SECRET_KEY` | server |
-| `CONTACT_FROM`         | server |
-| `CONTACT_TO`           | server |
-| `TURNSTILE_SITE_KEY`   | client |
