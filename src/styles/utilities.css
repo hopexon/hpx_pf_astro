@@ -272,8 +272,9 @@ main {
 .globalfooter {
   position: sticky;
   display: grid;
-  grid-template-areas: 'backtotop';
-  justify-content: center;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
   padding: 2rem;
   background-color: var(--base-800);
   color: var(--base-200);
@@ -281,16 +282,41 @@ main {
 }
 
 .globalfooter__inner {
+  grid-column: 1 / -1;
+  justify-self: center;
   display: grid;
   grid-template-columns: repeat(2, auto);
   column-gap: 4rem;
   row-gap: 1rem;
 
   @media screen and (min-width: 768px) {
+    grid-column: 2;
     display: flex;
     flex-flow: row wrap;
     column-gap: 2rem;
   }
+}
+
+.globalfooter__github {
+  grid-column: 1;
+  grid-row: 2;
+  justify-self: start;
+  margin-inline-start: 1rem;
+  display: grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  color: inherit;
+  border-radius: 0.25rem;
+
+  @media screen and (min-width: 768px) {
+    grid-row: 1;
+  }
+}
+
+.globalfooter__github:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
 }
 
 .globalFooter__linkItem {
