@@ -1,0 +1,261 @@
+---
+import { actions, getActionPath } from 'astro:actions'
+import { TURNSTILE_SITE_KEY } from 'astro:env/client'
+
+const siteKey = TURNSTILE_SITE_KEY.trim()
+---
+
+<contact-form data-site-key={siteKey}>
+  {!siteKey && (
+    <p class="form-notice">現在、お問い合わせフォームの準備中です。</p>
+  )}
+  <form action={getActionPath(actions.contact)} method="post" data-astro-reload>
+    <fieldset disabled={!siteKey}>
+      <legend class="form-legend">お問い合わせ内容</legend>
+      <p class="form-help">「必須」の項目をご入力ください。</p>
+
+      <div class="form-field">
+        <label for="contact-name">お名前 <span class="required">必須</span></label>
+        <input
+          id="contact-name"
+          name="name"
+          autocomplete="name"
+          maxlength="100"
+          required
+          aria-describedby="contact-name-error"
+        />
+        <span id="contact-name-error" class="field-error" data-field-error="name">お名前を入力してください。</span>
+      </div>
+
+      <div class="form-field">
+        <label for="contact-email">メールアドレス <span class="required">必須</span></label>
+        <span id="contact-email-hint" class="field-hint">返信を受け取れるアドレスをご入力ください。</span>
+        <input
+          id="contact-email"
+          type="email"
+          name="email"
+          autocomplete="email"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          maxlength="254"
+          required
+          aria-describedby="contact-email-hint contact-email-error"
+        />
+        <span id="contact-email-error" class="field-error" data-field-error="email">メールアドレスの形式をご確認ください。</span>
+      </div>
+
+      <div class="form-field">
+        <label for="contact-subject">件名 <span class="optional">任意</span></label>
+        <input id="contact-subject" name="subject" maxlength="150" aria-describedby="contact-subject-error" />
+        <span id="contact-subject-error" class="field-error" data-field-error="subject">件名は150文字以内で入力してください。</span>
+      </div>
+
+      <div class="form-field">
+        <label for="contact-message">メッセージ <span class="required">必須</span></label>
+        <span id="contact-message-hint" class="field-hint">5,000文字以内でご入力ください。</span>
+        <textarea
+          id="contact-message"
+          name="message"
+          rows="8"
+          maxlength="5000"
+          required
+          aria-describedby="contact-message-hint contact-message-error"
+        ></textarea>
+        <span id="contact-message-error" class="field-error" data-field-error="message">メッセージを入力してください。</span>
+      </div>
+
+      <div class="form-honeypot" aria-hidden="true">
+        <label for="contact-website">この項目は空欄にしてください。</label>
+        <input id="contact-website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="form-verification">
+        <p class="field-hint">迷惑投稿防止のため、ボット確認を行います。</p>
+        <div data-turnstile></div>
+        <button type="button" class="retry-button" data-retry-turnstile hidden>ボット確認をやり直す</button>
+      </div>
+
+      <p class="privacy-note">
+        入力内容はお問い合わせへの対応に使用します。送信にはResend、ボット確認にはCloudflare Turnstileを利用します。
+      </p>
+
+      <div class="form-actions">
+        <button type="submit" class="submit-button" disabled>
+          <span data-submit-label>メッセージを送る</span>
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+    </fieldset>
+  </form>
+  <noscript><p class="form-notice">お問い合わせを送信するには、JavaScriptを有効にしてください。</p></noscript>
+  <p class="form-status" role="status" aria-live="polite" aria-atomic="true"></p>
+</contact-form>
+
+<script>
+  import './contact-form'
+</script>
+
+<style>
+  contact-form {
+    display: block;
+    margin-block-start: 2.5rem;
+    color-scheme: dark;
+  }
+
+  .form-notice {
+    padding: 1rem;
+    margin-block-end: 1.5rem;
+    border-inline-start: 3px solid var(--orange-200);
+    background-color: var(--base-900);
+  }
+
+  .form-legend {
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+
+  .form-help,
+  .field-hint,
+  .optional {
+    color: var(--base-300);
+    font-size: 0.875rem;
+  }
+
+  .form-help {
+    margin-block-start: 0.5rem;
+  }
+
+  .form-field {
+    display: grid;
+    gap: 0.5rem;
+    margin-block-start: 2rem;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-weight: bold;
+  }
+
+  .required {
+    padding: 0.125rem 0.5rem;
+    border: 1px solid var(--orange-200);
+    color: var(--orange-200);
+    font-size: 0.75rem;
+  }
+
+  .optional {
+    font-weight: normal;
+  }
+
+  input,
+  textarea {
+    padding: 0.75rem;
+    inline-size: 100%;
+    min-inline-size: 0;
+    min-block-size: 3rem;
+    border: 2px solid var(--base-400);
+    background-color: var(--base-900);
+    color: var(--paper);
+    font-size: 1rem;
+    line-height: 1.7;
+    scroll-margin-block: 7rem;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  :is(input, textarea, button):focus-visible {
+    outline: 3px solid var(--orange-200);
+    outline-offset: 4px;
+  }
+
+  :is(input, textarea):user-invalid,
+  :is(input, textarea)[aria-invalid='true'] {
+    border-color: var(--red-200);
+  }
+
+  .field-error {
+    display: none;
+    color: var(--red-200);
+    font-size: 0.875rem;
+  }
+
+  :is(input, textarea):user-invalid ~ .field-error,
+  :is(input, textarea)[aria-invalid='true'] ~ .field-error {
+    display: block;
+  }
+
+  .form-honeypot {
+    display: none;
+  }
+
+  .form-verification {
+    display: grid;
+    gap: 0.75rem;
+    margin-block-start: 2rem;
+  }
+
+  .retry-button {
+    padding: 0.75rem;
+    min-block-size: 3rem;
+    inline-size: fit-content;
+    border: 1px solid var(--base-300);
+    color: var(--paper);
+  }
+
+  .privacy-note {
+    margin-block-start: 1.5rem;
+    color: var(--base-300);
+    font-size: 0.875rem;
+  }
+
+  .form-actions {
+    margin-block-start: 2rem;
+  }
+
+  .submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1rem 1.5rem;
+    inline-size: 100%;
+    min-block-size: 3rem;
+    border: 2px solid var(--orange-200);
+    background-color: var(--orange-200);
+    color: var(--base-950);
+    font-weight: bold;
+
+    @media screen and (min-width: 521px) {
+      inline-size: fit-content;
+    }
+
+    @media (any-hover: hover) {
+      &:enabled:hover {
+        background-color: var(--orange-100);
+        border-color: var(--orange-100);
+      }
+    }
+
+    &:disabled {
+      background-color: var(--base-800);
+      border-color: var(--base-600);
+      color: var(--base-300);
+    }
+  }
+
+  .form-status:not(:empty) {
+    padding: 1rem;
+    margin-block-start: 1.5rem;
+    border: 2px solid var(--orange-200);
+  }
+
+  .form-status[data-state='error'] {
+    border-color: var(--red-200);
+  }
+</style>

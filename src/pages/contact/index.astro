@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import PanelSection from '../../components/common/PanelSection.astro'
+import ContactForm from '../../components/contact/ContactForm.astro'
+---
+
+<Layout title="Contact" description="HPXへのお仕事のご相談、ご感想、お問い合わせはこちらから。">
+  <div>
+    <h1 class="page__ttl">Contact</h1>
+    <div class="main__wrap">
+      <div class="section__wrapper">
+        <div class="contact">
+          <PanelSection class="contact-panel" aria-labelledby="contact-title">
+            <h2 id="contact-title">◯&nbsp;メッセージを送る</h2>
+            <p>
+              お仕事のご相談、制作物の感想、サイトの不具合など。<br />
+              こちらからお気軽にご連絡ください。
+            </p>
+            <ContactForm />
+          </PanelSection>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .contact {
+    max-inline-size: 56rem;
+  }
+
+  .contact :global(.contact-panel) {
+    --inline-size: 100%;
+    --padding-inline: clamp(1rem, 4cqi, 3rem);
+    --padding-block: clamp(2rem, 5cqi, 3rem);
+  }
+</style>
