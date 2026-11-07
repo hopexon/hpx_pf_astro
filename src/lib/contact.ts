@@ -6,7 +6,7 @@ const singleLine = (limit: number) => z.string().trim().max(limit)
 export const contactInput = z.object({
   name: singleLine(100).refine((value) => value.length > 0, 'お名前を入力してください。'),
   email: z.string().trim().max(254).pipe(z.email('メールアドレスの形式をご確認ください。')),
-  subject: singleLine(150).default(''),
+  subject: singleLine(150).refine((value) => value.length > 0, '件名を入力してください。'),
   message: z.string()
     .transform((value) => value.replace(/\r\n?/g, '\n'))
     .pipe(z.string().trim().min(1, 'メッセージを入力してください。').max(5000, 'メッセージは5,000文字以内で入力してください。')),
