@@ -26,18 +26,14 @@ const tips = Object.entries(mdxFiles).map(([path, module]) => {
 ---
 
 <Layout>
-  <div>
-    <h1 class="page__ttl">Tips</h1>
-    <div class="main__wrap">
-      <section class="section__wrapper">
-        {
-          tips.map((tip) => (
-            <a href={`./tips/${tip.slug}`} class="linkitem__link link__twister">
-              {tip.frontmatter.title}
-            </a>
-          ))
-        }
-      </section>
-    </div>
-  </div>
+  <h1 class="page__ttl">Tips</h1>
+  <section class="section__wrapper">
+    {
+      tips.map((tip) => (
+        <a href={`./tips/${tip.slug}`} class="linkitem__link link__twister">
+          {tip.frontmatter.title}
+        </a>
+      ))
+    }
+  </section>
 </Layout>

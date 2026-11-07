@@ -22,119 +22,115 @@ const bothImages = !!card.imgFull && !!card.imgCard;
 ---
 
 <Layout_MtgSlug card={card}>
-  <div>
-    <div class="main__wrap">
-      <section class="section__wrapper mtg__section__wrapper">
-        {
-          bothImages ? (
-            <div class="detail__layout__both">
-              <div class="detail__col__info">
-                <dl class="detail__info">
-                  <dd class="detail__year">{card.year}</dd>
-                  <dd class="detail__set">{card.set}</dd>
-                  <dt class="detail__name">{card.name}</dt>
-                  <dd class="detail__artist">
-                    Artist:{" "}
-                    {card.artistUrl ? (
-                      <a
-                        href={card.artistUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {card.artist}
-                      </a>
-                    ) : (
-                      card.artist
-                    )}
-                  </dd>
-                </dl>
-              </div>
-              <div class="detail__col__full">
-                <div class="detail__img__wrap">
-                  <img
-                    src={`/collections/mtg/${card.imgFull}`}
-                    alt={`${card.name} full art`}
-                    class="detail__img"
-                    loading="eager"
-                  />
-                </div>
-              </div>
-              <div class="detail__col__card">
-                <div class="detail__img__wrap">
-                  <img
-                    src={`/collections/mtg/${card.imgCard}`}
-                    alt={`${card.name} card`}
-                    class="detail__img__card"
-                    loading="eager"
-                  />
-                </div>
-              </div>
-              {card.flavor && (
-                <div class="detail__flavor">
-                  {card.flavLang ? (
-                    <p>
-                      <span class={card.flavLang}>{card.flavor}</span>
-                    </p>
-                  ) : (
-                    <p>{card.flavor}</p>
-                  )}
-                </div>
+  <section class="section__wrapper mtg__section__wrapper">
+    {
+      bothImages ? (
+        <div class="detail__layout__both">
+          <div class="detail__col__info">
+            <dl class="detail__info">
+              <dd class="detail__year">{card.year}</dd>
+              <dd class="detail__set">{card.set}</dd>
+              <dt class="detail__name">{card.name}</dt>
+              <dd class="detail__artist">
+                Artist:{" "}
+                {card.artistUrl ? (
+                  <a
+                    href={card.artistUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {card.artist}
+                  </a>
+                ) : (
+                  card.artist
+                )}
+              </dd>
+            </dl>
+          </div>
+          <div class="detail__col__full">
+            <div class="detail__img__wrap">
+              <img
+                src={`/collections/mtg/${card.imgFull}`}
+                alt={`${card.name} full art`}
+                class="detail__img"
+                loading="eager"
+              />
+            </div>
+          </div>
+          <div class="detail__col__card">
+            <div class="detail__img__wrap">
+              <img
+                src={`/collections/mtg/${card.imgCard}`}
+                alt={`${card.name} card`}
+                class="detail__img__card"
+                loading="eager"
+              />
+            </div>
+          </div>
+          {card.flavor && (
+            <div class="detail__flavor">
+              {card.flavLang ? (
+                <p>
+                  <span class={card.flavLang}>{card.flavor}</span>
+                </p>
+              ) : (
+                <p>{card.flavor}</p>
               )}
             </div>
-          ) : (
-            <div class="detail__layout__single">
-              <div class="detail__col__info">
-                <dl class="detail__info">
-                  <dd class="detail__year">{card.year}</dd>
-                  <dd class="detail__set">{card.set}</dd>
-                  <dt class="detail__name">{card.name}</dt>
-                  <dd class="detail__artist">
-                    Artist:{" "}
-                    {card.artistUrl ? (
-                      <a
-                        href={card.artistUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {card.artist}
-                      </a>
-                    ) : (
-                      card.artist
-                    )}
-                  </dd>
-                </dl>
+          )}
+        </div>
+      ) : (
+        <div class="detail__layout__single">
+          <div class="detail__col__info">
+            <dl class="detail__info">
+              <dd class="detail__year">{card.year}</dd>
+              <dd class="detail__set">{card.set}</dd>
+              <dt class="detail__name">{card.name}</dt>
+              <dd class="detail__artist">
+                Artist:{" "}
+                {card.artistUrl ? (
+                  <a
+                    href={card.artistUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {card.artist}
+                  </a>
+                ) : (
+                  card.artist
+                )}
+              </dd>
+            </dl>
+          </div>
+          {(card.imgFull || card.imgCard) && (
+            <div class="detail__col__single">
+              <div class="detail__img__wrap">
+                <img
+                  src={`/collections/mtg/${card.imgFull || card.imgCard}`}
+                  alt={
+                    card.imgFull
+                      ? `${card.name} full art`
+                      : `${card.name} card`
+                  }
+                  class="detail__img__card"
+                  loading="eager"
+                />
               </div>
-              {(card.imgFull || card.imgCard) && (
-                <div class="detail__col__single">
-                  <div class="detail__img__wrap">
-                    <img
-                      src={`/collections/mtg/${card.imgFull || card.imgCard}`}
-                      alt={
-                        card.imgFull
-                          ? `${card.name} full art`
-                          : `${card.name} card`
-                      }
-                      class="detail__img__card"
-                      loading="eager"
-                    />
-                  </div>
-                </div>
-              )}
-              {card.flavor && (
-                <div class="detail__flavor">
-                  {card.flavLang ? (
-                    <p>
-                      <span class={card.flavLang}>{card.flavor}</span>
-                    </p>
-                  ) : (
-                    <p>{card.flavor}</p>
-                  )}
-                </div>
+            </div>
+          )}
+          {card.flavor && (
+            <div class="detail__flavor">
+              {card.flavLang ? (
+                <p>
+                  <span class={card.flavLang}>{card.flavor}</span>
+                </p>
+              ) : (
+                <p>{card.flavor}</p>
               )}
             </div>
-          )
-        }
-      </section>
-    </div>
-  </div>
+          )}
+        </div>
+      )
+    }
+  </section>
 </Layout_MtgSlug>

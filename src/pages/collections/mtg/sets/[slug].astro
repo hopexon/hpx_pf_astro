@@ -23,31 +23,27 @@ const cardsInSet = mtgCards.filter(card => normalizeSetName(card.set) === normal
 ---
 
 <Layout>
-  <div>
-    <h1 class="page__ttl">MTG&nbsp;&nbsp;-{set.name}-</h1>
-    <div class="main__wrap">
-      <section class="section__wrapper mtg__section__wrapper">
-        <SubheadLinks />
-        <div class="grid">
-          {cardsInSet.map(card => (
-            <a class="card__link" href={`/collections/mtg/${card.slug}`}>
-              <div class="card__thumb">
-                {card.imgFull ? (
-                  <img
-                    class='card__img'
-                    src={`/collections/mtg/thumbs/${card.imgFull}`} 
-                    alt={`${card.name}`} />
-                ) : (
-                  <img
-                    class='card__img'
-                    src={`/collections/mtg/thumbs/${card.imgCard}`} 
-                    alt={`${card.name}`} />
-                )}
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
+  <h1 class="page__ttl">MTG&nbsp;&nbsp;-{set.name}-</h1>
+  <section class="section__wrapper mtg__section__wrapper">
+    <SubheadLinks />
+    <div class="grid">
+      {cardsInSet.map(card => (
+        <a class="card__link" href={`/collections/mtg/${card.slug}`}>
+          <div class="card__thumb">
+            {card.imgFull ? (
+              <img
+                class='card__img'
+                src={`/collections/mtg/thumbs/${card.imgFull}`} 
+                alt={`${card.name}`} />
+            ) : (
+              <img
+                class='card__img'
+                src={`/collections/mtg/thumbs/${card.imgCard}`} 
+                alt={`${card.name}`} />
+            )}
+          </div>
+        </a>
+      ))}
     </div>
-  </div>
+  </section>
 </Layout>

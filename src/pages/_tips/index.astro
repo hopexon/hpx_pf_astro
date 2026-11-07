@@ -39,295 +39,291 @@ const animateBlockText = [
 ---
 
 <Layout>
-  <div>
-    <div class="main__wrap">
-      <section class="section__wrapper">
-        <!-- font-weight -->
-        <h2>font-weight</h2>
-        <div class="mt__1 font__weight__grid">
-          <div class="content__wrap">
-            <p class="content__subttl">Normal (400)</p>
-            <p class="mt__1 normal">
-              Lorem Ipsum isNormal simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's standard
-              dummy text ever since 1966
-            </p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">Bold (700)</p>
-            <p class="mt__1 bold">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since 1966
-            </p>
-          </div>
-        </div>
-
-        <!-- font size -->
-        <h2 class="mt__8">font-size</h2>
-        <div class="mt__1 font__size__grid">
-          <div class="content__wrap">
-            <label class="content__subttl"> For Standard Use: 16 - 45px</label>
-            <input
-              id="font__size__normal"
-              type="range"
-              min={minSizeNormal}
-              max={maxSizeNormal}
-              value={defaultSizeNormal}
-              step="1"
-            />
-            <p id="preview__txt__normal">Change Font Size</p>
-          </div>
-          <div class="content__wrap">
-            <label class="content__subttl"> For Visual Impact: 48 - 64px</label>
-            <input
-              id="font__size__large"
-              type="range"
-              min={minSizeLarge}
-              max={maxSizeLarge}
-              value={defaultSizeLarge}
-              step="1"
-            />
-            <p id="preview__txt__large">Change Font Size</p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">
-              14px<span class="caution">Caution</span>
-            </p>
-            <p class="mt__1">
-              常用は避けるべき。<br
-              />狭いスペースや付帯情報など、特定の状況でのみ使用可能。
-            </p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">
-              Under 13px<span class="dontuse">Don't Use</span>
-            </p>
-            <p class="mt__1">原則として許容されない。</p>
-          </div>
-        </div>
-
-        <!-- line-height -->
-        <h2 class="mt__8">line-height</h2>
-        <div class="mt__1 line__height__grid">
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1</p>
-            <p class="mt__1 lh__1">
-              主にボタンなど、コンポーネント内で使用されるワンラインのテキストで上下の余白を持っていない行間。主にボタンなど、コンポーネント内で使用されるワンラインのテキストで上下の余白を持っていない行間
-            </p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">
-              line-height: 1.2<span class="default">default</span>
-            </p>
-            <p class="mt__1 lh__12">
-              主に管理画面や業務システムの画面等で、膨大な情報を一覧表示したりなど、限られた画面領域での表示情報量を最優先した行間。主に管理画面や業務システムの画面等で、膨大な情報を一覧表示したりなど、限られた画面領域での表示情報量を最優先した行間
-            </p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.3</p>
-            <p class="mt__1 lh__13">
-              主に管理画面や業務システムの画面等で使用する、表示情報量を優先した行間。主に管理画面や業務システムの画面等で使用する、表示情報量を優先した行間
-            </p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.4</p>
-            <p class="mt__1 lh__14">
-              見出しなど、やや大きな文字に使用される行間。見出しなど、やや大きな文字に使用される行間。見出しなど、やや大きな文字に使用される行間。見出しなど、やや大きな文字に使用される行間。
-            </p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.5</p>
-            <p class="mt__1 lh__15">
-              一般的なウェブサイトの本文や見出しで使用される行間（本文の行間としては最低限度）。一般的なウェブサイトの本文や見出しで使用される行間（本文の行間としては最低限度）
-            </p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.6</p>
-            <p class="mt__1 lh__16">
-              一般的なウェブサイトの本文で使用される行間。一般的なウェブサイトの本文で使用される行間。一般的なウェブサイトの本文で使用される行間。一般的なウェブサイトの本文で使用される行間。
-            </p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">
-              line-height: 1.7<span class="suggested">Suggested</span>
-            </p>
-            <p class="mt__1 lh__17">
-              一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。
-            </p>
-          </div>
-          <div class="content__wrap">
-            <p class="content__subttl">line-height: 1.75</p>
-            <p class="mt__1 lh__175">
-              一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。採用するグリッド幅やフォントサイズに応じて170%と使い分ける。一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。採用するグリッド幅やフォントサイズに応じて170%と使い分ける
-            </p>
-          </div>
-        </div>
-
-        <!-- elevation  -->
-        <h2 class="mt__8">Elevation</h2>
-        <div class="mt__1 comment__wrap">
-          <p class="comment">
-            ドロップシャドウによるエレベーションを用いる場合は、エフェクトの大きさを8段階程度に分類する。<br
-            />
-            また高さを持った要素と背景要素の間でコントラスト比を保つ場合は、事前に要素へ持たせた
-            border と背景の間で 3:1 のコントラスト比を確保する。<br />
-            つまり border を持たない要素に高さをもたせてはいけない。<br />
-            <br />
-            また「高さを持った要素」の上に「高さを持った要素」を配置する場合は、原則上側の要素は二段階高く設置すること。
-          </p>
-        </div>
-        <div class="mt__2 elevation__grid">
-          {
-            Array.from({ length: 8 }).map((_, index) => (
-              <div class="elevation__content__wrap">
-                <div
-                  class={`elevation__shadow__square elevation__shadow__${index + 1}`}
-                />
-                <p class="elevation__shadow__caption">
-                  drop shadow {index + 1}
-                </p>
-              </div>
-            ))
-          }
-          <!-- without blur -->
-          {
-            Array.from({ length: 8 }).map((_, index) => (
-              <div class="elevation__content__wrap">
-                <div
-                  class={`elevation__shadow__square elevation__shadow__${index + 11}`}
-                />
-                <p class="elevation__shadow__caption">
-                  drop shadow(no blur) {index + 1}
-                </p>
-              </div>
-            ))
-          }
-        </div>
-        <div class="mt__8 btns__wrap">
-          <button
-            type="button"
-            class="shadow__animate__control btn__item item__hover"
-            id="stop__animation">Shut Up!!</button
-          >
-          <button
-            type="button"
-            class="shadow__animate__control btn__item item__hover"
-            id="restart__animation">Just Kidding</button
-          >
-        </div>
-        <div class="mt__2 shadow__animate__grid">
-          {
-            Array.from({ length: 24 }).map((_, index) => (
-              <div class={`shadow__animate animate__${index + 1}`}>
-                <div class="shadow__animate__item">
-                  {animateBlockText[index % animateBlockText.length]}
-                </div>
-              </div>
-            ))
-          }
-        </div>
-
-        <!-- font-family -->
-        <h2 class="mt__8">font-famliy (for Windows CJK)</h2>
-        <div class="font__family__grid">
-          <div class="mt__2 btns__wrap">
-            <button
-              class="btn__item item__hover"
-              data-font-class="default__fontfamily"
-              type="button">Default (Noto Sans JP)</button
-            >
-            <button
-              class="btn__item item__hover"
-              data-font-class="udp__fontfamily"
-              type="button">UDP Gothic</button
-            >
-            <button
-              class="btn__item item__hover"
-              data-font-class="meiryo__fontfamily"
-              type="button">Meiryo</button
-            >
-          </div>
-          <div class="mt__2 font__family__samples__wrap">
-            <p>
-              組織はA新しAい技術Aを見てAいます。彼はB丁寧Bにこの問B題をB改善しBていBます。<br
-              />
-              あなたはやや過去を学んでいます。チームは実績を見ています。システムは継続的に現在を信じています。これはデータを実施しています。彼らは機会を評価しています。企業はとても実績を見ています。あなたは過去を思っています。誰もが情報を試しています。プロジェクトはわずかにデータを感じています。彼女は目標を提案しています。彼らは新しい技術を期待しています。多くの人々が継続的に情報を知っています。
-            </p>
-          </div>
-        </div>
-
-        <!-- accordion -->
-        <h2 class="mt__8">Accordion</h2>
-        <div class="mt__3 accordion__wrap">
-          {
-            Array.from({ length: 3 }).map((_, index) => (
-              <details
-                name="accordion__sample"
-                class={`accordion__sample__${index + 1}`}
-                open={index === 0}
-              >
-                <summary>
-                  Accordion Sample
-                  <span class="twister" />
-                </summary>
-                <div class="accordion__overflow__hidden">
-                  <div class="accordion__content">
-                    <p>
-                      CSSのみで実装、かつ iOS18.4
-                      以降のSafariに対応するアコーディオン。
-                      <br />
-                      <br />
-                      各アコーディオンに共通の name
-                      を付与することで、最大展開個数を「1」とする排他的な実装が可能。
-                      <br />
-                      <br />
-                      iOS18.4から疑似要素 "::details-content"
-                      が指定可能となったため、非展開時の ::details-content を
-                      grid-template-rows: 0fr に、展開時は 1fr に設定のうえ
-                      transition-property に grid-template-rows
-                      を指定することでCSSのみの展開アニメーションが可能となる。
-                      <br />
-                      ただしそのままでは格納時に内容コンテンツがアコーディオンから逸脱してしまうため、
-                      <br />
-                      コンテンツの div ラップの上にさらに overflow: hidden
-                      用の追加 div ラップが必要となること、
-                      <br />
-                      併せて grid-template-columns
-                      は相対値プロパティとなるため、 transition-behavior:
-                      allow-discrete により相対値プロパティへの transition
-                      適用許可が必要となる。
-                    </p>
-                  </div>
-                </div>
-              </details>
-            ))
-          }
-        </div>
-
-        <!-- tab -->
-        <!-- <h2 class="mt__8">Tab with Arrow Nav</h2>
-        <dads-tab-aria class="dads-tab">
-          <div class="mt__3 dads-tab__list" role="tablist">
-            <a class="dads-tab__tab" href="#ep-1" role="tab" aria-selected="true"><span>タブラベル</span></a>
-            <a class="dads-tab__tab" href="#ep-2" role="tab" aria-selected="false"><span>タブラベル</span></a>
-            <a class="dads-tab__tab" href="#ep-3" role="tab" aria-selected="false"><span>タブラベル</span></a>
-          </div>
-          <div class="dads-tab__panels">
-            <div id="ep-1" class="dads-tab__panel" role="tabpanel" tabindex="0">
-              タブパネルの内容（1番目）
-            </div>
-            <div id="ep-2" class="dads-tab__panel" role="tabpanel" tabindex="0">
-              タブパネルの内容（2番目）
-            </div>
-            <div id="ep-3" class="dads-tab__panel" role="tabpanel" tabindex="0">
-              タブパネルの内容（3番目）
-            </div>
-          </div>
-        </dads-tab-aria> -->
-      </section>
+  <section class="section__wrapper">
+    <!-- font-weight -->
+    <h2>font-weight</h2>
+    <div class="mt__1 font__weight__grid">
+      <div class="content__wrap">
+        <p class="content__subttl">Normal (400)</p>
+        <p class="mt__1 normal">
+          Lorem Ipsum isNormal simply dummy text of the printing and
+          typesetting industry. Lorem Ipsum has been the industry's standard
+          dummy text ever since 1966
+        </p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">Bold (700)</p>
+        <p class="mt__1 bold">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text
+          ever since 1966
+        </p>
+      </div>
     </div>
-  </div>
+
+    <!-- font size -->
+    <h2 class="mt__8">font-size</h2>
+    <div class="mt__1 font__size__grid">
+      <div class="content__wrap">
+        <label class="content__subttl"> For Standard Use: 16 - 45px</label>
+        <input
+          id="font__size__normal"
+          type="range"
+          min={minSizeNormal}
+          max={maxSizeNormal}
+          value={defaultSizeNormal}
+          step="1"
+        />
+        <p id="preview__txt__normal">Change Font Size</p>
+      </div>
+      <div class="content__wrap">
+        <label class="content__subttl"> For Visual Impact: 48 - 64px</label>
+        <input
+          id="font__size__large"
+          type="range"
+          min={minSizeLarge}
+          max={maxSizeLarge}
+          value={defaultSizeLarge}
+          step="1"
+        />
+        <p id="preview__txt__large">Change Font Size</p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">
+          14px<span class="caution">Caution</span>
+        </p>
+        <p class="mt__1">
+          常用は避けるべき。<br
+          />狭いスペースや付帯情報など、特定の状況でのみ使用可能。
+        </p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">
+          Under 13px<span class="dontuse">Don't Use</span>
+        </p>
+        <p class="mt__1">原則として許容されない。</p>
+      </div>
+    </div>
+
+    <!-- line-height -->
+    <h2 class="mt__8">line-height</h2>
+    <div class="mt__1 line__height__grid">
+      <div class="content__wrap">
+        <p class="content__subttl">line-height: 1</p>
+        <p class="mt__1 lh__1">
+          主にボタンなど、コンポーネント内で使用されるワンラインのテキストで上下の余白を持っていない行間。主にボタンなど、コンポーネント内で使用されるワンラインのテキストで上下の余白を持っていない行間
+        </p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">
+          line-height: 1.2<span class="default">default</span>
+        </p>
+        <p class="mt__1 lh__12">
+          主に管理画面や業務システムの画面等で、膨大な情報を一覧表示したりなど、限られた画面領域での表示情報量を最優先した行間。主に管理画面や業務システムの画面等で、膨大な情報を一覧表示したりなど、限られた画面領域での表示情報量を最優先した行間
+        </p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">line-height: 1.3</p>
+        <p class="mt__1 lh__13">
+          主に管理画面や業務システムの画面等で使用する、表示情報量を優先した行間。主に管理画面や業務システムの画面等で使用する、表示情報量を優先した行間
+        </p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">line-height: 1.4</p>
+        <p class="mt__1 lh__14">
+          見出しなど、やや大きな文字に使用される行間。見出しなど、やや大きな文字に使用される行間。見出しなど、やや大きな文字に使用される行間。見出しなど、やや大きな文字に使用される行間。
+        </p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">line-height: 1.5</p>
+        <p class="mt__1 lh__15">
+          一般的なウェブサイトの本文や見出しで使用される行間（本文の行間としては最低限度）。一般的なウェブサイトの本文や見出しで使用される行間（本文の行間としては最低限度）
+        </p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">line-height: 1.6</p>
+        <p class="mt__1 lh__16">
+          一般的なウェブサイトの本文で使用される行間。一般的なウェブサイトの本文で使用される行間。一般的なウェブサイトの本文で使用される行間。一般的なウェブサイトの本文で使用される行間。
+        </p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">
+          line-height: 1.7<span class="suggested">Suggested</span>
+        </p>
+        <p class="mt__1 lh__17">
+          一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。
+        </p>
+      </div>
+      <div class="content__wrap">
+        <p class="content__subttl">line-height: 1.75</p>
+        <p class="mt__1 lh__175">
+          一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。採用するグリッド幅やフォントサイズに応じて170%と使い分ける。一般的なウェブサイトの本文で使用する、心理的負荷の軽減を考慮した行間。採用するグリッド幅やフォントサイズに応じて170%と使い分ける
+        </p>
+      </div>
+    </div>
+
+    <!-- elevation  -->
+    <h2 class="mt__8">Elevation</h2>
+    <div class="mt__1 comment__wrap">
+      <p class="comment">
+        ドロップシャドウによるエレベーションを用いる場合は、エフェクトの大きさを8段階程度に分類する。<br
+        />
+        また高さを持った要素と背景要素の間でコントラスト比を保つ場合は、事前に要素へ持たせた
+        border と背景の間で 3:1 のコントラスト比を確保する。<br />
+        つまり border を持たない要素に高さをもたせてはいけない。<br />
+        <br />
+        また「高さを持った要素」の上に「高さを持った要素」を配置する場合は、原則上側の要素は二段階高く設置すること。
+      </p>
+    </div>
+    <div class="mt__2 elevation__grid">
+      {
+        Array.from({ length: 8 }).map((_, index) => (
+          <div class="elevation__content__wrap">
+            <div
+              class={`elevation__shadow__square elevation__shadow__${index + 1}`}
+            />
+            <p class="elevation__shadow__caption">
+              drop shadow {index + 1}
+            </p>
+          </div>
+        ))
+      }
+      <!-- without blur -->
+      {
+        Array.from({ length: 8 }).map((_, index) => (
+          <div class="elevation__content__wrap">
+            <div
+              class={`elevation__shadow__square elevation__shadow__${index + 11}`}
+            />
+            <p class="elevation__shadow__caption">
+              drop shadow(no blur) {index + 1}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt__8 btns__wrap">
+      <button
+        type="button"
+        class="shadow__animate__control btn__item item__hover"
+        id="stop__animation">Shut Up!!</button
+      >
+      <button
+        type="button"
+        class="shadow__animate__control btn__item item__hover"
+        id="restart__animation">Just Kidding</button
+      >
+    </div>
+    <div class="mt__2 shadow__animate__grid">
+      {
+        Array.from({ length: 24 }).map((_, index) => (
+          <div class={`shadow__animate animate__${index + 1}`}>
+            <div class="shadow__animate__item">
+              {animateBlockText[index % animateBlockText.length]}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- font-family -->
+    <h2 class="mt__8">font-famliy (for Windows CJK)</h2>
+    <div class="font__family__grid">
+      <div class="mt__2 btns__wrap">
+        <button
+          class="btn__item item__hover"
+          data-font-class="default__fontfamily"
+          type="button">Default (Noto Sans JP)</button
+        >
+        <button
+          class="btn__item item__hover"
+          data-font-class="udp__fontfamily"
+          type="button">UDP Gothic</button
+        >
+        <button
+          class="btn__item item__hover"
+          data-font-class="meiryo__fontfamily"
+          type="button">Meiryo</button
+        >
+      </div>
+      <div class="mt__2 font__family__samples__wrap">
+        <p>
+          組織はA新しAい技術Aを見てAいます。彼はB丁寧Bにこの問B題をB改善しBていBます。<br
+          />
+          あなたはやや過去を学んでいます。チームは実績を見ています。システムは継続的に現在を信じています。これはデータを実施しています。彼らは機会を評価しています。企業はとても実績を見ています。あなたは過去を思っています。誰もが情報を試しています。プロジェクトはわずかにデータを感じています。彼女は目標を提案しています。彼らは新しい技術を期待しています。多くの人々が継続的に情報を知っています。
+        </p>
+      </div>
+    </div>
+
+    <!-- accordion -->
+    <h2 class="mt__8">Accordion</h2>
+    <div class="mt__3 accordion__wrap">
+      {
+        Array.from({ length: 3 }).map((_, index) => (
+          <details
+            name="accordion__sample"
+            class={`accordion__sample__${index + 1}`}
+            open={index === 0}
+          >
+            <summary>
+              Accordion Sample
+              <span class="twister" />
+            </summary>
+            <div class="accordion__overflow__hidden">
+              <div class="accordion__content">
+                <p>
+                  CSSのみで実装、かつ iOS18.4
+                  以降のSafariに対応するアコーディオン。
+                  <br />
+                  <br />
+                  各アコーディオンに共通の name
+                  を付与することで、最大展開個数を「1」とする排他的な実装が可能。
+                  <br />
+                  <br />
+                  iOS18.4から疑似要素 "::details-content"
+                  が指定可能となったため、非展開時の ::details-content を
+                  grid-template-rows: 0fr に、展開時は 1fr に設定のうえ
+                  transition-property に grid-template-rows
+                  を指定することでCSSのみの展開アニメーションが可能となる。
+                  <br />
+                  ただしそのままでは格納時に内容コンテンツがアコーディオンから逸脱してしまうため、
+                  <br />
+                  コンテンツの div ラップの上にさらに overflow: hidden
+                  用の追加 div ラップが必要となること、
+                  <br />
+                  併せて grid-template-columns
+                  は相対値プロパティとなるため、 transition-behavior:
+                  allow-discrete により相対値プロパティへの transition
+                  適用許可が必要となる。
+                </p>
+              </div>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+
+    <!-- tab -->
+    <!-- <h2 class="mt__8">Tab with Arrow Nav</h2>
+    <dads-tab-aria class="dads-tab">
+      <div class="mt__3 dads-tab__list" role="tablist">
+        <a class="dads-tab__tab" href="#ep-1" role="tab" aria-selected="true"><span>タブラベル</span></a>
+        <a class="dads-tab__tab" href="#ep-2" role="tab" aria-selected="false"><span>タブラベル</span></a>
+        <a class="dads-tab__tab" href="#ep-3" role="tab" aria-selected="false"><span>タブラベル</span></a>
+      </div>
+      <div class="dads-tab__panels">
+        <div id="ep-1" class="dads-tab__panel" role="tabpanel" tabindex="0">
+          タブパネルの内容（1番目）
+        </div>
+        <div id="ep-2" class="dads-tab__panel" role="tabpanel" tabindex="0">
+          タブパネルの内容（2番目）
+        </div>
+        <div id="ep-3" class="dads-tab__panel" role="tabpanel" tabindex="0">
+          タブパネルの内容（3番目）
+        </div>
+      </div>
+    </dads-tab-aria> -->
+  </section>
 </Layout>
 
 <!-- for font-size -->

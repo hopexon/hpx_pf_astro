@@ -7,13 +7,9 @@ import { mtgSetYears } from "./data";
 ---
 
 <Layout>
-  <div>
-    <h1 class="page__ttl">MTG&nbsp;&nbsp;-Sets-</h1>
-    <div class="main__wrap">
-      <section class="section__wrapper">
-        <SubheadLinks />
-        {mtgSetYears.map((year) => <SetsWrap year={year} />)}
-      </section>
-    </div>
-  </div>
+  <h1 class="page__ttl">MTG&nbsp;&nbsp;-Sets-</h1>
+  <section class="section__wrapper">
+    <SubheadLinks />
+    {mtgSetYears.map((year) => <SetsWrap year={year} />)}
+  </section>
 </Layout>
