@@ -5,27 +5,24 @@ import ContactForm from '../../components/contact/ContactForm.astro'
 ---
 
 <Layout title="Contact" description="HPXへのお仕事のご相談、ご感想、お問い合わせはこちらから。">
-  <div>
-    <h1 class="page__ttl">Contact</h1>
-    <div class="main__wrap">
-      <div class="section__wrapper">
-        <div class="contact">
-          <PanelSection class="contact-panel" aria-labelledby="contact-title">
-            <h2 id="contact-title">◯&nbsp;Contact Form</h2>
-            <p>
-              お仕事のご相談、恨みつらみ、短歌など<br />
-              お気軽にご連絡ください
-            </p>
-            <ContactForm />
-          </PanelSection>
-        </div>
-      </div>
+  <h1 class="page__ttl">Contact</h1>
+  <div class="section__wrapper">
+    <div class="contact">
+      <PanelSection class="contact-panel" aria-labelledby="contact-title">
+        <h2 id="contact-title">◯&nbsp;Contact Form</h2>
+        <p>
+          お仕事のご相談、恨みつらみ、短歌など<br />
+          お気軽にご連絡ください
+        </p>
+        <ContactForm />
+      </PanelSection>
     </div>
   </div>
 </Layout>
 
 <style>
   .contact {
+    margin-inline: auto;
     max-inline-size: 56rem;
   }
 

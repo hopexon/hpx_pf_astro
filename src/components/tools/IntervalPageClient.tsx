@@ -27,15 +27,13 @@ export function IntervalPageClient() {
         </p>
       </hgroup>
 
-      <div className="main__wrap">
-        <section className="section__wrapper">
-          {/* handedness state and its setter will be passed to IntervalTool, so you can change handedness in IntervalTool and reflect it in this page title */}
-          <IntervalTool
-            handedness={handedness}
-            onHandednessChange={setHandedness}
-          />
-        </section>
-      </div>
+      <section className="section__wrapper">
+        {/* handedness state and its setter will be passed to IntervalTool, so you can change handedness in IntervalTool and reflect it in this page title */}
+        <IntervalTool
+          handedness={handedness}
+          onHandednessChange={setHandedness}
+        />
+      </section>
     </div>
   );
 }

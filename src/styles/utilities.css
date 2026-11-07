@@ -16,11 +16,9 @@ body {
     sans-serif;
 }
 
+/* 短いページでもスクロールするまでフッターを表示させないため 100vh を確保 */
 main {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto auto;
-  min-height: 100vh;
+  min-block-size: 100vh;
 }
 
 .page__ttl {
@@ -44,11 +42,6 @@ main {
   }
 }
 
-.main__wrap {
-  display: grid;
-  justify-items: center;
-}
-
 .section__wrapper {
   --padding-block: 2rem 5rem;
   --padding-inline: 1rem;
@@ -56,6 +49,7 @@ main {
   container-type: inline-size;
   padding-block: var(--padding-block);
   padding-inline: var(--padding-inline);
+  margin-inline: auto;
   inline-size: 100%;
   max-inline-size: var(--inline-content-size);
 

@@ -7,45 +7,41 @@ import { mtgCards } from './data'
 ---
 
 <Layout>
-  <div>
-    <h1 class="page__ttl">MTG&nbsp;&nbsp;-TOP-</h1>
-    <div class="main__wrap">
-      <section class="section__wrapper mtg__section__wrapper mtg__section__top">
-        <div class="mtg__controls">
-          <SubheadLinks />
-          <div class="mtg__links mtg__actions">
-            <button type="button" class="mtg__link" data-mtg-shuffle-btn>
-              Shuffle
-            </button>
-            <button type="button" class="mtg__link" data-mtg-reset-btn>
-              Reset
-            </button>
-          </div>
-        </div>
-        <div class="grid" data-randomize-top-cards>
-          {mtgCards.filter(card => card.topFlug).map(card => (
-            <a class="card__link" href={`/collections/mtg/${card.slug}`} data-card-slug={card.slug}>
-              <div class="card__thumb">
-                {card.imgFull ? (
-                  <img
-                    class='card__img'
-                    src={`/collections/mtg/thumbs/${card.imgFull}`}
-                    alt={`${card.name}`}
-                    loading='lazy'/>
-                ) : (
-                  <img
-                    class='card__img'
-                    src={`/collections/mtg/thumbs/${card.imgCard}`}
-                    alt={`${card.name}`}
-                    loading='lazy'/>
-                )}
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
+  <h1 class="page__ttl">MTG&nbsp;&nbsp;-TOP-</h1>
+  <section class="section__wrapper mtg__section__wrapper mtg__section__top">
+    <div class="mtg__controls">
+      <SubheadLinks />
+      <div class="mtg__links mtg__actions">
+        <button type="button" class="mtg__link" data-mtg-shuffle-btn>
+          Shuffle
+        </button>
+        <button type="button" class="mtg__link" data-mtg-reset-btn>
+          Reset
+        </button>
+      </div>
     </div>
-  </div>
+    <div class="grid" data-randomize-top-cards>
+      {mtgCards.filter(card => card.topFlug).map(card => (
+        <a class="card__link" href={`/collections/mtg/${card.slug}`} data-card-slug={card.slug}>
+          <div class="card__thumb">
+            {card.imgFull ? (
+              <img
+                class='card__img'
+                src={`/collections/mtg/thumbs/${card.imgFull}`}
+                alt={`${card.name}`}
+                loading='lazy'/>
+            ) : (
+              <img
+                class='card__img'
+                src={`/collections/mtg/thumbs/${card.imgCard}`}
+                alt={`${card.name}`}
+                loading='lazy'/>
+            )}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
 </Layout>
 
 <script>

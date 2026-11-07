@@ -4,155 +4,151 @@ import PanelSection from '../../components/common/PanelSection.astro'
 ---
 
 <Layout title="About Me" description="Profile of the author, HPX">
-  <div>
-    <h1 class="page__ttl">About me</h1>
-    <div class="main__wrap">
-      <div class="section__wrapper">
-        <div class="about__wrapper" data-lang="ja">
-          <PanelSection class="who">
-            <div class="who__profile">
-              <h2>◯&nbsp;どちら様ですか</h2>
-              <dl>
-                <dt>Kiyotaka Dekke</dt>
-                <dd>・年齢: 32</dd>
-                <dd>・身長: 180cm</dd>
-                <dd>・体重: 100kg</dd>
-                <dd>・顔面: 髭まみれ</dd>
-                <dd>・小樽商科大学商学部卒</dd>
-                <dd>・北海道札幌市在住</dd>
-              </dl>
-            </div>
-            <img
-              class="who__logo"
-              src="/hpx_logo.webp"
-              alt="HPX Logo"
-              width="2043"
-              height="2043"
-              loading="lazy"
-            >
-          </PanelSection>
-
-          <PanelSection class="doing">
-            <h2>◯&nbsp;何をしていますか</h2>
-            <p>マークアップ中心のWebエンジニアです。</p>
-            <p>データを取り扱うことの少ないマークアップは一般的に「リスクも観点も工数も小さい」と見なされがちな昨今ですが、その価値が最終的にユーザが得る手触りによって決まることから実際には答えのない極めて有機的な作業であり、デザイン・パフォーマンス・アクセシビリティの担保が絡み合ったそれは心血を注いで解きほぐすに値する、実にユニークな行程だと感じています。</p>
-            <p>AIの台頭が著しい現状では割と茨の道であるなと思いつつ、日々楽しんで(時々食いしばって)マークアップ技術の向上に勤しんでいます。</p>
-            <p>なおAWS + Pythonでバックエンドをやや嗜んでいた時期もありますが、無資格のため眉唾です。</p>
-          </PanelSection>
-
-          <PanelSection class="skill">
-            <h2>◯&nbsp;何を使えますか</h2>
-            <dl>
-              <dt>-&nbsp;フロントエンド&nbsp;-</dt>
-              <dd>・HTML5 / EJS (好き) / Astro (大好き) / Svelte5 Sveltekit (報われてほしい) / React NextJS (ちょっとだけ) / Vue (ちょっとだけ) / Pug (嫌い)</dd>
-              <dd>・CSS / Scss / Tailwind / Stylus (嫌い)</dd>
-              <dd>・Javascript / JQuery / Typescript (静的実装中心)</dd>
-              <dt>-&nbsp;バックエンド&nbsp;-</dt>
-              <dd>・Python3</dd>
-              <dd>・PHP (ちょっとだけ)</dd>
-              <dd>・PostgreSQL / Adminor / Grafana</dd>
-              <dt>-&nbsp;AWS で触っていたもの&nbsp;-</dt>
-              <dd>・S3 / CloudFront / Amprify / IoT(MQTT with Mosquitto) / Lambda / EC2 ECR ECS Fargate / ElastiCache / DynamoDB</dd>
-              <dd>・VPC(E) / IGW / API Gateway / NAT Gateway / NLB / Cognito ほかインフラストラクチャ関連</dd>
-              <dd>・IAM / CloudWatch / EventBridge / Secret Manager ほか基本サービス</dd>
-              <dt>-&nbsp;ツール群&nbsp;-</dt>
-              <dd>・Github / Gitlab / Backlog / Redmine / JIRA</dd>
-              <dd>・Docker</dd>
-              <dd>・Vercel</dd>
-              <dd>・Adobe Photoshop / Illustrator / XD / Figma (ちょっとだけ)</dd>
-              <dt>-&nbsp;AI&nbsp;-</dt>
-              <dd>・Github Copilot稼働開始時点からIDE統合ツールにて使用開始</dd>
-              <dd>・現状 Copilot / Codex / Claude の三重苦</dd>
-              <dd>・原始人戦法など熱いトレンドを追いかけ中</dd>
-            </dl>
-          </PanelSection>
-
-          <PanelSection class="speciality">
-            <h2>◯&nbsp;何が得意ですか</h2>
-            <ul>
-              <li>アクセシビリティ、パフォーマンス、あらゆる環境へのフォールバック、およびユーザビリティを考慮したマークアップ</li>
-              <li>および同観点からの既存Webページに対する修正改善点調査</li>
-              <li>ユーザビリティ阻害防止に向けたデザインサポート</li>
-              <li>テスト設計、実行、レポート、デバッグ</li>
-              <li>ある程度のAWSアーキテクチャ、インフラストラクチャ構築 - 特にEC2、Lambda、IoT(MQTT)</li>
-              <li>ある程度のバックエンド構築(Pythonを用いたテストツール、自動化ツール、EC2内ロジック構築など)</li>
-              <li>ある程度のAIワークフロー構築(MCP、システムプロンプト構築など)</li>
-            </ul>
-          </PanelSection>
-
-          <PanelSection class="job-history">
-            <h2>◯&nbsp;職歴</h2>
-            <h3>-&nbsp;AWSを用いた国内交通状況のリアルタイム処理案件&nbsp;-</h3>
-            <span>2026/04/ ～</span>
-            <p>
-              日本国内に設置されたセンサー群からリアルタイムの交通情報をAWSに取り込み、自動運転アシストや事故防止などへの活用を目指す研究プロジェクトに従事。<br />
-              プロジェクト人数は1名。予算工数管理、折衝、要件策定、実装、テスト、デプロイおよび効果測定を単独で実施。
-            </p>
-            <p>
-              使用技術<br />
-              <dl>
-                <dd>・S3 / CloudFront / Amprify / IoT(MQTT with Mosquitto) / Lambda / EC2 ECR ECS Fargate / ElastiCache / DynamoDB</dd>
-                <dd>・VPC(E) / IGW / API Gateway / NAT Gateway / NLB / Cognito ほかインフラストラクチャ関連 / IAM / CloudWatch / EventBridge / Secret Manager ほか基本サービス</dd>
-                <dd>・Python3 / PostgreSQL / Adminor / Grafana</dd>
-                <dd>・Docker</dd>
-                <dd>・Github / Gitlab</dd>
-                <dd>・Vue / CSS / TypeScript</dd>
-              </dl>
-            </p>
-
-            <h3>-&nbsp;無職&nbsp;-</h3>
-            <span>2026/01～2026/03</span>
-            <p>
-              フライヤーなどデザイン活動を中心に活動しつつ、フロントエンド関連で周囲の友人たちをサポート。<br />
-              非常によい気分転換となりましたが、疲労は増しました。おかしいなぁ
-            </p>
-
-            <h3>-&nbsp;博報堂プロダクツデザインスタジオ&nbsp;-</h3>
-            <span>2023/01/～2025/12</span>
-            <p>
-              QAから制作側に回りたいという思いがむくむく芽生えフロントエンドエンジニアとして初参画。<br />
-              同グループの制作部門としてプライムを中心としたLP、コーポレートサイト、ECサイト、採用サイトなど多数の案件と高速で回転。<br />
-              マークアップの適切性と広告効果の相関は極めて明確な結果として現れてしまうため、過激なお師匠たちに揉まれる。<br />
-              人員不足からなし崩しで予算工数管理やWebディレクションも兼務のほか、半ば社内SEも兼務。<br />
-              勤務期間中に丁度AIが黎明を迎えたため、潤沢な予算を背に大手を振っての導入に成功。当時は本当にコストが低かった……
-            </p>
-            <p>
-              使用技術<br />
-              <dl>
-                <dd>・HTML5 / EJS (好き) / Vue (ちょっとだけ) / Pug (嫌い)</dd>
-                <dd>・CSS / Scss / Tailwind / Stylus (嫌い)</dd>
-                <dd>・Javascript / JQuery / Typescript (静的実装中心)</dd>
-                <dd>・PHP (ちょっとだけ)</dd>
-                <dd>・S3 / CloudFront / Amprify</dd>
-                <dd>・Github / Gitlab / Backlog</dd>
-              </dl>
-            </p>
-
-            <h3>-&nbsp;株式会社SHIFT&nbsp;-</h3>
-            <span>2019/06/～2022/12</span>
-            <p>
-              各種ゲームタイトルおよび関連Webサービスのデバッグに関してPMとして予算工数行程管理、テスト設計および実行を担当。<br />
-              タイトルによってはレベルデザイン段階から参画し、開発要素が既存市場に及ぼすインパクトをプロデューサ陣と調査するなど変則的な業務経験も有り。<br />
-            </p>
-            <p>
-              使用技術<br />
-              <dl>
-                <dd>・Github / Gitlab / Backlog / Redmine / JIRA</dd>
-              </dl>
-            </p>
-          </PanelSection>
-
-          <PanelSection class="skill-other">
-            <h2>◯&nbsp;他に何ができますか</h2>
-            <ul>
-              <li>手描きでのフライヤー、ポスターデザインにも対応しております。作例は<a class="link__item item__hover" href="../works/">Works</a>ページを参照ください。</li>
-              <li>取材込みでの記事作成も対応可能です。過去記事は<a class="link__item item__hover" href="https://note.com/dekkek/n/n9a222307c6c8">Note</a>を参照下さい。</li>
-              <li>非常に良い声、滑舌をしているため司会やアナウンス、音声吹き込みやラジオなども時々対応中です。気になる方は直接お声がけくださいませ。</li>
-            </ul>
-          </PanelSection>
-
+  <h1 class="page__ttl">About me</h1>
+  <div class="section__wrapper">
+    <div class="about__wrapper" data-lang="ja">
+      <PanelSection class="who">
+        <div class="who__profile">
+          <h2>◯&nbsp;どちら様ですか</h2>
+          <dl>
+            <dt>Kiyotaka Dekke</dt>
+            <dd>・年齢: 32</dd>
+            <dd>・身長: 180cm</dd>
+            <dd>・体重: 100kg</dd>
+            <dd>・顔面: 髭まみれ</dd>
+            <dd>・小樽商科大学商学部卒</dd>
+            <dd>・北海道札幌市在住</dd>
+          </dl>
         </div>
-      </div>
+        <img
+          class="who__logo"
+          src="/hpx_logo.webp"
+          alt="HPX Logo"
+          width="2043"
+          height="2043"
+          loading="lazy"
+        >
+      </PanelSection>
+
+      <PanelSection class="doing">
+        <h2>◯&nbsp;何をしていますか</h2>
+        <p>マークアップ中心のWebエンジニアです。</p>
+        <p>データを取り扱うことの少ないマークアップは一般的に「リスクも観点も工数も小さい」と見なされがちな昨今ですが、その価値が最終的にユーザが得る手触りによって決まることから実際には答えのない極めて有機的な作業であり、デザイン・パフォーマンス・アクセシビリティの担保が絡み合ったそれは心血を注いで解きほぐすに値する、実にユニークな行程だと感じています。</p>
+        <p>AIの台頭が著しい現状では割と茨の道であるなと思いつつ、日々楽しんで(時々食いしばって)マークアップ技術の向上に勤しんでいます。</p>
+        <p>なおAWS + Pythonでバックエンドをやや嗜んでいた時期もありますが、無資格のため眉唾です。</p>
+      </PanelSection>
+
+      <PanelSection class="skill">
+        <h2>◯&nbsp;何を使えますか</h2>
+        <dl>
+          <dt>-&nbsp;フロントエンド&nbsp;-</dt>
+          <dd>・HTML5 / EJS (好き) / Astro (大好き) / Svelte5 Sveltekit (報われてほしい) / React NextJS (ちょっとだけ) / Vue (ちょっとだけ) / Pug (嫌い)</dd>
+          <dd>・CSS / Scss / Tailwind / Stylus (嫌い)</dd>
+          <dd>・Javascript / JQuery / Typescript (静的実装中心)</dd>
+          <dt>-&nbsp;バックエンド&nbsp;-</dt>
+          <dd>・Python3</dd>
+          <dd>・PHP (ちょっとだけ)</dd>
+          <dd>・PostgreSQL / Adminor / Grafana</dd>
+          <dt>-&nbsp;AWS で触っていたもの&nbsp;-</dt>
+          <dd>・S3 / CloudFront / Amprify / IoT(MQTT with Mosquitto) / Lambda / EC2 ECR ECS Fargate / ElastiCache / DynamoDB</dd>
+          <dd>・VPC(E) / IGW / API Gateway / NAT Gateway / NLB / Cognito ほかインフラストラクチャ関連</dd>
+          <dd>・IAM / CloudWatch / EventBridge / Secret Manager ほか基本サービス</dd>
+          <dt>-&nbsp;ツール群&nbsp;-</dt>
+          <dd>・Github / Gitlab / Backlog / Redmine / JIRA</dd>
+          <dd>・Docker</dd>
+          <dd>・Vercel</dd>
+          <dd>・Adobe Photoshop / Illustrator / XD / Figma (ちょっとだけ)</dd>
+          <dt>-&nbsp;AI&nbsp;-</dt>
+          <dd>・Github Copilot稼働開始時点からIDE統合ツールにて使用開始</dd>
+          <dd>・現状 Copilot / Codex / Claude の三重苦</dd>
+          <dd>・原始人戦法など熱いトレンドを追いかけ中</dd>
+        </dl>
+      </PanelSection>
+
+      <PanelSection class="speciality">
+        <h2>◯&nbsp;何が得意ですか</h2>
+        <ul>
+          <li>アクセシビリティ、パフォーマンス、あらゆる環境へのフォールバック、およびユーザビリティを考慮したマークアップ</li>
+          <li>および同観点からの既存Webページに対する修正改善点調査</li>
+          <li>ユーザビリティ阻害防止に向けたデザインサポート</li>
+          <li>テスト設計、実行、レポート、デバッグ</li>
+          <li>ある程度のAWSアーキテクチャ、インフラストラクチャ構築 - 特にEC2、Lambda、IoT(MQTT)</li>
+          <li>ある程度のバックエンド構築(Pythonを用いたテストツール、自動化ツール、EC2内ロジック構築など)</li>
+          <li>ある程度のAIワークフロー構築(MCP、システムプロンプト構築など)</li>
+        </ul>
+      </PanelSection>
+
+      <PanelSection class="job-history">
+        <h2>◯&nbsp;職歴</h2>
+        <h3>-&nbsp;AWSを用いた国内交通状況のリアルタイム処理案件&nbsp;-</h3>
+        <span>2026/04/ ～</span>
+        <p>
+          日本国内に設置されたセンサー群からリアルタイムの交通情報をAWSに取り込み、自動運転アシストや事故防止などへの活用を目指す研究プロジェクトに従事。<br />
+          プロジェクト人数は1名。予算工数管理、折衝、要件策定、実装、テスト、デプロイおよび効果測定を単独で実施。
+        </p>
+        <p>
+          使用技術<br />
+          <dl>
+            <dd>・S3 / CloudFront / Amprify / IoT(MQTT with Mosquitto) / Lambda / EC2 ECR ECS Fargate / ElastiCache / DynamoDB</dd>
+            <dd>・VPC(E) / IGW / API Gateway / NAT Gateway / NLB / Cognito ほかインフラストラクチャ関連 / IAM / CloudWatch / EventBridge / Secret Manager ほか基本サービス</dd>
+            <dd>・Python3 / PostgreSQL / Adminor / Grafana</dd>
+            <dd>・Docker</dd>
+            <dd>・Github / Gitlab</dd>
+            <dd>・Vue / CSS / TypeScript</dd>
+          </dl>
+        </p>
+
+        <h3>-&nbsp;無職&nbsp;-</h3>
+        <span>2026/01～2026/03</span>
+        <p>
+          フライヤーなどデザイン活動を中心に活動しつつ、フロントエンド関連で周囲の友人たちをサポート。<br />
+          非常によい気分転換となりましたが、疲労は増しました。おかしいなぁ
+        </p>
+
+        <h3>-&nbsp;博報堂プロダクツデザインスタジオ&nbsp;-</h3>
+        <span>2023/01/～2025/12</span>
+        <p>
+          QAから制作側に回りたいという思いがむくむく芽生えフロントエンドエンジニアとして初参画。<br />
+          同グループの制作部門としてプライムを中心としたLP、コーポレートサイト、ECサイト、採用サイトなど多数の案件と高速で回転。<br />
+          マークアップの適切性と広告効果の相関は極めて明確な結果として現れてしまうため、過激なお師匠たちに揉まれる。<br />
+          人員不足からなし崩しで予算工数管理やWebディレクションも兼務のほか、半ば社内SEも兼務。<br />
+          勤務期間中に丁度AIが黎明を迎えたため、潤沢な予算を背に大手を振っての導入に成功。当時は本当にコストが低かった……
+        </p>
+        <p>
+          使用技術<br />
+          <dl>
+            <dd>・HTML5 / EJS (好き) / Vue (ちょっとだけ) / Pug (嫌い)</dd>
+            <dd>・CSS / Scss / Tailwind / Stylus (嫌い)</dd>
+            <dd>・Javascript / JQuery / Typescript (静的実装中心)</dd>
+            <dd>・PHP (ちょっとだけ)</dd>
+            <dd>・S3 / CloudFront / Amprify</dd>
+            <dd>・Github / Gitlab / Backlog</dd>
+          </dl>
+        </p>
+
+        <h3>-&nbsp;株式会社SHIFT&nbsp;-</h3>
+        <span>2019/06/～2022/12</span>
+        <p>
+          各種ゲームタイトルおよび関連Webサービスのデバッグに関してPMとして予算工数行程管理、テスト設計および実行を担当。<br />
+          タイトルによってはレベルデザイン段階から参画し、開発要素が既存市場に及ぼすインパクトをプロデューサ陣と調査するなど変則的な業務経験も有り。<br />
+        </p>
+        <p>
+          使用技術<br />
+          <dl>
+            <dd>・Github / Gitlab / Backlog / Redmine / JIRA</dd>
+          </dl>
+        </p>
+      </PanelSection>
+
+      <PanelSection class="skill-other">
+        <h2>◯&nbsp;他に何ができますか</h2>
+        <ul>
+          <li>手描きでのフライヤー、ポスターデザインにも対応しております。作例は<a class="link__item item__hover" href="../works/">Works</a>ページを参照ください。</li>
+          <li>取材込みでの記事作成も対応可能です。過去記事は<a class="link__item item__hover" href="https://note.com/dekkek/n/n9a222307c6c8">Note</a>を参照下さい。</li>
+          <li>非常に良い声、滑舌をしているため司会やアナウンス、音声吹き込みやラジオなども時々対応中です。気になる方は直接お声がけくださいませ。</li>
+        </ul>
+      </PanelSection>
+
     </div>
   </div>
 </Layout>

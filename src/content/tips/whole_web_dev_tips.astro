@@ -41,29 +41,25 @@ const topics = [
 ]
 ---
 
-<div>
-  <h1 class="page__ttl">{title}</h1>
-  <div class="main__wrap">
-    <div class="section__wrapper">
-      <header class="tips__intro">
-        <details class="acc__with__anim tips__contents">
-          <summary>Contents List<span class="twister" aria-hidden="true"></span></summary>
-          <div class="accordion__overflow__hidden">
-            <div class="content__wrap">
-              <nav aria-label="Tipsの目次">
-                <ol>
-                  {topics.map(({ id, label }) => (
-                    <li><a href={`#${id}`} class="linkitem__link link__twister">{label}</a></li>
-                  ))}
-                </ol>
-              </nav>
-            </div>
-          </div>
-        </details>
-      </header>
-      {topics.map(({ id, component: Component }) => (
-        <section id={id} class="tips__topic"><Component /></section>
-      ))}
-    </div>
-  </div>
+<h1 class="page__ttl">{title}</h1>
+<div class="section__wrapper">
+  <header class="tips__intro">
+    <details class="acc__with__anim tips__contents">
+      <summary>Contents List<span class="twister" aria-hidden="true"></span></summary>
+      <div class="accordion__overflow__hidden">
+        <div class="content__wrap">
+          <nav aria-label="Tipsの目次">
+            <ol>
+              {topics.map(({ id, label }) => (
+                <li><a href={`#${id}`} class="linkitem__link link__twister">{label}</a></li>
+              ))}
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </details>
+  </header>
+  {topics.map(({ id, component: Component }) => (
+    <section id={id} class="tips__topic"><Component /></section>
+  ))}
 </div>

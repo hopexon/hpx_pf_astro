@@ -29,12 +29,8 @@ const { Content, frontmatter } = post
   <title>{frontmatter.title}</title>
 </Fragment>
 <Layout>
-  <div>
-    <h1 class="page__ttl tips">{frontmatter.title}</h1>
-    <div class="main__wrap post__content">
-      <section class="section__wrapper tips__section__wrapper">
-        <Content />    
-      </section>
-    </div>
-  </div>
+  <h1 class="page__ttl tips">{frontmatter.title}</h1>
+  <section class="section__wrapper tips__section__wrapper post__content">
+    <Content />    
+  </section>
 </Layout>

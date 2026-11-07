@@ -29,10 +29,6 @@ body.yu_gothic__fontfamily {
   font-family: "Yu Gothic", sans-serif;
 }
 
-main > div {
-  min-inline-size: 0;
-}
-
 .section__wrapper {
   --padding-block: 3.5rem 5rem;
   --padding-inline: clamp(1rem, 4vw, 1.5rem);
