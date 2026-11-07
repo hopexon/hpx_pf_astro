@@ -1,7 +1,6 @@
 import { actions, isInputError } from 'astro:actions'
 
 interface Turnstile {
-  ready(callback: () => void): void
   render(container: HTMLElement, options: {
     sitekey: string
     action: string
@@ -19,33 +18,37 @@ interface Turnstile {
 }
 
 declare global {
-  interface Window { turnstile?: Turnstile }
+  interface Window {
+    turnstile?: Turnstile
+    onContactTurnstileLoad?: () => void
+  }
 }
 
 let turnstileLoading: Promise<Turnstile> | undefined
 
 function loadTurnstile(): Promise<Turnstile> {
-  if (window.turnstile) return Promise.resolve(window.turnstile)
   if (turnstileLoading) return turnstileLoading
+  if (window.turnstile) return Promise.resolve(window.turnstile)
 
   turnstileLoading = new Promise<Turnstile>((resolve, reject) => {
     const script = document.createElement('script')
-    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onContactTurnstileLoad'
     script.async = true
     const fail = () => {
       clearTimeout(timeout)
+      delete window.onContactTurnstileLoad
       script.remove()
       reject(new Error('Turnstile failed to load'))
     }
     const timeout = window.setTimeout(fail, 15_000)
     script.addEventListener('error', fail, { once: true })
-    script.addEventListener('load', () => {
+    // asyncで読み込む場合はready()ではなく、APIのonloadコールバックを使う。
+    window.onContactTurnstileLoad = () => {
       if (!window.turnstile) return fail()
-      window.turnstile.ready(() => {
-        clearTimeout(timeout)
-        resolve(window.turnstile!)
-      })
-    }, { once: true })
+      clearTimeout(timeout)
+      delete window.onContactTurnstileLoad
+      resolve(window.turnstile)
+    }
     document.head.append(script)
   }).catch((error) => {
     turnstileLoading = undefined
@@ -98,6 +101,8 @@ class ContactForm extends HTMLElement {
     const generation = this.#generation
     const container = this.querySelector<HTMLElement>('[data-turnstile]')!
     this.#retry.hidden = true
+    this.#status.textContent = ''
+    delete this.#status.dataset.state
     try {
       const api = await loadTurnstile()
       if (!this.isConnected || generation !== this.#generation) return
@@ -111,13 +116,13 @@ class ContactForm extends HTMLElement {
         'response-field': false,
         retry: 'never',
         callback: () => { this.#retry.hidden = true },
-        'error-callback': () => this.#verificationIssue('ボット確認に失敗しました。確認をやり直してください。'),
-        'expired-callback': () => this.#verificationIssue('ボット確認の有効期限が切れました。確認をやり直してください。'),
+        'error-callback': () => this.#verificationIssue('ボットチェックに失敗しました。確認をやり直してください。'),
+        'expired-callback': () => this.#verificationIssue('ボットチェックの有効期限が切れました。確認をやり直してください。'),
       })
       this.#submitButton.disabled = false
     } catch {
       if (this.isConnected && generation === this.#generation) {
-        this.#verificationIssue('ボット確認を読み込めませんでした。通信状況を確認し、確認をやり直してください。')
+        this.#verificationIssue('ボットチェックの読込に失敗しました。通信状況を確認し、確認をやり直してください。')
       }
     }
   }
@@ -167,7 +172,7 @@ class ContactForm extends HTMLElement {
 
     const token = this.#widgetId === undefined ? '' : this.#api?.getResponse(this.#widgetId)
     if (!token) {
-      this.#setStatus('ボット確認が完了していません。確認を完了してから送信してください。', 'error')
+      this.#setStatus('ボットチェックが完了していません。確認を完了してから送信してください。', 'error')
       return
     }
 
