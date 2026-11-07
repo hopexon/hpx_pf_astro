@@ -1,8 +1,7 @@
 ---
 import LabGraph from './LabGraph.astro'
 ---
-
-<details class="acc__with__anim">
+<tips-lab-accordion><details class="acc__with__anim">
   <summary>(Lab) Lab<span class="twister"></span></summary>
   <div class="accordion__overflow__hidden">
     <div class="content__wrap">
@@ -73,30 +72,46 @@ import LabGraph from './LabGraph.astro'
 </details>
 
 <!-- Lab -->
+</tips-lab-accordion>
+
 <script>
-  document.addEventListener('astro:page-load', function() {
-    const labLinput = document.getElementById('lab__l') as HTMLInputElement
-    const labAinput = document.getElementById('lab__a') as HTMLInputElement
-    const labBinput = document.getElementById('lab__b') as HTMLInputElement
-    const labAlinput = document.getElementById('lab__al') as HTMLInputElement
-    const labValueText = document.querySelector('.lab-value__text') as HTMLSpanElement
-    const labPreviewBox = document.querySelector('.lab-preview') as HTMLDivElement
+class TipsLabAccordion extends HTMLElement {
+  connectedCallback() {
+    this.init1()
+  }
 
-    const updateLabPreview = () => {
-      const l = labLinput.value
-      const a = labAinput.value
-      const b = labBinput.value
-      const al = labAlinput.value
+  init1() {
+      const labLinput = this.querySelector('#lab__l') as HTMLInputElement
+      const labAinput = this.querySelector('#lab__a') as HTMLInputElement
+      const labBinput = this.querySelector('#lab__b') as HTMLInputElement
+      const labAlinput = this.querySelector('#lab__al') as HTMLInputElement
+      const labValueText = this.querySelector('.lab-value__text') as HTMLSpanElement
+      const labPreviewBox = this.querySelector('.lab-preview') as HTMLDivElement
 
-      labPreviewBox.style.backgroundColor = `lab(${l} ${a} ${b} / ${al})`
-      labValueText.textContent = `lab(${l} ${a} ${b} / ${al})`
-    }
+      const updateLabPreview = () => {
+        const l = labLinput.value
+        const a = labAinput.value
+        const b = labBinput.value
+        const al = labAlinput.value
 
-    labLinput.addEventListener('input', updateLabPreview)
-    labAinput.addEventListener('input', updateLabPreview)
-    labBinput.addEventListener('input', updateLabPreview)
-    labAlinput.addEventListener('input', updateLabPreview)
+        labPreviewBox.style.backgroundColor = `lab(${l} ${a} ${b} / ${al})`
+        labValueText.textContent = `lab(${l} ${a} ${b} / ${al})`
+      }
 
-    updateLabPreview()
-  })
+      labLinput.addEventListener('input', updateLabPreview)
+      labAinput.addEventListener('input', updateLabPreview)
+      labBinput.addEventListener('input', updateLabPreview)
+      labAlinput.addEventListener('input', updateLabPreview)
+
+      updateLabPreview()
+  }
+}
+
+customElements.define('tips-lab-accordion', TipsLabAccordion)
 </script>
+
+<style>
+  tips-lab-accordion {
+    display: contents;
+  }
+</style>

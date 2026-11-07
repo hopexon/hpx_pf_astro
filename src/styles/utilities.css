@@ -1,6 +1,8 @@
 /* Base */
 body {
-  background-color: var(--paper);
+  /* background-color: var(--paper); */
+  /* background: linear-gradient(135deg, #B7B5AC 0%, #fffcf0 100%); */
+  background: linear-gradient(167deg, #b7b5ac, #e0ded3 27%, #fffcf0);
   font-family: 
     "monsterrat",
     "zenkaku-gothic-new",
@@ -69,9 +71,9 @@ main {
   --padding-inline: 0;
   --block-size: fit-content;
   --inline-size: fit-content;
-  --background-color: var(--blue-400);
-  --border-top-left-radius: 0.5rem;
-  --border-bottom-left-radius: 0.5rem;
+  /* --border-top-left-radius: 0.5rem; */
+  /* --border-bottom-left-radius: 0.5rem; */
+  --background-color: var(--orange-400);
   --transition-duration: 200ms;
   --opacity: 0.8;
 
@@ -83,10 +85,11 @@ main {
   margin-inline: auto 0;
   block-size: var(--block-size);
   inline-size: var(--inline-size);
+  /* background-color: var(--base-950); */
   background-color: var(--background-color);
-  color: var(--blue-50);
-  border-top-left-radius: var(--border-bottom-left-radius);
-  border-bottom-left-radius: var(--border-bottom-left-radius);
+  color: var(--paper);
+  /* border-top-left-radius: var(--border-bottom-left-radius); */
+  /* border-bottom-left-radius: var(--border-bottom-left-radius); */
   transition: transform, opacity;
   transition-duration: var(--transition-duration);
   transition-timing-function: ease-out;
@@ -98,13 +101,17 @@ main {
     --padding-inline: var(--gutter-inline);
     --block-size: auto;
     --inline-size: 100%;
-    --background-color: var(--blue-400);
-    --border-top-left-radius: 0;
-    --border-bottom-left-radius: 0;
+    /* --border-top-left-radius: 0; */
+    /* --border-bottom-left-radius: 0; */
+    --background-color: var(--base-950);
     --transition-duration: 100ms;
     --opacity: 0.85;
 
     position: sticky;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 1.5rem;
     container-type: inline-size;
   }
 }
@@ -126,8 +133,32 @@ main {
   display: flex;
   flex-flow: row nowrap;
   column-gap: min(3.8cqi, 2.5rem);
-  inline-size: 100%;
   font-weight: bold;
+}
+
+.global__logo {
+  display: none;
+  justify-self: end;
+  line-height: 0;
+  opacity: 1;
+  transition: opacity 0.15s ease-out;
+
+  @media (any-hover: hover) {
+    &:hover {
+      opacity: 0.6;
+      transition: opacity 0.15s ease-out;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
+.global__logo img {
+  display: block;
+  inline-size: 2rem;
+  block-size: 2rem;
 }
 
 .global__nav__pc.pc__only {
@@ -149,32 +180,63 @@ main {
   content: '';
   margin-inline: auto;
   inline-size: 2em;
-  border-block-end: 2px solid var(--blue-50);
+  border-block-end: 2px solid #fff;
   transition: transform 0.3s ease-out;
 }
 
-.globalheader:has(dialog[open]) .nav__btn__sp::before {
+.globalheader:has(dialog:modal) .nav__btn__sp::before {
   transform: rotate(-180deg);
   transition: transform 0.3s ease-out;
 }
 
+/* :root:has(:modal) の scroll lock は modal.css 側で共通適用 */
 .globalheader dialog {
-  max-height: 60vh;
+  block-size: 70dvh;
+  max-block-size: calc(600 / 16 * 1rem);
+  inline-size: 90dvw;
+  max-inline-size: calc(500 / 16 * 1rem);
+  color: var(--paper);
+  background-color: var(--base-950);
+  border: 6px solid var(--paper);
+  filter: drop-shadow(10px 10px 0 rgba(0, 0, 0, 1));
   outline: none;
 }
 
-.globalheader dialog .dialog__inner {
-  display: flex;
-  flex-flow: column nowrap;
-  row-gap: 2rem;
-  padding: 2rem 2rem 2rem 1.5rem;
-  min-inline-size: calc(100vw - 30vw);
-  font-weight: 700;
-  background-color: var(--paper);
+.nav__close__sp {
+  position: absolute;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.5rem;
+  inline-size: 3rem;
+  block-size: 3rem;
+  background: none;
+  border: none;
+  color: inherit;
 }
 
-.globalheader dialog .dialog__inner .nav__linkItem {
-  outline: none;
+.nav__close__sp::before {
+  content: '✕';
+  font-size: 1.5rem;
+}
+
+.nav__logo__sp {
+  position: absolute;
+  inset-block-end: 1rem;
+  inset-inline-end: 1rem;
+  line-height: 0;
+}
+
+.nav__logo__sp img {
+  display: block;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+}
+
+.nav__sp__linkitem__wrap {
+  padding-inline-start: 2rem;
+  margin-block-start: 3rem;
 }
 
 .globalheader dialog .link__twister {
@@ -357,58 +419,6 @@ main {
   }
 }
 
-/* index menu */
-.indexmenu {
-  /* --inset-block-start: 50%; */
-  /* --inset-inline-start: 50%; */
-  --max-block-size: calc(600 / 16 * 1rem);
-  --inline-size: 90dvw;
-  --max-inline-size: calc(500 / 16 * 1rem);
-  --filter-drop-shadow: drop-shadow(10px 10px 0 rgba(0, 0, 0, 1));
-  /* --transform: translate(-50%, -50%); */
-
-  /* inset-block-start: var(--inset-block-start); */
-  /* inset-inline-start: var(--inset-inline-start); */
-  margin-inline: auto;
-  block-size: 70dvh;
-  max-block-size: var(--max-block-size);
-  inline-size: var(--inline-size);
-  max-inline-size: var(--max-inline-size);
-  color: var(--paper);
-  background-color: var(--base-950);
-  border: 6px solid var(--paper);
-  filter: var(--filter-drop-shadow);
-  /* transform: var(--transform); */
-
-  @media screen and (min-width: 768px) {
-    --inset-block-start: 11rem;
-    --inset-inline-start: auto;
-    --max-block-size: calc(700 / 16 * 1rem);
-    --inline-size: 50vw;
-    --max-inline-size: calc((1300 / 2) / 16 * 1rem);
-    --filter-drop-shadow: drop-shadow(30px 30px 0 rgba(0, 0, 0, 1));
-    --transform: translate(0, 0);
-
-    --inset-inline-end: calc(54 / 16 * 1rem);
-
-    inset-inline-end: var(--inset-inline-end);
-  }
-
-  @media screen and (min-width: 1400px) {
-    --inset-inline-end: calc(50vw - calc(640 / 16 * 1rem));
-  }
-
-  h2 {
-    color: var(--paper);
-    border-bottom: none;
-  }
-}
-
-.indexmenu__linkitem__wrap {
-  padding-inline-start: 2rem;
-  margin-block-start: 3rem;
-}
-
 /* Utility */
 .linkitem__link {
   inline-size: fit-content;
@@ -588,19 +598,39 @@ main {
 }
 
 .to__top__scroll {
+  --inset-inline-end: 0.5rem;
+
   position: fixed;
-  inset-inline-end: 1rem;
+  display: grid;
+  justify-content: center;
+  align-content: center;
   inset-block-end: 1rem;
-  inline-size: fit-content;
-  /* font-size: 2rem; */
+  inset-inline-end: var(--inset-inline-end);
+  block-size: 2rem;
+  inline-size: 2rem;
+  background-color: var(--orange-400);
+  border: none;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.15s ease-out; 
+  z-index: 1;
+
+
+  span {
+    display: block;
+    padding-block-end: 0.25rem;
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    --inset-inline-end: 1rem;
+  }
 }
 
 .to__top__scroll.is-active {
   pointer-events: inherit;
-  opacity: 1;
+  opacity: 0.8;
   transition: opacity 0.15s ease-out;
 }
 

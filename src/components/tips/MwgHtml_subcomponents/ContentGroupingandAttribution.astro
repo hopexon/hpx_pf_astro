@@ -31,17 +31,17 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        <!-- 一定量以上の引用には blockquote 要素を用いセマンティックに示す -->
-        <!-- blockquote の cite 属性を用い、機械的に参照元を示す -->
-        <blockquote cite='httpS://www.hogehogecom/fuga'>
-          <p>piyopiyo...</p>
-        </blockquote>
-        
-        <!-- ただし cite 属性で指定したURLはページ上に表示されないため、必要な場合リンクは別途記述する -->
-        <blockquote cite='httpS://www.hogehogecom/fuga'>
-          <p>piyopiyo...</p>
-          <a href="httpS://www.hogehogecom/fuga">Link: httpS://www.hogehogecom/fuga</a>
-        </blockquote>
+    <!-- 一定量以上の引用には blockquote 要素を用いセマンティックに示す -->
+    <!-- blockquote の cite 属性を用い、機械的に参照元を示す -->
+    <blockquote cite='httpS://www.hogehogecom/fuga'>
+      <p>piyopiyo...</p>
+    </blockquote>
+    
+    <!-- ただし cite 属性で指定したURLはページ上に表示されないため、必要な場合リンクは別途記述する -->
+    <blockquote cite='httpS://www.hogehogecom/fuga'>
+      <p>piyopiyo...</p>
+      <a href="httpS://www.hogehogecom/fuga">Link: httpS://www.hogehogecom/fuga</a>
+    </blockquote>
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -51,31 +51,31 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        <!-- 画像、図表、引用、コード例など、本文から独立しても意味が変化しないと判断できる要素は figure 要素で囲む -->
-        <!-- 同様に“本文から欠落しても本文自体の意味が変わらない”ものである必要がある -->
-        <!-- figcaption は figure 要素内の最初または最後に配置する -->
-        <p>以下は昨年の売上推移となる。</p>
-        <figure>
-          <img src="#" alt="2025年の売上推移図。期末の12億円まで毎月1億円のリニアな線を描いている">
-          <figcaption>図1：2025年の売上推移図</figcaption>
-        </figure>
-        
-        <figure>
-          <pre><code>print('hello world!')</code></pre>
-          <figcaption>Pythonにおける print 関数</figcaption>
-        </figure>
-        
-        <figure>
-          <blockquote cite="hogehoge.jp">
-            <p>hogehoge...</p>
-            <a href="hogehoge.jp">Link: hogehoge.jp</a>
-          </blockquote>
-          <figcaption>出典：記事タイトル</figcaption>
-        </figure>
-        
-        <!-- このページのコードスニペットは？ -->
-        アコーディオン開閉により本文からの隔離が可能となっているため、問題ないらしい。
-        また文脈的に必要な場合も囲む必要がない。
+    <!-- 画像、図表、引用、コード例など、本文から独立しても意味が変化しないと判断できる要素は figure 要素で囲む -->
+    <!-- 同様に“本文から欠落しても本文自体の意味が変わらない”ものである必要がある -->
+    <!-- figcaption は figure 要素内の最初または最後に配置する -->
+    <p>以下は昨年の売上推移となる。</p>
+    <figure>
+      <img src="#" alt="2025年の売上推移図。期末の12億円まで毎月1億円のリニアな線を描いている">
+      <figcaption>図1：2025年の売上推移図</figcaption>
+    </figure>
+    
+    <figure>
+      <pre><code>print('hello world!')</code></pre>
+      <figcaption>Pythonにおける print 関数</figcaption>
+    </figure>
+    
+    <figure>
+      <blockquote cite="hogehoge.jp">
+        <p>hogehoge...</p>
+        <a href="hogehoge.jp">Link: hogehoge.jp</a>
+      </blockquote>
+      <figcaption>出典：記事タイトル</figcaption>
+    </figure>
+    
+    <!-- このページのコードスニペットは？ -->
+    アコーディオン開閉により本文からの隔離が可能となっているため、問題ないらしい。
+    また文脈的に必要な場合も囲む必要がない。
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -85,10 +85,10 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        <!-- スクロールが発生した際にユーザがキーボードからアクセスできるよう、pre には tabindex=0 を付与する -->
-        <pre tabindex="0">
-          <code>print('hello world!')</code>
-        </pre>
+    <!-- スクロールが発生した際にユーザがキーボードからアクセスできるよう、pre には tabindex=0 を付与する -->
+    <pre tabindex="0">
+      <code>print('hello world!')</code>
+    </pre>
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -98,9 +98,9 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        <!-- 画像に対する figure の使用は「キャプションが必要な場合」および「要素として独立している場合」に限る -->
-        <!-- 例えば装飾画像など -->
-        <img src="img/line.svg" alt="">
+    <!-- 画像に対する figure の使用は「キャプションが必要な場合」および「要素として独立している場合」に限る -->
+    <!-- 例えば装飾画像など -->
+    <img src="img/line.svg" alt="">
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>

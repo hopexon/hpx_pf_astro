@@ -127,37 +127,3 @@ import { Code } from 'astro:components'
     </div>
   </div>
 </details>
-
-<!-- tab -->
-<h2 class="mt__8">Tab with Arrow Nav</h2>
-<div class="mt__2 comment__wrap">
-  <p class="comment">
-    デジタル庁Storywriterが提供する「タブフォーカスに対応した」タブ切替要素。<br
-    />
-    タブフォーカスに対応するためには同じくデジタル庁が提供する tab_aria.js が必要となるため注意。
-  </p>
-</div>
-<dads-tab-aria class="dads-tab">
-  <div class="mt__2 dads-tab__list" role="tablist">
-    <a class="dads-tab__tab" href="#ep-1" role="tab" aria-selected="true"
-      ><span>タブラベル</span></a
-    >
-    <a class="dads-tab__tab" href="#ep-2" role="tab" aria-selected="false"
-      ><span>タブラベル</span></a
-    >
-    <a class="dads-tab__tab" href="#ep-3" role="tab" aria-selected="false"
-      ><span>タブラベル</span></a
-    >
-  </div>
-  <div class="dads-tab__panels">
-    <div id="ep-1" class="dads-tab__panel" role="tabpanel" tabindex="0">
-      タブパネルの内容（1番目）
-    </div>
-    <div id="ep-2" class="dads-tab__panel" role="tabpanel" tabindex="0">
-      タブパネルの内容（2番目）
-    </div>
-    <div id="ep-3" class="dads-tab__panel" role="tabpanel" tabindex="0">
-      タブパネルの内容（3番目）
-    </div>
-  </div>
-</dads-tab-aria>

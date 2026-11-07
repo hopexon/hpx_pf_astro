@@ -1,7 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro'
+import IndexMenu from '../../components/common/IndexMenu.astro'
 
-const collectionsMenuList = [
+const menuList = [
   { name: 'Decks', path: 'collections/decks' },
   { name: 'MTG', path: 'collections/mtg' },
 ]
@@ -12,15 +13,7 @@ const collectionsMenuList = [
     <h1 class="page__ttl">Collections</h1>
     <div class="main__wrap">
       <section class="section__wrapper">
-        <div class="linkitem__wrap">
-          {
-            collectionsMenuList.map((item) => (
-              <a href={item.path} class="linkitem__link link__twister">
-                {item.name}
-              </a>
-            ))
-          }
-        </div>
+        <IndexMenu menuList={menuList} />
       </section>
     </div>
   </div>

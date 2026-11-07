@@ -1,11 +1,11 @@
 ---
 const NAV = [
-  { name: 'TOP', path: '/' },
+  { name: 'TOP', path: '/top' },
   { name: 'About', path: '/about' },
+  { name: 'Works', path: '/works' },
   { name: 'Tools', path: '/tools' },
   { name: 'Tips', path: '/tips' },
-  { name: 'Works', path: '/works' },
-  { name: 'Collections', path: '/collections' }
+  // { name: 'Collections', path: '/collections' }
 ]
 ---
 
@@ -23,48 +23,85 @@ const NAV = [
     }
   </nav>
 
+  <a
+    href='/'
+    class='global__logo pc__only'
+    aria-label='トップへ戻る'>
+    <img
+      src='/hpx_logo_header.svg'
+      alt=''
+      width='32'
+      height='32'
+    />
+  </a>
+
   <button
     type='button'
-    commandfor='nav__sp'
     command='show-modal'
+    commandfor='nav__sp'
     class='nav__btn__sp sp__only'
-    aria-controls='nav__sp'></button>
+    aria-label='メニュー'>
+  </button>
 
+  <nav-dialog>
   <dialog
     id='nav__sp'
     closedby='any'
-    autofocus
-    aria-labelledby='nav__sp__heading'
+    aria-label='メニュー'
   >
-    <div class='dialog__inner'>
+    <nav class='nav__sp__linkitem__wrap'>
       {
         NAV.map((item) => (
           <a
             href={item.path}
-            class='nav__linkItem link__twister w-fit nav__item__sp'
+            class='linkitem__link link__twister'
           >
             {item.name}
           </a>
         ))
       }
-    </div>
+    </nav>
+    <a
+      href='/'
+      class='nav__logo__sp'
+      aria-label='トップへ戻る'>
+      <img
+        src='/hpx_logo_header.svg'
+        alt=''
+        width='40'
+        height='40'
+      />
+    </a>
+    <button
+      type='button'
+      command='close'
+      commandfor='nav__sp'
+      class='nav__close__sp'
+      aria-label='メニューを閉じる'>
+    </button>
   </dialog>
+  </nav-dialog>
 </header>
 
 <script>
-  const btn = document.querySelector<HTMLButtonElement>('.nav__btn__sp')
-  const dialog = document.getElementById('nav__sp') as HTMLDialogElement | null
+  import 'invokers-polyfill';
+  import 'dialog-closedby-polyfill';
 
-  if (btn && dialog) {
-    btn.addEventListener('click', () => {
-      dialog.showModal()
-    })
-
-    // バックドロップクリックで閉じる (e.target がダイアログ自体 = backdrop 領域)
-    dialog.addEventListener('click', (e) => {
-      if (e.target === dialog) {
-        dialog.close()
-      }
-    })
+  // ダイアログ領域外(::backdrop)押下で閉じる。closedby/polyfill に依存しない保険
+  class NavDialog extends HTMLElement {
+    connectedCallback() {
+      this.addEventListener('click', this.#onClick)
+    }
+    disconnectedCallback() {
+      this.removeEventListener('click', this.#onClick)
+    }
+    #onClick = (e: Event) => {
+      const dialog = e.target
+      if (!(dialog instanceof HTMLDialogElement) || !dialog.open) return
+      const { clientX: x, clientY: y } = e as MouseEvent
+      const r = dialog.getBoundingClientRect()
+      if (x < r.left || x > r.right || y < r.top || y > r.bottom) dialog.close()
+    }
   }
+  customElements.define('nav-dialog', NavDialog)
 </script>

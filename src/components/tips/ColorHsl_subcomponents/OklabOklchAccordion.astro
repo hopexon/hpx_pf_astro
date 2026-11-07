@@ -1,4 +1,5 @@
-<details class="acc__with__anim">
+
+<tips-oklab-oklch-accordion><details class="acc__with__anim">
   <summary>(OKLab) OKLab / OKLCH<span class="twister"></span></summary>
   <div class="accordion__overflow__hidden">
     <div class="content__wrap">
@@ -66,59 +67,74 @@
 </details>
 
 <!-- OKLab -->
+</tips-oklab-oklch-accordion>
+
 <script>
-  document.addEventListener('astro:page-load', function() {
-    const okLabLinput = document.getElementById('oklab__l') as HTMLInputElement
-    const okLabAinput = document.getElementById('oklab__a') as HTMLInputElement
-    const okLabBinput = document.getElementById('oklab__b') as HTMLInputElement
-    const okLabAlinput = document.getElementById('oklab__al') as HTMLInputElement
-    const okLabValueText = document.querySelector('.oklab-value__text') as HTMLSpanElement
-    const okLabPreviewBox = document.querySelector('.oklab-preview') as HTMLDivElement
+class TipsOklabOklchAccordion extends HTMLElement {
+  connectedCallback() {
+    this.init1()
+    this.init2()
+  }
 
-    const updateokLabPreview = () => {
-      const l = okLabLinput.value
-      const a = okLabAinput.value
-      const b = okLabBinput.value
-      const al = okLabAlinput.value
+  init1() {
+      const okLabLinput = this.querySelector('#oklab__l') as HTMLInputElement
+      const okLabAinput = this.querySelector('#oklab__a') as HTMLInputElement
+      const okLabBinput = this.querySelector('#oklab__b') as HTMLInputElement
+      const okLabAlinput = this.querySelector('#oklab__al') as HTMLInputElement
+      const okLabValueText = this.querySelector('.oklab-value__text') as HTMLSpanElement
+      const okLabPreviewBox = this.querySelector('.oklab-preview') as HTMLDivElement
 
-      okLabPreviewBox.style.backgroundColor = `okLab(${l} ${a} ${b} / ${al})`
-      okLabValueText.textContent = `okLab(${l} ${a} ${b} / ${al})`
-    }
+      const updateokLabPreview = () => {
+        const l = okLabLinput.value
+        const a = okLabAinput.value
+        const b = okLabBinput.value
+        const al = okLabAlinput.value
 
-    okLabLinput.addEventListener('input', updateokLabPreview)
-    okLabAinput.addEventListener('input', updateokLabPreview)
-    okLabBinput.addEventListener('input', updateokLabPreview)
-    okLabAlinput.addEventListener('input', updateokLabPreview)
+        okLabPreviewBox.style.backgroundColor = `okLab(${l} ${a} ${b} / ${al})`
+        okLabValueText.textContent = `okLab(${l} ${a} ${b} / ${al})`
+      }
 
-    updateokLabPreview()
-  })
+      okLabLinput.addEventListener('input', updateokLabPreview)
+      okLabAinput.addEventListener('input', updateokLabPreview)
+      okLabBinput.addEventListener('input', updateokLabPreview)
+      okLabAlinput.addEventListener('input', updateokLabPreview)
+
+      updateokLabPreview()
+  }
+
+  init2() {
+      const oklchLinput = this.querySelector('#oklch__l') as HTMLInputElement
+      const oklchCinput = this.querySelector('#oklch__c') as HTMLInputElement
+      const oklchHinput = this.querySelector('#oklch__h') as HTMLInputElement
+      const oklchAinput = this.querySelector('#oklch__a') as HTMLInputElement
+      const oklchValueText = this.querySelector('.oklch-value__text') as HTMLSpanElement
+      const oklchPreviewBox = this.querySelector('.oklch-preview') as HTMLDivElement
+
+      const updateokLchPreview = () => {
+        const l = oklchLinput.value
+        const c = oklchCinput.value
+        const h = oklchHinput.value
+        const a = oklchAinput.value
+
+        oklchPreviewBox.style.backgroundColor = `oklch(${l} ${c} ${h} / ${a})`
+        oklchValueText.textContent = `oklch(${l} ${c} ${h} / ${a})`
+      }
+
+      oklchLinput.addEventListener('input', updateokLchPreview)
+      oklchCinput.addEventListener('input', updateokLchPreview)
+      oklchHinput.addEventListener('input', updateokLchPreview)
+      oklchAinput.addEventListener('input', updateokLchPreview)
+
+      updateokLchPreview()
+  }
+}
+
+customElements.define('tips-oklab-oklch-accordion', TipsOklabOklchAccordion)
 </script>
 
+<style>
+  tips-oklab-oklch-accordion {
+    display: contents;
+  }
+</style>
 <!-- OKLCH -->
-<script>
-  document.addEventListener('astro:page-load', function() {
-    const oklchLinput = document.getElementById('oklch__l') as HTMLInputElement
-    const oklchCinput = document.getElementById('oklch__c') as HTMLInputElement
-    const oklchHinput = document.getElementById('oklch__h') as HTMLInputElement
-    const oklchAinput = document.getElementById('oklch__a') as HTMLInputElement
-    const oklchValueText = document.querySelector('.oklch-value__text') as HTMLSpanElement
-    const oklchPreviewBox = document.querySelector('.oklch-preview') as HTMLDivElement
-
-    const updateokLchPreview = () => {
-      const l = oklchLinput.value
-      const c = oklchCinput.value
-      const h = oklchHinput.value
-      const a = oklchAinput.value
-
-      oklchPreviewBox.style.backgroundColor = `oklch(${l} ${c} ${h} / ${a})`
-      oklchValueText.textContent = `oklch(${l} ${c} ${h} / ${a})`
-    }
-
-    oklchLinput.addEventListener('input', updateokLchPreview)
-    oklchCinput.addEventListener('input', updateokLchPreview)
-    oklchHinput.addEventListener('input', updateokLchPreview)
-    oklchAinput.addEventListener('input', updateokLchPreview)
-
-    updateokLchPreview()
-  })
-</script>

@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths } from 'astro'
+import Layout from '../../layouts/Layout.astro'
+import { tipsList } from '../../content/tips/meta'
+
+// ページのメタ情報は content/tips/meta.ts に一元化し、Layout はここでのみ呼び出す
+export const getStaticPaths = (async () => {
+  const modules = import.meta.glob<any>('../../content/tips/*.astro', { eager: true })
+
+  return tipsList.map(({ slug, title, description }) => {
+    const mod = modules[`../../content/tips/${slug}.astro`]
+    if (!mod) throw new Error(`content/tips/${slug}.astro が見つかりません(meta.ts の slug を確認)`)
+
+    return {
+      params: { slug },
+      props: { Component: mod.default, title, description },
+    }
+  })
+}) satisfies GetStaticPaths
+
+const { Component, title, description } = Astro.props
+---
+<Layout title={`${title} | Tips`} description={description}>
+  <Component title={title} />
+</Layout>

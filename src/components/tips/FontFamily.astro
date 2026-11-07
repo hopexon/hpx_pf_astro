@@ -30,10 +30,11 @@ const systemUiParam = [
 
 ---
 
+<tips-font-family>
 <h2 class="mt__8">font-famliy<br class="sp__only" /><span style='font-size: 0.6em;'> (for Windows CJK)</span></h2>
         <div class="font__family__grid">
           <div class="mt__2 btns__wrap">
-            <button class="btn__item item__hover" data-font-class="default__fontfamily" type="button">Default (Noto Sans JP)</button>
+            <button class="btn__item item__hover" data-font-class="default__fontfamily" type="button">Default<br class='sp__only' />(Noto Sans JP)</button>
             <button class="btn__item item__hover" data-font-class="udp__fontfamily" type="button">UDP Gothic</button>
             <button class="btn__item item__hover" data-font-class="meiryo__fontfamily" type="button">Meiryo</button>
             <button class="btn__item item__hover" data-font-class="yu__gothic__ui__fontfamily" type="button">Yu Gothic UI</button>
@@ -47,8 +48,12 @@ const systemUiParam = [
             </p>
           </div>
         </div>
-        <h4 class="mt__2">▼ Most Stable Font Settings in 2026</h4>
-        <Code code={`
+
+        <details class="acc__with__anim">
+          <summary>Most Stable Font Settings in 2026<span class="twister"></span></summary>
+          <div class="accordion__overflow__hidden">
+            <div class="content__wrap">
+              <Code code={`
     html {
       font-family: 
         "Helvetica Neue",
@@ -66,7 +71,10 @@ const systemUiParam = [
         sans-serif,
         system-ui;
     } 
-        `} lang="css" theme="github-dark"></Code>
+              `} lang="css" theme="github-dark"></Code>
+            </div>
+          </div>
+        </details>
 
         <details class="acc__with__anim">
           <summary>Explanation<span class="twister"></span></summary>
@@ -182,24 +190,36 @@ const systemUiParam = [
             </div>
           </div>
         </details>
+</tips-font-family>
 
-        <script>
-document.addEventListener('astro:page-load', function () {
-  const fontClasses = [
-    'default__fontfamily',
-    'udp__fontfamily',
-    'meiryo__fontfamily',
-    'yu__gothic__ui__fontfamily',
-    'yu_gothic__fontfamily'
-  ]
+<script>
+  class TipsFontFamily extends HTMLElement {
+    connectedCallback() {
+      const fontClasses = [
+        'default__fontfamily',
+        'udp__fontfamily',
+        'meiryo__fontfamily',
+        'yu__gothic__ui__fontfamily',
+        'yu_gothic__fontfamily',
+      ]
 
-  document.querySelectorAll('[data-font-class]').forEach((button) => {
-    button.addEventListener('click', () => {
-      const fontClass = button.dataset.fontClass
+      this.querySelectorAll<HTMLElement>('[data-font-class]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const fontClass = button.dataset.fontClass
+          if (!fontClass) return
 
-      document.body.classList.remove(...fontClasses)
-      document.body.classList.add(fontClass)
-    })
-  })
-})
+          document.body.classList.remove(...fontClasses)
+          document.body.classList.add(fontClass)
+        })
+      })
+    }
+  }
+
+  customElements.define('tips-font-family', TipsFontFamily)
 </script>
+
+<style>
+  tips-font-family {
+    display: contents;
+  }
+</style>

@@ -1,32 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro";
-
-const topMenuList = [
-  { name: "About", path: "/about" },
-  { name: "Works", path: "/works" },
-  { name: "Tools", path: "/tools" },
-  { name: "Tips", path: "/tips" },
-  // { name: "Music Review", path: "https://hpx-pfproject02.vercel.app/music-review/" },
-  { name: "Collections", path: "/collections" },
-];
+import Layout from "../layouts/Layout.astro"
+import Welcome from '../components/Welcome.astro'
 ---
 
 <Layout>
   <div>
-    <h1 class="page__ttl">TOP</h1>
     <div class="main__wrap">
       <section class="section__wrapper">
-        <div class="indexmenu">
-          <div class="indexmenu__linkitem__wrap">
-            {
-              topMenuList.map((item) => (
-                <a href={item.path} class="linkitem__link link__twister">
-                  {item.name}
-                </a>
-              ))
-            }
-          </div>
-        </div>
+        <Welcome />
       </section>
     </div>
   </div>

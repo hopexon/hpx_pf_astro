@@ -23,155 +23,155 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        OS・ブラウザのカラースキーム対応
-        @media (prefers-color-scheme: dark) {}
-        @media (prefers-color-scheme: light) {}
+    OS・ブラウザのカラースキーム対応
+    @media (prefers-color-scheme: dark) {}
+    @media (prefers-color-scheme: light) {}
 
-        Windowsのハイコントラストモードなど、強制カラーモード
-        @media (forced-colors: active) {}
-        @media (forced-colors: none) {}
+    Windowsのハイコントラストモードなど、強制カラーモード
+    @media (forced-colors: active) {}
+    @media (forced-colors: none) {}
 
-        高(低)コントラスト設定
-        @media (prefers-contrast: none) {}
-        @media (prefers-contrast: less) {}
-        @media (prefers-contrast: custom) {}
+    高(低)コントラスト設定
+    @media (prefers-contrast: none) {}
+    @media (prefers-contrast: less) {}
+    @media (prefers-contrast: custom) {}
 
-        色反転設定
-        @media (inverted-colors: inverted) {}
-        @media (inverted-colors: none) {}
-
-
-
-
-
-        ポインティングデバイスの精度別
-        @media (pointer: fine) {} // マウスなど
-        @media (pointer: none) {} // ポインタ入力なし
-        @media (pointer: coarse) {} // タッチなど
-        ※pointer = 画面を操作する主デバイスを判定
-
-        利用可能なポインティングデバイスのうち、最も適合するもの
-        @media (any-pointer: fine) {}
-        @media (any-pointer: none) {}
-        @media (any-pointer: coarse) {}
-        ※any-pointer = 端末に接続されている全てのデバイスを判定
-
-        ホバー可能なデバイスが接続されている場合
-        @media (hover: hover) {}
-        @media (hover: none) {}
-        ※hover = 画面を操作する主デバイスを判定
-
-        何かしらホバー可能なデバイスが接続されている場合
-        @media (any-hover: hover) {}
-        @media (any-hover: none) {}
-        ※any-hover = 端末に接続されている全てのデバイスを判定
+    色反転設定
+    @media (inverted-colors: inverted) {}
+    @media (inverted-colors: none) {}
 
 
 
 
 
-        アニメーションやモーションを減らす
-        @media (prefers-reduced-motion: reduce) {
-          * {
-              animation-duration: .01ms;
-              transition-duration: .01ms;
-          }
-        }
+    ポインティングデバイスの精度別
+    @media (pointer: fine) {} // マウスなど
+    @media (pointer: none) {} // ポインタ入力なし
+    @media (pointer: coarse) {} // タッチなど
+    ※pointer = 画面を操作する主デバイスを判定
 
-        透過効果を減らす
-        @media (prefers-reduced-transparency: reduce) {}
+    利用可能なポインティングデバイスのうち、最も適合するもの
+    @media (any-pointer: fine) {}
+    @media (any-pointer: none) {}
+    @media (any-pointer: coarse) {}
+    ※any-pointer = 端末に接続されている全てのデバイスを判定
 
+    ホバー可能なデバイスが接続されている場合
+    @media (hover: hover) {}
+    @media (hover: none) {}
+    ※hover = 画面を操作する主デバイスを判定
 
-
-
-
-        縦向き・横向き
-        @media (orientation: portrait) {}
-        @media (orientation: landscape) {}
-
-        縦横比
-        @media (aspect-ratio > 16 / 9) {}
-
-        画面解像度・DPI
-        @media (min-resolution: 2dppx) {}
+    何かしらホバー可能なデバイスが接続されている場合
+    @media (any-hover: hover) {}
+    @media (any-hover: none) {}
+    ※any-hover = 端末に接続されている全てのデバイスを判定
 
 
 
 
 
-        色を表示できるビット深度
-        @media (color) {}
-        @media (min-color: 8) {}
+    アニメーションやモーションを減らす
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: .01ms;
+        transition-duration: .01ms;
+      }
+    }
 
-        表示可能な色域
-        @media (color-gamut: srgb) {}
-        @media (color-gamut: p3) {}
-        @media (color-gamut: rec2020) {}
-
-        HDRなどのダイナミックレンジ
-        @media (dynamic-range: high) {}
-
-        画面の更新頻度
-        @media (update: fast) {}
-        @media (update: slow) {}
-        @media (update: none) {}
+    透過効果を減らす
+    @media (prefers-reduced-transparency: reduce) {}
 
 
 
 
 
-        Webアプリの表示モード。PWAなどで使用
-        @media (display-mode: standalone) {}
-        @media (display-mode: fullscreen) {}
-        @media (display-mode: browser) {}
+    縦向き・横向き
+    @media (orientation: portrait) {}
+    @media (orientation: landscape) {}
 
-        Javascriptが使用可能か
-        @media (scripting: enabled) {}
-        @media (scripting: none) {}
+    縦横比
+    @media (aspect-ratio > 16 / 9) {}
 
-        ブロック方向・インライン方向へのオーバーフロー方法
-        @media (overflow-block: scroll) {}
-        @media (overflow-inline: scroll) {}
+    画面解像度・DPI
+    @media (min-resolution: 2dppx) {}
 
 
 
 
 
+    色を表示できるビット深度
+    @media (color) {}
+    @media (min-color: 8) {}
 
-        データ通信量を減らしたい設定
-        @media (prefers-reduced-data: reduce) {}
+    表示可能な色域
+    @media (color-gamut: srgb) {}
+    @media (color-gamut: p3) {}
+    @media (color-gamut: rec2020) {}
 
+    HDRなどのダイナミックレンジ
+    @media (dynamic-range: high) {}
 
-
-
-
-        印刷時
-        @media print {
-          nav {
-            display: none;
-          }
-        }
-
-        画面表示時
-        @media screen {}
-
+    画面の更新頻度
+    @media (update: fast) {}
+    @media (update: slow) {}
+    @media (update: none) {}
 
 
 
 
-        折りたたみ端末など分割されたビューポートのセグメント数
-        @media (horizontal-viewport-segments: 2) {}
+
+    Webアプリの表示モード。PWAなどで使用
+    @media (display-mode: standalone) {}
+    @media (display-mode: fullscreen) {}
+    @media (display-mode: browser) {}
+
+    Javascriptが使用可能か
+    @media (scripting: enabled) {}
+    @media (scripting: none) {}
+
+    ブロック方向・インライン方向へのオーバーフロー方法
+    @media (overflow-block: scroll) {}
+    @media (overflow-inline: scroll) {}
 
 
 
-        一覧を調べる場合は以下を参照するとわかりやすい
-        ・Media features
-        ・User preferences media features
-        ・Display quality media features
-        ・Interaction media features
-        ・Video-related media features
-        ・Scripting media features
-        ・Experimental media features
+
+
+
+    データ通信量を減らしたい設定
+    @media (prefers-reduced-data: reduce) {}
+
+
+
+
+
+    印刷時
+    @media print {
+      nav {
+        display: none;
+      }
+    }
+
+    画面表示時
+    @media screen {}
+
+
+
+
+
+    折りたたみ端末など分割されたビューポートのセグメント数
+    @media (horizontal-viewport-segments: 2) {}
+
+
+
+    一覧を調べる場合は以下を参照するとわかりやすい
+    ・Media features
+    ・User preferences media features
+    ・Display quality media features
+    ・Interaction media features
+    ・Video-related media features
+    ・Scripting media features
+    ・Experimental media features
                 `} lang='css' theme='github-dark'></Code>
             </div>
           </div>

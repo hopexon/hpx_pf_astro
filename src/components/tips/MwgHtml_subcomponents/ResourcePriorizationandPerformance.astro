@@ -27,12 +27,12 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        <!-- KVなど最もサイズの大きな要素に対しては fetchpriority='high' 属性を付与する -->
-        <!-- iOS 17.2 から対応 -->
-        <h1>Page Title</h1>
-        <div class="hero">
-          <img src="#" alt="key visual" class="img__kv" fetchpriority="high">
-        </div>
+    <!-- KVなど最もサイズの大きな要素に対しては fetchpriority='high' 属性を付与する -->
+    <!-- iOS 17.2 から対応 -->
+    <h1>Page Title</h1>
+    <div class="hero">
+      <img src="#" alt="key visual" class="img__kv" fetchpriority="high">
+    </div>
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -43,14 +43,14 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        KV = LCPと仮定して考える。
+    KV = LCPと仮定して考える。
 
-        LCPに対し問答無用で付与すべきは fetchpriority = high であり、特に懸念はない。
+    LCPに対し問答無用で付与すべきは fetchpriority = high であり、特に懸念はない。
 
-        loading = eager は「遅延させるな」という指示だが、要素に対するデフォルトの loading は eager であるため、明示的に指定する必要はない。
+    loading = eager は「遅延させるな」という指示だが、要素に対するデフォルトの loading は eager であるため、明示的に指定する必要はない。
 
-        decoding = async はデコードに対する指示のため、優先度とは異なる指標を指示する。
-        ブラウザごとに恩恵が異なる可能性が高いため、付与を切り替えて実測するのが最も確実である。
+    decoding = async はデコードに対する指示のため、優先度とは異なる指標を指示する。
+    ブラウザごとに恩恵が異なる可能性が高いため、付与を切り替えて実測するのが最も確実である。
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -60,31 +60,31 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        KV画像が背景画像として実装されるのはよくあるパターンだが、
-        その場合 img に対する直接の fetchpriority='high' 指定が不可能となる。
-        
-        この場合は head 要素内に 画像をリンクとした link 要素を配置し、優先して背景画像を読み込むよう指定する。
-        この用法では link に対し fetchpriority が使用可能となる。
-        
-        <head>
-          <link 
-            rel="preload" 
-            as="image"
-            href="./img/KV.webp"
-            fetchpriority="high"
-          >
-        </head>
-        
-        なお imagesrcset を用いる場合でも同様に指定が可能。
-        <head>
-          <link 
-            rel="preload" 
-            as="image"
-            href="./img/KV.webp"
-            imagesrcset="./img/KV.webp 1x, ./img/KV@2x.webp 2x"
-            fetchpriority="high"
-          >
-        </head>
+    KV画像が背景画像として実装されるのはよくあるパターンだが、
+    その場合 img に対する直接の fetchpriority='high' 指定が不可能となる。
+    
+    この場合は head 要素内に 画像をリンクとした link 要素を配置し、優先して背景画像を読み込むよう指定する。
+    この用法では link に対し fetchpriority が使用可能となる。
+    
+    <head>
+      <link 
+        rel="preload" 
+        as="image"
+        href="./img/KV.webp"
+        fetchpriority="high"
+      >
+    </head>
+    
+    なお imagesrcset を用いる場合でも同様に指定が可能。
+    <head>
+      <link 
+        rel="preload" 
+        as="image"
+        href="./img/KV.webp"
+        imagesrcset="./img/KV.webp 1x, ./img/KV@2x.webp 2x"
+        fetchpriority="high"
+      >
+    </head>
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -94,28 +94,28 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        初期遷移時点でビューポートから外れる画像および iframe 要素については、
-        loading='lazy' を付与することでビューポートに近づくまたは含まれるまで読み込みを開始しないようにする。
-        
-        <body>
-          <hgroup>
-            <h1>Page Title</h1>
-            <p>subttl</p>
-            <img 
-              src="./img/kv.webp"
-              alt="key visual"
-              fetchpriority="high"
-            >
-          </hgroup>
-        
-          ...
-        
-          <img 
-            src="./img/aftercontent.webp"
-            alt="after content"
-            loading="lazy" 
-          >
-        </body>
+    初期遷移時点でビューポートから外れる画像および iframe 要素については、
+    loading='lazy' を付与することでビューポートに近づくまたは含まれるまで読み込みを開始しないようにする。
+    
+    <body>
+      <hgroup>
+        <h1>Page Title</h1>
+        <p>subttl</p>
+        <img 
+          src="./img/kv.webp"
+          alt="key visual"
+          fetchpriority="high"
+        >
+      </hgroup>
+    
+      ...
+    
+      <img 
+        src="./img/aftercontent.webp"
+        alt="after content"
+        loading="lazy" 
+      >
+    </body>
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -125,24 +125,24 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        レイアウトシフト(CLS)を防ぐため、全ての img タグに対し width と height の指定が求められる。
-        
-        両属性は主にアスペクト比に基づいて描画領域をあらかじめ確保するために参照されるが、
-        その値は「基準画像」を基に指定するのがよい。
-        例えば基準画像がPCレイアウトの巨大なものであっても、
-        CSS側で予め画像幅が制限されていれば(SPレイアウト時に inline-size=100% など)、
-        その制限に基づいた横幅から属性を参照して割り出したアスペクト比を参考に必要な縦領域を確保する。
-        
-        アスペクト比の算出が目的であればCSS側で aspect-ratio を指定してやれば問題なさそうだが、
-        ブラウザがDOMを構成する時点で描画領域を確保できるメリットが大きく、
-        逆に「適切なサイズ属性が指定されていれば img に対してCSS側で aspect-ratio を指定する必要はない」と言える。
-        
-        <img 
-          src="./img/img_01.web"
-          alt="test image"
-          width="640"
-          height="400"
-        >
+    レイアウトシフト(CLS)を防ぐため、全ての img タグに対し width と height の指定が求められる。
+    
+    両属性は主にアスペクト比に基づいて描画領域をあらかじめ確保するために参照されるが、
+    その値は「基準画像」を基に指定するのがよい。
+    例えば基準画像がPCレイアウトの巨大なものであっても、
+    CSS側で予め画像幅が制限されていれば(SPレイアウト時に inline-size=100% など)、
+    その制限に基づいた横幅から属性を参照して割り出したアスペクト比を参考に必要な縦領域を確保する。
+    
+    アスペクト比の算出が目的であればCSS側で aspect-ratio を指定してやれば問題なさそうだが、
+    ブラウザがDOMを構成する時点で描画領域を確保できるメリットが大きく、
+    逆に「適切なサイズ属性が指定されていれば img に対してCSS側で aspect-ratio を指定する必要はない」と言える。
+    
+    <img 
+      src="./img/img_01.web"
+      alt="test image"
+      width="640"
+      height="400"
+    >
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -172,11 +172,11 @@ import { Code } from 'astro:components'
             <div class='accordion__overflow__hidden'>
               <div class='content__wrap'>
                 <Code code={`
-        Heroicでない画像については fetchpriority="low" の使用も検討する。
-        fetchpriority は最終的にゼロサムのため、
-        例えばカルーセル内など優先順位が明確に低い画像は low の付与を行うべき。
+    Heroicでない画像については fetchpriority="low" の使用も検討する。
+    fetchpriority は最終的にゼロサムのため、
+    例えばカルーセル内など優先順位が明確に低い画像は low の付与を行うべき。
 
-        <img src="#" alt="test" fetchpriority="low">
+    <img src="#" alt="test" fetchpriority="low">
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>

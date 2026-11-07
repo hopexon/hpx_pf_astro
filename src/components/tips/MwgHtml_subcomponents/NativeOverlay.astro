@@ -7,7 +7,7 @@ import { Code } from 'astro:components'
     <div class='accordion__overflow__hidden'>
       <div class="content__wrap">
         <details class='acc__with__anim'>
-          <summary><span class='twister' aria-hidden='true'></span></summary>
+          <summary>Foundations<span class='twister' aria-hidden='true'></span></summary>
             <div class='accordion__overflow__hidden'>
               <div class="content__wrap">
                 <ul>
@@ -27,39 +27,39 @@ import { Code } from 'astro:components'
               <div class='content__wrap'>
                 <p class="comment">※ 詳細は <a href="#modalsample" class="item__hover" style="text-decoration: underline;">Modal with Dialog Element</a> を参照のこと。</p>
                 <Code code={`
-        全てのDOM要素の頂点に新たなレイヤをオーバーレイする(画面スクロールを抑制させる)形で
-        モーダル ※1 を実装する場合、<dialog> 要素を使用すること。
-        理由としては以下。
-        ・自動的なトラップフォーカス(モーダルへのフォーカス誘導) ※2
-        ・モーダル背景の調整 >> ::backdrop 要素へのスタイル適用
-        ・Escキーによるモーダルからの離脱機能 ※3
+    全てのDOM要素の頂点に新たなレイヤをオーバーレイする(画面スクロールを抑制させる)形で
+    モーダル ※1 を実装する場合、<dialog> 要素を使用すること。
+    理由としては以下。
+    ・自動的なトラップフォーカス(モーダルへのフォーカス誘導) ※2
+    ・モーダル背景の調整 >> ::backdrop 要素へのスタイル適用
+    ・Escキーによるモーダルからの離脱機能 ※3
 
-        ※1：モーダルの定義 = .showModal() を用いた、スクロールを抑制するタイプの要素展開
-        ※2：dialog 要素への autofocus 属性は付与するべきである
-        ※3：dialog 要素への closedby='any' 属性付与により light-dismiss = 
-            モーダル以外の要素をクリックでモーダル閉じ を実装可能
+    ※1：モーダルの定義 = .showModal() を用いた、スクロールを抑制するタイプの要素展開
+    ※2：dialog 要素への autofocus 属性は付与するべきである
+    ※3：dialog 要素への closedby='any' 属性付与により light-dismiss = 
+        モーダル以外の要素をクリックでモーダル閉じ を実装可能
 
-        <button
-          type="button"
-          command="show-modal"
-          commandfor="my__dialog">
-          Open
-        </button>
+    <button
+      type="button"
+      command="show-modal"
+      commandfor="my__dialog">
+      Open
+    </button>
 
-        <dialog
-          id="my__dialog"
-          class="my__dialog"
-          closedby="any"
-          autofocus>
-            ...content 
+    <dialog
+      id="my__dialog"
+      class="my__dialog"
+      closedby="any"
+      autofocus>
+        ...content 
 
-          <button
-            type="button"
-            command="close"
-            commandfor="my__dialog">
-            Close
-          </button>
-        </dialog>        
+      <button
+        type="button"
+        command="close"
+        commandfor="my__dialog">
+        Close
+      </button>
+    </dialog>        
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -70,32 +70,32 @@ import { Code } from 'astro:components'
               <div class='content__wrap'>
                 <p class="comment">※ 詳細は <a href="#modalsample" class="item__hover" style="text-decoration: underline;">Popover API</a> を参照のこと。</p>
                 <Code code={`
-        背景スクロールの抑制を伴わないモーダル要素に対しては popover 属性 ※1 を用いる。
+    背景スクロールの抑制を伴わないモーダル要素に対しては popover 属性 ※1 を用いる。
 
-        ※1：popoverの定義 = .show() を用いた、背景スクロール抑制を伴わないモーダル要素
+    ※1：popoverの定義 = .show() を用いた、背景スクロール抑制を伴わないモーダル要素
 
-        <button
-          type="button"
-          popovertarget="popover__dialog"
-        >
-          Open Popover
-        </button>
-        
-        <dialog
-          id="popover__dialog"
-          closedby="any"
-          aria-labelledby="dialog-title"
-          autofocus
-          popover
-        >
-            ...contents
-        
-          <button
-            type='button'
-            popovertarget="popover__dialog"
-            popovertargetaction="hide"
-          ></button>
-        </dialog>
+    <button
+      type="button"
+      popovertarget="popover__dialog"
+    >
+      Open Popover
+    </button>
+    
+    <dialog
+      id="popover__dialog"
+      closedby="any"
+      aria-labelledby="dialog-title"
+      autofocus
+      popover
+    >
+      ...contents
+    
+      <button
+        type='button'
+        popovertarget="popover__dialog"
+        popovertargetaction="hide"
+      ></button>
+    </dialog>
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>
@@ -106,32 +106,32 @@ import { Code } from 'astro:components'
               <div class='content__wrap'>
                 <p class="comment">※ 詳細は <a href="#modalsample" class="item__hover" style="text-decoration: underline;">Modal with Dialog Element</a> を参照のこと。</p>
                 <Code code={`
-        dialog {
-          position: fixed; /* Safariで表示に不具合が出るので明示する必要がある */
-          /* 中央寄せ */
-          inset-block-start: 50%;
-          inset-inline-start: 50%;
-          transform: translate(-50%, -50%);
-          /* inset: 0 を削除して、幅・高さを明示的に設定 */
-          inline-size: min(90vw, calc((600/16) * 1rem)); /* 最大幅を設定 */
-          max-block-size: 40vh;
-          margin: 0; /* ブラウザデフォルトのmarginをリセット */
-          overscroll-behavior-block: contain;
-          transition-duration: 0.2s;
-          transition-property: display, overlay, opacity, transform;
-          transition-timing-function: ease-out;
-          transition-behavior: allow-discrete;
-          overflow: auto;
-        }
+    dialog {
+      position: fixed; /* Safariで表示に不具合が出るので明示する必要がある */
+      /* 中央寄せ */
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      transform: translate(-50%, -50%);
+      /* inset: 0 を削除して、幅・高さを明示的に設定 */
+      inline-size: min(90vw, calc((600/16) * 1rem)); /* 最大幅を設定 */
+      max-block-size: 40vh;
+      margin: 0; /* ブラウザデフォルトのmarginをリセット */
+      overscroll-behavior-block: contain;
+      transition-duration: 0.2s;
+      transition-property: display, overlay, opacity, transform;
+      transition-timing-function: ease-out;
+      transition-behavior: allow-discrete;
+      overflow: auto;
+    }
 
-        dialog::backdrop {
-          background-color: oklch(from var(--black) l c h / 50%);
-          backdrop-filter: blur(4px);
-          -webkit-backdrop-filter: blur(4px);
-          transition-duration: inherit;
-          transition-property: opacity;
-          transition-timing-function: inherit;
-        }
+    dialog::backdrop {
+      background-color: oklch(from var(--black) l c h / 50%);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      transition-duration: inherit;
+      transition-property: opacity;
+      transition-timing-function: inherit;
+    }
                 `} lang='css' theme='github-dark'></Code>
             </div>
           </div>
@@ -159,15 +159,15 @@ import { Code } from 'astro:components'
                   を両立させたい場合は、シンプルに<code>dialog</code>要素へ<code>popover</code>属性を付与する。<br />
                 </p>
                 <Code code={`
-        <dialog
-          id="popover__dialog"
-          closedby="any"
-          aria-labelledby="dialog-title"
-          autofocus
-          popover
-        >
-            ...contents
-        </dialog>
+    <dialog
+      id="popover__dialog"
+      closedby="any"
+      aria-labelledby="dialog-title"
+      autofocus
+      popover
+    >
+      ...contents
+    </dialog>
                 `} lang='html' theme='github-dark'></Code>
             </div>
           </div>

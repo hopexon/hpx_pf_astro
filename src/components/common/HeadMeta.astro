@@ -1,0 +1,58 @@
+---
+// Layout.astro / Layout_MtgSlug.astro 共通の <head> 内メタ情報。
+// ClientRouter・<slot name="head" />・ページ固有の script は各レイアウト側に置く。
+// 仮のメタ情報は後で差し替える
+const siteName = 'HPX Portfolio'
+const defaultDescription = 'Web Portfolio of HPX'
+const defaultImage = '/ogp.webp' // TODO: デフォルトのOGP画像パス(例: '/og-default.png' 1200x630)。空の間は og:image を出さない
+
+interface Props {
+  title?: string
+  description?: string
+  image?: string // 例: '/works/xxx.avif'(未指定なら defaultImage)
+  noindex?: boolean
+  type?: 'website' | 'article'
+}
+
+const {
+  title,
+  description = defaultDescription,
+  image = defaultImage,
+  noindex = true, // 公開時に false へ
+  type = 'website',
+} = Astro.props
+
+const fullTitle = title ? `${title} | ${siteName}` : siteName
+const canonical = new URL(Astro.url.pathname, Astro.site)
+const ogImage = image ? new URL(image, Astro.site) : undefined
+---
+
+<!-- 基本 -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
+<link rel="icon" href="/favicon.ico" />
+
+<!-- セキュリティ(ClientRouter とインラインスタイルに対応できる範囲の設定) -->
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta
+  http-equiv="Content-Security-Policy"
+  content="object-src 'none'; base-uri 'none'; form-action 'self'"
+/>
+
+<!-- SEO -->
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex" />}
+
+<!-- OGP / Twitter Card -->
+<meta property="og:site_name" content={siteName} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+<meta property="og:locale" content="ja_JP" />
+<meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />

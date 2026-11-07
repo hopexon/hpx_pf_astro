@@ -39,6 +39,10 @@
   .compare__circles__wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+
+    @media (max-width: 767px) {
+      grid-template-columns: minmax(0, 1fr);
+    }
   }
 
   .lch__graph__wrapper {
@@ -47,6 +51,10 @@
     padding: 50px;
     margin-inline: auto;
     inline-size: 100%;
+
+    @media (max-width: 767px) {
+      padding: 2rem;
+    }
   }
 
   /* .label__a,

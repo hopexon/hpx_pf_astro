@@ -15,8 +15,7 @@ const minSizeA = 0;
 const maxSizeA = 100;
 const defaultSizeA = 100;
 ---
-
-<details class="mt__2 acc__with__anim" open>
+<tips-rgba-accordion><details class="mt__2 acc__with__anim">
   <summary>(RGB) RGB<span class="twister"></span></summary>
   <div class="accordion__overflow__hidden">
     <div class="content__wrap">
@@ -147,228 +146,243 @@ const defaultSizeA = 100;
     </div>
   </div>
 </details>
+</tips-rgba-accordion>
 
 <script>
-  document.addEventListener("astro:page-load", function () {
-    const rInput = document.getElementById("rgb__r") as HTMLInputElement;
-    const gInput = document.getElementById("rgb__g") as HTMLInputElement;
-    const bInput = document.getElementById("rgb__b") as HTMLInputElement;
-    const aInput = document.getElementById("rgb__a") as HTMLInputElement;
-    const cubePreview = document.querySelector<HTMLElement>(
-      ".color__rgb__preview",
-    );
-    const rgbaText = document.querySelector(".color__rgb__wrap p.mt__2");
-    type Axis = { x: number; y: number };
-    type CubeProjection = {
-      cube: SVGSVGElement;
-      origin: Axis;
-      redAxis: Axis;
-      greenAxis: Axis;
-      blueAxis: Axis;
-      surface: 0 | 255;
-    };
-    const projections: CubeProjection[] = Array.from(
-      document.querySelectorAll<SVGSVGElement>(".color__rgb__cube"),
-      (cube) => {
-        const isWhite = cube.dataset.rgbCube === "white";
-        return {
-          cube,
-          origin: isWhite ? { x: 185, y: 245 } : { x: 235, y: 225 },
-          redAxis: isWhite ? { x: -145, y: 120 } : { x: 195, y: 105 },
-          greenAxis: isWhite ? { x: 0, y: -235 } : { x: 0, y: -215 },
-          blueAxis: isWhite ? { x: 245, y: 70 } : { x: -195, y: 105 },
-          surface: isWhite ? 255 : 0,
-        };
-      },
-    );
-    let activeSurface: 0 | 255 = 0;
+class TipsRgbaAccordion extends HTMLElement {
+  connectedCallback() {
+    this.init1()
+  }
 
-    function clampChannel(value: number) {
-      return Math.round(Math.min(255, Math.max(0, value)));
-    }
-
-    function projectColor(r: number, g: number, b: number, projection: CubeProjection) {
-      const { origin, redAxis, greenAxis, blueAxis } = projection;
-      return {
-        x: origin.x + (redAxis.x * r + greenAxis.x * g + blueAxis.x * b) / 255,
-        y: origin.y + (redAxis.y * r + greenAxis.y * g + blueAxis.y * b) / 255,
-      };
-    }
-
-    function renderCubeFace(face: "top" | "front" | "side", projection: CubeProjection) {
-      const { cube, surface, redAxis, greenAxis, blueAxis } = projection;
-      const grid = cube.querySelector<SVGGElement>(
-        `[data-rgb-grid="${face}"]`,
+  init1() {
+      const rInput = this.querySelector('#rgb__r') as HTMLInputElement;
+      const gInput = this.querySelector('#rgb__g') as HTMLInputElement;
+      const bInput = this.querySelector('#rgb__b') as HTMLInputElement;
+      const aInput = this.querySelector('#rgb__a') as HTMLInputElement;
+      const cubePreview = this.querySelector<HTMLElement>(
+        ".color__rgb__preview",
       );
-      if (!grid) return;
+      const rgbaText = this.querySelector(".color__rgb__wrap p.mt__2");
+      type Axis = { x: number; y: number };
+      type CubeProjection = {
+        cube: SVGSVGElement;
+        origin: Axis;
+        redAxis: Axis;
+        greenAxis: Axis;
+        blueAxis: Axis;
+        surface: 0 | 255;
+      };
+      const projections: CubeProjection[] = Array.from(
+        this.querySelectorAll<SVGSVGElement>(".color__rgb__cube"),
+        (cube) => {
+          const isWhite = cube.dataset.rgbCube === "white";
+          return {
+            cube,
+            origin: isWhite ? { x: 185, y: 245 } : { x: 235, y: 225 },
+            redAxis: isWhite ? { x: -145, y: 120 } : { x: 195, y: 105 },
+            greenAxis: isWhite ? { x: 0, y: -235 } : { x: 0, y: -215 },
+            blueAxis: isWhite ? { x: 245, y: 70 } : { x: -195, y: 105 },
+            surface: isWhite ? 255 : 0,
+          };
+        },
+      );
+      let activeSurface: 0 | 255 = 0;
 
-      const divisions = 12;
-      const base =
-        face === "top"
-          ? projectColor(0, surface, 0, projection)
-          : face === "front"
-            ? projectColor(surface, 0, 0, projection)
-            : projectColor(0, 0, surface, projection);
-      const firstAxis = face === "top" ? redAxis : greenAxis;
-      const secondAxis = face === "side" ? redAxis : blueAxis;
-      const cells = document.createDocumentFragment();
+      function clampChannel(value: number) {
+        return Math.round(Math.min(255, Math.max(0, value)));
+      }
 
-      for (let first = 0; first < divisions; first += 1) {
-        for (let second = 0; second < divisions; second += 1) {
-          const firstStart = first / divisions;
-          const firstEnd = (first + 1) / divisions;
-          const secondStart = second / divisions;
-          const secondEnd = (second + 1) / divisions;
-          const corners = [
-            [firstStart, secondStart],
-            [firstEnd, secondStart],
-            [firstEnd, secondEnd],
-            [firstStart, secondEnd],
-          ].map(
-            ([firstValue, secondValue]) =>
-              `${base.x + firstAxis.x * firstValue + secondAxis.x * secondValue},${base.y + firstAxis.y * firstValue + secondAxis.y * secondValue}`,
+      function projectColor(r: number, g: number, b: number, projection: CubeProjection) {
+        const { origin, redAxis, greenAxis, blueAxis } = projection;
+        return {
+          x: origin.x + (redAxis.x * r + greenAxis.x * g + blueAxis.x * b) / 255,
+          y: origin.y + (redAxis.y * r + greenAxis.y * g + blueAxis.y * b) / 255,
+        };
+      }
+
+      function renderCubeFace(face: "top" | "front" | "side", projection: CubeProjection) {
+        const { cube, surface, redAxis, greenAxis, blueAxis } = projection;
+        const grid = cube.querySelector<SVGGElement>(
+          `[data-rgb-grid="${face}"]`,
+        );
+        if (!grid) return;
+
+        const divisions = 12;
+        const base =
+          face === "top"
+            ? projectColor(0, surface, 0, projection)
+            : face === "front"
+              ? projectColor(surface, 0, 0, projection)
+              : projectColor(0, 0, surface, projection);
+        const firstAxis = face === "top" ? redAxis : greenAxis;
+        const secondAxis = face === "side" ? redAxis : blueAxis;
+        const cells = document.createDocumentFragment();
+
+        for (let first = 0; first < divisions; first += 1) {
+          for (let second = 0; second < divisions; second += 1) {
+            const firstStart = first / divisions;
+            const firstEnd = (first + 1) / divisions;
+            const secondStart = second / divisions;
+            const secondEnd = (second + 1) / divisions;
+            const corners = [
+              [firstStart, secondStart],
+              [firstEnd, secondStart],
+              [firstEnd, secondEnd],
+              [firstStart, secondEnd],
+            ].map(
+              ([firstValue, secondValue]) =>
+                `${base.x + firstAxis.x * firstValue + secondAxis.x * secondValue},${base.y + firstAxis.y * firstValue + secondAxis.y * secondValue}`,
+            );
+            const firstValue = clampChannel((255 * (first + 0.5)) / divisions);
+            const secondValue = clampChannel((255 * (second + 0.5)) / divisions);
+            const color =
+              face === "top"
+                ? `rgb(${firstValue}, ${surface}, ${secondValue})`
+                : face === "front"
+                  ? `rgb(${surface}, ${firstValue}, ${secondValue})`
+                  : `rgb(${secondValue}, ${firstValue}, ${surface})`;
+            const cell = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "polygon",
+            );
+            cell.setAttribute("points", corners.join(" "));
+            cell.setAttribute("fill", color);
+            cells.appendChild(cell);
+          }
+        }
+        grid.replaceChildren(cells);
+      }
+
+      for (const projection of projections) {
+        renderCubeFace("top", projection);
+        renderCubeFace("front", projection);
+        renderCubeFace("side", projection);
+      }
+
+      function updateColor() {
+        const r = Number(rInput.value);
+        const g = Number(gInput.value);
+        const b = Number(bInput.value);
+        const a = Number(aInput.value) / 100;
+        const distanceToWhite = 255 - Math.max(r, g, b);
+        const distanceToBlack = Math.min(r, g, b);
+        if (distanceToWhite < distanceToBlack) activeSurface = 255;
+        if (distanceToBlack < distanceToWhite) activeSurface = 0;
+        if (rgbaText) {
+          rgbaText.textContent = `RGBA(${r} ${g} ${b} ${a})`;
+        }
+        if (cubePreview) {
+          cubePreview.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+        }
+        for (const projection of projections) {
+          const cubePoint = projection.cube.querySelector<SVGCircleElement>(
+            ".color__rgb__cube__point",
           );
-          const firstValue = clampChannel((255 * (first + 0.5)) / divisions);
-          const secondValue = clampChannel((255 * (second + 0.5)) / divisions);
-          const color =
-            face === "top"
-              ? `rgb(${firstValue}, ${surface}, ${secondValue})`
-              : face === "front"
-                ? `rgb(${surface}, ${firstValue}, ${secondValue})`
-                : `rgb(${secondValue}, ${firstValue}, ${surface})`;
-          const cell = document.createElementNS(
-            "http://www.w3.org/2000/svg",
-            "polygon",
-          );
-          cell.setAttribute("points", corners.join(" "));
-          cell.setAttribute("fill", color);
-          cells.appendChild(cell);
+          if (!cubePoint) continue;
+          const point = projectColor(r, g, b, projection);
+          cubePoint.setAttribute("cx", String(point.x));
+          cubePoint.setAttribute("cy", String(point.y));
+          cubePoint.style.fill = `rgb(${r}, ${g}, ${b})`;
+          cubePoint.style.stroke = r + g + b > 382 ? "#111111" : "#ffffff";
+          cubePoint.style.display = projection.surface === activeSurface
+            ? ""
+            : "none";
         }
       }
-      grid.replaceChildren(cells);
-    }
 
-    for (const projection of projections) {
-      renderCubeFace("top", projection);
-      renderCubeFace("front", projection);
-      renderCubeFace("side", projection);
-    }
+      function getPointerPosition(event: PointerEvent, cube: SVGSVGElement) {
+        const point = cube.createSVGPoint();
+        point.x = event.clientX;
+        point.y = event.clientY;
+        return point.matrixTransform(cube.getScreenCTM()?.inverse());
+      }
 
-    function updateColor() {
-      const r = Number(rInput.value);
-      const g = Number(gInput.value);
-      const b = Number(bInput.value);
-      const a = Number(aInput.value) / 100;
-      const distanceToWhite = 255 - Math.max(r, g, b);
-      const distanceToBlack = Math.min(r, g, b);
-      if (distanceToWhite < distanceToBlack) activeSurface = 255;
-      if (distanceToBlack < distanceToWhite) activeSurface = 0;
-      if (rgbaText) {
-        rgbaText.textContent = `RGBA(${r} ${g} ${b} ${a})`;
+      function getPlaneValues(
+        point: DOMPoint,
+        base: { x: number; y: number },
+        firstAxis: { x: number; y: number },
+        secondAxis: { x: number; y: number },
+      ) {
+        const determinant =
+          firstAxis.x * secondAxis.y - firstAxis.y * secondAxis.x;
+        const x = point.x - base.x;
+        const y = point.y - base.y;
+        return {
+          first: clampChannel(
+            (255 * (x * secondAxis.y - y * secondAxis.x)) / determinant,
+          ),
+          second: clampChannel(
+            (255 * (firstAxis.x * y - firstAxis.y * x)) / determinant,
+          ),
+        };
       }
-      if (cubePreview) {
-        cubePreview.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
+
+      function updateFromCube(event: PointerEvent, face: string, projection: CubeProjection) {
+        const point = getPointerPosition(event, projection.cube);
+        if (!point) return;
+        const { surface, redAxis, greenAxis, blueAxis } = projection;
+        activeSurface = surface;
+
+        if (face === "top") {
+          const values = getPlaneValues(point, projectColor(0, surface, 0, projection), redAxis, blueAxis);
+          rInput.value = String(values.first);
+          bInput.value = String(values.second);
+          gInput.value = String(surface);
+        } else if (face === "front") {
+          const values = getPlaneValues(
+            point,
+            projectColor(surface, 0, 0, projection),
+            greenAxis,
+            blueAxis,
+          );
+          gInput.value = String(values.first);
+          bInput.value = String(values.second);
+          rInput.value = String(surface);
+        } else {
+          const values = getPlaneValues(point, projectColor(0, 0, surface, projection), greenAxis, redAxis);
+          gInput.value = String(values.first);
+          rInput.value = String(values.second);
+          bInput.value = String(surface);
+        }
+        updateColor();
       }
+
+      rInput.addEventListener("input", updateColor);
+      gInput.addEventListener("input", updateColor);
+      bInput.addEventListener("input", updateColor);
+      aInput.addEventListener("input", updateColor);
+
       for (const projection of projections) {
-        const cubePoint = projection.cube.querySelector<SVGCircleElement>(
-          ".color__rgb__cube__point",
-        );
-        if (!cubePoint) continue;
-        const point = projectColor(r, g, b, projection);
-        cubePoint.setAttribute("cx", String(point.x));
-        cubePoint.setAttribute("cy", String(point.y));
-        cubePoint.style.fill = `rgb(${r}, ${g}, ${b})`;
-        cubePoint.style.stroke = r + g + b > 382 ? "#111111" : "#ffffff";
-        cubePoint.style.display = projection.surface === activeSurface
-          ? ""
-          : "none";
+        projection.cube.querySelectorAll<SVGPolygonElement>("[data-rgb-face]")
+          .forEach((face) => {
+          let isDragging = false;
+          const faceName = face.dataset.rgbFace ?? "";
+          face.addEventListener("pointerdown", (event) => {
+            isDragging = true;
+            face.setPointerCapture(event.pointerId);
+            updateFromCube(event, faceName, projection);
+          });
+          face.addEventListener("pointermove", (event) => {
+            if (isDragging) updateFromCube(event, faceName, projection);
+          });
+          face.addEventListener("pointerup", () => {
+            isDragging = false;
+          });
+          face.addEventListener("pointercancel", () => {
+            isDragging = false;
+          });
+        });
       }
-    }
 
-    function getPointerPosition(event: PointerEvent, cube: SVGSVGElement) {
-      const point = cube.createSVGPoint();
-      point.x = event.clientX;
-      point.y = event.clientY;
-      return point.matrixTransform(cube.getScreenCTM()?.inverse());
-    }
-
-    function getPlaneValues(
-      point: DOMPoint,
-      base: { x: number; y: number },
-      firstAxis: { x: number; y: number },
-      secondAxis: { x: number; y: number },
-    ) {
-      const determinant =
-        firstAxis.x * secondAxis.y - firstAxis.y * secondAxis.x;
-      const x = point.x - base.x;
-      const y = point.y - base.y;
-      return {
-        first: clampChannel(
-          (255 * (x * secondAxis.y - y * secondAxis.x)) / determinant,
-        ),
-        second: clampChannel(
-          (255 * (firstAxis.x * y - firstAxis.y * x)) / determinant,
-        ),
-      };
-    }
-
-    function updateFromCube(event: PointerEvent, face: string, projection: CubeProjection) {
-      const point = getPointerPosition(event, projection.cube);
-      if (!point) return;
-      const { surface, redAxis, greenAxis, blueAxis } = projection;
-      activeSurface = surface;
-
-      if (face === "top") {
-        const values = getPlaneValues(point, projectColor(0, surface, 0, projection), redAxis, blueAxis);
-        rInput.value = String(values.first);
-        bInput.value = String(values.second);
-        gInput.value = String(surface);
-      } else if (face === "front") {
-        const values = getPlaneValues(
-          point,
-          projectColor(surface, 0, 0, projection),
-          greenAxis,
-          blueAxis,
-        );
-        gInput.value = String(values.first);
-        bInput.value = String(values.second);
-        rInput.value = String(surface);
-      } else {
-        const values = getPlaneValues(point, projectColor(0, 0, surface, projection), greenAxis, redAxis);
-        gInput.value = String(values.first);
-        rInput.value = String(values.second);
-        bInput.value = String(surface);
-      }
       updateColor();
-    }
+  }
+}
 
-    rInput.addEventListener("input", updateColor);
-    gInput.addEventListener("input", updateColor);
-    bInput.addEventListener("input", updateColor);
-    aInput.addEventListener("input", updateColor);
-
-    for (const projection of projections) {
-      projection.cube.querySelectorAll<SVGPolygonElement>("[data-rgb-face]")
-        .forEach((face) => {
-        let isDragging = false;
-        const faceName = face.dataset.rgbFace ?? "";
-        face.addEventListener("pointerdown", (event) => {
-          isDragging = true;
-          face.setPointerCapture(event.pointerId);
-          updateFromCube(event, faceName, projection);
-        });
-        face.addEventListener("pointermove", (event) => {
-          if (isDragging) updateFromCube(event, faceName, projection);
-        });
-        face.addEventListener("pointerup", () => {
-          isDragging = false;
-        });
-        face.addEventListener("pointercancel", () => {
-          isDragging = false;
-        });
-      });
-    }
-
-    updateColor();
-  });
+customElements.define('tips-rgba-accordion', TipsRgbaAccordion)
 </script>
+
+<style>
+  tips-rgba-accordion {
+    display: contents;
+  }
+</style>

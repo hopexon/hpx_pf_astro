@@ -1,8 +1,7 @@
 ---
 import { Code } from 'astro:components'
 ---
-
-<details class="acc__with__anim">
+<tips-color-function-accordion><details class="acc__with__anim">
   <summary>(Other) Color()<span class="twister"></span></summary>
   <div class="accordion__overflow__hidden">
     <div class="content__wrap">
@@ -102,32 +101,48 @@ import { Code } from 'astro:components'
 </details>
 
 <!-- Color -->
+</tips-color-function-accordion>
+
 <script>
-  document.addEventListener('astro:page-load', function() {
-    const colorC1input = document.getElementById('color__c1') as HTMLInputElement
-    const colorC2input = document.getElementById('color__c2') as HTMLInputElement
-    const colorC3input = document.getElementById('color__c3') as HTMLInputElement
-    const colorAlinput = document.getElementById('color__al') as HTMLInputElement
-    const colorValueText = document.querySelector('.color-value__text') as HTMLSpanElement
-    const colorPreviewBoxes = document.querySelectorAll<HTMLElement>('.color-preview-wrap [data-color-space]')
+class TipsColorFunctionAccordion extends HTMLElement {
+  connectedCallback() {
+    this.init1()
+  }
 
-    const updatecolorPreview = () => {
-      const c1 = colorC1input.value
-      const c2 = colorC2input.value
-      const c3 = colorC3input.value
-      const al = colorAlinput.value
+  init1() {
+      const colorC1input = this.querySelector('#color__c1') as HTMLInputElement
+      const colorC2input = this.querySelector('#color__c2') as HTMLInputElement
+      const colorC3input = this.querySelector('#color__c3') as HTMLInputElement
+      const colorAlinput = this.querySelector('#color__al') as HTMLInputElement
+      const colorValueText = this.querySelector('.color-value__text') as HTMLSpanElement
+      const colorPreviewBoxes = this.querySelectorAll<HTMLElement>('.color-preview-wrap [data-color-space]')
 
-      colorPreviewBoxes.forEach((previewBox) => {
-        previewBox.style.backgroundColor = `color(${previewBox.dataset.colorSpace} ${c1} ${c2} ${c3} / ${al})`
-      })
-      colorValueText.textContent = `color({profile} ${c1} ${c2} ${c3} / ${al})`
-    }
+      const updatecolorPreview = () => {
+        const c1 = colorC1input.value
+        const c2 = colorC2input.value
+        const c3 = colorC3input.value
+        const al = colorAlinput.value
 
-    colorC1input.addEventListener('input', updatecolorPreview)
-    colorC2input.addEventListener('input', updatecolorPreview)
-    colorC3input.addEventListener('input', updatecolorPreview)
-    colorAlinput.addEventListener('input', updatecolorPreview)
+        colorPreviewBoxes.forEach((previewBox) => {
+          previewBox.style.backgroundColor = `color(${previewBox.dataset.colorSpace} ${c1} ${c2} ${c3} / ${al})`
+        })
+        colorValueText.textContent = `color({profile} ${c1} ${c2} ${c3} / ${al})`
+      }
 
-    updatecolorPreview()
-  })
+      colorC1input.addEventListener('input', updatecolorPreview)
+      colorC2input.addEventListener('input', updatecolorPreview)
+      colorC3input.addEventListener('input', updatecolorPreview)
+      colorAlinput.addEventListener('input', updatecolorPreview)
+
+      updatecolorPreview()
+  }
+}
+
+customElements.define('tips-color-function-accordion', TipsColorFunctionAccordion)
 </script>
+
+<style>
+  tips-color-function-accordion {
+    display: contents;
+  }
+</style>

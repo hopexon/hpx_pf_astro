@@ -1,0 +1,86 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface Props extends Omit<HTMLAttributes<'section'>, 'class'> {
+  /** 追加クラス (文字列 / 配列 / オブジェクト) */
+  class?: string | string[] | Record<string, boolean>
+}
+
+const { class: className, ...rest } = Astro.props
+---
+
+<section class:list={['panel-section', className]} {...rest}>
+  <slot />
+</section>
+
+<style>
+  .panel-section {
+    --padding-block: 3rem;
+    --padding-inline: 2rem;
+    --inline-size: 100%;
+    --border: 3px solid var(--paper);
+    --filter: drop-shadow(10px 10px 0 rgba(0, 0, 0, 1));
+
+    padding-block: var(--padding-block);
+    padding-inline: var(--padding-inline);
+    inline-size: var(--inline-size);
+    color: var(--paper);
+    background-color: var(--base-950);
+    border: var(--border);
+    filter: var(--filter);
+
+    @media screen and (min-width: 768px) {
+      --padding-inline: 3rem 6rem;
+      --inline-size: fit-content;
+      --border: 6px solid var(--paper);
+      --filter: drop-shadow(30px 30px 0 rgba(0, 0, 0, 1));
+    }
+  }
+
+  .panel-section + .panel-section {
+    --margin-block-start: 4rem;
+
+    margin-block-start: var(--margin-block-start);
+
+    @media screen and (min-width: 768px) {
+      --margin-block-start: 6rem;
+    }
+  }
+
+  /* スロット内要素 */
+  .panel-section :global(:where(h2)) {
+    color: var(--orange-200);
+  }
+
+  .panel-section :global(:where(h3)) {
+    color: var(--orange-300);
+  }
+
+  .panel-section :global(:where(h3:not(:first-of-type))) {
+    margin-block-start: 3rem;
+  }
+
+  .panel-section :global(:where(h2 + :is(h3, p, dl, ul))) {
+    margin-block-start: 1rem;
+  }
+
+  .panel-section :global(:where(p, dl, dt, dd, ul)) {
+    line-height: 1.7;
+  }
+
+  .panel-section :global(:where(dt)) {
+    font-size: 1.25rem;
+  }
+
+  .panel-section :global(:where(dl > dt:not(:first-of-type))) {
+    margin-block-start: 3rem;
+  }
+
+  .panel-section :global(:where(p + p)) {
+    margin-block-start: 1rem;
+  }
+
+  .panel-section :global(:where(ul)) {
+    list-style-type: disc;
+  }
+</style>
