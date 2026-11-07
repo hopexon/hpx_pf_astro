@@ -7,7 +7,9 @@ export const contactInput = z.object({
   name: singleLine(100).refine((value) => value.length > 0, 'お名前を入力してください。'),
   email: z.string().trim().max(254).pipe(z.email('メールアドレスの形式をご確認ください。')),
   subject: singleLine(150).default(''),
-  message: z.string().trim().min(1, 'メッセージを入力してください。').max(5000, 'メッセージは5,000文字以内で入力してください。'),
+  message: z.string()
+    .transform((value) => value.replace(/\r\n?/g, '\n'))
+    .pipe(z.string().trim().min(1, 'メッセージを入力してください。').max(5000, 'メッセージは5,000文字以内で入力してください。')),
   website: z.string().max(1000).optional(),
   'cf-turnstile-response': z.string().min(1, 'ボット確認を完了してください。').max(2048),
   submissionId: z.uuid(),

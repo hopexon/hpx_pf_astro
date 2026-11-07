@@ -11,11 +11,10 @@ const siteKey = TURNSTILE_SITE_KEY.trim()
   )}
   <form action={getActionPath(actions.contact)} method="post" data-astro-reload>
     <fieldset disabled={!siteKey}>
-      <legend class="form-legend">お問い合わせ内容</legend>
-      <p class="form-help">「必須」の項目をご入力ください。</p>
+      <legend class="form-legend visually-hidden">お問い合わせ内容</legend>
 
       <div class="form-field">
-        <label for="contact-name">お名前 <span class="required">必須</span></label>
+        <label for="contact-name">Name<span class="required">必須</span></label>
         <input
           id="contact-name"
           name="name"
@@ -28,8 +27,8 @@ const siteKey = TURNSTILE_SITE_KEY.trim()
       </div>
 
       <div class="form-field">
-        <label for="contact-email">メールアドレス <span class="required">必須</span></label>
-        <span id="contact-email-hint" class="field-hint">返信を受け取れるアドレスをご入力ください。</span>
+        <label for="contact-email">Email<span class="required">必須</span></label>
+        <span id="contact-email-hint" class="field-hint">返信を受け取るアドレスをご入力ください。</span>
         <input
           id="contact-email"
           type="email"
@@ -46,13 +45,13 @@ const siteKey = TURNSTILE_SITE_KEY.trim()
       </div>
 
       <div class="form-field">
-        <label for="contact-subject">件名 <span class="optional">任意</span></label>
+        <label for="contact-subject">Title<span class="optional">任意</span></label>
         <input id="contact-subject" name="subject" maxlength="150" aria-describedby="contact-subject-error" />
         <span id="contact-subject-error" class="field-error" data-field-error="subject">件名は150文字以内で入力してください。</span>
       </div>
 
       <div class="form-field">
-        <label for="contact-message">メッセージ <span class="required">必須</span></label>
+        <label for="contact-message">Message<span class="required">必須</span></label>
         <span id="contact-message-hint" class="field-hint">5,000文字以内でご入力ください。</span>
         <textarea
           id="contact-message"
@@ -71,19 +70,19 @@ const siteKey = TURNSTILE_SITE_KEY.trim()
       </div>
 
       <div class="form-verification">
-        <p class="field-hint">迷惑投稿防止のため、ボット確認を行います。</p>
+        <!-- <p class="field-hint">迷惑投稿防止のため、ボット確認を行います。</p> -->
         <div data-turnstile></div>
         <button type="button" class="retry-button" data-retry-turnstile hidden>ボット確認をやり直す</button>
       </div>
 
-      <p class="privacy-note">
+      <!-- <p class="privacy-note">
         入力内容はお問い合わせへの対応に使用します。送信にはResend、ボット確認にはCloudflare Turnstileを利用します。
-      </p>
+      </p> -->
 
       <div class="form-actions">
         <button type="submit" class="submit-button" disabled>
-          <span data-submit-label>メッセージを送る</span>
-          <span aria-hidden="true">→</span>
+          <span data-submit-label>Send</span>
+          <!-- <span aria-hidden="true">→</span> -->
         </button>
       </div>
     </fieldset>
