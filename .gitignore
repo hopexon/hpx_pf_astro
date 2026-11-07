@@ -5,7 +5,7 @@ dist/
 .astro/
 
 # vercel
-.vecel/*
+.vercel/*
 
 # dependencies
 node_modules/
@@ -20,11 +20,17 @@ pnpm-debug.log*
 .env
 .env.production
 .env.*
-!.env.example
+.env.example
+
+# Reference samples are not part of the application.
+/resendsample/
+tests/*
 
 # agents
 CLAUDE.md
 AGENTS.md
+.agents/
+skills-lock.json
 
 # macOS-specific files
 .DS_Store
@@ -32,11 +38,10 @@ AGENTS.md
 # jetbrains setting folder
 .idea/
 
-.agents/
-skills-lock.json
-
+# knowledge markdown
 knowledges/*
 
+# other pages
 src/pages/dia/*
 src/pages/testtop/*
 src/components/dir/*

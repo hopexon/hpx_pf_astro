@@ -1,14 +1,22 @@
 ---
-import Layout from "../layouts/Layout.astro"
+import { ClientRouter } from 'astro:transitions'
 import Welcome from '../components/Welcome.astro'
+import '../styles/global.css'
+import HeadMeta from '../components/common/HeadMeta.astro'
 ---
 
-<Layout>
-  <div>
-    <div class="main__wrap">
-      <section class="section__wrapper">
-        <Welcome />
-      </section>
-    </div>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<HeadMeta {...Astro.props} />
+  <slot name="head" />
+  <ClientRouter />
+</head>
+<body>
+  <div class="main__wrap">
+    <section class="section__wrapper">
+      <Welcome />
+    </section>
   </div>
-</Layout>
+</body>
+</html>
