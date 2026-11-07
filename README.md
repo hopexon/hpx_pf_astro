@@ -1,46 +1,48 @@
-# Astro Starter Kit: Basics
+# HPX Portfolio
+
+Personal portfolio site of HPX — profile, drawings, web dev tips, and small tools.
+
+**Live:** https://hpx-pfproject01.vercel.app/
+
+## Tech Stack
+
+- **Framework:** [Astro](https://astro.build) 7 (static output) + Astro Actions
+- **UI:** Astro components, Web Components, React 19 (islands), MDX
+- **Language:** TypeScript
+- **Code highlighting:** astro-expressive-code
+- **Contact form:** Resend (email) + Cloudflare Turnstile (bot protection)
+- **Hosting:** Vercel (`@astrojs/vercel`)
+- **Tooling:** pnpm, Node.js 26 (`.nvmrc`), sharp
+
+## Pages
+
+| Path              | Description                                   |
+| :---------------- | :-------------------------------------------- |
+| `/`               | Welcome page                                  |
+| `/top`            | Top page with the main menu                   |
+| `/about`          | Profile of the author                         |
+| `/works`          | Drawing collection                            |
+| `/tips`           | Tips for web development and design           |
+| `/tips/[slug]`    | Individual tip articles                       |
+| `/tools`          | Utility tools for developers and designers    |
+| `/tools/interval` | Fingerboard map tool for guitarists           |
+| `/contact`        | Contact form                                  |
+
+## Getting Started
 
 ```sh
-npm create astro@latest -- --template basics
+nvm use
+pnpm install --frozen-lockfile
+pnpm run dev:bg    # start dev server in background (127.0.0.1:4321)
+pnpm run build     # build to ./dist/
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Environment Variables (contact form)
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Name                   | Scope  |
+| :--------------------- | :----- |
+| `RESEND_API_KEY`       | server |
+| `TURNSTILE_SECRET_KEY` | server |
+| `CONTACT_FROM`         | server |
+| `CONTACT_TO`           | server |
+| `TURNSTILE_SITE_KEY`   | client |
