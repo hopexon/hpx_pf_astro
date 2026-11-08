@@ -1,8 +1,9 @@
 ---
 import { ClientRouter } from 'astro:transitions'
+import Analytics from '@vercel/analytics/astro'
 import Welcome from '../components/Welcome.astro'
-import '../styles/global.css'
 import HeadMeta from '../components/common/HeadMeta.astro'
+import '../styles/global.css'
 ---
 
 <!DOCTYPE html>
@@ -10,6 +11,7 @@ import HeadMeta from '../components/common/HeadMeta.astro'
 <head>
 	<HeadMeta {...Astro.props} />
   <slot name="head" />
+  <Analytics />
   <ClientRouter />
 </head>
 <body>
