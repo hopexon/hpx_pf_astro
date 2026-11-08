@@ -1,0 +1,3 @@
+# Temporarily excluded from Vercel deployments
+/src/pages/collections
+/public/collections

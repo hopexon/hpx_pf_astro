@@ -3,6 +3,7 @@
   "git": {
     "deploymentEnabled": {
       "main": false
-    }
+    },
+    "buildCommand": "rm -rf src/pages/collections public/collections && astro build"
   }
 }
