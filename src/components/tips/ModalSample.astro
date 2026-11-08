@@ -7,21 +7,43 @@ import { Code } from 'astro:components'
   <div class="btns__wrap">
     <button type="button" class="test__dialog__open__btn btn__item item__hover" command="show-modal" commandfor="test-dialog">Open Modal</button>
   </div>
-  <div class="my__dialog__wrap">
+  <modal-sample-dialog class="my__dialog__wrap">
     <dialog
       id="test-dialog"
       class="my__dialog js-modalDialog"
       closedby="any"
-      aria-labelledby="dialog-title"
+      aria-labelledby="my-dialog-heading"
       autofocus
-      inert
     >
       <h1 id="my-dialog-heading" class="my__dialog__heading">Heading</h1>
       <p class="my__dialog__content">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.</p>
       <button type="button"  class="my__dialog__close__btn" commandfor="test-dialog" command="close">Close</button>
     </dialog>
-  </div>
+  </modal-sample-dialog>
 </div>
+
+<script>
+  import 'invokers-polyfill'
+  import 'dialog-closedby-polyfill'
+
+  // ダイアログ領域外(::backdrop)押下で閉じる。iOS Safari で closedby が効かない場合の保険
+  class ModalSampleDialog extends HTMLElement {
+    connectedCallback() {
+      this.addEventListener('click', this.#onClick)
+    }
+    disconnectedCallback() {
+      this.removeEventListener('click', this.#onClick)
+    }
+    #onClick = (e: Event) => {
+      const dialog = e.target
+      if (!(dialog instanceof HTMLDialogElement) || !dialog.open) return
+      const { clientX: x, clientY: y } = e as MouseEvent
+      const r = dialog.getBoundingClientRect()
+      if (x < r.left || x > r.right || y < r.top || y > r.bottom) dialog.close()
+    }
+  }
+  customElements.define('modal-sample-dialog', ModalSampleDialog)
+</script>
 
 
 <details class="mt__2 acc__with__anim">
