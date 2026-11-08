@@ -36,80 +36,28 @@ const animatedLogoSvg = logoSvg
 )
 ---
 
-<welcome-logo>
-  <div class="animated">
-    <div class="stage">
-      <div class="logo" set:html={animatedLogoSvg} />
-      <a class='item__hover' href="/top/">ENTER</a>
-    </div>
+<div class="animated">
+  <div class="stage">
+    <div class="logo" set:html={animatedLogoSvg} />
+    <a class='item__hover' href="/top/">ENTER</a>
   </div>
-</welcome-logo>
-
-<script>
-  // 移動距離(CSS px)。1000px以上はPC用に大きくする。
-  const SP_DISTANCE = 80
-  const PC_DISTANCE = 160
-
-  // ClientRouterのページ遷移でDOMが差し替わっても、要素の追加・削除に合わせて
-  // connectedCallback / disconnectedCallbackが呼ばれるため、監視の開始と解除が自動で行われる。
-  class WelcomeLogo extends HTMLElement {
-    #resizeObserver?: ResizeObserver
-    #pcQuery = window.matchMedia('(min-width: 1000px)')
-    #svg: SVGSVGElement | null = null
-
-    connectedCallback() {
-      this.#svg = this.querySelector('svg')
-      if (!this.#svg) return
-
-      this.#resizeObserver = new ResizeObserver(() => this.#update())
-      this.#resizeObserver.observe(this.#svg)
-      this.#pcQuery.addEventListener('change', this.#update)
-    }
-
-    disconnectedCallback() {
-      this.#resizeObserver?.disconnect()
-      this.#pcQuery.removeEventListener('change', this.#update)
-      this.#svg = null
-    }
-
-    // アロー関数にして、removeEventListenerに同じ参照を渡せるようにする。
-    #update = () => {
-      const svg = this.#svg
-      const width = svg?.getBoundingClientRect().width ?? 0
-      if (!svg || width <= 0) return
-      const distance = this.#pcQuery.matches ? PC_DISTANCE : SP_DISTANCE
-      svg.style.setProperty('--drift-distance', `${distance * svg.viewBox.baseVal.width / width}px`)
-    }
-  }
-
-  customElements.define('welcome-logo', WelcomeLogo)
-</script>
+</div>
 
 <style>
-  welcome-logo {
-    display: contents;
-  }
-
   .animated {
-    --button-gap: 3rem;
-    --button-space: calc(var(--button-gap) + 3rem);
+    --logo-padding: calc(52 / 16 * 1rem);
 
     display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-    align-content: center;
-    box-sizing: border-box;
-    min-block-size: 80dvh;
-    padding-block: var(--button-space);
-
-    @media screen and (min-width: 1000px) {
-      --button-gap: 1rem;
-    }
+    grid-template-columns: minmax(0, 1fr);
+    place-items: center;
+    min-block-size: 100dvh;
+    /* 外側へ移動した三角形の分はスクロールさせず、画面端で切り落とす。 */
+    overflow: clip;
 
     .stage {
       position: relative;
-      inline-size: 100%;
-      max-inline-size: 1000px;
+      /* 幅・高さの小さい方に合わせ、スクロールなしで全体を表示する。 */
+      inline-size: min(100%, 100dvh, 1000px);
     }
 
     a {
@@ -118,20 +66,29 @@ const animatedLogoSvg = logoSvg
       --font-weight: 500;
 
       position: absolute;
-      inset-block-start: calc(100% + var(--button-gap));
+      /* ボタンの中心をロゴの中心に重ねる。 */
+      inset-block-start: 50%;
       inset-inline-start: 50%;
       padding: var(--padding);
+      inline-size: max-content;
       font-size: var(--font-size);
       font-weight: var(--font-weight);
       color: var(--paper);
       background-color: var(--orange-400);
-      translate: -50% 0;
+      translate: -50% -50%;
       z-index: 1;
 
+      @media (any-hover: hover) {
+        &:hover {
+          background-color: var(--base-950);
+          /* opacity: 0.8; */
+          transition: all 0.15s ease-out;
+        }
+      }
       @media screen and (min-width: 768px) {
         --font-size: calc(16 / 16 * 1rem);
 
-        border: 4px solid var(--paper);
+        /* border: 4px solid var(--paper); */
       }
 
       @media screen and (min-width: 1000px) {
@@ -139,14 +96,6 @@ const animatedLogoSvg = logoSvg
 
         opacity: 1;
         transition: all 0.15s ease-out;
-
-        @media (any-hover: hover) {
-          &:hover {
-            background-color: var(--base-950);
-            /* opacity: 0.8; */
-            transition: all 0.15s ease-out;
-          }
-        }
       }
     }
   }
@@ -155,20 +104,20 @@ const animatedLogoSvg = logoSvg
   .logo :global(svg) {
     display: block;
     inline-size: 100%;
-    max-inline-size: 1000px;
-    /* block-size: auto; */
-    /* aspect-ratio: 1; */
   }
 
   .logo {
-    /* 外側へ移動した三角形が隣のプレビューにはみ出さない余白。 */
     box-sizing: border-box;
-    padding: calc(52 / 16 * 1rem);
-    inline-size: 100%;
-    max-inline-size: 
+    padding: var(--logo-padding);
   }
 
   .logo :global(svg) {
+    /*
+     * SVG内のpxはviewBoxの座標(直径1600)なので、図の直径に比例して拡縮する。
+     * 比率は直径896pxのときに160px飛び出す大きさ。
+     */
+    --drift-distance: calc(1600px * 160 / 896);
+
     overflow: visible;
   }
 
@@ -190,83 +139,6 @@ const animatedLogoSvg = logoSvg
       var(--drift-delay);
   }
 
-  .animated:has(.pause:checked) :global(.sector) {
-    animation-play-state: paused;
-  }
-
-  /* 各段階は一周の1/23。中心から左右3区画ずつ、合計7区画を点灯する。 */
-  /* @keyframes light-sector {
-    0%, 100% {
-      filter: brightness(1.25);
-    }
-    4.347826%, 95.652174% {
-      filter: brightness(1.1);
-    }
-    8.695652%, 91.304348% {
-      filter: brightness(1);
-    }
-    13.043478%, 86.956522% {
-      filter: brightness(1);
-    }
-    17.391304% {
-      filter: brightness(1);
-    }
-  } */
-
-  
-   /* * 色を直接指定する場合は、このブロックのコメントを外す。
-   * animation-nameを切り替えるため、上のbrightnessの定義はそのままでよい。
-   * 4つの色は中心・1区画隣・2区画隣・3区画隣の順。
-   * */
-  /* .animated {
-    --light-color-center: var(--paper);
-    --light-color-near: var(--base-50);
-    --light-color-middle: var(--base-100);
-    --light-color-outer: var(--base-150);
-  }
-
-  .animated :global(.sector) {
-    animation-name: color-sector, drift-sector;
-    filter: none;
-  }
-
-  @keyframes color-sector {
-    0%, 100% {
-      fill: var(--light-color-center);
-    }
-    4.347826%, 95.652174% {
-      fill: var(--light-color-near);
-    }
-    8.695652%, 91.304348% {
-      fill: var(--light-color-middle);
-    }
-    13.043478%, 86.956522% {
-      fill: var(--light-color-outer);
-    }
-    17.391304% {
-      fill: var(--base-color);
-    }
-  } */
-
-
-  /*
-   * 以前のゆっくり往復するアニメーション（保存用）。
-   * 戻す場合は新しいdrift-sectorと置き換え、上のanimationの2項目目を
-   * drift-sector var(--drift-duration) ease-in-out infinite に戻す。
-   * frontmatterのduration / delayも、保存してある以前の設定に戻す。
-   *
-  @keyframes drift-sector {
-    0%, 100% {
-      translate: 0 0;
-    }
-    50% {
-      translate:
-        calc(var(--drift-x) * var(--drift-distance, 40px))
-        calc(var(--drift-y) * var(--drift-distance, 40px));
-    }
-  }
-  */
-
   /* 4.6秒周期のうち、0.15秒で飛び出し、0.85秒まで保持、1秒で戻る。 */
   @keyframes drift-sector {
     0%, 21.73913%, 100% {
@@ -279,27 +151,9 @@ const animatedLogoSvg = logoSvg
     }
   }
 
-  .reduced-motion-note {
-    display: none;
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .animated :global(.sector) {
       animation: none;
-    }
-
-    .playback-control {
-      display: none;
-    }
-
-    .reduced-motion-note {
-      display: block;
-    }
-  }
-
-  @media (max-width: 700px) {
-    .previews {
-      grid-template-columns: minmax(0, 1fr);
     }
   }
 </style>
