@@ -7,6 +7,11 @@ dist/
 # vercel
 .vercel/*
 
+# cloudflare
+.wrangler/
+.cloudflare-build-*/
+.dev.vars*
+
 # dependencies
 node_modules/
 

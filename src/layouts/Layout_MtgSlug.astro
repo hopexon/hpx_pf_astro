@@ -1,6 +1,5 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import Analytics from '@vercel/analytics/astro'
 import HeadMeta from "../components/common/HeadMeta.astro";
 import GlobalHeader from "../components/common/GlobalHeader.astro";
 import { Breadcrumbs } from "astro-breadcrumbs";
@@ -36,7 +35,6 @@ const customCrumbs = [
       image={cardImage}
     />
     <slot name="head" />
-    <Analytics />
     <ClientRouter />
     <script>
       import 'invokers-polyfill';

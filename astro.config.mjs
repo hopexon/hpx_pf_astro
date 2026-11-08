@@ -1,13 +1,16 @@
 import { defineConfig, envField } from 'astro/config'
-import vercel from '@astrojs/vercel'
+import cloudflare from '@astrojs/cloudflare'
 import expressiveCode from 'astro-expressive-code'
 import react from '@astrojs/react'
 import mdx from '@astrojs/mdx'
 
 // https://astro.build/config
 export default defineConfig({
+  srcDir: process.env.ASTRO_BUILD_SRC_DIR,
+  publicDir: process.env.ASTRO_BUILD_PUBLIC_DIR,
   output: 'static',
-  adapter: vercel({ maxDuration: 30 }),
+  adapter: cloudflare(),
+  session: false,
   env: {
     schema: {
       RESEND_API_KEY: envField.string({ context: 'server', access: 'secret', optional: true }),
@@ -17,7 +20,7 @@ export default defineConfig({
       TURNSTILE_SITE_KEY: envField.string({ context: 'client', access: 'public', default: '' }),
     },
   },
-  site: 'https://hpx-pfproject01.vercel.app/',
+  site: 'https://hpx-dev.com/',
   server: { host: '127.0.0.1' },
   integrations: [
     expressiveCode({ removeUnusedThemes: false }),
