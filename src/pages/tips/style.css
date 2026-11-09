@@ -613,6 +613,7 @@ input[type="range"] {
     border-collapse: collapse;
   }
 
+  
   .th {
     color: var(--paper);
     background-color: var(--blue-800);
