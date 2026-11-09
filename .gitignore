@@ -34,6 +34,7 @@ tests/*
 # agents
 CLAUDE.md
 AGENTS.md
+PLAN.md
 .agents/
 skills-lock.json
 

@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "hpx-pf-astro",
-  "main": "@astrojs/cloudflare/entrypoints/server",
+  "main": "src/workers.js",
   "compatibility_date": "2026-11-04",
   "compatibility_flags": ["global_fetch_strictly_public"],
   "assets": {
@@ -11,5 +11,23 @@
   "observability": {
     "enabled": true
   },
-  "previews": {}
+  "previews": {},
+  "vars": {
+    "BASIC_AUTH_REQUIRED": "false"
+  },
+  "env": {
+    // Deploys as the separate Worker "hpx-pf-astro-staging".
+    // Select it at build time: CLOUDFLARE_ENV=staging (pnpm build:staging).
+    "staging": {
+      "assets": {
+        "binding": "ASSETS",
+        "directory": "./dist",
+        // Static files must pass through the Basic auth check too.
+        "run_worker_first": true
+      },
+      "vars": {
+        "BASIC_AUTH_REQUIRED": "true"
+      }
+    }
+  }
 }

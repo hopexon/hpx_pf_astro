@@ -12,9 +12,11 @@
     "dev:bg": "astro dev --background",
     "dev:lan": "astro dev --host",
     "build": "node scripts/build-cloudflare.mjs",
+    "build:staging": "CLOUDFLARE_ENV=staging node scripts/build-cloudflare.mjs",
     "typecheck": "astro check",
     "preview": "pnpm build && astro preview",
     "deploy": "pnpm build && wrangler deploy",
+    "deploy:staging": "pnpm build:staging && wrangler deploy",
     "audit": "pnpm audit",
     "astro": "astro",
     "mtg:thumbs": "node scripts/generate-mtg-thumbs.mjs"
