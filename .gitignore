@@ -50,3 +50,5 @@ knowledges/*
 src/pages/dia/*
 src/pages/testtop/*
 src/components/dir/*
+.vercel
+.env*
