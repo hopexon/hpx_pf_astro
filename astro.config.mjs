@@ -9,7 +9,8 @@ export default defineConfig({
   srcDir: process.env.ASTRO_BUILD_SRC_DIR,
   publicDir: process.env.ASTRO_BUILD_PUBLIC_DIR,
   output: 'static',
-  adapter: cloudflare(),
+  // Images are managed manually; disable Cloudflare Images (default: 'cloudflare-binding').
+  adapter: cloudflare({ imageService: 'passthrough' }),
   session: false,
   env: {
     schema: {

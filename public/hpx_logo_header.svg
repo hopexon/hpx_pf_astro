@@ -1,63 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1600" width="1600" height="1600" role="img" aria-label="23個の扇形を放射状に並べた円形ロゴ">
   <!-- 12時から時計回り。150〜165度の区画は元画像に合わせて空ける。 -->
-  <!-- 白い区切り線・中央の円は背景透過のためマスクで抜く。 -->
-  <defs>
-    <mask id="cutouts" maskUnits="userSpaceOnUse" x="0" y="0" width="1600" height="1600">
-      <rect width="1600" height="1600" fill="#fff" />
-      <g fill="none" stroke="#000" stroke-width="8" stroke-linejoin="round">
-        <path d="M 800 800 L 800 0 A 800 800 0 0 1 1007.055 27.259 Z" />
-        <path d="M 800 800 L 1007.055 27.259 A 800 800 0 0 1 1200 107.18 Z" />
-        <path d="M 800 800 L 1200 107.18 A 800 800 0 0 1 1365.685 234.315 Z" />
-        <path d="M 800 800 L 1365.685 234.315 A 800 800 0 0 1 1492.82 400 Z" />
-        <path d="M 800 800 L 1492.82 400 A 800 800 0 0 1 1572.741 592.945 Z" />
-        <path d="M 800 800 L 1572.741 592.945 A 800 800 0 0 1 1600 800 Z" />
-        <path d="M 800 800 L 1600 800 A 800 800 0 0 1 1572.741 1007.055 Z" />
-        <path d="M 800 800 L 1572.741 1007.055 A 800 800 0 0 1 1492.82 1200 Z" />
-        <path d="M 800 800 L 1492.82 1200 A 800 800 0 0 1 1365.685 1365.685 Z" />
-        <path d="M 800 800 L 1365.685 1365.685 A 800 800 0 0 1 1200 1492.82 Z" />
-        <path d="M 800 800 L 1007.055 1572.741 A 800 800 0 0 1 800 1600 Z" />
-        <path d="M 800 800 L 800 1600 A 800 800 0 0 1 592.945 1572.741 Z" />
-        <path d="M 800 800 L 592.945 1572.741 A 800 800 0 0 1 400 1492.82 Z" />
-        <path d="M 800 800 L 400 1492.82 A 800 800 0 0 1 234.315 1365.685 Z" />
-        <path d="M 800 800 L 234.315 1365.685 A 800 800 0 0 1 107.18 1200 Z" />
-        <path d="M 800 800 L 107.18 1200 A 800 800 0 0 1 27.259 1007.055 Z" />
-        <path d="M 800 800 L 27.259 1007.055 A 800 800 0 0 1 0 800 Z" />
-        <path d="M 800 800 L 0 800 A 800 800 0 0 1 27.259 592.945 Z" />
-        <path d="M 800 800 L 27.259 592.945 A 800 800 0 0 1 107.18 400 Z" />
-        <path d="M 800 800 L 107.18 400 A 800 800 0 0 1 234.315 234.315 Z" />
-        <path d="M 800 800 L 234.315 234.315 A 800 800 0 0 1 400 107.18 Z" />
-        <path d="M 800 800 L 400 107.18 A 800 800 0 0 1 592.945 27.259 Z" />
-        <path d="M 800 800 L 592.945 27.259 A 800 800 0 0 1 800 0 Z" />
-        <path d="M 400 107 L 800 670" />
-        <path d="M 1205 397 L 800 1205" />
-        <path d="M 27 594 L 1004 1558" />
-      </g>
-      <circle cx="800" cy="800" r="32" fill="#000" />
-    </mask>
-  </defs>
-  <g mask="url(#cutouts)">
-    <path class="sector" data-angle="0" style="--sector-index: 0; --base-color: #d9d7cd" fill="#d9d7cd" d="M 800 800 L 800 0 A 800 800 0 0 1 1007.055 27.259 Z" />
-    <path class="sector" data-angle="15" style="--sector-index: 1; --base-color: #cdccc2" fill="#cdccc2" d="M 800 800 L 1007.055 27.259 A 800 800 0 0 1 1200 107.18 Z" />
-    <path class="sector" data-angle="30" style="--sector-index: 2; --base-color: #b7b5ab" fill="#b7b5ab" d="M 800 800 L 1200 107.18 A 800 800 0 0 1 1365.685 234.315 Z" />
-    <path class="sector" data-angle="45" style="--sector-index: 3; --base-color: #868480" fill="#868480" d="M 800 800 L 1365.685 234.315 A 800 800 0 0 1 1492.82 400 Z" />
-    <path class="sector" data-angle="60" style="--sector-index: 4; --base-color: #6f6e69" fill="#6f6e69" d="M 800 800 L 1492.82 400 A 800 800 0 0 1 1572.741 592.945 Z" />
-    <path class="sector" data-angle="75" style="--sector-index: 5; --base-color: #585653" fill="#585653" d="M 800 800 L 1572.741 592.945 A 800 800 0 0 1 1600 800 Z" />
-    <path class="sector" data-angle="90" style="--sector-index: 6; --base-color: #3f3e3c" fill="#3f3e3c" d="M 800 800 L 1600 800 A 800 800 0 0 1 1572.741 1007.055 Z" />
-    <path class="sector" data-angle="105" style="--sector-index: 7; --base-color: #343331" fill="#343331" d="M 800 800 L 1572.741 1007.055 A 800 800 0 0 1 1492.82 1200 Z" />
-    <path class="sector" data-angle="120" style="--sector-index: 8; --base-color: #282726" fill="#282726" d="M 800 800 L 1492.82 1200 A 800 800 0 0 1 1365.685 1365.685 Z" />
-    <path class="sector" data-angle="135" style="--sector-index: 9; --base-color: #1c1b1a" fill="#1c1b1a" d="M 800 800 L 1365.685 1365.685 A 800 800 0 0 1 1200 1492.82 Z" />
-    <path class="sector" data-angle="165" style="--sector-index: 10; --base-color: #1c1b1a" fill="#1c1b1a" d="M 800 800 L 1007.055 1572.741 A 800 800 0 0 1 800 1600 Z" />
-    <path class="sector" data-angle="180" style="--sector-index: 11; --base-color: #282726" fill="#282726" d="M 800 800 L 800 1600 A 800 800 0 0 1 592.945 1572.741 Z" />
-    <path class="sector" data-angle="195" style="--sector-index: 12; --base-color: #343331" fill="#343331" d="M 800 800 L 592.945 1572.741 A 800 800 0 0 1 400 1492.82 Z" />
-    <path class="sector" data-angle="210" style="--sector-index: 13; --base-color: #3f3e3c" fill="#3f3e3c" d="M 800 800 L 400 1492.82 A 800 800 0 0 1 234.315 1365.685 Z" />
-    <path class="sector" data-angle="225" style="--sector-index: 14; --base-color: #585653" fill="#585653" d="M 800 800 L 234.315 1365.685 A 800 800 0 0 1 107.18 1200 Z" />
-    <path class="sector" data-angle="240" style="--sector-index: 15; --base-color: #6f6e69" fill="#6f6e69" d="M 800 800 L 107.18 1200 A 800 800 0 0 1 27.259 1007.055 Z" />
-    <path class="sector" data-angle="255" style="--sector-index: 16; --base-color: #868480" fill="#868480" d="M 800 800 L 27.259 1007.055 A 800 800 0 0 1 0 800 Z" />
-    <path class="sector" data-angle="270" style="--sector-index: 17; --base-color: #b7b5ab" fill="#b7b5ab" d="M 800 800 L 0 800 A 800 800 0 0 1 27.259 592.945 Z" />
-    <path class="sector" data-angle="285" style="--sector-index: 18; --base-color: #cdccc2" fill="#cdccc2" d="M 800 800 L 27.259 592.945 A 800 800 0 0 1 107.18 400 Z" />
-    <path class="sector" data-angle="300" style="--sector-index: 19; --base-color: #d9d7cd" fill="#d9d7cd" d="M 800 800 L 107.18 400 A 800 800 0 0 1 234.315 234.315 Z" />
-    <path class="sector" data-angle="315" style="--sector-index: 20; --base-color: #e5e3d8" fill="#e5e3d8" d="M 800 800 L 234.315 234.315 A 800 800 0 0 1 400 107.18 Z" />
-    <path class="sector" data-angle="330" style="--sector-index: 21; --base-color: #f1efe3" fill="#f1efe3" d="M 800 800 L 400 107.18 A 800 800 0 0 1 592.945 27.259 Z" />
-    <path class="sector" data-angle="345" style="--sector-index: 22; --base-color: #e5e3d8" fill="#e5e3d8" d="M 800 800 L 592.945 27.259 A 800 800 0 0 1 800 0 Z" />
-  </g>
+  <!-- 区切り線(幅8)と中央の円(r32)は mask を使わずパス形状で抜く（SP での低解像度ラスタライズ対策）。 -->
+  <path class="sector" data-angle="0" style="--sector-index: 0; --base-color: #d9d7cd" fill="#d9d7cd" d="M 804.000 768.251 L 804.000 4.010 A 796 796 0 0 1 1002.154 30.097 L 804.354 768.298 A 32 32 0 0 0 804.000 768.251 Z" />
+  <path class="sector" data-angle="15" style="--sector-index: 1; --base-color: #cdccc2" fill="#cdccc2" d="M 812.081 770.368 L 1009.881 32.168 A 796 796 0 0 1 1194.531 108.652 L 812.410 770.505 A 32 32 0 0 0 812.081 770.368 Z" />
+  <path class="sector" data-angle="30" style="--sector-index: 2; --base-color: #b7b5ab" fill="#b7b5ab" d="M 819.339 774.505 L 1201.459 112.652 A 796 796 0 0 1 1360.021 234.322 L 819.622 774.722 A 32 32 0 0 0 819.339 774.505 Z" />
+  <path class="sector" data-angle="45" style="--sector-index: 3; --base-color: #868480" fill="#868480" d="M 825.278 780.378 L 1365.678 239.979 A 796 796 0 0 1 1487.348 398.541 L 825.495 780.661 A 32 32 0 0 0 825.278 780.378 Z" />
+  <path class="sector" data-angle="60" style="--sector-index: 4; --base-color: #6f6e69" fill="#6f6e69" d="M 829.495 787.590 L 1491.348 405.469 A 796 796 0 0 1 1567.832 590.119 L 829.632 787.919 A 32 32 0 0 0 829.495 787.590 Z" />
+  <path class="sector" data-angle="75" style="--sector-index: 5; --base-color: #585653" fill="#585653" d="M 831.702 795.646 L 1569.903 597.846 A 796 796 0 0 1 1595.990 796.000 L 831.749 796.000 A 32 32 0 0 0 831.702 795.646 Z" />
+  <path class="sector" data-angle="90" style="--sector-index: 6; --base-color: #3f3e3c" fill="#3f3e3c" d="M 831.749 804.000 L 1595.990 804.000 A 796 796 0 0 1 1569.903 1002.154 L 831.702 804.354 A 32 32 0 0 0 831.749 804.000 Z" />
+  <path class="sector" data-angle="105" style="--sector-index: 7; --base-color: #343331" fill="#343331" d="M 829.632 812.081 L 1567.832 1009.881 A 796 796 0 0 1 1491.348 1194.531 L 829.495 812.410 A 32 32 0 0 0 829.632 812.081 Z" />
+  <path class="sector" data-angle="120" style="--sector-index: 8; --base-color: #282726" fill="#282726" d="M 825.495 819.339 L 1487.348 1201.459 A 796 796 0 0 1 1365.678 1360.021 L 825.278 819.622 A 32 32 0 0 0 825.495 819.339 Z" />
+  <path class="sector" data-angle="135" style="--sector-index: 9; --base-color: #1c1b1a" fill="#1c1b1a" d="M 819.622 825.278 L 1360.021 1365.678 A 796 796 0 0 1 1201.459 1487.348 L 819.339 825.495 A 32 32 0 0 0 819.622 825.278 Z" />
+  <path class="sector" data-angle="165" style="--sector-index: 10; --base-color: #1c1b1a" fill="#1c1b1a" d="M 804.354 831.702 L 1002.154 1569.903 A 796 796 0 0 1 804.000 1595.990 L 804.000 831.749 A 32 32 0 0 0 804.354 831.702 Z" />
+  <path class="sector" data-angle="180" style="--sector-index: 11; --base-color: #282726" fill="#282726" d="M 796.000 831.749 L 796.000 1595.990 A 796 796 0 0 1 597.846 1569.903 L 795.646 831.702 A 32 32 0 0 0 796.000 831.749 Z" />
+  <path class="sector" data-angle="195" style="--sector-index: 12; --base-color: #343331" fill="#343331" d="M 787.919 829.632 L 590.119 1567.832 A 796 796 0 0 1 405.469 1491.348 L 787.590 829.495 A 32 32 0 0 0 787.919 829.632 Z" />
+  <path class="sector" data-angle="210" style="--sector-index: 13; --base-color: #3f3e3c" fill="#3f3e3c" d="M 780.661 825.495 L 398.541 1487.348 A 796 796 0 0 1 239.979 1365.678 L 780.378 825.278 A 32 32 0 0 0 780.661 825.495 Z" />
+  <path class="sector" data-angle="225" style="--sector-index: 14; --base-color: #585653" fill="#585653" d="M 774.722 819.622 L 234.322 1360.021 A 796 796 0 0 1 112.652 1201.459 L 774.505 819.339 A 32 32 0 0 0 774.722 819.622 Z" />
+  <path class="sector" data-angle="240" style="--sector-index: 15; --base-color: #6f6e69" fill="#6f6e69" d="M 770.505 812.410 L 108.652 1194.531 A 796 796 0 0 1 32.168 1009.881 L 770.368 812.081 A 32 32 0 0 0 770.505 812.410 Z" />
+  <path class="sector" data-angle="255" style="--sector-index: 16; --base-color: #868480" fill="#868480" d="M 768.298 804.354 L 30.097 1002.154 A 796 796 0 0 1 4.010 804.000 L 768.251 804.000 A 32 32 0 0 0 768.298 804.354 Z" />
+  <path class="sector" data-angle="270" style="--sector-index: 17; --base-color: #b7b5ab" fill="#b7b5ab" d="M 768.251 796.000 L 4.010 796.000 A 796 796 0 0 1 30.097 597.846 L 768.298 795.646 A 32 32 0 0 0 768.251 796.000 Z" />
+  <path class="sector" data-angle="285" style="--sector-index: 18; --base-color: #cdccc2" fill="#cdccc2" d="M 770.368 787.919 L 32.168 590.119 A 796 796 0 0 1 108.652 405.469 L 770.505 787.590 A 32 32 0 0 0 770.368 787.919 Z" />
+  <path class="sector" data-angle="300" style="--sector-index: 19; --base-color: #d9d7cd" fill="#d9d7cd" d="M 774.505 780.661 L 112.652 398.541 A 796 796 0 0 1 234.322 239.979 L 774.722 780.378 A 32 32 0 0 0 774.505 780.661 Z" />
+  <path class="sector" data-angle="315" style="--sector-index: 20; --base-color: #e5e3d8" fill="#e5e3d8" d="M 780.378 774.722 L 239.979 234.322 A 796 796 0 0 1 398.541 112.652 L 780.661 774.505 A 32 32 0 0 0 780.378 774.722 Z" />
+  <path class="sector" data-angle="330" style="--sector-index: 21; --base-color: #f1efe3" fill="#f1efe3" d="M 787.590 770.505 L 405.469 108.652 A 796 796 0 0 1 590.119 32.168 L 787.919 770.368 A 32 32 0 0 0 787.590 770.505 Z" />
+  <path class="sector" data-angle="345" style="--sector-index: 22; --base-color: #e5e3d8" fill="#e5e3d8" d="M 795.646 768.298 L 597.846 30.097 A 796 796 0 0 1 796.000 4.010 L 796.000 768.251 A 32 32 0 0 0 795.646 768.298 Z" />
 </svg>

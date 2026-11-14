@@ -4,7 +4,53 @@
   --gutter-inline: calc((1520 - (var(--inline-content-size-val))) * 1px / 2);
   --base-font-size: clamp(20px, 2cqi, 2.8rem);
   --color-highlight: #d9b26f;
-  
+
+  /* ---------------------------
+  Semantic tokens (紙 + インク + オレンジ)
+  ページ側では基本こちらを参照し、下のパレットは直接使わない
+  --------------------------- */
+  --color-bg: var(--paper);
+  --color-bg-sub: var(--base-50);
+  --color-ink: var(--black);
+  --color-muted: var(--base-600); /* on paper 4.97:1 */
+  --color-rule: var(--base-200); /* 細い区切り線 */
+  --color-rule-strong: var(--black); /* セクションを区切る強い罫線 */
+  --color-accent: var(--orange-400); /* 図形・大きな文字用 (on paper 3.2:1) */
+  --color-accent-text: var(--orange-600); /* 小さな文字用 (on paper 4.7:1) */
+
+  --color-inverse-bg: var(--base-950);
+  --color-inverse-text: var(--paper);
+  --color-inverse-muted: var(--base-400);
+  --color-inverse-rule: var(--base-800);
+  --color-inverse-accent: var(--orange-300);
+
+  --font-sans:
+    "monsterrat",
+    "zenkaku-gothic-new",
+    "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    "Noto Sans JP",
+    "BIZ UDPGothic",
+    sans-serif;
+
+  /* Type scale */
+  --fs-display: clamp(2.75rem, 1.55rem + 6vw, 7rem);
+  --fs-title: clamp(1.75rem, 1.2rem + 2.6vw, 3.25rem);
+  --fs-heading: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --fs-label: 0.75rem;
+  --tracking-label: 0.14em;
+  --tracking-display: -0.035em;
+  --leading-body: 1.9;
+
+  /* Layout */
+  --page-gutter: 1.25rem;
+  --grid-gap: clamp(1.5rem, 4vw, 4rem);
+  --header-block-size: 3.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Base */
   --base-50: #F2F0E5;
@@ -143,4 +189,11 @@
 
   --black: #100f0f;
   --paper: #fffcf0;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --page-gutter: var(--gutter-inline);
+    --header-block-size: 4.25rem;
+  }
 }

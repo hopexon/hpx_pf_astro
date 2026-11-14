@@ -1,86 +1,123 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 
-interface Props extends Omit<HTMLAttributes<'section'>, 'class'> {
+// 左に「番号 + 見出し」、右に本文を置く罫線区切りのセクション。
+// 番号は CSS カウンタで自動採番されるので、並べるだけでよい。
+interface Props extends Omit<HTMLAttributes<'section'>, 'class' | 'title'> {
   /** 追加クラス (文字列 / 配列 / オブジェクト) */
   class?: string | string[] | Record<string, boolean>
+  /** セクション見出し (h2)。省略すると見出し列なしの1カラムになる */
+  title?: string
+  /** 見出しに付ける id (aria-labelledby 用) */
+  titleId?: string
 }
 
-const { class: className, ...rest } = Astro.props
+const { class: className, title, titleId, ...rest } = Astro.props
 ---
 
-<section class:list={['panel-section', className]} {...rest}>
-  <slot />
+<section class:list={['panel-section', { 'panel-section--titled': title }, className]} {...rest}>
+  {
+    title && (
+      <header class="panel-section__head">
+        <h2 class="panel-section__ttl" id={titleId}>{title}</h2>
+      </header>
+    )
+  }
+  <div class="panel-section__body">
+    <slot />
+  </div>
 </section>
 
 <style>
+  :global(main) {
+    counter-reset: panel-section;
+  }
+
   .panel-section {
-    --padding-block: 3rem;
-    --padding-inline: 2rem;
-    --inline-size: 100%;
-    --border: 3px solid var(--paper);
-    --filter: drop-shadow(10px 10px 0 rgba(0, 0, 0, 1));
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 1.75rem;
+    padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+    font-family: var(--font-sans);
+    border-block-start: 1px solid var(--color-rule-strong);
+    counter-increment: panel-section;
 
-    padding-block: var(--padding-block);
-    padding-inline: var(--padding-inline);
-    inline-size: var(--inline-size);
-    color: var(--paper);
-    background-color: var(--base-950);
-    border: var(--border);
-    filter: var(--filter);
-
-    @media screen and (min-width: 768px) {
-      --padding-inline: 3rem 6rem;
-      --inline-size: fit-content;
-      --border: 6px solid var(--paper);
-      --filter: drop-shadow(30px 30px 0 rgba(0, 0, 0, 1));
+    @media screen and (min-width: 900px) {
+      column-gap: var(--grid-gap);
     }
   }
 
-  .panel-section + .panel-section {
-    --margin-block-start: 4rem;
-
-    margin-block-start: var(--margin-block-start);
-
-    @media screen and (min-width: 768px) {
-      --margin-block-start: 6rem;
+  @media screen and (min-width: 900px) {
+    .panel-section--titled {
+      grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
     }
+  }
+
+  .panel-section__head {
+    display: grid;
+    align-content: start;
+    row-gap: 0.75rem;
+
+    @media screen and (min-width: 900px) {
+      position: sticky;
+      inset-block-start: calc(var(--header-block-size) + 2rem);
+      align-self: start;
+    }
+  }
+
+  .panel-section__head::before {
+    content: counter(panel-section, decimal-leading-zero);
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    color: var(--color-accent-text);
+  }
+
+  .panel-section__ttl {
+    font-size: var(--fs-heading);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+
+  .panel-section__body {
+    min-inline-size: 0;
+    line-height: var(--leading-body);
   }
 
   /* スロット内要素 */
-  .panel-section :global(:where(h2)) {
-    color: var(--orange-200);
+  .panel-section__body :global(:where(p)) {
+    max-inline-size: 40em;
   }
 
-  .panel-section :global(:where(h3, dt)) {
-    color: var(--orange-300);
+  .panel-section__body :global(:where(p + p)) {
+    margin-block-start: 1em;
   }
 
-  .panel-section :global(:where(h3:not(:first-of-type))) {
-    margin-block-start: 3rem;
+  .panel-section__body :global(:where(h3)) {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.5;
   }
 
-  .panel-section :global(:where(h2 + :is(h3, p, dl, ul))) {
-    margin-block-start: 1rem;
+  /* 箇条書きは「横棒」で揃える */
+  .panel-section__body :global(:where(ul)) {
+    display: grid;
+    row-gap: 0.75rem;
+    padding: 0;
+    max-inline-size: 44em;
+    list-style: none;
   }
 
-  .panel-section :global(:where(p, dl, dt, dd, ul)) {
-    line-height: 1.7;
+  .panel-section__body :global(:where(ul > li)) {
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr);
+    column-gap: 0.875rem;
   }
 
-  .panel-section :global(:where(dt)) {
-    font-size: 1.25rem;
-  }
-
-  .panel-section :global(:where(dl > dt:not(:first-of-type))) {
-    margin-block-start: 3rem;
-  }
-
-  .panel-section :global(:where(p + p)) {
-    margin-block-start: 1rem;
-  }
-
-  .panel-section :global(:where(ul)) {
-    list-style-type: disc;
+  .panel-section__body :global(:where(ul > li)::before) {
+    content: '';
+    margin-block-start: calc(0.5lh - 1px);
+    border-block-start: 2px solid var(--color-accent);
   }
 </style>

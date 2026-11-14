@@ -23,8 +23,9 @@ interface Props {
     <ClientRouter />
 	</head>
 	<body>
+    <a href="#main" class="skip__link visually-hidden">本文へスキップ</a>
     <GlobalHeader transition: persist />
-	<main>
+	<main id="main">
     <slot />
   </main>
     <ToTopScroll />
