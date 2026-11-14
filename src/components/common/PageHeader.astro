@@ -1,0 +1,20 @@
+---
+// ページ冒頭の見出しブロック。スタイルは utilities.css の .page__header 系を参照
+// (h1.page__ttl を単体で置いているページと見え方を揃えるためグローバル側に置いている)
+interface Props {
+  title: string
+  /** タイトル上の小さなラベル (例: "02 — About") */
+  eyebrow?: string
+  /** タイトル下のリード文 */
+  lead?: string
+}
+
+const { title, eyebrow, lead } = Astro.props
+---
+
+<header class="page__header">
+  {eyebrow && <p class="page__eyebrow">{eyebrow}</p>}
+  <h1 class="page__ttl" set:html={title} />
+  {lead && <p class="page__lead" set:html={lead} />}
+  <slot />
+</header>

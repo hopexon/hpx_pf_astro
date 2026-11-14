@@ -1,60 +1,157 @@
-<div class="indexmenu">
-  <div class="indexmenu__linkitem__wrap">
-    {
-      Astro.props.menuList.map((item: { name: string; path: string }) => (
-        <a href={item.path} class="linkitem__link link__twister">
-          {item.name}
+---
+interface MenuItem {
+  name: string
+  path: string
+  /** 行の右側に出す補足 (任意) */
+  description?: string
+}
+
+interface Props {
+  menuList: MenuItem[]
+}
+
+const { menuList } = Astro.props
+---
+
+<ol class="indexmenu">
+  {
+    menuList.map((item, index) => (
+      <li class="indexmenu__item">
+        <a href={item.path} class="indexmenu__link">
+          <span class="indexmenu__num" aria-hidden="true">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <span class="indexmenu__name">{item.name}</span>
+          {item.description && <span class="indexmenu__desc">{item.description}</span>}
+          <span class="indexmenu__mark" aria-hidden="true" />
         </a>
-      ))
-    }
-  </div>
-</div>
+      </li>
+    ))
+  }
+</ol>
 
 <style>
   .indexmenu {
-    --max-block-size: calc(600 / 16 * 1rem);
-    --inline-size: 90dvw;
-    --max-inline-size: calc(500 / 16 * 1rem);
-    --filter-drop-shadow: drop-shadow(10px 10px 0 rgba(0, 0, 0, 1));
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-family: var(--font-sans);
+    border-block-start: 1px solid var(--color-rule-strong);
+  }
 
-    overflow: auto;
-    margin-inline: auto;
-    block-size: 70svh;
-    max-block-size: var(--max-block-size);
-    inline-size: var(--inline-size);
-    max-inline-size: var(--max-inline-size);
-    color: var(--paper);
-    background-color: var(--base-950);
-    border: 6px solid var(--paper);
-    filter: var(--filter-drop-shadow);
-    /* transform: var(--transform); */
+  .indexmenu__item {
+    margin: 0;
+    text-indent: 0;
+    border-block-end: 1px solid var(--color-rule-strong);
+  }
+
+  .indexmenu__link {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr) 1.5rem;
+    grid-template-areas:
+      'num name mark'
+      '.   desc mark';
+    align-items: baseline;
+    column-gap: 0.5rem;
+    padding: 1.25rem 1rem;
+    transition:
+      color 0.25s ease-out;
 
     @media screen and (min-width: 768px) {
-      --inset-block-start: 11rem;
-      --inset-inline-start: auto;
-      --max-block-size: calc(700 / 16 * 1rem);
-      --inline-size: 50vw;
-      --max-inline-size: calc((1300 / 2) / 16 * 1rem);
-      --filter-drop-shadow: drop-shadow(30px 30px 0 rgba(0, 0, 0, 1));
-      --transform: translate(0, 0);
-
-      --inset-inline-end: calc(54 / 16 * 1rem);
-
-      inset-inline-end: var(--inset-inline-end);
-    }
-
-    @media screen and (min-width: 1400px) {
-      --inset-inline-end: calc(50vw - calc(640 / 16 * 1rem));
-    }
-
-    h2 {
-      color: var(--paper);
-      border-bottom: none;
+      grid-template-columns: 5rem minmax(0, 1fr) minmax(0, 1.4fr) 2rem;
+      grid-template-areas: 'num name desc mark';
+      column-gap: 1.5rem;
+      padding-block: clamp(1.25rem, 0.8rem + 1.2vw, 2rem);
     }
   }
 
-  .indexmenu__linkitem__wrap {
-    padding-inline-start: 2rem;
-    margin-block-start: 3rem;
+  /* hover でインクの面が上から覆いかぶさる */
+  .indexmenu__link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-inverse-bg);
+    scale: 1 0;
+    transform-origin: center top;
+    transition: scale 0.45s var(--ease-out);
+    z-index: -1;
+  }
+
+  .indexmenu__num {
+    grid-area: num;
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    color: var(--color-accent-text);
+    transition: color 0.25s ease-out;
+  }
+
+  .indexmenu__name {
+    grid-area: name;
+    font-size: var(--fs-title);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+  }
+
+  .indexmenu__desc {
+    grid-area: desc;
+    margin-block-start: 0.375rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-muted);
+    transition: color 0.25s ease-out;
+
+    @media screen and (min-width: 768px) {
+      margin-block-start: 0;
+      font-size: 0.9375rem;
+    }
+  }
+
+  /* サイト共通の「倒れる縦棒」 */
+  .indexmenu__mark {
+    grid-area: mark;
+    align-self: center;
+    justify-self: end;
+    inline-size: 1.25rem;
+    border-block-start: 2px solid currentColor;
+    rotate: 90deg;
+    transition:
+      rotate 0.45s var(--ease-out),
+      border-color 0.25s ease-out;
+
+    @media screen and (min-width: 768px) {
+      inline-size: 1.75rem;
+    }
+  }
+
+  @media (any-hover: hover) {
+    .indexmenu__link:hover {
+      /* padding-inline: 1rem; */
+      color: var(--color-inverse-text);
+    }
+
+    .indexmenu__link:hover::before {
+      scale: 1 1;
+    }
+
+    .indexmenu__link:hover .indexmenu__num {
+      color: var(--color-inverse-accent);
+    }
+
+    .indexmenu__link:hover .indexmenu__desc {
+      color: var(--color-inverse-muted);
+    }
+
+    .indexmenu__link:hover .indexmenu__mark {
+      rotate: 180deg;
+      border-color: var(--color-inverse-accent);
+    }
+  }
+
+  .indexmenu__link:focus-visible {
+    outline-offset: -2px;
   }
 </style>
