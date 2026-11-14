@@ -2,6 +2,23 @@
 import Layout from "../../layouts/Layout.astro";
 import IndexMenu from "../../components/common/IndexMenu.astro";
 import { groupWorks, workAnchorId } from "../../lib/works";
+import logoSvgRaw from "../../../public/hpx_logo_header.svg?raw";
+
+// ヒーローのロゴはインライン SVG にして、扇形ごとに「現在の角度」に応じた色を付ける。
+// - 各扇形に --angle（12時から時計回りの開始角）を持たせ、CSS 側でアニメーションの位相をずらす
+// - hpx_logo.svg と同じ横断する白線3本を、背景色の線として重ねる
+const heroLogoSvg = logoSvgRaw
+  .replace(/<svg([^>]*?)\srole="img"\saria-label="[^"]*"/, '<svg$1 aria-hidden="true" focusable="false"')
+  .replace(/data-angle="(\d+)" style="/g, 'data-angle="$1" style="--angle: $1; ')
+  .replace(
+    "</svg>",
+    `<g class="cut" fill="none" stroke-width="8">
+      <path d="M 400 107 L 800 670" />
+      <path d="M 1205 397 L 800 1205" />
+      <path d="M 27 594 L 1004 1558" />
+    </g>
+  </svg>`,
+  );
 
 const menuList = [
   { name: "About", path: "/about", description: "どちら様ですか" },
@@ -42,14 +59,7 @@ const recentWorks = groupWorks()
           Also offer hand-drawn flyer and poster design.
         </p> -->
       </div>
-      <img
-        class="hero__logo"
-        src="/hpx_logo_header.svg"
-        alt=""
-        width="640"
-        height="640"
-        fetchpriority="high"
-      />
+      <div class="hero__logo" set:html={heroLogoSvg} />
     </div>
   </section>
 
@@ -148,14 +158,27 @@ const recentWorks = groupWorks()
   }
 
   /* ロゴは右側で大きく見切れさせ、ゆっくり回す。
-    SP では文字と重ならないようコピーの上に置き、PC では右側に重ねる */
+    SP では文字と重ならないようコピーの上に置き、PC では右側に重ねる。
+    回転しても光源が動かないよう、各扇形の色は「今いる角度」で決める（下の sector-light） */
   .hero__logo {
+    --spin-duration: 180s;
+
     order: -1;
     justify-self: end;
     margin-block-end: 1.5rem;
     margin-inline-end: -24vw;
     inline-size: min(84vw, 26rem);
-    block-size: auto;
+    aspect-ratio: 1;
+
+    :global(svg) {
+      display: block;
+      inline-size: 100%;
+      block-size: 100%;
+    }
+
+    :global(.cut) {
+      stroke: var(--color-bg);
+    }
 
     @media screen and (min-width: 900px) {
       position: absolute;
@@ -167,7 +190,14 @@ const recentWorks = groupWorks()
     }
 
     @media (prefers-reduced-motion: no-preference) {
-      animation: hero-spin 180s linear infinite;
+      animation: hero-spin var(--spin-duration) linear infinite;
+
+      /* 回転と同じ周期で色を巡回させ、扇形の開始角ぶん位相を進める。
+        これで各扇形は単色のまま、画面上の同じ位置では常に同じ明るさになる */
+      :global(.sector) {
+        animation: sector-light var(--spin-duration) linear infinite;
+        animation-delay: calc(var(--spin-duration) * var(--angle) / -360);
+      }
     }
   }
 
@@ -175,6 +205,35 @@ const recentWorks = groupWorks()
     to {
       rotate: 360deg;
     }
+  }
+
+  /* 画面上の角度（12時から時計回り、扇形の開始角）ごとの色。元 SVG の配色そのもので、
+    最も明るいのは左上（330deg）、最も暗いのは右下の欠け付近（135〜165deg） */
+  @keyframes sector-light {
+    0%      { fill: #d9d7cd; }
+    4.167%  { fill: #cdccc2; }
+    8.333%  { fill: #b7b5ab; }
+    12.5%   { fill: #868480; }
+    16.667% { fill: #6f6e69; }
+    20.833% { fill: #585653; }
+    25%     { fill: #3f3e3c; }
+    29.167% { fill: #343331; }
+    33.333% { fill: #282726; }
+    37.5%   { fill: #1c1b1a; }
+    45.833% { fill: #1c1b1a; }
+    50%     { fill: #282726; }
+    54.167% { fill: #343331; }
+    58.333% { fill: #3f3e3c; }
+    62.5%   { fill: #585653; }
+    66.667% { fill: #6f6e69; }
+    70.833% { fill: #868480; }
+    75%     { fill: #b7b5ab; }
+    79.167% { fill: #cdccc2; }
+    83.333% { fill: #d9d7cd; }
+    87.5%   { fill: #e5e3d8; }
+    91.667% { fill: #f1efe3; }
+    95.833% { fill: #e5e3d8; }
+    100%    { fill: #d9d7cd; }
   }
 
   /* ---------------------------
