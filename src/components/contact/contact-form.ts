@@ -4,7 +4,7 @@ interface Turnstile {
   render(container: HTMLElement, options: {
     sitekey: string
     action: string
-    theme: 'dark'
+    theme: 'light' | 'dark' | 'auto'
     size: 'compact' | 'flexible'
     'response-field': false
     retry: 'never'
@@ -111,7 +111,7 @@ class ContactForm extends HTMLElement {
       this.#widgetId = api.render(container, {
         sitekey: this.dataset.siteKey!,
         action: 'contact',
-        theme: 'dark',
+        theme: 'light',
         size: container.clientWidth < 300 ? 'compact' : 'flexible',
         'response-field': false,
         retry: 'never',

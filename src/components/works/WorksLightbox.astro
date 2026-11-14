@@ -1,0 +1,130 @@
+---
+/**
+ * Works の画像拡大モーダル (PC のみ)。ページに 1つだけ置き、.artwork__zoom から開く。
+ * 共通の dialog 挙動 (中央寄せ / scroll lock / 開閉トランジション) は styles/modal.css。
+ */
+---
+
+<works-lightbox>
+<dialog class="lightbox" id="works-lightbox" aria-labelledby="works-lightbox-caption" closedby="any">
+  <figure class="lightbox__figure">
+    <img class="lightbox__img" src="data:," alt="" decoding="async" />
+    <figcaption class="lightbox__caption" id="works-lightbox-caption"></figcaption>
+  </figure>
+  <button type="button" class="lightbox__close" aria-label="閉じる" autofocus>
+    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+      <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" fill="none" />
+    </svg>
+  </button>
+</dialog>
+</works-lightbox>
+
+<script>
+  const PC_QUERY = '(min-width: 900px)'
+
+  /*
+    nav-dialog / contact-form と同じくカスタム要素にする。
+    ClientRouter で遷移してもブラウザが要素ごとに connectedCallback / disconnectedCallback を呼ぶので、
+    /works に何度来ても新しい DOM で初期化され、離れるときにリスナーが解除される。
+    (バンドルされた <script> 自体は 1 回しか実行されないため、トップレベルで DOM を掴む書き方は不可)
+  */
+  class WorksLightbox extends HTMLElement {
+    #events?: AbortController
+    #mq = window.matchMedia(PC_QUERY)
+    #dialog!: HTMLDialogElement
+    #img!: HTMLImageElement
+    #caption!: HTMLElement
+    #triggers: HTMLButtonElement[] = []
+    #lastTrigger: HTMLButtonElement | null = null
+
+    connectedCallback() {
+      this.#dialog = this.querySelector('dialog')!
+      this.#img = this.querySelector('.lightbox__img')!
+      this.#caption = this.querySelector('.lightbox__caption')!
+      const closeButton = this.querySelector<HTMLButtonElement>('.lightbox__close')!
+      // 拡大ボタンは各作品 (WorksList) 側にあるので、ページ全体から探す
+      this.#triggers = [...document.querySelectorAll<HTMLButtonElement>('.artwork__zoom')]
+
+      this.#events = new AbortController()
+      const { signal } = this.#events
+
+      this.#syncEnabled()
+      this.#mq.addEventListener('change', this.#syncEnabled, { signal })
+
+      for (const trigger of this.#triggers) {
+        // ホバー / キーボードフォーカス時に item__hover を付与
+        const on = () => {
+          if (this.#mq.matches && !trigger.disabled) trigger.classList.add('item__hover')
+        }
+        const off = () => trigger.classList.remove('item__hover')
+        trigger.addEventListener('pointerenter', on, { signal })
+        trigger.addEventListener('pointerleave', off, { signal })
+        trigger.addEventListener('focus', () => trigger.matches(':focus-visible') && on(), { signal })
+        trigger.addEventListener('blur', off, { signal })
+        trigger.addEventListener('click', () => this.#open(trigger), { signal })
+      }
+
+      closeButton.addEventListener('click', this.#close, { signal })
+      // Esc / closedby="any" の light dismiss は cancel を経由する
+      this.#dialog.addEventListener('cancel', this.#onCancel, { signal })
+      // closedby 非対応 (Safari) 向け: 画像以外 (dialog 自身 = 余白部分) のクリックで閉じる
+      this.#dialog.addEventListener('click', this.#onDialogClick, { signal })
+      this.#dialog.addEventListener('close', this.#onClosed, { signal })
+    }
+
+    disconnectedCallback() {
+      this.#events?.abort()
+      this.#triggers = []
+      this.#lastTrigger = null
+    }
+
+    // PC レイアウトでだけボタンとして有効にする
+    #syncEnabled = () => {
+      const enabled = this.#mq.matches
+      for (const trigger of this.#triggers) {
+        trigger.disabled = !enabled
+        if (!enabled) trigger.classList.remove('item__hover')
+      }
+      if (!enabled && this.#dialog.open) this.#dialog.close()
+    }
+
+    #open(trigger: HTMLButtonElement) {
+      const { zoomSrc, zoomAlt, zoomWidth, zoomHeight, zoomCaption } = trigger.dataset
+      if (!zoomSrc) return
+      this.#img.src = zoomSrc
+      this.#img.alt = zoomAlt ?? ''
+      this.#img.width = Number(zoomWidth)
+      this.#img.height = Number(zoomHeight)
+      this.#caption.textContent = zoomCaption ?? ''
+      this.#lastTrigger = trigger
+      this.#dialog.removeAttribute('data-closing')
+      this.#dialog.showModal()
+    }
+
+    // 閉じるアニメーション: overlay 非対応ブラウザでも消えるまで待ってから close する
+    #close = async () => {
+      const dialog = this.#dialog
+      if (!dialog.open || dialog.hasAttribute('data-closing')) return
+      dialog.setAttribute('data-closing', '')
+      await Promise.allSettled(dialog.getAnimations({ subtree: true }).map((a) => a.finished))
+      dialog.close()
+    }
+
+    #onCancel = (event: Event) => {
+      event.preventDefault()
+      void this.#close()
+    }
+
+    #onDialogClick = (event: MouseEvent) => {
+      if (event.target === this.#dialog) void this.#close()
+    }
+
+    #onClosed = () => {
+      this.#dialog.removeAttribute('data-closing')
+      this.#lastTrigger?.classList.remove('item__hover')
+      this.#lastTrigger?.focus({ preventScroll: true })
+    }
+  }
+
+  customElements.define('works-lightbox', WorksLightbox)
+</script>

@@ -8,41 +8,49 @@ const NAV = [
   { name: 'Contact', path: '/contact' },
   // { name: 'Collections', path: '/collections' }
 ]
+
+const pathname = Astro.url.pathname
+const isCurrent = (path: string) => pathname === path || pathname.startsWith(`${path}/`)
 ---
 
 <header class='globalheader'>
-  <nav class='global__nav__pc pc__only'>
-    {
-      NAV.map((item) => (
-        <a
-          href={item.path}
-          class='nav__linkItem link__twister'
-        >
-          {item.name}
-        </a>
-      ))
-    }
-  </nav>
+  <div class='globalheader__inner'>
+    <a
+      href='/'
+      class='global__logo item__hover'
+      aria-label='トップへ戻る'>
+      <img
+        src='/hpx_logo_header.svg'
+        alt=''
+        width='28'
+        height='28'
+      />
+      <span aria-hidden='true'>HPX</span>
+    </a>
 
-  <a
-    href='/'
-    class='global__logo pc__only'
-    aria-label='トップへ戻る'>
-    <img
-      src='/hpx_logo_header.svg'
-      alt=''
-      width='32'
-      height='32'
-    />
-  </a>
+    <nav class='global__nav__pc' aria-label='メインメニュー'>
+      {
+        NAV.map((item) => (
+          <a
+            href={item.path}
+            class='nav__linkItem'
+            data-nav-link
+            aria-current={isCurrent(item.path) ? 'page' : undefined}
+          >
+            {item.name}
+          </a>
+        ))
+      }
+    </nav>
 
-  <button
-    type='button'
-    command='show-modal'
-    commandfor='nav__sp'
-    class='nav__btn__sp sp__only'
-    aria-label='メニュー'>
-  </button>
+    <button
+      type='button'
+      command='show-modal'
+      commandfor='nav__sp'
+      class='nav__btn__sp'>
+      Menu
+    </button>
+  </div>
 
   <nav-dialog>
   <dialog
@@ -50,36 +58,45 @@ const NAV = [
     closedby='any'
     aria-label='メニュー'
   >
-    <nav class='nav__sp__linkitem__wrap'>
+    <div class='nav__sp__head'>
+      <a
+        href='/'
+        class='global__logo'
+        aria-label='トップへ戻る'>
+        <img
+          src='/hpx_logo_header.svg'
+          alt=''
+          width='28'
+          height='28'
+        />
+        <span aria-hidden='true'>HPX</span>
+      </a>
+      <button
+        type='button'
+        command='close'
+        commandfor='nav__sp'
+        class='nav__close__sp'>
+        Close
+      </button>
+    </div>
+    <nav class='nav__sp__linkitem__wrap' aria-label='メインメニュー'>
       {
         NAV.map((item) => (
           <a
             href={item.path}
-            class='linkitem__link link__twister'
+            class='nav__sp__link'
+            data-nav-link
+            aria-current={isCurrent(item.path) ? 'page' : undefined}
           >
             {item.name}
           </a>
         ))
       }
     </nav>
-    <a
-      href='/'
-      class='nav__logo__sp'
-      aria-label='トップへ戻る'>
-      <img
-        src='/hpx_logo_header.svg'
-        alt=''
-        width='40'
-        height='40'
-      />
-    </a>
-    <button
-      type='button'
-      command='close'
-      commandfor='nav__sp'
-      class='nav__close__sp'
-      aria-label='メニューを閉じる'>
-    </button>
+    <p class='nav__sp__foot'>
+      <span>Kiyotaka Dekke</span>
+      <span>Sapporo, Japan</span>
+    </p>
   </dialog>
   </nav-dialog>
 </header>
@@ -89,6 +106,7 @@ const NAV = [
   import 'dialog-closedby-polyfill';
 
   // ダイアログ領域外(::backdrop)押下で閉じる。closedby/polyfill に依存しない保険
+  // 全画面表示のため実質はリンク押下時に閉じる役割が中心
   class NavDialog extends HTMLElement {
     connectedCallback() {
       this.addEventListener('click', this.#onClick)
@@ -97,12 +115,34 @@ const NAV = [
       this.removeEventListener('click', this.#onClick)
     }
     #onClick = (e: Event) => {
-      const dialog = e.target
-      if (!(dialog instanceof HTMLDialogElement) || !dialog.open) return
+      const dialog = this.querySelector('dialog')
+      if (!dialog?.open) return
+
+      // ヘッダーは transition:persist で遷移後も残るため、リンクを押したら明示的に閉じる
+      if (e.target instanceof Element && e.target.closest('a[href]')) {
+        dialog.close()
+        return
+      }
+
+      if (e.target !== dialog) return
       const { clientX: x, clientY: y } = e as MouseEvent
       const r = dialog.getBoundingClientRect()
       if (x < r.left || x > r.right || y < r.top || y > r.bottom) dialog.close()
     }
   }
   customElements.define('nav-dialog', NavDialog)
+
+  // ヘッダー / フッターは transition:persist で DOM が使い回されるので、
+  // 現在地の表示 (aria-current) は遷移のたびにここで付け直す
+  const syncCurrentNav = () => {
+    const { pathname } = window.location
+    document.querySelectorAll<HTMLAnchorElement>('a[data-nav-link]').forEach((link) => {
+      const path = new URL(link.href).pathname.replace(/\/$/, '')
+      const isCurrent = pathname === path || pathname.startsWith(`${path}/`)
+      if (isCurrent) link.setAttribute('aria-current', 'page')
+      else link.removeAttribute('aria-current')
+    })
+  }
+
+  document.addEventListener('astro:page-load', syncCurrentNav)
 </script>

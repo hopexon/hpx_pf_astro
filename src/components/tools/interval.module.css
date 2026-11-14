@@ -133,24 +133,15 @@ ttl strikethrough
 }
 
 .ttl__note {
-  position: absolute;
-  inset-block-start: 4.5rem;
-  inset-inline-start: 50%;
-  transform: translateX(-50%);
+  padding-inline: var(--page-gutter);
+  margin-block-start: 0.75rem;
+  margin-inline: auto;
+  max-inline-size: var(--inline-content-size);
   min-block-size: 1.5em;
-  color: var(--base-600);
+  font-weight: 600;
+  color: var(--color-muted);
   opacity: 0;
   transition: opacity 0.2s;
-
-  @media screen and (min-width: 398px) {
-    inset-block-start: 2.2rem;
-  }
-
-  @media screen and (min-width: 768px) {
-    inset-block-start: 2.2rem;
-    inset-inline-start: 18.25rem;
-    transform: none;
-  }
 }
 
 .ttl__note__visible {
