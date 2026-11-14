@@ -1,16 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro'
+import PageHeader from '../../components/common/PageHeader.astro'
 import IndexMenu from '../../components/common/IndexMenu.astro'
 import { tipsList } from '../../content/tips/meta'
 
-const menuList = tipsList.map(({ slug, title }) => ({
+const menuList = tipsList.map(({ slug, title, description }) => ({
   name: title,
   path: `/tips/${slug}`,
+  description,
 }))
 ---
 
 <Layout title="Tips" description="Tips for Web Devs and Designs.">
-  <h1 class="page__ttl">Tips</h1>
+  <PageHeader eyebrow="Tips" title="Tips" />
   <section class="section__wrapper">
     <IndexMenu menuList={menuList} />
   </section>
