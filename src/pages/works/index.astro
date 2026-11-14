@@ -1,13 +1,26 @@
 ---
 import Layout from '../../layouts/Layout.astro'
+import PageHeader from '../../components/common/PageHeader.astro'
 import WorksList from '../../components/works/WorksList.astro'
-import { works } from './data'
+import WorksLightbox from '../../components/works/WorksLightbox.astro'
+import { groupWorks } from '../../lib/works'
 import './style.css'
+
+const workGroups = groupWorks()
 ---
 
 <Layout title="Works" description="HPX's Drawing Collections.">
-  <h1 class="page__ttl">Works</h1>
+  <PageHeader
+    eyebrow="Works"
+    title="Works"
+    lead="手描きでのフライヤー、ポスターデザイン。"
+  />
   <section class="section__wrapper">
-    {works.map((work, index) => <WorksList {...work} index={index} />)}
+    {
+      workGroups.map((work, index) => (
+        <WorksList {...work} index={index} total={workGroups.length} />
+      ))
+    }
   </section>
+  <WorksLightbox />
 </Layout>

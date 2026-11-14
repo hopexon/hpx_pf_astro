@@ -1,134 +1,285 @@
-.artwork__wrapper {
-  --margin-block-start: 1rem;
-
+/* 作品1点 = 左にキャプション、右に図版。罫線で区切って並べる */
+.artwork {
   display: grid;
-  grid-template-rows: 1fr;
-  justify-content: center;
-  margin-block-start: var(--margin-block-start);
-  transition-timing-function: ease-in;
-  transition-duration: 500ms;
-  /* FV付近のフェードインがSPでカクつくため */
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 1.5rem;
+  padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  font-family: var(--font-sans);
+  border-block-start: 1px solid var(--color-rule-strong);
+  /* /works#work-01 で飛んできたとき、sticky ヘッダーに罫線が隠れないように */
+  scroll-margin-block-start: var(--header-block-size);
 }
 
-@media screen and (min-width: 768px) {
-  .artwork__wrapper {
-    --margin-block-start: 3rem;
-
-    transition-duration: 800ms;
-    /* PCのみdurationを変更 */
-    transition-timing-function: inherit;
+@media screen and (min-width: 900px) {
+  .artwork {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
+    column-gap: var(--grid-gap);
   }
-}
-
-.artwork__wrapper + .artwork__wrapper {
-  margin-block-start: 16rem;
-}
-
-@media screen and (min-width: 768px) {
-  .artwork__wrapper + .artwork__wrapper {
-    margin-block-start: 40svh;
-  }
-}
-
-.artwork__wrapper:not(:has(.artwork__info)) {
-  margin-block-start: 3rem;
 }
 
 .artwork__info {
-  --column-gap: 0.8rem;
-
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(3, auto);
-  grid-template-areas:
-  'ttl'
-  'date'
-  'venue';
-  align-items: baseline;
-  column-gap: var(--column-gap);
-  margin-inline-start: 0.5em;
-  font-weight: 600;
-  min-block-size: 1px;
+  align-content: start;
+  row-gap: 0.75rem;
 }
 
-/* @media screen and (min-width: 768px) {
+@media screen and (min-width: 900px) {
   .artwork__info {
-    --column-gap: 1.5rem;
-
-    grid-template-areas: 'ttl date venue';
-    grid-template-columns: repeat(3, max-content);
-    grid-template-rows: 1fr;
+    position: sticky;
+    inset-block-start: calc(var(--header-block-size) + 2rem);
+    align-self: start;
   }
-} */
+}
 
-
-.artwork__ttl,
-.artwork__date,
-.artwork__venue {
-  inline-size: fit-content;
+.artwork__num {
+  font-size: var(--fs-label);
   font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-accent-text);
 }
 
-.artwork__date,
-.artwork__venue {
-  --font-size: 1rem;
-
-  font-size: var(--font-size);
-  font-weight: 350;
-}
-
-@media screen and (min-width: 768px) {
-  .artwork__date,
-  .artwork__venue {
-    --font-size: 1.4rem;
-  }
+.artwork__num span {
+  color: var(--color-muted);
 }
 
 .artwork__ttl {
-  grid-area: ttl;
-  font-size: 1.5rem;
+  font-size: var(--fs-title);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
 }
 
-@media screen and (min-width: 768px) {
-  .artwork__ttl {
-    font-size: 2rem;
-  }
+.artwork__ttl--untitled {
+  color: var(--base-400);
 }
 
-.artwork__date {
-  grid-area: date;
+.artwork__meta {
+  display: grid;
+  margin-block-start: 0.5rem;
+  max-inline-size: 22rem;
+  border-block-start: 1px solid var(--color-rule);
 }
 
-.artwork__venue {
-  --margin-block-start: -0.25rem;
-
-  grid-area: venue;
-  margin-block-start: var(--margin-block-start);
+.artwork__meta > div {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  column-gap: 1rem;
+  align-items: baseline;
+  padding-block: 0.5rem;
+  border-block-end: 1px solid var(--color-rule);
 }
 
-@media screen and (min-width: 768px) {
-  .artwork__venue {
-    --margin-block-start: 0;
+.artwork__meta dt {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.artwork__meta dd {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.artwork__media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  align-items: start;
+  gap: 1.5rem;
+}
+
+@media screen and (min-width: 600px) {
+  .artwork__media--multi {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 .artwork__img {
   display: block;
-  margin-block-start: 0.5rem;
+  /*
+    inline-size は指定しない (width/height 属性の値を活かす)。
+    auto にすると読み込み前は寸法が分からず高さ 0 になり、
+    /works#work-xx で飛んだ後に上の画像が読み込まれて位置がずれる。
+  */
+  max-inline-size: 100%;
+  block-size: auto;
+  /* box-shadow:
+    0 0 0 1px rgb(16 15 15 / 0.08),
+    0 1.75rem 3rem -1.75rem rgb(16 15 15 / 0.4); */
+  filter: drop-shadow(12px 12px 0 var(--base-950));
   pointer-events: none;
-  -webkit-touch-callout:none;
-  -webkit-user-select:none;
-  -moz-touch-callout:none;
-  -moz-user-select:none;
-  user-select:none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-@media screen and (min-width: 768px) {
-  .artwork__img {
-    margin-block-start: 1rem;
-    max-inline-size: 1000px;
-    max-block-size: calc(90vh - 2rem);
-    object-fit: contain;
-    block-size: auto;
+@media screen and (min-width: 900px) {
+  /* 1枚だけのときは画面の高さに収め、スクロールせず全体を見られるようにする */
+  .artwork__media:not(.artwork__media--multi) .artwork__img {
+    /*
+      高さを直接制限すると縦横比が崩れるので、
+      「収めたい高さ × 縦横比」で幅の上限を決めて高さを間接的に抑える
+    */
+    max-inline-size: min(
+      100%,
+      calc((100svh - var(--header-block-size) - 4rem) * var(--img-ratio, 1))
+    );
+  }
+}
+
+/* ---------------------------
+  画像の拡大表示 (全画像 / PC のみ)
+  --------------------------- */
+.artwork__zoom {
+  display: block;
+  max-inline-size: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+
+@media screen and (min-width: 900px) {
+  .artwork__zoom:enabled {
+    cursor: zoom-in;
+  }
+
+  .artwork__zoom:focus-visible {
+    outline: 2px solid var(--color-accent-text);
+    outline-offset: 6px;
+  }
+
+  /* ホバー時は影の分だけ沈ませる (影は元の位置に残って見える) */
+  .artwork__zoom:enabled.item__hover .artwork__img {
+    transform: translate(12px, 12px);
+    filter: drop-shadow(0 0 0 var(--base-950));
+  }
+}
+
+/* トランジションも PC (拡大可能なとき) だけ。SP 幅ではホバー演出を一切出さない */
+@media screen and (min-width: 900px) and (prefers-reduced-motion: no-preference) {
+  .artwork__zoom:enabled .artwork__img {
+    transition:
+      transform 0.25s var(--ease-out),
+      filter 0.25s var(--ease-out);
+  }
+}
+
+/* modal.css の共通 dialog (中央寄せの小さい箱) を全画面に上書きする */
+dialog.lightbox {
+  inset: 0;
+  transform: none;
+  inline-size: 100%;
+  block-size: 100%;
+  max-inline-size: none;
+  max-block-size: none;
+  padding: clamp(1.5rem, 4vh, 3rem) 5rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-inverse-text);
+  overflow: hidden;
+}
+
+dialog.lightbox[open] {
+  display: grid;
+  place-items: center;
+}
+
+dialog.lightbox:not(:modal):not([popover]) {
+  transform: none;
+}
+
+dialog.lightbox::backdrop {
+  background-color: oklch(from var(--base-950) l c h / 90%);
+}
+
+dialog.lightbox[data-closing],
+dialog.lightbox[data-closing]::backdrop {
+  opacity: 0;
+}
+
+@starting-style {
+  dialog.lightbox:modal {
+    transform: none;
+  }
+}
+
+.lightbox__figure {
+  display: grid;
+  justify-items: center;
+  row-gap: 0.75rem;
+  min-inline-size: 0;
+  margin: 0;
+}
+
+/* 縦長・横長どちらでも画像全体が収まるよう、高さ 80svh と横幅の両方で上限をかける */
+.lightbox__img {
+  inline-size: auto;
+  block-size: auto;
+  max-inline-size: 100%;
+  max-block-size: 90svh;
+  object-fit: contain;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.lightbox__caption {
+  font-family: var(--font-sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-inverse-muted);
+}
+
+.lightbox__close {
+  position: absolute;
+  inset-block-start: 1.25rem;
+  inset-inline-end: 1.25rem;
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  padding: 0;
+  border: 1px solid var(--color-inverse-rule);
+  background: none;
+  color: var(--color-inverse-text);
+  cursor: pointer;
+}
+
+.lightbox__close:hover {
+  border-color: var(--color-inverse-accent);
+  color: var(--color-inverse-accent);
+}
+
+.lightbox__close:focus-visible {
+  outline: 2px solid var(--color-inverse-accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox__figure {
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  @starting-style {
+    dialog.lightbox:modal .lightbox__figure {
+      transform: scale(0.96);
+    }
+  }
+
+  dialog.lightbox[data-closing] .lightbox__figure {
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.lightbox {
+    transition-duration: 0.1s;
   }
 }
