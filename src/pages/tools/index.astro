@@ -1,14 +1,15 @@
 ---
 import Layout from '../../layouts/Layout.astro'
+import PageHeader from '../../components/common/PageHeader.astro'
 import IndexMenu from '../../components/common/IndexMenu.astro'
 
 const menuList = [
-  { name: 'Interval', path: '/tools/interval' },
+  { name: 'Interval', path: '/tools/interval', description: 'A Fingerboard Map Tool for Guitarist.' },
 ]
 ---
 
 <Layout title="Tools" description="Utilitie Tools for Web Devs and Designs.">
-  <h1 class="page__ttl">Collections</h1>
+  <PageHeader eyebrow="Tools" title="Tools" />
   <section class="section__wrapper">
     <IndexMenu menuList={menuList} />
   </section>
